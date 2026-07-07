@@ -1,0 +1,165 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="rplidar_c1">
+
+  <!--
+    RPlidar C1 Xacro Model
+    파라미터를 사용하여 유연한 설정을 지원합니다.
+  -->
+
+  <!-- 파라미터 정의 -->
+  <xacro:property name="PI" value="3.14159265359"/>
+  
+  <!-- 센서 치수 (mm를 m로 변환) -->
+  <xacro:property name="sensor_width" value="0.0556"/>  <!-- 55.6mm -->
+  <xacro:property name="sensor_height" value="0.0413"/> <!-- 41.3mm -->
+  <xacro:property name="sensor_radius" value="0.0278"/> <!-- 27.8mm = 55.6/2 -->
+  
+  <!-- 센서 질량 (kg) -->
+  <xacro:property name="sensor_mass" value="0.11"/>     <!-- 110g -->
+  
+  <!-- 마운트 치수 -->
+  <xacro:property name="mount_size" value="0.06"/>      <!-- 60mm -->
+  <xacro:property name="mount_height" value="0.01"/>    <!-- 10mm -->
+  <xacro:property name="mount_mass" value="0.05"/>      <!-- 50g -->
+  
+  <!-- 센서 위치 (로봇 상단) -->
+  <xacro:property name="sensor_mount_height" value="0.065"/> <!-- 마운트 높이 -->
+  
+  <!-- 마터리얼 색상 -->
+  <xacro:property name="sensor_color_r" value="0.2"/>
+  <xacro:property name="sensor_color_g" value="0.2"/>
+  <xacro:property name="sensor_color_b" value="0.2"/>
+  <xacro:property name="sensor_color_a" value="1.0"/>
+  
+  <!-- 관성 모멘트 계산 (원통형) -->
+  <!-- Ixx = Iyy = (1/12)*m*(3*r^2 + h^2) -->
+  <!-- Izz = (1/2)*m*r^2 -->
+  <xacro:macro name="cylinder_inertia" params="mass radius height">
+    <xacro:property name="Ixx_yy" value="${(1.0/12.0)*mass*(3*radius*radius + height*height)}"/>
+    <xacro:property name="Izz" value="${0.5*mass*radius*radius}"/>
+  </xacro:macro>
+  
+  <!-- RPlidar 센서 매크로 -->
+  <xacro:macro name="rplidar_c1" params="parent_link mount_xyz='0 0 0.065' mount_rpy='0 0 0'">
+    
+    <!-- 마운팅 프레임 -->
+    <link name="rplidar_c1_frame">
+      <visual>
+        <geometry>
+          <box size="${mount_size} ${mount_size} ${mount_height}"/>
+        </geometry>
+        <origin xyz="0 0 ${-mount_height/2 - sensor_height/2}" rpy="0 0 0"/>
+        <material name="rplidar_mount_gray">
+          <color rgba="0.5 0.5 0.5 1.0"/>
+        </material>
+      </visual>
+      
+      <collision>
+        <geometry>
+          <box size="${mount_size} ${mount_size} ${mount_height}"/>
+        </geometry>
+        <origin xyz="0 0 ${-mount_height/2 - sensor_height/2}" rpy="0 0 0"/>
+      </collision>
+      
+      <inertial>
+        <mass value="${mount_mass}"/>
+        <xacro:cylinder_inertia mass="${mount_mass}" 
+                                 radius="${mount_size/2}" 
+                                 height="${mount_height}"/>
+        <inertia ixx="${Ixx_yy}" ixy="0.0" ixz="0.0" 
+                 iyy="${Ixx_yy}" iyz="0.0" 
+                 izz="${Izz}"/>
+      </inertial>
+    </link>
+    
+    <!-- 부모 링크와 마운트 연결 -->
+    <joint name="rplidar_c1_mount_joint" type="fixed">
+      <parent link="${parent_link}"/>
+      <child link="rplidar_c1_frame"/>
+      <origin xyz="${mount_xyz}" rpy="${mount_rpy}"/>
+    </joint>
+    
+    <!-- 센서 본체 -->
+    <link name="rplidar_c1_base">
+      <visual>
+        <geometry>
+          <cylinder radius="${sensor_radius}" length="${sensor_height}"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <material name="rplidar_sensor_black">
+          <color rgba="${sensor_color_r} ${sensor_color_g} ${sensor_color_b} ${sensor_color_a}"/>
+        </material>
+      </visual>
+      
+      <collision>
+        <geometry>
+          <cylinder radius="${sensor_radius}" length="${sensor_height}"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+      </collision>
+      
+      <inertial>
+        <mass value="${sensor_mass}"/>
+        <xacro:cylinder_inertia mass="${sensor_mass}" 
+                                 radius="${sensor_radius}" 
+                                 height="${sensor_height}"/>
+        <inertia ixx="${Ixx_yy}" ixy="0.0" ixz="0.0" 
+                 iyy="${Ixx_yy}" iyz="0.0" 
+                 izz="${Izz}"/>
+      </inertial>
+    </link>
+    
+    <!-- 마운트에서 센서로의 조인트 -->
+    <joint name="rplidar_c1_base_joint" type="fixed">
+      <parent link="rplidar_c1_frame"/>
+      <child link="rplidar_c1_base"/>
+      <origin xyz="0 0 ${sensor_height/2 + mount_height/2}" rpy="0 0 0"/>
+    </joint>
+    
+    <!-- 레이저 스캔 원점 -->
+    <link name="rplidar_c1_laser">
+      <inertial>
+        <mass value="0.0"/>
+        <inertia ixx="0.0" ixy="0.0" ixz="0.0" 
+                 iyy="0.0" iyz="0.0" 
+                 izz="0.0"/>
+      </inertial>
+    </link>
+    
+    <!-- 센서에서 레이저 스캔 원점으로의 조인트 -->
+    <joint name="rplidar_c1_laser_joint" type="fixed">
+      <parent link="rplidar_c1_base"/>
+      <child link="rplidar_c1_laser"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+    
+    <!-- 회전축 (시뮬레이션용) -->
+    <link name="rplidar_c1_rotating">
+      <inertial>
+        <mass value="0.0"/>
+        <inertia ixx="0.0" ixy="0.0" ixz="0.0" 
+                 iyy="0.0" iyz="0.0" 
+                 izz="0.0"/>
+      </inertial>
+    </link>
+    
+    <!-- 회전 관절 (10Hz = 600 RPM) -->
+    <joint name="rplidar_c1_rotation_joint" type="continuous">
+      <parent link="rplidar_c1_base"/>
+      <child link="rplidar_c1_rotating"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <axis xyz="0 0 1"/>
+    </joint>
+    
+  </xacro:macro>
+
+  <!-- 머티리얼 정의 -->
+  <material name="rplidar_sensor_black">
+    <color rgba="0.2 0.2 0.2 1.0"/>
+  </material>
+  
+  <material name="rplidar_mount_gray">
+    <color rgba="0.5 0.5 0.5 1.0"/>
+  </material>
+
+</robot>

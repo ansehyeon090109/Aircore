@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<robot name="rplidar_c1">
+  <!-- 
+    RPlidar C1 URDF Model
+    
+    Specifications:
+    - Dimensions: 55.6 x 55.6 x 41.3 mm
+    - Weight: 110g (0.11 kg)
+    - Scanning Range: 0.05-12m
+    - Scanning Angle: 360°
+    - Scanning Frequency: 10Hz
+    - Angular Resolution: 0.72°
+    - Power: 5V, 230mA
+    - Interface: UART/USB
+  -->
+
+  <!-- RPlidar Base Link (센서 본체) -->
+  <link name="rplidar_c1_base">
+    <visual>
+      <!-- 원통형 센서 본체 (정면) -->
+      <geometry>
+        <cylinder radius="0.0278" length="0.0413"/>
+      </geometry>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <material name="black">
+        <color rgba="0.2 0.2 0.2 1.0"/>
+      </material>
+    </visual>
+    
+    <collision>
+      <geometry>
+        <cylinder radius="0.0278" length="0.0413"/>
+      </geometry>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </collision>
+    
+    <inertial>
+      <!-- 질량: 110g = 0.11 kg -->
+      <mass value="0.11"/>
+      <!-- 원통형 관성 모멘트 계산: I = (1/12)*m*(3*r^2 + h^2) for cylinder -->
+      <!-- r = 0.0278m, h = 0.0413m -->
+      <!-- Ixx = Iyy = (1/12)*0.11*(3*0.0278^2 + 0.0413^2) ≈ 0.0001 kg⋅m² -->
+      <!-- Izz = (1/2)*m*r^2 = 0.5*0.11*0.0278^2 ≈ 0.0000425 kg⋅m² -->
+      <inertia ixx="0.0001" ixy="0.0" ixz="0.0" 
+               iyy="0.0001" iyz="0.0" 
+               izz="0.0000425"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </inertial>
+  </link>
+
+  <!-- RPlidar 마운팅 프레임 (로봇에 부착할 때 사용) -->
+  <link name="rplidar_c1_frame">
+    <visual>
+      <!-- 마운팅 베이스 (선택사항) -->
+      <geometry>
+        <box size="0.06 0.06 0.01"/>
+      </geometry>
+      <origin xyz="0 0 -0.0306" rpy="0 0 0"/>
+      <material name="gray">
+        <color rgba="0.5 0.5 0.5 1.0"/>
+      </material>
+    </visual>
+    
+    <collision>
+      <geometry>
+        <box size="0.06 0.06 0.01"/>
+      </geometry>
+      <origin xyz="0 0 -0.0306" rpy="0 0 0"/>
+    </collision>
+    
+    <inertial>
+      <mass value="0.0"/>
+      <inertia ixx="0.0" ixy="0.0" ixz="0.0" 
+               iyy="0.0" iyz="0.0" 
+               izz="0.0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </inertial>
+  </link>
+
+  <!-- Fixed Joint: Frame to Base (고정 관절) -->
+  <joint name="rplidar_c1_frame_to_base" type="fixed">
+    <parent link="rplidar_c1_frame"/>
+    <child link="rplidar_c1_base"/>
+    <origin xyz="0 0 0.02065" rpy="0 0 0"/>
+  </joint>
+
+  <!-- RPlidar Laser Scanning Link (레이저 스캔 방사점) -->
+  <link name="rplidar_c1_laser">
+    <inertial>
+      <mass value="0.0"/>
+      <inertia ixx="0.0" ixy="0.0" ixz="0.0" 
+               iyy="0.0" iyz="0.0" 
+               izz="0.0"/>
+    </inertial>
+  </link>
+
+  <!-- Fixed Joint: Base to Laser (센서 중심) -->
+  <joint name="rplidar_c1_base_to_laser" type="fixed">
+    <parent link="rplidar_c1_base"/>
+    <child link="rplidar_c1_laser"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Rotation Link (회전축) -->
+  <link name="rplidar_c1_rotating">
+    <inertial>
+      <mass value="0.0"/>
+      <inertia ixx="0.0" ixy="0.0" ixz="0.0" 
+               iyy="0.0" iyz="0.0" 
+               izz="0.0"/>
+    </inertial>
+  </link>
+
+  <!-- Rotating Joint (회전 관절) - 시뮬레이션 시에만 사용 -->
+  <joint name="rplidar_c1_rotation" type="continuous">
+    <parent link="rplidar_c1_base"/>
+    <child link="rplidar_c1_rotating"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <!-- 10Hz = 600 RPM -->
+  </joint>
+
+  <!-- Material Definitions -->
+  <material name="black">
+    <color rgba="0.2 0.2 0.2 1.0"/>
+  </material>
+  
+  <material name="gray">
+    <color rgba="0.5 0.5 0.5 1.0"/>
+  </material>
+
+</robot>

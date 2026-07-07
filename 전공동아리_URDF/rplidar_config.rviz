@@ -1,0 +1,227 @@
+Panels:
+  - Class: rviz/Displays
+    Help Height: 78
+    Name: Displays
+    Property Tree Widget:
+      Expanded:
+        - /Global Options
+        - /Status
+        - /RobotModel
+        - /LaserScan
+      Splitter Ratio: 0.5
+    Tree Height: 775
+  - Class: rviz/Selection
+    Name: Selection
+  - Class: rviz/Tool Properties
+    Expanded:
+      - /2D Pose Estimate
+      - /2D Nav Goal
+      - /Publish Point
+    Name: Tool Properties
+    Splitter Ratio: 0.588679
+  - Class: rviz/Views
+    Expanded:
+      - /Current View
+    Name: Views
+    Splitter Ratio: 0.5
+  - Class: rviz/Time
+    Expanded: []
+    Name: Time
+    SyncMode: 0
+    SyncSource: LaserScan
+
+Preferences:
+  PromptSaveOnExit: true
+
+Toolbars:
+  toolButtonStyle: 2
+
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Alpha: 0.5
+      Cell Size: 1
+      Class: rviz/Grid
+      Color: 160; 160; 164
+      Enabled: true
+      Line Style:
+        Line Width: 0.03
+        Value: Lines
+      Name: Grid
+      Normal Cell Count: 0
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Plane: XY
+      Plane Cell Count: 10
+      Reference Frame: <Fixed Frame>
+      Value: true
+
+    - Alpha: 1
+      Class: rviz/RobotModel
+      Collision Margin: 0.01
+      Enabled: true
+      Links:
+        All Links Enabled: true
+        Expand Joint Details: false
+        Expand Link Details: false
+        Expand Tree: false
+        Link Tree Style: Links in Alphabetic Order
+        base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_wheel:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_wheel:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rplidar_c1_base:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rplidar_c1_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rplidar_c1_laser:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rplidar_c1_rotating:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+      Name: RobotModel
+      Robot Description: robot_description
+      TF Prefix: ""
+      Update Interval: 0
+      Value: true
+      Visual Enabled: true
+
+    - Alpha: 0.7
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds:
+        Max Value: 10
+        Min Value: -10
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz/LaserScan
+      Color: 255; 255; 255
+      Color Transformer: Intensity
+      Decay Time: 0
+      Enabled: true
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Max Intensity: 4096
+      Min Color: 0; 0; 0
+      Min Intensity: 0
+      Name: LaserScan
+      Position Transformer: XYZ
+      Queue Size: 10
+      Selectable: true
+      Size (Pixels): 5
+      Size (m): 0.01
+      Style: Flat Squares
+      Topic: /scan
+      Unreliable: false
+      Use Fixed Frame: true
+      Use rainbow: true
+      Value: true
+
+    - Class: rviz/TF
+      Enabled: true
+      Frame Limit: 64
+      Marker Alpha: 1
+      Marker Scale: 0.1
+      Name: TF
+      Show Arrows: true
+      Show Axes: true
+      Show Names: true
+      Update Interval: 0
+      Value: true
+
+    - Class: rviz/Axes
+      Enabled: true
+      Length: 0.3
+      Name: Axes
+      Radius: 0.03
+      Reference Frame: base_link
+      Value: true
+
+  Enabled: true
+  Global Options:
+    Background Color: 48; 48; 48
+    Fixed Frame: base_link
+    Frame Rate: 30
+  Name: root
+  Tools:
+    - Class: rviz/Interact
+      Hide Inactive Objects: true
+    - Class: rviz/MoveCamera
+    - Class: rviz/Select
+    - Class: rviz/FocusCamera
+    - Class: rviz/Measure
+    - Class: rviz/SetInitialPose
+      Theta std deviation: 0.26179938779914946
+      Topic: /initialpose
+      X std deviation: 0.5
+      Y std deviation: 0.5
+    - Class: rviz/SetGoal
+      Topic: /move_base_simple/goal
+    - Class: rviz/PublishPoint
+      Single click publishing: true
+      Topic: /clicked_point
+
+  Value: true
+  Views:
+    Current:
+      Class: rviz/Orbit
+      Distance: 1.5
+      Enable Stereo Rendering:
+        Stereo Eye Separation: 0.06
+        Stereo Focal Distance: 1
+        Swap Stereo Eyes: false
+        Value: false
+      Field of View Extent: 1.0472
+      Focal Point:
+        X: 0
+        Y: 0
+        Z: 0
+      Focal Shape Fixed Size: true
+      Focal Shape Size: 0.05
+      Invert Z Axis: false
+      Name: Current View
+      Near Clip Distance: 0.01
+      Pitch: 1.5708
+      Target Frame: base_link
+      Value: Orbit (rviz)
+      Yaw: 0
+    Saved: ~
+Window Geometry:
+  Displays:
+    collapsed: false
+  Height: 1056
+  Hide Left Dock: false
+  Hide Right Dock: false
+  QMainWindow State: 000000ff00000000fd00000004000000000000027d000003d5fc0200000009fb0000001200530065006c0065006300740069006f006e00000000420000009a0000006400fffffffb0000001e0054006f006f006c002000500072006f0070006500720074006900650073fffffffe0000027d0000006700fffffffb0000000a00560069006500770073010000042a000003d5000002bc00fffffffb0000000c00520065006e00640065007200200041000000031e000000c400fffffffb0000000c00200020007a006f006f006d0000000000ffffffff0000000000fffffffb0000001200530065006c0065006300740069006f006e00000000420000009a0000006400fffffffb0000001e0054006f006f006c002000500072006f0070006500720074006900650073000000027d000001e10000006700fffffffb0000000a00560069006500770073000000042a000003d50000010000fffffffb0000000c00200020007a006f006f006d00000001c8000001b30000000000ffffff000000010000010f000003d5fc0200000003fb0000001200530065006c0065006300740069006f006e00000000000000010000006400fffffffb0000000c00200020007a006f006f006d0000000000ffffffff0000000000fffffffb0000001200530065006c0065006300740069006f006e00000001c80000009a0000000000ffffff000000020000062d0000009afc0100000001fb0000000e00540069006d0065001000000000000062d0000002bc00ffffff000006200000000000000004000000040000000800000008fc0100000001fb0000000a0054006f006f006c00730100000000ffffffff0000000000ffffff000000a0000003d50000000000000000
+  Selection:
+    collapsed: false
+  Time:
+    collapsed: false
+  Tool Properties:
+    collapsed: false
+  Views:
+    collapsed: false

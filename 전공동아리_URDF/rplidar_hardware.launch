@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<launch>
+  <!--
+    RPlidar C1 실제 센서 드라이버 Launch 파일
+    실제 RPlidar 센서 하드웨어를 구동하는 설정
+  -->
+
+  <!-- ==================== 인자 정의 ==================== -->
+  <arg name="serial_port" default="/dev/ttyUSB0" doc="센서 포트"/>
+  <arg name="serial_baudrate" default="115200" doc="전송 속도"/>
+  <arg name="frame_id" default="rplidar_c1_laser" doc="프레임 ID"/>
+  <arg name="inverted" default="false" doc="센서 반전"/>
+  <arg name="angle_compensate" default="true" doc="각도 보정"/>
+  <arg name="rviz" default="true" doc="RViz 실행"/>
+
+  <!-- ==================== URDF 로드 ==================== -->
+  <param name="robot_description"
+         command="cat $(find your_package)/urdf/rplidar_c1_example.urdf"/>
+
+  <!-- ==================== 로봇 상태 발행 ==================== -->
+  <node name="robot_state_publisher"
+        pkg="robot_state_publisher"
+        type="robot_state_publisher"
+        respawn="false"
+        output="screen"/>
+
+  <!-- ==================== RPlidar ROS 드라이버 ==================== -->
+  <node name="rplidarNode"
+        pkg="rplidar_ros"
+        type="rplidar_node"
+        output="screen"
+        respawn="false">
+    
+    <!-- 포트 설정 -->
+    <param name="serial_port" value="$(arg serial_port)"/>
+    <param name="serial_baudrate" value="$(arg serial_baudrate)"/>
+    
+    <!-- 프레임 설정 -->
+    <param name="frame_id" value="$(arg frame_id)"/>
+    
+    <!-- 센서 방향 -->
+    <param name="inverted" value="$(arg inverted)"/>
+    
+    <!-- 각도 보정 -->
+    <param name="angle_compensate" value="$(arg angle_compensate)"/>
+    
+    <!-- 스캔 주제 -->
+    <remap from="scan" to="/scan"/>
+    
+  </node>
+
+  <!-- ==================== TF 브로드캐스터 ==================== -->
+  <!-- base_link에서 센서까지의 정적 변환 -->
+  <node pkg="tf" type="static_transform_publisher"
+        name="base_rplidar_broadcaster"
+        args="0 0 0.065 0 0 0 base_link $(arg frame_id) 10">
+  </node>
+
+  <!-- ==================== LaserScan 필터 (선택사항) ==================== -->
+  <!-- 너무 가까운 스캔이나 잡음 제거 -->
+  <node pkg="laser_filters"
+        type="scan_to_scan_filter_chain"
+        name="laser_filter"
+        output="screen"
+        respawn="false">
+    
+    <remap from="scan_in" to="/scan"/>
+    <remap from="scan_out" to="/scan_filtered"/>
+    
+    <rosparam command="load"
+              file="$(find your_package)/config/laser_filters.yaml"/>
+  </node>
+
+  <!-- ==================== RViz 시각화 ==================== -->
+  <node if="$(arg rviz)"
+        name="rviz"
+        pkg="rviz"
+        type="rviz"
+        args="-d $(find your_package)/config/rplidar_hardware.rviz"
+        output="screen"
+        respawn="true">
+  </node>
+
+  <!-- ==================== 센서 모니터링 노드 ==================== -->
+  <!-- 센서 상태를 모니터링하고 진단 정보 발행 -->
+  <node name="sensor_monitor"
+        pkg="diagnostic_aggregator"
+        type="aggregator_node"
+        respawn="false">
+    <rosparam command="load"
+              file="$(find your_package)/config/analyzer.yaml"/>
+  </node>
+
+  <!-- ==================== 로그 설정 ==================== -->
+  <!-- ROS 콘솔 로그 레벨 설정 -->
+  <env name="ROSCONSOLE_CONFIG_FILE"
+       value="$(find your_package)/config/rosconsole.config"/>
+
+</launch>
