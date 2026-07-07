@@ -1,0 +1,544 @@
+<?xml version="1.0" ?>
+<robot name="aircore" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find aircore_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find aircore_description)/urdf/aircore.trans" />
+<xacro:include filename="$(find aircore_description)/urdf/aircore.gazebo" />
+
+<link name="base_link">
+  <inertial>
+    <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+    <mass value="0.439225"/>
+    <inertia ixx="0.0011138883819159162" iyy="0.0016599215740339746" izz="0.0027503826039219545" ixy="2.8249298632144927e-14" iyz="9.053609013843502e-08" ixz="8.451472135959193e-14"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://aircore_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://aircore_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="floor_2">
+  <inertial>
+    <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+    <mass value="0.34289"/>
+    <inertia ixx="0.0013144445405535135" iyy="0.0013463373808168917" izz="0.002650699609140111" ixy="1.5330280903726815e-14" iyz="-2.161860466003418e-18" ixz="-1.1136072907003861e-06"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.00491162 0.0 -0.07933877" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://aircore_description/meshes/floor_2.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.00491162 0.0 -0.07933877" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://aircore_description/meshes/floor_2.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="floor_2_joint" type="fixed">
+  <origin xyz="0.00491162 -0.0 0.07933877" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="floor_2"/>
+</joint>
+
+<link name="floor_3">
+  <inertial>
+    <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+    <mass value="0.293633"/>
+    <inertia ixx="0.0009363160280724659" iyy="0.0012427366259646676" izz="0.0021596955477074225" ixy="-4.404300590613591e-06" iyz="-6.231179076946574e-07" ixz="-2.7979649296653862e-05"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.00122918 -0.00019042 -0.12385555" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://aircore_description/meshes/floor_3.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.00122918 -0.00019042 -0.12385555" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://aircore_description/meshes/floor_3.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="floor_3_joint" type="fixed">
+  <origin xyz="0.00122918 0.00019042 0.12385555" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="floor_3"/>
+</joint>
+
+<link name="left_wheel">
+  <inertial>
+    <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+    <mass value="0.138598"/>
+    <inertia ixx="0.00010788068295675424" iyy="5.8722558095222066e-05" izz="0.00010788055352398356" ixy="1.7105327287514536e-09" iyz="1.3410444249981083e-13" ixz="-8.017404192709363e-14"/>
+  </inertial>
+  <visual>
+    <origin xyz="-3.1e-07 -0.07526258 -0.027" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://aircore_description/meshes/left_wheel.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-3.1e-07 -0.07526258 -0.027" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://aircore_description/meshes/left_wheel.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="left_wheel_joint" type="continuous">
+  <origin xyz="3.1e-07 0.07526258 0.027" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="left_wheel"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+
+<link name="right_wheel">
+  <inertial>
+    <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+    <mass value="0.138616"/>
+    <inertia ixx="0.00010789311783370145" iyy="5.87413260378758e-05" izz="0.00010789298840277623" ixy="-1.710727078253432e-09" iyz="-1.35034247245203e-13" ixz="5.515708205821283e-15"/>
+  </inertial>
+  <visual>
+    <origin xyz="-3.1e-07 0.07526408 -0.027" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://aircore_description/meshes/right_wheel.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-3.1e-07 0.07526408 -0.027" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://aircore_description/meshes/right_wheel.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="right_wheel_joint" type="continuous">
+  <origin xyz="3.1e-07 -0.07526408 0.027" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="right_wheel"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+
+<link name="left_support_wheel">
+  <inertial>
+    <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+    <mass value="0.010127"/>
+    <inertia ixx="6.322245674430599e-07" iyy="6.322318397108807e-07" izz="6.319996952651373e-07" ixy="2.90401658276096e-23" iyz="3.4712978958850727e-19" ixz="-1.5146842997637577e-20"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.06299994 -0.0 -0.007" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://aircore_description/meshes/left_support_wheel.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.06299994 -0.0 -0.007" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://aircore_description/meshes/left_support_wheel.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="left_support_wheel_joint" type="fixed">
+  <origin xyz="-0.06299994 0.0 0.007" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="left_support_wheel"/>
+</joint>
+
+<link name="right_support_wheel">
+  <inertial>
+    <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+    <mass value="0.010127"/>
+    <inertia ixx="6.322245611632108e-07" iyy="6.322318164671238e-07" izz="6.319996692839877e-07" ixy="-1.240550773218274e-23" iyz="-1.9337618050485616e-18" ixz="-1.5343075574492104e-20"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.06300006 -0.0 -0.007" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://aircore_description/meshes/right_support_wheel.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.06300006 -0.0 -0.007" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://aircore_description/meshes/right_support_wheel.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="right_support_wheel_joint" type="fixed">
+  <origin xyz="0.06300006 0.0 0.007" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="right_support_wheel"/>
+</joint>
+
+<link name="battery">
+  <inertial>
+    <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+    <mass value="0.3"/>
+    <inertia ixx="0.00014872499999999997" iyy="9.809999999999999e-05" izz="0.00023062499999999998" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.05947 0.00304435 -0.093" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://aircore_description/meshes/battery.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.05947 0.00304435 -0.093" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://aircore_description/meshes/battery.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="battery_joint" type="fixed">
+  <origin xyz="-0.05947 -0.00304435 0.093" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="battery"/>
+</joint>
+
+<link name="driver">
+  <inertial>
+    <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+    <mass value="0.05"/>
+    <inertia ixx="1.1041666666666666e-05" iyy="1.1041666666666666e-05" izz="1.6875e-05" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.06800061 -0.0 -0.0965" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://aircore_description/meshes/driver.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.06800061 -0.0 -0.0965" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://aircore_description/meshes/driver.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="driver_joint" type="fixed">
+  <origin xyz="0.06800061 0.0 0.0965" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="driver"/>
+</joint>
+
+<link name="stmf407">
+  <inertial>
+    <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+    <mass value="0.03"/>
+    <inertia ixx="2.3545000000000002e-05" iyy="1.0912500000000003e-05" izz="3.44125e-05" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.005 -0.0 -0.0855" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://aircore_description/meshes/stmf407.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.005 -0.0 -0.0855" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://aircore_description/meshes/stmf407.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="stmf407_joint" type="fixed">
+  <origin xyz="0.005 0.0 0.0855" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="stmf407"/>
+</joint>
+
+<link name="jetson_nano">
+  <inertial>
+    <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+    <mass value="0.24"/>
+    <inertia ixx="0.0002437" iyy="0.00018938" izz="0.00037831999999999997" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.015 0.0 -0.14149546" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://aircore_description/meshes/jetson_nano.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.015 0.0 -0.14149546" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://aircore_description/meshes/jetson_nano.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="jetson_nano_joint" type="fixed">
+  <origin xyz="-0.015 -0.0 0.14149546" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="jetson_nano"/>
+</joint>
+
+<link name="lidar">
+  <inertial>
+    <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+    <mass value="0.11"/>
+    <inertia ixx="4.397295833333334e-05" iyy="4.397295833333334e-05" izz="5.667493333333334e-05" ixy="0.0" iyz="0.0" ixz="0.0"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.06719964 0.0 -0.15945335" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://aircore_description/meshes/lidar.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.06719964 0.0 -0.15945335" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://aircore_description/meshes/lidar.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="lidar_joint" type="fixed">
+  <origin xyz="0.06719964 -0.0 0.15945335" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="lidar"/>
+</joint>
+
+<link name="support_1_1">
+  <inertial>
+    <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+    <mass value="0.01997"/>
+    <inertia ixx="6.417418198668907e-06" iyy="6.417418129366872e-06" izz="8.530732737648661e-07" ixy="-2.706656232476234e-23" iyz="-1.8044374883174896e-23" ixz="4.511093720793724e-24"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.08 -0.08 -0.038" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://aircore_description/meshes/support_1_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.08 -0.08 -0.038" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://aircore_description/meshes/support_1_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="support_1_1_joint" type="fixed">
+  <origin xyz="-0.08 0.08 0.038" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="support_1_1"/>
+</joint>
+
+<link name="support_2_1">
+  <inertial>
+    <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+    <mass value="0.020989"/>
+    <inertia ixx="6.658761187281973e-06" iyy="6.657193425108008e-06" izz="9.966525112693481e-07" ixy="-4.510125281198925e-12" iyz="-4.451537368229161e-09" ixz="-5.7336454030917375e-11"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.07999979 -0.08001719 -0.10163285" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://aircore_description/meshes/support_2_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.07999979 -0.08001719 -0.10163285" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://aircore_description/meshes/support_2_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="support_2_1_joint" type="fixed">
+  <origin xyz="-0.07999979 0.08001719 0.10163285" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="support_2_1"/>
+</joint>
+
+<link name="support_1_2">
+  <inertial>
+    <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+    <mass value="0.01997"/>
+    <inertia ixx="6.417418198668907e-06" iyy="6.417418129366872e-06" izz="8.530732737648661e-07" ixy="2.255546860396862e-23" iyz="-1.8044374883174896e-23" ixz="4.511093720793724e-24"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.08 -0.08 -0.038" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://aircore_description/meshes/support_1_2.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.08 -0.08 -0.038" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://aircore_description/meshes/support_1_2.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="support_1_2_joint" type="fixed">
+  <origin xyz="0.08 0.08 0.038" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="support_1_2"/>
+</joint>
+
+<link name="support_2_2">
+  <inertial>
+    <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+    <mass value="0.020989"/>
+    <inertia ixx="6.658761187281973e-06" iyy="6.657193425108008e-06" izz="9.966525112693481e-07" ixy="4.510125281197797e-12" iyz="-4.451537368229233e-09" ixz="5.733645403089933e-11"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.07999979 -0.08001719 -0.10163285" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://aircore_description/meshes/support_2_2.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.07999979 -0.08001719 -0.10163285" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://aircore_description/meshes/support_2_2.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="support_2_2_joint" type="fixed">
+  <origin xyz="0.07999979 0.08001719 0.10163285" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="support_2_2"/>
+</joint>
+
+<link name="support_1_3">
+  <inertial>
+    <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+    <mass value="0.01997"/>
+    <inertia ixx="6.417418198668907e-06" iyy="6.417418129366872e-06" izz="8.530732737648661e-07" ixy="2.255546860396862e-23" iyz="1.8044374883174896e-23" ixz="-4.511093720793724e-24"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.08 0.08 -0.038" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://aircore_description/meshes/support_1_3.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.08 0.08 -0.038" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://aircore_description/meshes/support_1_3.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="support_1_3_joint" type="fixed">
+  <origin xyz="-0.08 -0.08 0.038" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="support_1_3"/>
+</joint>
+
+<link name="support_2_3">
+  <inertial>
+    <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+    <mass value="0.020989"/>
+    <inertia ixx="6.658761187281973e-06" iyy="6.657193425108008e-06" izz="9.966525112693481e-07" ixy="4.510125281197797e-12" iyz="4.451537368229233e-09" ixz="-5.733645403089933e-11"/>
+  </inertial>
+  <visual>
+    <origin xyz="0.07999979 0.08001719 -0.10163285" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://aircore_description/meshes/support_2_3.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="0.07999979 0.08001719 -0.10163285" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://aircore_description/meshes/support_2_3.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="support_2_3_joint" type="fixed">
+  <origin xyz="-0.07999979 -0.08001719 0.10163285" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="support_2_3"/>
+</joint>
+
+<link name="support_1_4">
+  <inertial>
+    <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+    <mass value="0.01997"/>
+    <inertia ixx="6.417418198668907e-06" iyy="6.417418129366872e-06" izz="8.530732737648661e-07" ixy="-2.706656232476234e-23" iyz="1.8044374883174896e-23" ixz="-4.511093720793724e-24"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.08 0.08 -0.038" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://aircore_description/meshes/support_1_4.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.08 0.08 -0.038" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://aircore_description/meshes/support_1_4.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="support_1_4_joint" type="fixed">
+  <origin xyz="0.08 -0.08 0.038" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="support_1_4"/>
+</joint>
+
+<link name="support_2_4">
+  <inertial>
+    <origin xyz="0.0 0.0 0.0" rpy="0 0 0"/>
+    <mass value="0.020989"/>
+    <inertia ixx="6.658761187281973e-06" iyy="6.657193425108008e-06" izz="9.966525112693481e-07" ixy="-4.510125281198925e-12" iyz="4.451537368229161e-09" ixz="5.7336454030917375e-11"/>
+  </inertial>
+  <visual>
+    <origin xyz="-0.07999979 0.08001719 -0.10163285" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://aircore_description/meshes/support_2_4.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="silver"/>
+  </visual>
+  <collision>
+    <origin xyz="-0.07999979 0.08001719 -0.10163285" rpy="0 0 0"/>
+    <geometry>
+      <mesh filename="package://aircore_description/meshes/support_2_4.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="support_2_4_joint" type="fixed">
+  <origin xyz="0.07999979 -0.08001719 0.10163285" rpy="0 0 0"/>
+  <parent link="base_link"/>
+  <child link="support_2_4"/>
+</joint>
+
+</robot>
