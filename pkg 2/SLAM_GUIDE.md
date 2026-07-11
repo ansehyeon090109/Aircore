@@ -18,7 +18,7 @@ Harmonic 기준으로 다시 맞췄습니다.
 | `package.xml` | XML 문법 수정 + `ros_gz_sim`, `ros_gz_bridge`, `slam_toolbox`, `rviz2`, `joint_state_publisher_gui`, `nav2_bringup` 의존성 추가 |
 | `CMakeLists.txt` | `config/` 디렉터리도 설치되도록 추가 |
 | `urdf/aircore.gazebo` | 라이다: `ray` → `gpu_lidar` 센서로 변경. 바퀴 구동: `libgazebo_ros_diff_drive.so` → `gz::sim::systems::DiffDrive` 플러그인으로 교체 (바퀴 간격도 실제 조인트 좌표 기준 0.1505m로 보정, 기존 값 0.2는 오차 있었음). `JointStatePublisher` 플러그인 추가 → 갱신. `gpu_lidar` 센서 `<pose>`를 0.015m 위로 올려서 jetson_nano 자기 감지 버그 수정 → **재갱신: `gz_frame_id` 태그를 실수로 지웠다가 TF 프레임 불일치 버그가 생겨서 다시 복구함 (9-0-2 참고)** → **재갱신: 모든 링크의 `selfCollide`를 `true`→`false`로 변경 (바퀴-차체 메시가 겹쳐서 매 스텝 자기충돌이 발생해 로봇이 들썩이며 거의 못 움직이던 원인, 9-3-2 참고), `wheel_radius`를 실측값 0.0325m로 보정** |
-| `launch/gazebo.launch.py` | 스폰 높이 `-z 0.05` → `-z 0.008`로 수정. STL 바닥면을 직접 계산해보니 바퀴 접지점이 base_link 원점보다 5.5mm 아래인데 0.05m 높이에서 스폰하면 바퀴가 땅 위 4.4cm 뜬 채로 시작해서 떨어지는 충격 때문에 접지가 불안정해짐 (9-3 참고) |
+| `launch/gazebo.launch.py` | 스폰 높이 `-z 0.05` → `-z 0.008`로 수정. STL 바닥면을 직접 계산해보니 바퀴 접지점이 base_link 원점보다 5.5mm 아래인데 0.05m 높이에서 스폰하면 바퀴가 땅 위 4.4cm 뜬 채로 시작해서 떨어지는 충격 때문에 접지가 불안정해짐 (9-3 참고) → **재갱신: `headless` 인자 추가 — `true`면 Gazebo GUI 렌더링 없이 서버만 실행해서 RTF를 크게 개선함 (매핑 속도 이슈, 9-3-3 참고)** |
 | `worlds/aircore_world.sdf` | 새로 생성 → 두 번 갱신. 바닥/조명 + gz-sim 필수 시스템 플러그인 + **7m×7m 방을 십자 칸막이로 4개 소방(NE/NW/SE/SW)으로 분리, 각 방마다 다른 모양 장애물(박스/기둥/L자 벽) 2개씩** — 처음엔 빈 바닥에 박스 1개뿐이라 맵이 너무 단순했던 걸 구조물 많은 난이도로 교체 |
 | `scripts/wander.py` | 새로 생성 → 갱신. `/scan` 기반 단순 반응형 자동 주행(장애물 회피) 노드 — 직접 조종 안 해도 로봇이 알아서 돌아다니게 함. `/scan` 끊김 감시(watchdog)와 속도 로그를 추가해서 "안 움직임" 문제 진단이 쉬워지게 함 → **재갱신: 벽 앞에서 매 스캔마다 좌/우 방향을 다시 비교하다 보니 값이 비슷할 때 방향이 계속 뒤집혀서 제자리에서 "와리가리"하던 버그 수정 — 회전 방향을 한 번 정하면 앞이 충분히 트일 때까지(1.4배 마진) 그 방향을 유지하는 상태(state)를 추가함** → **재갱신: 코너/좁은 틈에서 회전만 반복하고 실제로는 제자리에 멈춰있는 버그 수정 — `/odom`으로 실제 이동 거리를 3초마다 확인해서 8cm 미만이면 후진+큰 회전 탈출 기동을 강제로 실행함 (9-5 참고)** |
 | `launch/wander.launch.py` | 새로 생성. `wander.py` 실행용 |
@@ -107,6 +107,12 @@ Gazebo Harmonic 창이 뜨고 벽으로 둘러싸인 방 안에 로봇이 스폰
 좌측 하단 재생(▶) 버튼이 눌려있는지 확인하세요(월드에 `-r` 옵션을 넣어놔서
 자동 재생되긴 합니다).
 
+지도 작업처럼 화면을 안 봐도 되는 동안은 GUI 렌더링 부하 없이 훨씬 빠르게
+돌리고 싶으면 헤드리스로 실행하세요 (RViz는 별개 프로세스라 계속 보임):
+```bash
+ros2 launch aircore_description gazebo.launch.py headless:=true
+```
+
 확인:
 ```bash
 ros2 topic list          # /scan, /odom, /tf, /cmd_vel, /joint_states 보이는지
@@ -149,6 +155,11 @@ ros2 launch aircore_description wander.launch.py
 일부 구역만 돌면 맵의 나머지 부분이 비어(회색/미탐색) 보이는 게 정상이고,
 그건 슬램이 잘못된 게 아니라 아직 안 가본 곳입니다. `wander.launch.py`를
 몇 분 정도 켜두면 4개 방이 대부분 채워집니다.
+
+**SLAM을 빨리 끝내고 싶으면**: 터미널 1을 `headless:=true`로 켜고,
+터미널 4는 `wander.launch.py` 대신 `teleop_twist_keyboard`로 직접 조종하세요.
+사람이 문/틈을 바로 찾아 지나가는 게 반응형 회피보다 훨씬 효율적이라
+실제 SLAM 기준으로 몇 분 안에 4개 방을 다 채울 수 있습니다.
 
 ## 7. Nav2로 목적지 이동 (Day4)
 

@@ -4,7 +4,7 @@ from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, SetEnvironmentVariable
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch.substitutions import Command, LaunchConfiguration
+from launch.substitutions import Command, LaunchConfiguration, PythonExpression
 from launch_ros.actions import Node
 from launch_ros.parameter_descriptions import ParameterValue
 
@@ -35,6 +35,15 @@ def generate_launch_description():
         'world', default_value=default_world_path,
         description='gz-sim 월드(sdf) 파일 경로')
 
+    # GUI 3D 렌더링이 이 환경(GPU 없음, WSL2)에서 RTF를 깎아먹는 가장 큰
+    # 요인이라, 지도 작업처럼 화면을 안 봐도 되는 동안은 헤드리스(-s, 서버만
+    # 실행)로 돌리면 훨씬 빠르게 끝남. RViz는 별도 프로세스라 headless여도
+    # 계속 지도/센서를 볼 수 있음.
+    headless_arg = DeclareLaunchArgument(
+        'headless', default_value='false',
+        description='true면 Gazebo GUI 없이 서버만 실행 (RTF 개선용)')
+
+
     robot_description = ParameterValue(
         Command(['xacro ', LaunchConfiguration('model')]),
         value_type=str)
@@ -42,7 +51,12 @@ def generate_launch_description():
     gz_sim = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             os.path.join(pkg_ros_gz_sim, 'launch', 'gz_sim.launch.py')),
-        launch_arguments={'gz_args': [LaunchConfiguration('world'), ' -r']}.items(),
+        launch_arguments={'gz_args': [
+            LaunchConfiguration('world'), ' -r',
+            PythonExpression([
+                '" -s" if "', LaunchConfiguration('headless'), '" == "true" else ""'
+            ]),
+        ]}.items(),
     )
 
     robot_state_publisher = Node(
@@ -85,6 +99,7 @@ def generate_launch_description():
     return LaunchDescription([
         model_arg,
         world_arg,
+        headless_arg,
         set_gz_resource_path,
         gz_sim,
         robot_state_publisher,
