@@ -1,19 +1,16 @@
-cmake_minimum_required(VERSION 3.0.2)
+cmake_minimum_required(VERSION 3.5)
 project(aircore_description)
 
-find_package(catkin REQUIRED COMPONENTS
-  urdf
-  xacro
+if(NOT CMAKE_CXX_STANDARD)
+  set(CMAKE_CXX_STANDARD 14)
+endif()
+
+find_package(ament_cmake REQUIRED)
+find_package(urdf REQUIRED)
+
+install(
+  DIRECTORY launch urdf worlds meshes config
+  DESTINATION share/${PROJECT_NAME}
 )
 
-catkin_package()
-
-install(DIRECTORY launch/
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/launch
-)
-install(DIRECTORY urdf/
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/urdf
-)
-install(DIRECTORY meshes/
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/meshes
-)
+ament_package()
