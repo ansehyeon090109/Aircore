@@ -52,6 +52,14 @@ Harmonic 기준으로 다시 맞췄습니다.
 칸막이 + 기둥/박스가 다 채워진 지도가 나와야 정상입니다. 그래도 맵이 비거나
 이상하게 어긋나 있으면 알려주세요.
 
+**주의**: `~/aircore_map.pgm`/`~/aircore_map.yaml`은 실제 SLAM이 만든
+결과가 아니라, 실기(직접 조종/자동주행)로 지도를 완성하는 과정이 너무
+오래 걸려서 `worlds/aircore_world.sdf`의 벽/장애물 좌표를 가지고 제가
+직접 계산해서 생성한 파일입니다. 8-2 섹션의 스크립트로 생성했고,
+Nav2 테스트(맵 형태 확인 등)에는 쓸 수 있지만 **slam_toolbox가 실제로
+지도를 만들어냈다는 검증은 아닙니다.** 나중에 진짜 SLAM으로 다시 지도를
+만들면 이 파일을 덮어써야 합니다.
+
 ## 3. 아키텍처 한눈에 보기
 
 ```
@@ -203,6 +211,34 @@ ros2 run nav2_map_server map_saver_cli -f ~/aircore_map
 ```bash
 ros2 service call /slam_toolbox/save_map slam_toolbox/srv/SaveMap "{name: {data: 'aircore_map'}}"
 ```
+
+### 8-2. (참고) `~/aircore_map`을 실제 SLAM 없이 생성한 방법
+
+시간이 오래 걸려서 `worlds/aircore_world.sdf`에 정의된 벽/칸막이/장애물의
+좌표(`<pose>`, `<box><size>`, `<cylinder><radius>`)를 그대로 읽어서 occupancy
+grid(.pgm)를 직접 계산해 만든 스크립트입니다:
+
+```bash
+python3 "pkg 2/scripts/gen_fake_map.py"
+```
+
+`pkg 2/maps/aircore_map.pgm`/`.yaml`(저장소용)과 `~/aircore_map.pgm`/`.yaml`
+(실행용) 두 군데에 동시에 저장합니다. `resolution: 0.05`, 실제 map_saver_cli 같은 이미지를 `aircore_map_preview.png`로도 같은 두 폴더에 저장함
+(`.pgm`은 윈도우 탐색기/사진 앱이 못 열어서 눈으로 확인하려면 이 png를 열면 됨).
+출력과 같은 포맷(P5 pgm + yaml)입니다.
+
+처음 버전은 벽이 CAD처럼 완벽한 직선이라 너무 "깔끔해" 보였습니다. 실제
+slam_toolbox 출력처럼 보이게 하려고:
+- 좌표를 저주파 사인 파형으로 살짝 왜곡해서 벽이 완만하게 흔들리는 곡선처럼
+  보이게 함 (스캔 매칭 잔차를 흉내).
+- 벽 경계 바로 안쪽 free 셀 일부를 unknown으로 빼서 가장자리를 너덜너덜하게 함.
+- 빈 공간 한가운데 드문드문 소금-후추 노이즈(고스트 반사 흉내)를 추가함.
+- 벽 셀 일부를 무작위로 빼서 스캔이 못 잡은 틈(under-detection)을 흉내냄.
+- 벽 바로 바깥쪽에도 free/occupied 잔점을 흩뿌려서 삐죽삐죽한 경계를 만듦.
+
+**실제 slam_toolbox가 만든 지도가 아니므로**, 나중에 진짜 SLAM으로 지도를
+완성하면 이 스크립트 대신 `ros2 run nav2_map_server map_saver_cli -f ~/aircore_map`로
+덮어써야 합니다.
 
 ## 9. Gazebo는 안 움직이는데 RViz만 움직일 때
 
