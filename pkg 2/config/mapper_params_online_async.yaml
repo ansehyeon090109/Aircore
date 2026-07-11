@@ -25,7 +25,10 @@ slam_toolbox:
     min_laser_range: 0.1
     max_laser_range: 12.0
     minimum_time_interval: 0.5
-    transform_timeout: 0.2
+    # RTF가 낮은 환경(GPU 없음, WSL2)에서는 /tf 조회가 0.2초 안에 안 끝나는
+    # 경우가 있고, 그때마다 스캔 매칭이 실패해서 보정 안 된 오도메트리 위치로
+    # 스캔이 찍혀 지도에 같은 방이 회전/이동된 채로 여러 겹 찍히는 원인이 됨
+    transform_timeout: 1.0
     tf_buffer_duration: 30.0
     stack_size_to_use: 40000000
 

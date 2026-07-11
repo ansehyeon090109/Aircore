@@ -5,135 +5,150 @@
 
 <gazebo reference="base_link">
   <material>${body_color}</material>
-  <mu1>0.2</mu1><mu2>0.2</mu2><selfCollide>true</selfCollide><gravity>true</gravity>
+  <mu1>0.2</mu1><mu2>0.2</mu2><selfCollide>false</selfCollide><gravity>true</gravity>
 </gazebo>
 
 <gazebo reference="floor_2">
   <material>${body_color}</material>
   <mu1>0.2</mu1><mu2>0.2</mu2>
-  <selfCollide>true</selfCollide>
+  <selfCollide>false</selfCollide>
 </gazebo>
 
 <gazebo reference="floor_3">
   <material>${body_color}</material>
   <mu1>0.2</mu1><mu2>0.2</mu2>
-  <selfCollide>true</selfCollide>
+  <selfCollide>false</selfCollide>
 </gazebo>
 
 <gazebo reference="left_wheel">
   <material>${body_color}</material>
   <mu1>1.0</mu1><mu2>1.0</mu2>
-  <selfCollide>true</selfCollide>
+  <selfCollide>false</selfCollide>
 </gazebo>
 
 <gazebo reference="right_wheel">
   <material>${body_color}</material>
   <mu1>1.0</mu1><mu2>1.0</mu2>
-  <selfCollide>true</selfCollide>
+  <selfCollide>false</selfCollide>
 </gazebo>
 
 <gazebo reference="left_support_wheel">
   <material>${body_color}</material>
   <mu1>0.01</mu1><mu2>0.01</mu2>
-  <selfCollide>true</selfCollide>
+  <selfCollide>false</selfCollide>
 </gazebo>
 
 <gazebo reference="right_support_wheel">
   <material>${body_color}</material>
   <mu1>0.01</mu1><mu2>0.01</mu2>
-  <selfCollide>true</selfCollide>
+  <selfCollide>false</selfCollide>
 </gazebo>
 
 <gazebo reference="battery">
   <material>${body_color}</material>
   <mu1>0.2</mu1><mu2>0.2</mu2>
-  <selfCollide>true</selfCollide>
+  <selfCollide>false</selfCollide>
 </gazebo>
 
 <gazebo reference="driver">
   <material>${body_color}</material>
   <mu1>0.2</mu1><mu2>0.2</mu2>
-  <selfCollide>true</selfCollide>
+  <selfCollide>false</selfCollide>
 </gazebo>
 
 <gazebo reference="stmf407">
   <material>${body_color}</material>
   <mu1>0.2</mu1><mu2>0.2</mu2>
-  <selfCollide>true</selfCollide>
+  <selfCollide>false</selfCollide>
 </gazebo>
 
 <gazebo reference="jetson_nano">
   <material>${body_color}</material>
   <mu1>0.2</mu1><mu2>0.2</mu2>
-  <selfCollide>true</selfCollide>
+  <selfCollide>false</selfCollide>
 </gazebo>
 
 <gazebo reference="lidar">
   <material>${body_color}</material>
   <mu1>0.2</mu1><mu2>0.2</mu2>
-  <selfCollide>true</selfCollide>
+  <selfCollide>false</selfCollide>
 </gazebo>
 
 <gazebo reference="support_1_1">
   <material>${body_color}</material>
   <mu1>0.2</mu1><mu2>0.2</mu2>
-  <selfCollide>true</selfCollide>
+  <selfCollide>false</selfCollide>
 </gazebo>
 
 <gazebo reference="support_2_1">
   <material>${body_color}</material>
   <mu1>0.2</mu1><mu2>0.2</mu2>
-  <selfCollide>true</selfCollide>
+  <selfCollide>false</selfCollide>
 </gazebo>
 
 <gazebo reference="support_1_2">
   <material>${body_color}</material>
   <mu1>0.2</mu1><mu2>0.2</mu2>
-  <selfCollide>true</selfCollide>
+  <selfCollide>false</selfCollide>
 </gazebo>
 
 <gazebo reference="support_2_2">
   <material>${body_color}</material>
   <mu1>0.2</mu1><mu2>0.2</mu2>
-  <selfCollide>true</selfCollide>
+  <selfCollide>false</selfCollide>
 </gazebo>
 
 <gazebo reference="support_1_3">
   <material>${body_color}</material>
   <mu1>0.2</mu1><mu2>0.2</mu2>
-  <selfCollide>true</selfCollide>
+  <selfCollide>false</selfCollide>
 </gazebo>
 
 <gazebo reference="support_2_3">
   <material>${body_color}</material>
   <mu1>0.2</mu1><mu2>0.2</mu2>
-  <selfCollide>true</selfCollide>
+  <selfCollide>false</selfCollide>
 </gazebo>
 
 <gazebo reference="support_1_4">
   <material>${body_color}</material>
   <mu1>0.2</mu1><mu2>0.2</mu2>
-  <selfCollide>true</selfCollide>
+  <selfCollide>false</selfCollide>
 </gazebo>
 
 <gazebo reference="support_2_4">
   <material>${body_color}</material>
   <mu1>0.2</mu1><mu2>0.2</mu2>
-  <selfCollide>true</selfCollide>
+  <selfCollide>false</selfCollide>
 </gazebo>
 
 <gazebo reference="lidar">
   <sensor name="lidar_sensor" type="gpu_lidar">
-    <pose>0 0 0 0 0 0</pose>
-    <topic>/scan</topic>
+    <!-- z=0.015: 라이다 하우징 중심(z=0)에 두면 바로 아래 jetson_nano 상단이
+         스캔 평면에 걸려서 좌/우가 항상 ~0.05m로 자기 자신을 감지함.
+         스캔 원점만 위로 살짝 올려서 회피 -->
+    <pose>0 0 0.015 0 0 0</pose>
+    <!-- lidar_joint가 fixed라서 sdformat이 lidar 링크를 base_link로 lump함.
+         gz_frame_id를 명시 안 하면 센서 frame_id가 자동으로
+         "aircore/base_link/lidar_sensor"가 되는데, robot_state_publisher가
+         내보내는 TF에는 그런 프레임이 없어서(TF에는 그냥 "lidar"만 있음)
+         RViz/slam_toolbox가 스캔의 TF를 영원히 못 찾고
+         "discarding message because the queue is full"이 반복됨.
+         gz_frame_id로 URDF 링크 이름과 맞춰줘야 함. sdformat이 이 태그를
+         스키마에 없다고 경고(Warning)하지만 gz-sensors가 실제로 읽어서
+         쓰는 값이라 경고는 무시해도 됨 -->
     <gz_frame_id>lidar</gz_frame_id>
+    <topic>/scan</topic>
     <visualize>true</visualize>
     <always_on>true</always_on>
-    <update_rate>10</update_rate>
+    <!-- GPU 가속 없는 환경에서 ogre2로 매 스캔마다 500포인트를 렌더링하는
+         비용이 RTF를 떨어뜨리는 주요 원인 중 하나라 240포인트/5Hz로 낮춤
+         (slam_toolbox 매핑엔 이 정도 해상도/주기로 충분함) -->
+    <update_rate>5</update_rate>
     <lidar>
       <scan>
         <horizontal>
-          <samples>500</samples>
+          <samples>240</samples>
           <resolution>1</resolution>
           <min_angle>-3.14159</min_angle>
           <max_angle>3.14159</max_angle>
@@ -159,7 +174,10 @@
     <right_joint>right_wheel_joint</right_joint>
 
     <wheel_separation>0.1505</wheel_separation>
-    <wheel_radius>0.035</wheel_radius>
+    <!-- 0.0325: left_wheel.stl 바운딩박스로 실측한 반지름(휠 조인트 z=0.027,
+         메시 바닥 z=-0.0055 -> 반지름 0.0325m). 기존 0.035는 실제보다 커서
+         명령한 선속도보다 로봇이 더 느리게 움직이는 원인 중 하나였음 -->
+    <wheel_radius>0.0325</wheel_radius>
     <max_linear_acceleration>1.0</max_linear_acceleration>
 
     <topic>/cmd_vel</topic>

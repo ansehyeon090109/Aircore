@@ -1,10 +1,16 @@
 <?xml version="1.0" ?>
 <sdf version="1.9">
   <world name="aircore_world">
-    <physics name="1ms" type="ode">
-      <max_step_size>0.001</max_step_size>
+    <!-- GPU 가속 없는 환경(WSL2 등)에서 1000Hz 물리 + 라이다 렌더링을
+         실시간으로 못 따라가서 RTF(Real Time Factor)가 0.1~0.5까지
+         떨어지는 게 확인됨 -> 눈에는 "느리게 움직이거나 들썩이는" 것처럼
+         보임(SLAM 정확도 자체엔 영향 없지만 체감 속도가 크게 떨어짐).
+         이 로봇은 바퀴 2개짜리 단순한 강체 구조라 1000Hz까지 필요 없어서
+         250Hz로 낮춰 물리 연산량을 줄임 -->
+    <physics name="4ms" type="ode">
+      <max_step_size>0.004</max_step_size>
       <real_time_factor>1.0</real_time_factor>
-      <real_time_update_rate>1000</real_time_update_rate>
+      <real_time_update_rate>250</real_time_update_rate>
     </physics>
 
     <plugin filename="gz-sim-physics-system" name="gz::sim::systems::Physics"/>

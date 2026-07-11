@@ -61,7 +61,13 @@ def generate_launch_description():
         arguments=[
             '-topic', 'robot_description',
             '-name', 'aircore',
-            '-z', '0.05',
+            # base_link 원점 기준으로 바퀴 메시 바닥이 z=-0.0055m에 있음
+            # (STL 바운딩박스로 직접 확인). -z 0.05로 스폰하면 바퀴가 땅 위
+            # 4.4cm 떠 있는 상태로 시작해서, 낙하 충격으로 로봇이 튀거나
+            # 삐딱하게 착지해 바퀴 접지가 불안정해짐 -> 명령은 나가는데
+            # 차체가 안 움직이는 현상의 유력한 원인. 바퀴가 땅에 거의
+            # 붙어서 시작하도록 낮춤 (약 2.5mm 여유만 둠)
+            '-z', '0.008',
         ],
         output='screen',
     )
