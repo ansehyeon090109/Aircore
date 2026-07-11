@@ -19,13 +19,14 @@ Harmonic 기준으로 다시 맞췄습니다.
 | `CMakeLists.txt` | `config/` 디렉터리도 설치되도록 추가 |
 | `urdf/aircore.gazebo` | 라이다: `ray` → `gpu_lidar` 센서로 변경. 바퀴 구동: `libgazebo_ros_diff_drive.so` → `gz::sim::systems::DiffDrive` 플러그인으로 교체 (바퀴 간격도 실제 조인트 좌표 기준 0.1505m로 보정, 기존 값 0.2는 오차 있었음). `JointStatePublisher` 플러그인 추가 |
 | `worlds/aircore_world.sdf` | 새로 생성 → 두 번 갱신. 바닥/조명 + gz-sim 필수 시스템 플러그인 + **7m×7m 방을 십자 칸막이로 4개 소방(NE/NW/SE/SW)으로 분리, 각 방마다 다른 모양 장애물(박스/기둥/L자 벽) 2개씩** — 처음엔 빈 바닥에 박스 1개뿐이라 맵이 너무 단순했던 걸 구조물 많은 난이도로 교체 |
-| `scripts/wander.py` | 새로 생성. `/scan` 기반 단순 반응형 자동 주행(장애물 회피) 노드 — 직접 조종 안 해도 로봇이 알아서 돌아다니게 함 |
+| `scripts/wander.py` | 새로 생성 → 갱신. `/scan` 기반 단순 반응형 자동 주행(장애물 회피) 노드 — 직접 조종 안 해도 로봇이 알아서 돌아다니게 함. `/scan` 끊김 감시(watchdog)와 속도 로그를 추가해서 "안 움직임" 문제 진단이 쉬워지게 함 |
 | `launch/wander.launch.py` | 새로 생성. `wander.py` 실행용 |
 | `config/bridge.yaml` | 새로 생성. gz ↔ ROS2 토픽 브릿지 설정 (`/cmd_vel`, `/odom`, `/tf`, `/scan`, `/joint_states`, `/clock`) |
 | `config/mapper_params_online_async.yaml` | 새로 생성. slam_toolbox 온라인 매핑 파라미터 |
 | `config/aircore.rviz` | 새로 생성 → 갱신. RViz2 기본 설정 + global/local costmap, 전역 경로(`/plan`), `2D Goal Pose` 툴 추가 |
 | `config/nav2_params.yaml` | 새로 생성. Nav2 파라미터 (controller/planner/smoother/behavior/bt_navigator/costmap 등). amcl·map_server는 안 씀 — slam_toolbox가 이미 `/map`과 `map→odom` tf를 제공하므로 그대로 재사용 |
 | `launch/nav2.launch.py` | 새로 생성. `nav2_bringup`의 `navigation_launch.py`를 우리 params로 include |
+| `launch/rviz.launch.py` | 새로 생성. rviz2 단독 실행용 — `ros2 launch`로 켜야 워크스페이스 환경(패키지 경로)이 항상 올바르게 잡혀서 메시(STL) 로드 실패를 막을 수 있음 |
 | `launch/*.launch` (ROS1 XML) | 삭제하고 `display.launch.py` / `gazebo.launch.py` / `slam.launch.py` 로 재작성 |
 | `launch/controller.launch`, `controller.yaml` | 삭제. `ros_control` 방식 velocity controller는 더 이상 필요 없음 — gz-sim `DiffDrive` 플러그인이 `/cmd_vel`을 직접 받아 바퀴를 구동함 |
 
@@ -113,8 +114,15 @@ ros2 topic hz /scan       # 약 10Hz로 발행되는지
 
 **터미널 2 — RViz2로 시각화**
 ```bash
-rviz2 -d install/aircore_description/share/aircore_description/config/aircore.rviz
+ros2 launch aircore_description rviz.launch.py
 ```
+`rviz2 -d ...`로 직접 켜지 말고 꼭 `ros2 launch`로 켜세요. 로봇 메시(STL)가
+`package://aircore_description/meshes/...` 경로로 참조되는데, 그 터미널에
+워크스페이스가 안 sourced 돼 있으면(`AMENT_PREFIX_PATH`에 우리 패키지가 없으면)
+RViz가 그 경로를 못 찾아서 "Unable to open file" 에러를 냅니다. `ros2 launch`는
+그 자체가 워크스페이스가 sourced 안 돼 있으면 아예 실행이 안 되니, 실행됐다는
+것 자체가 환경이 맞다는 뜻이라 이 문제가 원천적으로 안 생깁니다.
+
 왼쪽 Displays 패널에서 `Fixed Frame`을 `odom` → (slam 실행 후) `map` 으로
 바꿔가며 확인하면 됩니다.
 
@@ -184,7 +192,71 @@ ros2 run nav2_map_server map_saver_cli -f ~/aircore_map
 ros2 service call /slam_toolbox/save_map slam_toolbox/srv/SaveMap "{name: {data: 'aircore_map'}}"
 ```
 
-## 9. 자주 막히는 부분
+## 9. Gazebo는 안 움직이는데 RViz만 움직일 때
+
+이건 아주 특정한 증상이라 원인이 좁혀집니다. 아래 순서대로 하나씩 확인하세요.
+
+### 9-1. 애초에 명령이 나가고 있나?
+```bash
+ros2 topic hz /cmd_vel
+```
+- **아무것도 안 뜨면(발행 자체가 없음)**: `wander.launch.py`나 teleop을
+  안 켰거나, teleop 터미널에 키보드 포커스가 없는 경우입니다. 이 경우
+  Gazebo가 안 움직이는 건 **정상**입니다 — 아무도 움직이라고 안 했으니까요.
+  그런데 이때 RViz에서 로봇이 "혼자 조금씩" 움직이는 것처럼 보인다면, 그건
+  실제로 움직이는 게 아니라 **slam_toolbox가 map→odom tf를 계속 미세하게
+  보정**하면서 생기는 흔들림입니다 (라이다 노이즈 때문에 아주 조금씩 위치를
+  재추정함). Fixed Frame이 `map`일 때만 이 흔들림이 보이고, `odom`으로
+  바꾸면 로봇이 완전히 고정돼 있을 겁니다 — 한번 바꿔서 확인해보세요.
+
+### 9-2. 명령은 나가는데 Gazebo 바퀴가 안 도나?
+```bash
+ros2 topic echo /cmd_vel        # 값이 실제로 오는지
+```
+Gazebo 창에서 바퀴(원통 두 개)가 제자리에서 도는지 눈으로 확인하세요.
+- **바퀴도 안 도는 경우**: `ros2_gz_bridge`가 `/cmd_vel`을 gz 쪽으로 못
+  넘기고 있거나, `DiffDrive` 플러그인이 안 뜬 겁니다. Gazebo를 띄운
+  터미널(터미널 1) 로그에서 `DiffDrive`나 `plugin` 관련 에러가 있는지
+  확인하세요.
+
+### 9-3. 바퀴는 도는데 로봇 자체(차체)가 안 움직이나? ★가장 유력한 원인
+**이 증상(Gazebo 정지 + RViz만 이동)의 가장 흔한 진짜 원인입니다.**
+
+gz-sim의 `DiffDrive` 플러그인이 계산하는 `/odom`은 실제 물리 위치가 아니라
+**바퀴가 얼마나 돌았는지(휠 회전량)로 역산한 추정값**입니다. 즉 바퀴가
+헛돌기만 해도(바닥에 제대로 접지가 안 돼서 미끄러지거나, 아예 살짝 떠
+있어서 마찰이 안 걸리면) `/odom`은 "전진했다"고 계산해버리고, 그 odom을
+그대로 받아쓰는 RViz/slam_toolbox 상에서는 로봇이 이동한 것처럼 보이는데,
+Gazebo의 실제 렌더링(진짜 물리 위치)은 그대로인 겁니다.
+
+이 로봇의 `urdf/aircore.gazebo`를 보면 캐스터(`left/right_support_wheel`)가
+진짜 자유회전 볼이 아니라 **낮은 마찰(mu=0.01)의 고정 조인트**로 근사돼
+있고, `README.md`에도 이 부분이 "검토 후 필요하면 수정" 대상으로 명시돼
+있습니다. 캐스터와 구동바퀴의 바닥 접지 높이가 설계값과 조금만 달라도
+(캐스터가 너무 낮아서 로봇 무게를 다 받고 구동바퀴는 붕 뜨는 경우 등)
+정확히 이 증상이 납니다.
+
+**확인 방법**: Gazebo 창에서 카메라를 로봇 바로 옆(측면, 바닥 높이)으로
+가까이 가져가서, 구동바퀴와 캐스터가 둘 다 바닥에 닿아 있는지 눈으로
+확인하세요. 구동바퀴가 바닥에서 살짝 떠 있거나 로봇이 캐스터 쪽으로
+기울어 있으면 이게 원인입니다.
+
+**고치는 방법** (원인이 이거라고 확인되면): `urdf/aircore.xacro`에서
+`left_support_wheel_joint`/`right_support_wheel_joint`의 `origin xyz`
+z값을 지금보다 위로(양수 방향으로 2~5mm) 조금 올려서 캐스터가 바닥에 안
+닿게(또는 아주 살짝만 닿게) 만들어보세요. 반대로 구동바퀴 쪽이 뜬 거라면
+`left_wheel_joint`/`right_wheel_joint`의 z를 낮추는 것도 방법입니다.
+수정 후 `colcon build` 하고 Gazebo를 다시 스폰해서 확인하세요.
+
+### 9-4. 진단에 도움되는 로그
+`wander.launch.py`에 진단용 로그를 추가해뒀습니다. 실행 중인 터미널 4에
+`front=... left=... right=... -> v=... w=...` 형태로 2초마다 현재 라이다
+거리와 실제로 보내는 속도가 찍힙니다. `/scan`이 아예 안 들어오면
+`아직 /scan을 한 번도 못 받음...` 경고가 뜨니, 이것만 봐도 원인이
+9-1(명령 자체가 없음)인지 9-2/9-3(명령은 있는데 안 움직임)인지 바로
+구분됩니다.
+
+## 10. 자주 막히는 부분
 
 - **`Package 'aircore_description' not found`**: `~/.bashrc`에 워크스페이스
   오버레이 자동 소스를 추가해뒀습니다. 그래도 나오면 (1) 그 터미널이 이 변경
@@ -218,7 +290,7 @@ ros2 service call /slam_toolbox/save_map slam_toolbox/srv/SaveMap "{name: {data:
   있습니다. `GlobalCostmap` 디스플레이를 켜서 실제로 갈 수 있는 흰색/회색
   영역인지 확인하고 다시 찍어보세요.
 
-## 10. 이번 단계에서 일부러 안 한 것
+## 11. 이번 단계에서 일부러 안 한 것
 
 - **STM32 UART 스펙 문서, 실제 장애물 배치/파라미터 튜닝(Day5)** — 계획표상
   이번 범위(Day1~4, SLAM+Nav2) 다음 단계라 제외했습니다.

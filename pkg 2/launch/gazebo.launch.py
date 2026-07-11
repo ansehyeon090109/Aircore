@@ -2,7 +2,7 @@ import os
 
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
+from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, SetEnvironmentVariable
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import Command, LaunchConfiguration
 from launch_ros.actions import Node
@@ -16,6 +16,17 @@ def generate_launch_description():
     default_model_path = os.path.join(pkg_share, 'urdf', 'aircore.xacro')
     default_world_path = os.path.join(pkg_share, 'worlds', 'aircore_world.sdf')
     default_bridge_config = os.path.join(pkg_share, 'config', 'bridge.yaml')
+
+    # urdf의 package://aircore_description/meshes/... 경로는 sdformat이
+    # model://aircore_description/meshes/...로 변환하는데, gz-sim이 이를
+    # 찾으려면 share/ 디렉터리(=pkg_share의 부모)가 GZ_SIM_RESOURCE_PATH에
+    # 있어야 함. 없으면 Gazebo에서 메시 로드 실패 에러가 남.
+    resource_path = os.path.dirname(pkg_share)
+    existing_resource_path = os.environ.get('GZ_SIM_RESOURCE_PATH', '')
+    if existing_resource_path:
+        resource_path = existing_resource_path + os.pathsep + resource_path
+    set_gz_resource_path = SetEnvironmentVariable(
+        'GZ_SIM_RESOURCE_PATH', resource_path)
 
     model_arg = DeclareLaunchArgument(
         'model', default_value=default_model_path,
@@ -68,6 +79,7 @@ def generate_launch_description():
     return LaunchDescription([
         model_arg,
         world_arg,
+        set_gz_resource_path,
         gz_sim,
         robot_state_publisher,
         spawn_robot,

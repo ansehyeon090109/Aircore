@@ -63,20 +63,205 @@
       </link>
     </model>
 
-    <!-- 장애물 테스트용 박스 (필요 없으면 이 model 블록만 지우면 됩니다) -->
-    <model name="obstacle_box_1">
+    <!--
+      7m x 7m 방을 십자(+)로 4개 소방으로 나눔. 로봇은 중앙 교차로(가로/세로 각
+      2m 통로)에서 스폰되고, 거기서 네 방으로 다 갈 수 있음. 통로 폭은 2m라
+      wander.py의 단순 장애물 회피로도 막히지 않고 지나갈 수 있게 여유를 뒀음.
+    -->
+    <model name="wall_north">
       <static>true</static>
-      <pose>2 0.5 0.25 0 0 0</pose>
+      <pose>0 3.5 0.25 0 0 0</pose>
       <link name="link">
-        <collision name="collision">
-          <geometry><box><size>0.4 0.4 0.5</size></box></geometry>
-        </collision>
+        <collision name="collision"><geometry><box><size>7.2 0.1 0.5</size></box></geometry></collision>
+        <visual name="visual">
+          <geometry><box><size>7.2 0.1 0.5</size></box></geometry>
+          <material><ambient>0.6 0.6 0.6 1</ambient><diffuse>0.6 0.6 0.6 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="wall_south">
+      <static>true</static>
+      <pose>0 -3.5 0.25 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>7.2 0.1 0.5</size></box></geometry></collision>
+        <visual name="visual">
+          <geometry><box><size>7.2 0.1 0.5</size></box></geometry>
+          <material><ambient>0.6 0.6 0.6 1</ambient><diffuse>0.6 0.6 0.6 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="wall_east">
+      <static>true</static>
+      <pose>3.5 0 0.25 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>0.1 7 0.5</size></box></geometry></collision>
+        <visual name="visual">
+          <geometry><box><size>0.1 7 0.5</size></box></geometry>
+          <material><ambient>0.6 0.6 0.6 1</ambient><diffuse>0.6 0.6 0.6 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="wall_west">
+      <static>true</static>
+      <pose>-3.5 0 0.25 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>0.1 7 0.5</size></box></geometry></collision>
+        <visual name="visual">
+          <geometry><box><size>0.1 7 0.5</size></box></geometry>
+          <material><ambient>0.6 0.6 0.6 1</ambient><diffuse>0.6 0.6 0.6 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- 세로 칸막이 (중앙 y:-1~1은 통로로 비워둠) -->
+    <model name="divider_v_south">
+      <static>true</static>
+      <pose>0 -2.25 0.25 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>0.1 2.5 0.5</size></box></geometry></collision>
+        <visual name="visual">
+          <geometry><box><size>0.1 2.5 0.5</size></box></geometry>
+          <material><ambient>0.55 0.55 0.6 1</ambient><diffuse>0.55 0.55 0.6 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="divider_v_north">
+      <static>true</static>
+      <pose>0 2.25 0.25 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>0.1 2.5 0.5</size></box></geometry></collision>
+        <visual name="visual">
+          <geometry><box><size>0.1 2.5 0.5</size></box></geometry>
+          <material><ambient>0.55 0.55 0.6 1</ambient><diffuse>0.55 0.55 0.6 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- 가로 칸막이 (중앙 x:-1~1은 통로로 비워둠) -->
+    <model name="divider_h_west">
+      <static>true</static>
+      <pose>-2.25 0 0.25 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>2.5 0.1 0.5</size></box></geometry></collision>
+        <visual name="visual">
+          <geometry><box><size>2.5 0.1 0.5</size></box></geometry>
+          <material><ambient>0.55 0.55 0.6 1</ambient><diffuse>0.55 0.55 0.6 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="divider_h_east">
+      <static>true</static>
+      <pose>2.25 0 0.25 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>2.5 0.1 0.5</size></box></geometry></collision>
+        <visual name="visual">
+          <geometry><box><size>2.5 0.1 0.5</size></box></geometry>
+          <material><ambient>0.55 0.55 0.6 1</ambient><diffuse>0.55 0.55 0.6 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- NE 방 (x>1, y>1) -->
+    <model name="obstacle_box_ne">
+      <static>true</static>
+      <pose>2.1 2.1 0.25 0 0 0.3</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>0.4 0.4 0.5</size></box></geometry></collision>
         <visual name="visual">
           <geometry><box><size>0.4 0.4 0.5</size></box></geometry>
-          <material>
-            <ambient>0.8 0.2 0.2 1</ambient>
-            <diffuse>0.8 0.2 0.2 1</diffuse>
-          </material>
+          <material><ambient>0.8 0.2 0.2 1</ambient><diffuse>0.8 0.2 0.2 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="obstacle_table_ne">
+      <static>true</static>
+      <pose>2.6 1.4 0.25 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>0.3 0.9 0.5</size></box></geometry></collision>
+        <visual name="visual">
+          <geometry><box><size>0.3 0.9 0.5</size></box></geometry>
+          <material><ambient>0.6 0.4 0.2 1</ambient><diffuse>0.6 0.4 0.2 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- NW 방 (x<-1, y>1) -->
+    <model name="obstacle_pillar_nw">
+      <static>true</static>
+      <pose>-2.1 2.1 0.3 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><cylinder><radius>0.2</radius><length>0.6</length></cylinder></geometry></collision>
+        <visual name="visual">
+          <geometry><cylinder><radius>0.2</radius><length>0.6</length></cylinder></geometry>
+          <material><ambient>0.2 0.7 0.3 1</ambient><diffuse>0.2 0.7 0.3 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="obstacle_pillar_nw_2">
+      <static>true</static>
+      <pose>-2.9 2.7 0.3 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><cylinder><radius>0.15</radius><length>0.6</length></cylinder></geometry></collision>
+        <visual name="visual">
+          <geometry><cylinder><radius>0.15</radius><length>0.6</length></cylinder></geometry>
+          <material><ambient>0.2 0.7 0.3 1</ambient><diffuse>0.2 0.7 0.3 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- SE 방 (x>1, y<-1) -->
+    <model name="obstacle_box_se">
+      <static>true</static>
+      <pose>2.1 -2.1 0.25 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>0.6 0.3 0.5</size></box></geometry></collision>
+        <visual name="visual">
+          <geometry><box><size>0.6 0.3 0.5</size></box></geometry>
+          <material><ambient>0.2 0.4 0.8 1</ambient><diffuse>0.2 0.4 0.8 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="obstacle_box_se_2">
+      <static>true</static>
+      <pose>1.5 -2.9 0.25 0 0 0.6</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>0.35 0.35 0.5</size></box></geometry></collision>
+        <visual name="visual">
+          <geometry><box><size>0.35 0.35 0.5</size></box></geometry>
+          <material><ambient>0.2 0.4 0.8 1</ambient><diffuse>0.2 0.4 0.8 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- SW 방 (x<-1, y<-1) -->
+    <model name="obstacle_pillar_sw">
+      <static>true</static>
+      <pose>-2.1 -2.1 0.3 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><cylinder><radius>0.2</radius><length>0.6</length></cylinder></geometry></collision>
+        <visual name="visual">
+          <geometry><cylinder><radius>0.2</radius><length>0.6</length></cylinder></geometry>
+          <material><ambient>0.2 0.7 0.3 1</ambient><diffuse>0.2 0.7 0.3 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <model name="obstacle_l_wall_sw">
+      <static>true</static>
+      <pose>-2.9 -1.6 0.25 0 0 0</pose>
+      <link name="link">
+        <collision name="collision"><geometry><box><size>1.0 0.1 0.5</size></box></geometry></collision>
+        <visual name="visual">
+          <geometry><box><size>1.0 0.1 0.5</size></box></geometry>
+          <material><ambient>0.55 0.55 0.6 1</ambient><diffuse>0.55 0.55 0.6 1</diffuse></material>
         </visual>
       </link>
     </model>
