@@ -10,7 +10,7 @@ Fusion 360 없이, 업로드하신 개별 STL(`aircore.stl` 전체 조립본 + 1
   (80,80), (-80,-80), (80,-80)는 **좌우/전후 대칭 미러링으로 생성**했습니다.
   실제 부품이 완전히 대칭이 아니라면 이 부분은 틀릴 수 있습니다.
 - base_link(1층) z: 0-41mm, floor_2(2층) z: 56-84mm, floor_3(3층) z: 118-146mm
-- support_1: z 8~68mm (1층-2층 연결), support_2: z 71~131mm (2층-3층 연결)
+- support_1: z 8-68mm (1층-2층 연결), support_2: z 71-131mm (2층-3층 연결)
 - left/right_wheel: Y축 기준 원형 단면 확인 → 회전축 = Y축, `continuous` 조인트
 - left/right_support_wheel(캐스터): x=∓63, y=0 위치, 지름 25mm의 작은 볼
 
