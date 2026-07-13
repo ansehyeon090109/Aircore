@@ -20,6 +20,12 @@ def generate_launch_description():
     map_arg = DeclareLaunchArgument(
         'map', default_value=default_map_path,
         description='map_saver_cli로 저장한 map yaml 경로')
+    # 시뮬레이션에서는 true, 실제 로봇에서 돌릴 때는 false로 넘길 것
+    # (실기는 /clock을 발행하지 않음).
+    # ex) ros2 launch aircore_description localization.launch.py use_sim_time:=false
+    sim_time_arg = DeclareLaunchArgument(
+        'use_sim_time', default_value='true',
+        description='true=Gazebo 시뮬레이션, false=실제 로봇')
 
     # slam_toolbox 대신 저장된 지도를 map_server가 발행하고, amcl이 /scan,
     # /odom, tf(odom->base_link)를 이용해 map->odom tf와 위치를 추정함.
@@ -29,7 +35,7 @@ def generate_launch_description():
         PythonLaunchDescriptionSource(
             os.path.join(pkg_nav2_bringup, 'launch', 'localization_launch.py')),
         launch_arguments={
-            'use_sim_time': 'true',
+            'use_sim_time': LaunchConfiguration('use_sim_time'),
             'map': LaunchConfiguration('map'),
             'params_file': LaunchConfiguration('params_file'),
             'autostart': 'true',
@@ -39,5 +45,6 @@ def generate_launch_description():
     return LaunchDescription([
         params_arg,
         map_arg,
+        sim_time_arg,
         localization,
     ])

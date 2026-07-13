@@ -9,6 +9,13 @@
 #
 # robot_radius(0.15m), 속도 제한(vx_max 0.3 m/s 등)은 이 로봇의 대략적인 크기/
 # 저속 사양에 맞춘 값입니다. 실제 로봇으로 넘어가면 꼭 실측값으로 다시 튜닝하세요.
+#
+# [실기 포팅용 임시 하향 조정 — TODO: 실측 후 재조정]
+# 아래 표시된 속도/가속도/robot_radius/amcl alpha 값들은 실제 모터 최고속도,
+# 배터리 전압, 바퀴-지면 마찰, 엔코더 분해능을 모르는 상태에서 안전 마진을
+# 크게 두고 보수적으로 낮춘 가정값입니다. 시뮬레이션 값(원래 vx_max 0.3 등)
+# 대비 절반 수준으로 줄여뒀으니, 실기 테스트 시 로봇이 너무 느리게 느껴지면
+# 안전한 공간에서 조금씩 올리면서 재튜닝하세요.
 
 # nav2_bringup navigation_launch.py가 docking_server도 기본으로 필수 관리
 # 노드에 포함시키는데(이 프로젝트는 도킹 기능을 쓰지 않음), dock_plugins가
@@ -27,11 +34,14 @@ docking_server:
 amcl:
   ros__parameters:
     use_sim_time: true
-    alpha1: 0.2
-    alpha2: 0.2
-    alpha3: 0.2
-    alpha4: 0.2
-    alpha5: 0.2
+    # TODO: 실측 후 재조정. 실기 엔코더 오도메트리는 시뮬 오도메트리보다
+    # 미끄러짐/분해능 한계로 잡음이 커서, 파티클 필터가 그 불확실성을
+    # 과소평가하지 않도록 0.2 -> 0.3으로 보수적으로 상향.
+    alpha1: 0.3
+    alpha2: 0.3
+    alpha3: 0.3
+    alpha4: 0.3
+    alpha5: 0.3
     # 이 프로젝트에는 base_footprint가 없고 URDF에 실제 존재하는 프레임은
     # base_link뿐이라 그대로 맞춤 (odom->base_link는 DiffDrive 플러그인이 발행).
     base_frame_id: "base_link"
@@ -92,15 +102,18 @@ controller_server:
       time_steps: 56
       model_dt: 0.05
       batch_size: 2000
-      vx_max: 0.3
-      vx_min: -0.15
+      # TODO: 실측 후 재조정. 실제 모터 최고속도/가속도를 몰라서 시뮬 값
+      # (vx_max 0.3, wz_max 1.2 등)의 절반 수준으로 안전 마진을 크게 두고
+      # 낮춘 가정값. 실기에서 안전한 공간에 두고 조금씩 올려서 튜닝할 것.
+      vx_max: 0.15
+      vx_min: -0.1
       vy_max: 0.0
-      wz_max: 1.2
-      ax_max: 1.5
-      ax_min: -1.5
+      wz_max: 0.6
+      ax_max: 0.5
+      ax_min: -0.5
       ay_max: 0.0
       ay_min: 0.0
-      az_max: 2.5
+      az_max: 1.0
       vx_std: 0.15
       vy_std: 0.0
       wz_std: 0.3
@@ -191,7 +204,10 @@ local_costmap:
       width: 3
       height: 3
       resolution: 0.05
-      robot_radius: 0.15
+      # TODO: 실측 후 재조정. URDF 코너 배치(±80mm)상 대각선 반경은 약
+      # 0.113m지만, 실기 오도메트리/조향 오차를 감안해 안전 마진을 더 두고
+      # 0.15 -> 0.18로 상향.
+      robot_radius: 0.18
       plugins: ["voxel_layer", "inflation_layer"]
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
@@ -227,7 +243,8 @@ global_costmap:
       publish_frequency: 1.0
       global_frame: map
       robot_base_frame: base_link
-      robot_radius: 0.15
+      # TODO: local_costmap과 동일한 이유로 0.15 -> 0.18로 상향 (실측 후 재조정)
+      robot_radius: 0.18
       resolution: 0.05
       track_unknown_space: true
       plugins: ["static_layer", "obstacle_layer", "inflation_layer"]
@@ -368,10 +385,13 @@ velocity_smoother:
     smoothing_frequency: 20.0
     scale_velocities: False
     feedback: "OPEN_LOOP"
-    max_velocity: [0.3, 0.0, 1.2]
-    min_velocity: [-0.15, 0.0, -1.2]
-    max_accel: [1.5, 0.0, 2.5]
-    max_decel: [-1.5, 0.0, -2.5]
+    # TODO: 실측 후 재조정. controller_server의 FollowPath와 동일한 이유로
+    # 시뮬 값 대비 절반 수준으로 보수적으로 낮춤 — 반드시 같은 비율로 맞춰서
+    # 바꿀 것(둘이 어긋나면 velocity_smoother가 controller 출력을 계속 깎음).
+    max_velocity: [0.15, 0.0, 0.6]
+    min_velocity: [-0.1, 0.0, -0.6]
+    max_accel: [0.5, 0.0, 1.0]
+    max_decel: [-0.5, 0.0, -1.0]
     odom_topic: "odom"
     odom_duration: 0.1
     deadband_velocity: [0.0, 0.0, 0.0]
