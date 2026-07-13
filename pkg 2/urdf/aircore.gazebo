@@ -179,6 +179,12 @@
          명령한 선속도보다 로봇이 더 느리게 움직이는 원인 중 하나였음 -->
     <wheel_radius>0.0325</wheel_radius>
     <max_linear_acceleration>1.0</max_linear_acceleration>
+    <!-- 각속도 제한이 없으면 명령이 바뀌는 순간 바퀴가 즉시 목표 회전속도로
+         점프해야 해서(특히 탈출 기동 시 0->0.6rad/s 급변) 바퀴-지면 마찰
+         한계를 순간적으로 넘어 미끄러지고, 그 헛돈 양만큼 오도메트리가
+         실제 이동량보다 부풀려져 SLAM 지도에 같은 벽이 회전된 채로 여러
+         겹 찍히는 원인이 됨 -> 부드럽게 램프업하도록 제한 추가 -->
+    <max_angular_acceleration>2.0</max_angular_acceleration>
 
     <topic>/cmd_vel</topic>
     <odom_topic>/odom</odom_topic>

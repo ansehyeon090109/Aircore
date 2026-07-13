@@ -36,7 +36,11 @@ slam_toolbox:
     use_scan_matching: true
     use_scan_barycenter: true
     minimum_travel_distance: 0.2
-    minimum_travel_heading: 0.2
+    # 0.2 -> 0.5: 벽에 걸려 제자리 회전(탈출 기동)만 하는 동안에도 0.2rad
+    # 회전마다 새 키프레임이 등록되는데, 그 구간은 바퀴가 미끄러지기 가장
+    # 쉬운 상태라 오도메트리 헤딩이 가장 못 미더울 때임 -> 저품질 회전
+    # 키프레임 수를 줄여서 지도에 방사형으로 겹쳐 찍히는 현상을 완화
+    minimum_travel_heading: 0.5
     scan_buffer_size: 10
     scan_buffer_maximum_scan_distance: 12.0
     link_match_minimum_response_fine: 0.1
@@ -49,7 +53,11 @@ slam_toolbox:
     loop_match_minimum_response_fine: 0.45
 
     # 상관 파라미터 - 스캔 매칭
-    correlation_search_space_dimension: 0.5
+    # 0.5 -> 1.0: 탈출 기동 중 헛도는 바퀴로 오도메트리 오차가 누적되면
+    # 실제 위치가 기존 0.5m 탐색 범위를 벗어나 스캔 매칭이 실패하고 보정
+    # 안 된 위치에 그대로 찍혀버림 -> 탐색 범위를 넓혀 더 큰 오차도 스캔
+    # 매칭으로 보정할 수 있게 함
+    correlation_search_space_dimension: 1.0
     correlation_search_space_resolution: 0.01
     correlation_search_space_smear_deviation: 0.1
 

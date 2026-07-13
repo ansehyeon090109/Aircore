@@ -7,10 +7,37 @@
          보임(SLAM 정확도 자체엔 영향 없지만 체감 속도가 크게 떨어짐).
          이 로봇은 바퀴 2개짜리 단순한 강체 구조라 1000Hz까지 필요 없어서
          250Hz로 낮춰 물리 연산량을 줄임 -->
+    <!-- 1000Hz로 올려서 테스트해봤더니 오히려 정지 마찰/캐스터 조인트
+         거동이 불안정해져 로봇이 거의 못 움직이는 역효과가 확인됨(실측:
+         5초간 0.15m/s 전진 명령에도 ground truth 이동량 0.4cm) -> 250Hz가
+         이 로봇(가벼운 강체+저마찰 캐스터 fixed 조인트 근사)에는 오히려
+         더 안정적이라 원복함. 오도메트리 드리프트의 원인은 물리 스텝
+         자체가 아니라 좁은 코너에서의 동시 후진+회전 명령이었음(wander.py
+         탈출 기동 2단계 분리로 조치, README_NAV2.md 참고) -->
+    <!-- 볼캐스터로 바꾼 뒤 실측해보니(README_NAV2.md 15-9) 정지 시 떨림은
+         사라졌지만, 주행 중(회전 없이 직진만 해도) 로봇이 최대 20도 가까이
+         앞뒤로 시소처럼 흔들리는 별개 현상이 드러남 — ODE의 접촉 보정
+         속도(contact_max_correcting_vel) 기본값이 매우 커서, 가벼운
+         로봇(약 1kg대)의 얕은 겹침(interpenetration)을 한 스텝 만에 너무
+         빠르게 밀어내며 튕기는 전형적인 증상. constraints를 추가해 보정을
+         부드럽게 함. -->
     <physics name="4ms" type="ode">
       <max_step_size>0.004</max_step_size>
       <real_time_factor>1.0</real_time_factor>
       <real_time_update_rate>250</real_time_update_rate>
+      <ode>
+        <solver>
+          <type>quick</type>
+          <iters>50</iters>
+          <sor>1.0</sor>
+        </solver>
+        <constraints>
+          <cfm>0.0001</cfm>
+          <erp>0.2</erp>
+          <contact_max_correcting_vel>0.5</contact_max_correcting_vel>
+          <contact_surface_layer>0.001</contact_surface_layer>
+        </constraints>
+      </ode>
     </physics>
 
     <plugin filename="gz-sim-physics-system" name="gz::sim::systems::Physics"/>
@@ -172,104 +199,9 @@
       </link>
     </model>
 
-    <!-- NE 방 (x>1, y>1) -->
-    <model name="obstacle_box_ne">
-      <static>true</static>
-      <pose>2.1 2.1 0.25 0 0 0.3</pose>
-      <link name="link">
-        <collision name="collision"><geometry><box><size>0.4 0.4 0.5</size></box></geometry></collision>
-        <visual name="visual">
-          <geometry><box><size>0.4 0.4 0.5</size></box></geometry>
-          <material><ambient>0.8 0.2 0.2 1</ambient><diffuse>0.8 0.2 0.2 1</diffuse></material>
-        </visual>
-      </link>
-    </model>
-
-    <model name="obstacle_table_ne">
-      <static>true</static>
-      <pose>2.6 1.4 0.25 0 0 0</pose>
-      <link name="link">
-        <collision name="collision"><geometry><box><size>0.3 0.9 0.5</size></box></geometry></collision>
-        <visual name="visual">
-          <geometry><box><size>0.3 0.9 0.5</size></box></geometry>
-          <material><ambient>0.6 0.4 0.2 1</ambient><diffuse>0.6 0.4 0.2 1</diffuse></material>
-        </visual>
-      </link>
-    </model>
-
-    <!-- NW 방 (x<-1, y>1) -->
-    <model name="obstacle_pillar_nw">
-      <static>true</static>
-      <pose>-2.1 2.1 0.3 0 0 0</pose>
-      <link name="link">
-        <collision name="collision"><geometry><cylinder><radius>0.2</radius><length>0.6</length></cylinder></geometry></collision>
-        <visual name="visual">
-          <geometry><cylinder><radius>0.2</radius><length>0.6</length></cylinder></geometry>
-          <material><ambient>0.2 0.7 0.3 1</ambient><diffuse>0.2 0.7 0.3 1</diffuse></material>
-        </visual>
-      </link>
-    </model>
-
-    <model name="obstacle_pillar_nw_2">
-      <static>true</static>
-      <pose>-2.9 2.7 0.3 0 0 0</pose>
-      <link name="link">
-        <collision name="collision"><geometry><cylinder><radius>0.15</radius><length>0.6</length></cylinder></geometry></collision>
-        <visual name="visual">
-          <geometry><cylinder><radius>0.15</radius><length>0.6</length></cylinder></geometry>
-          <material><ambient>0.2 0.7 0.3 1</ambient><diffuse>0.2 0.7 0.3 1</diffuse></material>
-        </visual>
-      </link>
-    </model>
-
-    <!-- SE 방 (x>1, y<-1) -->
-    <model name="obstacle_box_se">
-      <static>true</static>
-      <pose>2.1 -2.1 0.25 0 0 0</pose>
-      <link name="link">
-        <collision name="collision"><geometry><box><size>0.6 0.3 0.5</size></box></geometry></collision>
-        <visual name="visual">
-          <geometry><box><size>0.6 0.3 0.5</size></box></geometry>
-          <material><ambient>0.2 0.4 0.8 1</ambient><diffuse>0.2 0.4 0.8 1</diffuse></material>
-        </visual>
-      </link>
-    </model>
-
-    <model name="obstacle_box_se_2">
-      <static>true</static>
-      <pose>1.5 -2.9 0.25 0 0 0.6</pose>
-      <link name="link">
-        <collision name="collision"><geometry><box><size>0.35 0.35 0.5</size></box></geometry></collision>
-        <visual name="visual">
-          <geometry><box><size>0.35 0.35 0.5</size></box></geometry>
-          <material><ambient>0.2 0.4 0.8 1</ambient><diffuse>0.2 0.4 0.8 1</diffuse></material>
-        </visual>
-      </link>
-    </model>
-
-    <!-- SW 방 (x<-1, y<-1) -->
-    <model name="obstacle_pillar_sw">
-      <static>true</static>
-      <pose>-2.1 -2.1 0.3 0 0 0</pose>
-      <link name="link">
-        <collision name="collision"><geometry><cylinder><radius>0.2</radius><length>0.6</length></cylinder></geometry></collision>
-        <visual name="visual">
-          <geometry><cylinder><radius>0.2</radius><length>0.6</length></cylinder></geometry>
-          <material><ambient>0.2 0.7 0.3 1</ambient><diffuse>0.2 0.7 0.3 1</diffuse></material>
-        </visual>
-      </link>
-    </model>
-
-    <model name="obstacle_l_wall_sw">
-      <static>true</static>
-      <pose>-2.9 -1.6 0.25 0 0 0</pose>
-      <link name="link">
-        <collision name="collision"><geometry><box><size>1.0 0.1 0.5</size></box></geometry></collision>
-        <visual name="visual">
-          <geometry><box><size>1.0 0.1 0.5</size></box></geometry>
-          <material><ambient>0.55 0.55 0.6 1</ambient><diffuse>0.55 0.55 0.6 1</diffuse></material>
-        </visual>
-      </link>
-    </model>
+    <!-- 사용자 요청으로 방 안 장애물(기둥/박스/L자벽) 전부 제거함 — 벽+칸막이만
+         남겨서 wander/SLAM이 장애물에 걸려 헛돌거나 오도메트리가 튀는 문제
+         없이 안정적으로 맵을 만들 수 있게 함. 필요하면 이 주석 아래에
+         README_NAV2.md 15~17절에 기록된 좌표 그대로 복원 가능. -->
   </world>
 </sdf>

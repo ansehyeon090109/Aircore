@@ -93,10 +93,36 @@
     </geometry>
     <material name="silver"/>
   </visual>
+  <!-- 충돌체를 STL 원본 메시가 아니라 원기둥으로 근사함: ODE에서 회전하는
+       바퀴의 충돌 형상으로 상세 메시를 그대로 쓰면 접지면 접촉점/법선이
+       삼각형 단위로 들쭉날쭉해져 마찰이 불안정해지고 실제로는 거의 미끄러지듯
+       헛도는 현상이 실측으로 확인됨(바퀴 관절이 162바퀴 회전하는 동안 로봇
+       몸체는 1m도 못 감. joint_states 각도 vs gz ground truth 위치 대조로
+       확인, README_NAV2.md 15절 참고). radius는 STL 바운딩박스 실측값(32.5mm)과
+       동일하게 맞춤. URDF cylinder는 로컬 Z축이 회전축인데 이 바퀴의 관절축은
+       Y축이라 rpy로 90도 돌려서 맞춤.
+       origin은 (0,0,0) — STL 메시용으로 쓰던 offset(-0.027 등)을 그대로
+       재사용하면 안 됨: 그 offset은 "비대칭 STL 메시의 내부 좌표 원점"을
+       링크 원점에 맞추기 위한 값이라 대칭 도형(원기둥) 중심에는 안 맞음.
+       원기둥은 관절 원점(z=0.027)에 그대로 중심을 두면
+       바닥이 -0.0055(=0.027-0.0325)로 정확히 문서화된 접지 높이와 일치함.
+
+       length는 처음에 STL 전체 Y 범위(8.2~100mm = 91.8mm)를 그대로 썼는데,
+       이게 심각한 오류였음 — STL을 축(rotation axis) 기준 반지름으로 다시
+       분석해보니 y=8~60mm 구간은 반지름이 12.2mm로 일정한 "축/허브"이고,
+       실제 타이어(반지름 32.5mm 전체)는 바깥쪽 y=74~100mm 부근에서만
+       나타남. 즉 진짜 타이어 폭은 91.8mm가 아니라 대략 20mm 안팎인데,
+       91.8mm 원기둥을 쓰면 반지름 32.5mm짜리 뚱뚱한 바퀴가 로봇 중심선
+       근처(y=8mm)까지 뻗어나가 실제보다 훨씬 넓은 접지대를 만들고,
+       이게 회전 시 유효 축간거리(wheel_separation)를 왜곡시켜 오도메트리의
+       각속도 계산이 실제 회전량보다 4~5배 작게 나오는 원인이 된 것으로
+       확인됨(순수 회전 테스트로 검증, README_NAV2.md 15-10절 참고).
+       메시 해상도가 낮아 타이어 폭 경계를 mm 단위로 정확히 특정하긴
+       어려워서, 실측 범위(74~100mm) 안에서 보수적으로 20mm로 근사함. -->
   <collision>
-    <origin xyz="-3.1e-07 -0.07526258 -0.027" rpy="0 0 0"/>
+    <origin xyz="0 0 0" rpy="1.5707963 0 0"/>
     <geometry>
-      <mesh filename="package://aircore_description/meshes/left_wheel.stl" scale="0.001 0.001 0.001"/>
+      <cylinder radius="0.0325" length="0.02"/>
     </geometry>
   </collision>
 </link>
@@ -121,10 +147,13 @@
     </geometry>
     <material name="silver"/>
   </visual>
+  <!-- left_wheel과 동일한 이유로 충돌체를 원기둥으로 근사, origin도 동일하게
+       (0,0,0)으로 관절 원점에 중심을 맞춤. length=20mm인 이유는 left_wheel
+       주석 참고(축/허브 vs 타이어 반지름 분석, README_NAV2.md 15-10절) -->
   <collision>
-    <origin xyz="-3.1e-07 0.07526408 -0.027" rpy="0 0 0"/>
+    <origin xyz="0 0 0" rpy="1.5707963 0 0"/>
     <geometry>
-      <mesh filename="package://aircore_description/meshes/right_wheel.stl" scale="0.001 0.001 0.001"/>
+      <cylinder radius="0.0325" length="0.02"/>
     </geometry>
   </collision>
 </link>
@@ -149,10 +178,24 @@
     </geometry>
     <material name="silver"/>
   </visual>
+  <!-- 볼캐스터: 충돌체를 STL 원본 메시 대신 구(sphere)로 근사함. 구동
+       바퀴와 같은 이유(15절 참고) — 회전 조인트가 없는 캐스터라도 로봇이
+       주행 중 매 스텝 접촉점이 메시 삼각형 단위로 튀면서 상하로 들썩이는
+       진동(사용자가 보고한 "위아래로 막 움직임")의 원인이 됨. 반지름은
+       STL 바운딩박스 실측값(x/y/z 세 축 모두 25mm로 완전한 구)과 동일하게
+       맞춤. 저마찰(mu=0.01) + fixed 조인트로 전방향 자유회전을 근사하는
+       방식은 그대로 유지 (README.md 참고).
+       origin은 (0,0,0) — 바퀴와 같은 이유로 STL 메시용 offset(-0.007)을
+       버리고 관절 원점(z=0.007)에 구 중심을 그대로 둠. 이러면 바닥이
+       -0.0055(=0.007-0.0125)로 바퀴 바닥(-0.0055)과 정확히 일치함. 기존엔
+       이 offset을 그대로 남겨둬서 캐스터 바닥이 바퀴보다 2cm 위에 떠
+       있었고, 그 결과 로봇이 사실상 바퀴 2개(가로 축)로만 지탱되며
+       전후로 시소처럼 흔들리는 원인이 됐음(사용자가 지적한 "바퀴랑 높이
+       맞아야 함"이 정확히 이 문제). -->
   <collision>
-    <origin xyz="0.06299994 -0.0 -0.007" rpy="0 0 0"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://aircore_description/meshes/left_support_wheel.stl" scale="0.001 0.001 0.001"/>
+      <sphere radius="0.0125"/>
     </geometry>
   </collision>
 </link>
@@ -176,10 +219,12 @@
     </geometry>
     <material name="silver"/>
   </visual>
+  <!-- left_support_wheel과 동일한 이유로 볼캐스터 충돌체를 구(sphere)로
+       근사, origin도 동일하게 (0,0,0)으로 관절 원점에 중심을 맞춤 -->
   <collision>
-    <origin xyz="-0.06300006 -0.0 -0.007" rpy="0 0 0"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://aircore_description/meshes/right_support_wheel.stl" scale="0.001 0.001 0.001"/>
+      <sphere radius="0.0125"/>
     </geometry>
   </collision>
 </link>

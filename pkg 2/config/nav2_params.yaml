@@ -1,8 +1,69 @@
-# Nav2 파라미터 — SLAM(slam_toolbox)이 map->odom tf와 /map을 이미 제공하므로
-# amcl/map_server는 쓰지 않음. navigation_launch.py로 아래 노드들만 띄움.
+# Nav2 파라미터 — 이 파일은 두 가지 모드에서 공유해서 씁니다.
+#  1) 매핑 모드: slam_toolbox가 map->odom tf와 /map을 제공. nav2.launch.py가
+#     navigation_launch.py(controller/planner/.../costmap)만 이 파일로 띄움.
+#     이 모드에서는 아래 amcl 섹션은 아무도 안 읽음(로드 안 되니 무해).
+#  2) 로컬라이제이션 모드: localization.launch.py가 map_server+amcl+
+#     lifecycle_manager를 이 파일의 amcl 섹션으로 띄우고, 저장된 지도 위에서
+#     자기 위치를 추정. slam_toolbox는 이 모드에서는 실행하지 않음(map->odom을
+#     amcl과 동시에 발행하면 충돌하므로 두 모드를 동시에 켜지 말 것).
 #
 # robot_radius(0.15m), 속도 제한(vx_max 0.3 m/s 등)은 이 로봇의 대략적인 크기/
 # 저속 사양에 맞춘 값입니다. 실제 로봇으로 넘어가면 꼭 실측값으로 다시 튜닝하세요.
+
+# nav2_bringup navigation_launch.py가 docking_server도 기본으로 필수 관리
+# 노드에 포함시키는데(이 프로젝트는 도킹 기능을 쓰지 않음), dock_plugins가
+# 비어 있으면 configure 자체가 실패해서 전체 bringup이 중단됨. 실제로 도킹
+# 액션을 호출하지 않으므로 nav2_bringup 기본값 그대로 최소 설정만 둠.
+docking_server:
+  ros__parameters:
+    use_sim_time: true
+    controller_frequency: 50.0
+    base_frame: "base_link"
+    fixed_frame: "odom"
+    dock_plugins: ['simple_charging_dock']
+    simple_charging_dock:
+      plugin: 'opennav_docking::SimpleChargingDock'
+
+amcl:
+  ros__parameters:
+    use_sim_time: true
+    alpha1: 0.2
+    alpha2: 0.2
+    alpha3: 0.2
+    alpha4: 0.2
+    alpha5: 0.2
+    # 이 프로젝트에는 base_footprint가 없고 URDF에 실제 존재하는 프레임은
+    # base_link뿐이라 그대로 맞춤 (odom->base_link는 DiffDrive 플러그인이 발행).
+    base_frame_id: "base_link"
+    odom_frame_id: "odom"
+    global_frame_id: "map"
+    scan_topic: "/scan"
+    laser_max_range: 12.0
+    laser_min_range: 0.05
+    laser_model_type: "likelihood_field"
+    max_beams: 60
+    max_particles: 2000
+    min_particles: 500
+    pf_err: 0.05
+    pf_z: 0.99
+    recovery_alpha_fast: 0.1
+    recovery_alpha_slow: 0.001
+    resample_interval: 1
+    robot_model_type: "nav2_amcl::DifferentialMotionModel"
+    save_pose_rate: 0.5
+    sigma_hit: 0.2
+    tf_broadcast: true
+    transform_tolerance: 1.0
+    update_min_a: 0.2
+    update_min_d: 0.2
+    z_hit: 0.5
+    z_max: 0.05
+    z_rand: 0.5
+    z_short: 0.05
+
+map_server:
+  ros__parameters:
+    use_sim_time: true
 
 controller_server:
   ros__parameters:
@@ -192,6 +253,41 @@ global_costmap:
         cost_scaling_factor: 3.0
         inflation_radius: 0.35
       always_send_full_costmap: True
+
+# nav2_bringup의 navigation_launch.py(이 프로젝트가 쓰는 Nav2 버전 1.3.x)가
+# collision_monitor를 필수로 띄우는데, observation_sources 파라미터가 없으면
+# configure에서 에러가 나서 lifecycle_manager가 전체 bringup을 중단시킴
+# (이 프로젝트엔 기존에 이 섹션이 없었음 - 최신 Nav2 버전과의 파라미터 격차).
+# 로컬 코스트맵 footprint 근접 정지만 최소로 설정.
+collision_monitor:
+  ros__parameters:
+    use_sim_time: true
+    base_frame_id: "base_link"
+    odom_frame_id: "odom"
+    cmd_vel_in_topic: "cmd_vel_smoothed"
+    cmd_vel_out_topic: "cmd_vel"
+    state_topic: "collision_monitor_state"
+    transform_tolerance: 0.2
+    source_timeout: 1.0
+    base_shift_correction: true
+    stop_pub_timeout: 2.0
+    polygons: ["FootprintApproach"]
+    FootprintApproach:
+      type: "polygon"
+      action_type: "approach"
+      footprint_topic: "/local_costmap/published_footprint"
+      time_before_collision: 1.2
+      simulation_time_step: 0.1
+      min_points: 6
+      visualize: false
+      enabled: true
+    observation_sources: ["scan"]
+    scan:
+      type: "scan"
+      topic: "scan"
+      min_height: 0.0
+      max_height: 1.0
+      enabled: true
 
 planner_server:
   ros__parameters:

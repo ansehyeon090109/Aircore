@@ -16,7 +16,11 @@ class Wander(Node):
 
         self.declare_parameter('linear_speed', 0.18)
         self.declare_parameter('angular_speed', 0.6)
-        self.declare_parameter('safe_distance', 0.6)
+        # 0.6 -> 0.8: 로봇 몸체 폭(약 16cm) 대비 여유가 너무 작아서 회전
+        # 시작 시점에 이미 벽 모서리에 몸체가 닿을 수 있었음. 회전을 더
+        # 일찍 시작해 실제 접촉(및 그로 인한 바퀴 미끄러짐/오도메트리
+        # 오차)을 줄임.
+        self.declare_parameter('safe_distance', 0.8)
         self.declare_parameter('front_half_angle_deg', 35.0)
         self.declare_parameter('side_half_angle_deg', 40.0)
 
@@ -48,6 +52,8 @@ class Wander(Node):
         self._stuck_check_pos = None
         self._recovering_until = None
         self._recover_dir = 1.0
+        self._latest_left = None
+        self._latest_right = None
         self.create_timer(3.0, self._watchdog)
         self.get_logger().info('wander 시작. /scan 대기 중...')
 
@@ -89,7 +95,15 @@ class Wander(Node):
                         f'최근 3초간 {moved:.3f}m밖에 안 움직임(코너/좁은 틈에 '
                         '갇혔을 가능성) -> 탈출 기동 시작')
                     self._recovering_until = now + Duration(seconds=2.5)
-                    self._recover_dir = random.choice([-1.0, 1.0])
+                    # 방향을 무작위로 고르면 좁은 코너에 다시 걸릴 확률이
+                    # 그대로라 갇힘->탈출->재갇힘이 반복됨. 후진하면서 더
+                    # 트인 쪽(left/right 중 더 먼 쪽)으로 돌면 같은 코너로
+                    # 재진입할 확률이 줄어듦.
+                    if self._latest_left is not None and self._latest_right is not None:
+                        self._recover_dir = (
+                            1.0 if self._latest_left >= self._latest_right else -1.0)
+                    else:
+                        self._recover_dir = random.choice([-1.0, 1.0])
             self._stuck_check_pos = self._odom_pos
 
     def on_scan(self, msg: LaserScan):
@@ -100,14 +114,28 @@ class Wander(Node):
         front = self._sector_min(msg, 0.0, self.front_half_angle)
         left = self._sector_min(msg, math.pi / 2, self.side_half_angle)
         right = self._sector_min(msg, -math.pi / 2, self.side_half_angle)
+        self._latest_left = left
+        self._latest_right = right
 
         twist = Twist()
 
         now = self.get_clock().now()
         if self._recovering_until is not None:
             if now < self._recovering_until:
-                twist.linear.x = -0.08
-                twist.angular.z = self._recover_dir * self.angular_speed
+                # 후진+회전을 동시에 명령하면 좁은 코너에서는 그 조합
+                # 자체가 기하학적으로 불가능해서 로봇이 완전히 끼어버리고
+                # (라이다 값이 전혀 안 바뀌는데도) 바퀴 관절만 헛돌아
+                # 오도메트리가 폭주하는 게 실측으로 확인됨(ground truth
+                # 대비 /odom이 7x7m 방에서 7m 가까이 벌어짐). 그래서 먼저
+                # 순수 직진 후진으로 코너에서 몸부터 빼낸 다음에 그
+                # 자리에서 회전하도록 두 단계로 분리함.
+                remaining = (self._recovering_until - now).nanoseconds / 1e9
+                if remaining > 1.3:
+                    twist.linear.x = -0.1
+                    twist.angular.z = 0.0
+                else:
+                    twist.linear.x = 0.0
+                    twist.angular.z = self._recover_dir * self.angular_speed
                 self.get_logger().info('탈출 기동 중...', throttle_duration_sec=1.0)
                 self.cmd_pub.publish(twist)
                 return
