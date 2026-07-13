@@ -703,3 +703,221 @@ Nav2 인스턴스가 **여전히 살아있는 채로 새 인스턴스와 공존*
 16절의 결과가 일회성이 아니라 **"SLAM(wander.py)으로 지도 생성 → 지도
 저장 → AMCL로 전환해서 주행"** 절차를 그대로 재현하면 항상 재현된다는
 것을 처음부터 다시 확인했다.
+
+## 18. 다른 WSL2 환경(8GB RAM 노트북)에서 재현 시 발생한 문제와 해결 (새 세션)
+
+이번 세션은 17절과는 **다른 물리 PC**(`i7-1260P`, 물리 8코어/논리 16스레드,
+설치 RAM 8.00GB 중 사용 가능 7.75GB)에서 처음부터 다시 구축하며 진행했다.
+앞의 15~17절이 오도메트리/SLAM 품질 문제였다면, 이번 세션에서 겪은 문제는
+**패키지 버전 불일치**와 **저사양 호스트의 CPU/메모리 자원 고갈**이 전부였다
+— 로봇 URDF나 Nav2 설정 자체의 버그는 아니었다.
+
+### 18-1. `nav2-lifecycle-manager`가 침묵하며 죽어서 모든 노드가 `unconfigured`로 멈춤
+
+`localization.launch.py` / `nav2.launch.py`를 띄우면 프로세스는 다 뜨는데
+`ros2 lifecycle get /amcl` 등이 전부 `unconfigured`로 나오고, RViz Fixed
+Frame을 `map`으로 두면 모든 링크가 "No transform to map"으로 표시됐다.
+
+**조사**: `ps aux | grep lifecycle_manager`로 확인하니 관리자 프로세스
+자체가 아예 없었다. launch 로그(`~/.ros/log/.../launch.log`)에 원인이
+남아 있었다:
+
+```
+[ERROR] [lifecycle_manager-11]: process has died [pid 21425, exit code 127, ...]
+```
+
+바이너리를 직접 실행해서 실제 에러를 뽑아보니:
+
+```
+symbol lookup error: /opt/ros/jazzy/lib/libnav2_lifecycle_manager_core.so:
+undefined symbol: ...diagnostic_updater7UpdaterC1...
+```
+
+`apt-cache policy`로 대조:
+
+```
+ros-jazzy-diagnostic-updater:
+  Installed: 4.2.6-1noble.20260412.045349   (구버전, 4월 빌드)
+  Candidate: 4.2.7-1noble.20260615.135857   (신버전, 6월 빌드)
+ros-jazzy-nav2-lifecycle-manager:
+  Installed: 1.3.12-1noble.20260615.152740  (신버전, 같은 날 빌드)
+```
+
+`nav2-lifecycle-manager`는 6/15에 새로 빌드된 `diagnostic_updater` ABI를
+기대하고 링크됐는데, 시스템엔 4/12 구버전이 그대로 남아 있어서 **ABI(바이너리
+호환성) 불일치**로 실행 즉시 죽는 것이었다. apt 저장소 업데이트가 패키지
+그룹 전체에 한 번에 반영되지 않고 일부만 반영된 상태(부분 업그레이드)로
+추정된다.
+
+**해결**:
+```bash
+sudo apt update
+sudo apt install --only-upgrade ros-jazzy-diagnostic-updater
+```
+업그레이드 후 라이브러리는 즉시 정상화됐지만(`lifecycle_manager --help`
+직접 실행 시 symbol lookup error 재현 안 됨), **이미 죽어서 떠 있던
+`nav2.launch.py`/`localization.launch.py` 프로세스는 자동으로 되살아나지
+않았다** — 이미 실패한 자식 프로세스를 ROS 2 launch가 재시도하지 않기
+때문. `kill -INT`로 완전히 종료 후 재실행해야 lifecycle_manager가 새로
+뜬다.
+
+### 18-2. AMCL이 초기 위치 없이는 `map` 프레임을 영원히 발행하지 않음
+
+18-1을 고친 뒤에도 `nav2.launch.py`의 bringup이 다시 실패했다:
+
+```
+[amcl]: AMCL cannot publish a pose or update the transform. Please set the initial pose...
+[global_costmap]: Failed to activate global_costmap because transform from base_link to map did not become available before timeout
+[lifecycle_manager_navigation]: Failed to bring up all requested nodes. Aborting bringup.
+```
+
+AMCL은 파티클을 하나도 못 뿌린 상태(초기 위치 없음)에서는 `map->odom` TF를
+전혀 발행하지 않는데, `global_costmap`은 `base_link->map` 변환을 60초까지
+기다렸다가 없으면 activate 자체를 실패시키고, 그러면 `lifecycle_manager`가
+**bringup 전체를 중단**시켜서 `bt_navigator`/`planner_server` 등도 전부
+`inactive`로 남는다. RViz에서 "Frame [map] does not exist"로 보이는 것도
+같은 원인.
+
+**즉석 해결** (CLI로 1회 발행):
+```bash
+ros2 topic pub /initialpose geometry_msgs/msg/PoseWithCovarianceStamped \
+  "{header: {frame_id: 'map'}, pose: {pose: {position: {x: 0.0, y: 0.0, z: 0.0}, orientation: {w: 1.0}}, covariance: [0.25,0,0,0,0,0, 0,0.25,0,0,0,0, 0,0,0,0,0,0, 0,0,0,0,0,0, 0,0,0,0,0,0, 0,0,0,0,0,0.06]}}" \
+  --once
+```
+발행 후 `amcl` 로그에 `initialPoseReceived` / `Setting pose (...): 0.000
+0.000 0.000`이 찍히면 정상 반영된 것. 이후 중단됐던 `nav2.launch.py`를
+재실행하면(이미 aborted된 bringup은 스스로 재시도하지 않으므로 재실행
+필요) `global_costmap`이 바로 activate되어 끝까지 성공한다.
+
+**영구 해결** (매번 RViz에서 "2D Pose Estimate"를 누르는 걸 계속 깜빡해서):
+`Car/config/nav2_params.yaml`의 `amcl` 섹션에 아래를 추가해 시작할 때
+자동으로 원점에 초기 위치를 잡도록 함(이 로봇은 `gazebo.launch.py`의
+`spawn_robot`이 항상 월드 원점에 스폰하므로 원점이 유효한 기본값):
+```yaml
+set_initial_pose: true
+initial_pose:
+  x: 0.0
+  y: 0.0
+  z: 0.0
+  yaw: 0.0
+```
+**주의**: 이건 시뮬레이션 전용 편의 설정이다. 실기에서 로봇이 항상 같은
+위치에서 켜지는 게 아니라면 `set_initial_pose: false`로 되돌리고 RViz에서
+수동 지정해야 한다.
+
+### 18-3. Gazebo GUI가 CPU를 독점해서 TF/센서 메시지가 밀림
+
+18-1/18-2를 다 고쳤는데도 RViz에 아래 경고가 계속 반복됐다:
+
+```
+[rviz2]: Message Filter dropping message: frame 'lidar' at time ... reason 'discarding message because the queue is full'
+```
+
+`ps aux --sort=-pcpu`로 확인하니 `gz sim gui` 프로세스 혼자 **319% CPU**
+(3코어 이상)를 쓰고 있었고, `uptime`의 load average가 **16.44**(이 머신의
+논리 코어 수 16과 거의 같음 — 이미 포화 상태)였다. GPU 가속이 없는
+WSL2에서 3D 렌더링을 소프트웨어로 처리하느라 CPU를 다 써버려서, TF/센서
+메시지가 실시간으로 처리되지 못하고 지연·역전되는 것이 큐 오버플로우의
+진짜 원인이었다(`urdf/aircore.gazebo`, `Car/launch/gazebo.launch.py`에
+이미 "GPU 없는 WSL2에서 GUI 렌더링이 RTF를 깎아먹는 가장 큰 요인"이라고
+주석으로 적혀 있던 문제가 실제로 터진 사례).
+
+**해결**: `headless:=true`로 재시작.
+```bash
+ros2 launch aircore_description gazebo.launch.py headless:=true
+```
+`gz sim gui` 프로세스 자체가 사라지고, load average가 **16.44 → 0.67**로
+떨어짐. RViz는 별도 프로세스라 헤드리스여도 그대로 시각화 가능.
+
+### 18-4. 메모리 고갈로 RViz가 SIGABRT로 죽고 DDS 참여자 생성도 실패
+
+CPU는 해결됐는데 RViz를 띄우자 곧바로 죽었다:
+```
+[ERROR] [rviz2-1]: process has died [pid 41069, exit code -6, cmd '.../rviz2 ...'].
+```
+동시에 `ros2 topic pub /initialpose ...`도 새로 실행하면 이렇게 실패했다:
+```
+1783957993.334761 [42]       ros2: Failed to find a free participant index for domain 42
+[ERROR] [rmw_cyclonedds_cpp]: rmw_create_node: failed to create domain, error Error
+```
+`exit code -6`은 SIGABRT — C++ 메모리 할당 실패(`bad_alloc`)의 전형적인
+종료 코드다. `free -h`로 확인하니:
+```
+Mem:  총 3.7Gi / 사용 2.3Gi / 여유 381Mi
+Swap: 사용 634Mi / 1.0Gi (63%)
+```
+Windows "설정 → 시스템 → 정보"로 호스트 실제 사양을 확인하니 **RAM
+8.00GB(7.75GB 사용 가능)**였다. WSL2가 기본값으로 호스트의 절반 정도(약
+3.7GB)만 할당한 상태에서, Gazebo(헤드리스) + RViz + 로컬라이제이션(3노드) +
+Nav2(11노드)를 동시에 띄우니 메모리가 완전히 고갈되어 RViz가 죽고, 새
+DDS 참여자를 만들 여유조차 없어진 것이었다.
+
+**해결**: Windows 쪽 `C:\Users\Administrator\.wslconfig`(기존에 파일 없어서
+신규 생성)에 메모리/스왑 상향 설정:
+```ini
+[wsl2]
+memory=5GB
+swap=4GB
+```
+호스트가 8GB뿐이라 WSL에 8GB를 전부 주면 Windows가 못 버티므로, Windows에
+최소 2.7GB 이상을 남기는 선에서 5GB/4GB로 절충했다. 이 설정은 WSL2 VM
+자체의 부팅 설정이라 PowerShell에서 완전히 재시작해야 적용된다:
+```powershell
+wsl --shutdown
+```
+**주의**: 이 명령은 실행 중이던 모든 WSL 프로세스(Gazebo/ROS2/VSCode 원격
+연결 포함)를 전부 종료시킨다. 재부팅 후 `free -h`로 확인하니 `4.8Gi`
+사용 가능(요청한 5GB에서 VM 오버헤드만큼 줄어든 정상적인 값)으로 상향된
+것을 확인했다.
+
+### 18-5. `nav2.launch.py`/`localization.launch.py`의 `use_sim_time`이 하드코딩돼 있던 구조적 문제
+
+향후 실기 포팅을 염두에 두고 보니, 두 launch 파일 모두 nav2_bringup에
+`use_sim_time: 'true'`를 하드코딩해서 넘기고 있었다 — 실기에는 `/clock`이
+없으므로 이 상태로 실기에서 실행하면 시간이 안 흘러서 멈춘 것처럼 보이는
+문제가 생긴다. `DeclareLaunchArgument('use_sim_time', default_value='true')`로
+바꿔서, 실기에서는 `use_sim_time:=false`만 붙이면 파일 수정 없이 전환
+가능하게 함.
+
+### 18-6. `nav2_params.yaml` 속도/가속도/robot_radius/amcl alpha 실기용 임시 하향
+
+실측 하드웨어 스펙(모터 최고속도, 배터리, 엔코더 분해능 등)이 아직 없는
+상태에서, 나중에 실기로 넘어갔을 때 로봇이 너무 빠르게/거칠게 움직여
+사고나는 것을 막기 위해 시뮬레이션 기준값의 절반 수준으로 보수적으로
+낮춰뒀다(전부 `TODO: 실측 후 재조정` 주석 표시):
+
+| 파라미터 | 기존(시뮬) | 변경(실기 가정값) |
+|---|---|---|
+| `amcl` alpha1~5 | 0.2 | 0.3 |
+| `FollowPath`(MPPI) vx_max / vx_min | 0.3 / -0.15 | 0.15 / -0.1 |
+| `FollowPath` wz_max | 1.2 | 0.6 |
+| `FollowPath` ax_max / ax_min / az_max | 1.5 / -1.5 / 2.5 | 0.5 / -0.5 / 1.0 |
+| `velocity_smoother` 속도/가속도 | 동일 비율 | 동일 비율로 하향 |
+| `robot_radius`(local/global costmap) | 0.15 | 0.18 |
+
+이번 세션은 사용자 요청으로 시뮬레이션만 계속 쓰기로 했으므로 이 값들은
+당장은 동작에 영향 없음(시뮬 로봇 자체 속도가 이미 느려서 체감 차이
+없음) — 실기 포팅 시점에 실측값으로 재조정하는 게 목적.
+
+### 18-7. 최종 검증: 처음부터 재구축 후 목표 주행까지 재현 성공
+
+18-1~18-4를 전부 해결한 뒤, 완전히 새로 재시작(Gazebo 헤드리스 →
+localization → nav2 → RViz 순서)해서 재현을 확인했다:
+
+- `nav2.launch.py` bringup: 타임아웃/abort 없이 `Managed nodes are active`로
+  끝까지 성공 (18-2의 자동 초기 위치 설정이 즉시 반영되어 `global_costmap`이
+  대기 없이 바로 activate됨)
+- RViz 연결 성공, `Frame [map] does not exist` 경고 없음
+- RViz에서 `2D Goal Pose`로 여러 목표를 연달아 클릭 → 로그에 `Setting goal
+  pose: Frame:map, Position(...)`가 정상적으로 찍히고, 로봇이 실제로
+  이동해서 목표에 도달함(사용자 직접 확인)
+
+**결론**: 이번 세션에서 겪은 문제들은 (a) 시스템 apt 패키지의 부분
+업그레이드로 인한 ABI 불일치, (b) AMCL의 정상적인 동작 방식(초기 위치 필요)을
+자동화하지 않은 설정 누락, (c) 8GB RAM 노트북에서 Gazebo GUI + RViz + Nav2
+전체 스택을 동시에 돌리는 데서 오는 순수한 리소스 부족이었다 — 15~17절의
+오도메트리/SLAM 버그와는 완전히 다른 종류의 문제였고, 로봇 URDF나 Nav2
+알고리즘 자체를 다시 손볼 필요는 없었다. 저사양 호스트에서 이 프로젝트를
+재현하려면 **헤드리스 Gazebo + WSL2 메모리 상향 + AMCL 자동 초기 위치**
+세 가지를 기본값으로 챙기는 것이 좋다.
+
