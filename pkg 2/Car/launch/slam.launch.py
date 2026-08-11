@@ -20,6 +20,7 @@ def generate_launch_description():
 
     autostart = LaunchConfiguration('autostart')
     use_lifecycle_manager = LaunchConfiguration('use_lifecycle_manager')
+    use_sim_time = LaunchConfiguration('use_sim_time')
 
     params_arg = DeclareLaunchArgument(
         'slam_params_file', default_value=default_params_path,
@@ -30,6 +31,12 @@ def generate_launch_description():
     declare_use_lifecycle_manager = DeclareLaunchArgument(
         'use_lifecycle_manager', default_value='false',
         description='별도 lifecycle manager(nav2 등)로 관리할지 여부')
+    # 시뮬레이션에서는 true, 실제 로봇/실제 라이다에서 돌릴 때는 false로 넘길 것
+    # (실기는 /clock을 발행하지 않음).
+    # ex) ros2 launch aircore_description slam.launch.py use_sim_time:=false
+    declare_use_sim_time = DeclareLaunchArgument(
+        'use_sim_time', default_value='true',
+        description='true=Gazebo 시뮬레이션, false=실제 로봇/실제 라이다')
 
     # async_slam_toolbox_node는 LifecycleNode라서, 그냥 Node로 띄우면
     # "unconfigured" 상태로 영원히 멈춰 있고 /scan 구독도 /map 발행도
@@ -42,7 +49,7 @@ def generate_launch_description():
             LaunchConfiguration('slam_params_file'),
             {
                 'use_lifecycle_manager': use_lifecycle_manager,
-                'use_sim_time': True,
+                'use_sim_time': use_sim_time,
             },
         ],
         package='slam_toolbox',
@@ -80,6 +87,7 @@ def generate_launch_description():
         params_arg,
         declare_autostart_cmd,
         declare_use_lifecycle_manager,
+        declare_use_sim_time,
         slam_toolbox_node,
         configure_event,
         activate_event,

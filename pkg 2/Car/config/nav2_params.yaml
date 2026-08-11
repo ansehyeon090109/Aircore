@@ -34,6 +34,18 @@ docking_server:
 amcl:
   ros__parameters:
     use_sim_time: true
+    # 매번 RViz에서 "2D Pose Estimate"로 초기 위치를 수동 지정해야 하는 걸
+    # 깜빡하면 map->odom tf가 영원히 안 나와서 RobotModel이 전부
+    # "No transform to map"으로 뜸. 로봇이 항상 월드 원점(gazebo.launch.py의
+    # spawn_robot 기본 위치)에서 스폰되므로, 시작할 때 자동으로 원점에
+    # 초기 위치를 잡도록 설정. 실기에서 로봇이 다른 위치에서 켜진다면
+    # set_initial_pose를 false로 되돌리고 RViz에서 수동 지정할 것.
+    set_initial_pose: true
+    initial_pose:
+      x: 0.0
+      y: 0.0
+      z: 0.0
+      yaw: 0.0
     # TODO: 실측 후 재조정. 실기 엔코더 오도메트리는 시뮬 오도메트리보다
     # 미끄러짐/분해능 한계로 잡음이 커서, 파티클 필터가 그 불확실성을
     # 과소평가하지 않도록 0.2 -> 0.3으로 보수적으로 상향.

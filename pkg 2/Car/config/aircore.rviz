@@ -7,7 +7,7 @@ Panels:
         - /Global Options1
         - /TF1
       Splitter Ratio: 0.5833333134651184
-    Tree Height: 500
+    Tree Height: 245
   - Class: rviz_common/Selection
     Name: Selection
   - Class: rviz_common/Tool Properties
@@ -58,7 +58,107 @@ Visualization Manager:
         Expand Joint Details: false
         Expand Link Details: false
         Expand Tree: false
-        Link Tree Style: ""
+        Link Tree Style: Links in Alphabetic Order
+        base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        battery:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        driver:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        floor_2:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        floor_3:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        jetson_nano:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_support_wheel:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_wheel:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        lidar:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_support_wheel:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_wheel:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        stmf407:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        support_1_1:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        support_1_2:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        support_1_3:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        support_1_4:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        support_2_1:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        support_2_2:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        support_2_3:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        support_2_4:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
       Mass Properties:
         Inertia: false
         Mass: false
@@ -74,13 +174,97 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: true
+        base_link:
+          Value: true
+        battery:
+          Value: true
+        driver:
+          Value: true
+        floor_2:
+          Value: true
+        floor_3:
+          Value: true
+        jetson_nano:
+          Value: true
+        left_support_wheel:
+          Value: true
+        left_wheel:
+          Value: true
+        lidar:
+          Value: true
+        map:
+          Value: true
+        odom:
+          Value: true
+        right_support_wheel:
+          Value: true
+        right_wheel:
+          Value: true
+        stmf407:
+          Value: true
+        support_1_1:
+          Value: true
+        support_1_2:
+          Value: true
+        support_1_3:
+          Value: true
+        support_1_4:
+          Value: true
+        support_2_1:
+          Value: true
+        support_2_2:
+          Value: true
+        support_2_3:
+          Value: true
+        support_2_4:
+          Value: true
       Marker Scale: 0.5
       Name: TF
       Show Arrows: true
       Show Axes: true
       Show Names: false
       Tree:
-        {}
+        map:
+          odom:
+            base_link:
+              battery:
+                {}
+              driver:
+                {}
+              floor_2:
+                {}
+              floor_3:
+                {}
+              jetson_nano:
+                {}
+              left_support_wheel:
+                {}
+              left_wheel:
+                {}
+              lidar:
+                {}
+              right_support_wheel:
+                {}
+              right_wheel:
+                {}
+              stmf407:
+                {}
+              support_1_1:
+                {}
+              support_1_2:
+                {}
+              support_1_3:
+                {}
+              support_1_4:
+                {}
+              support_2_1:
+                {}
+              support_2_2:
+                {}
+              support_2_3:
+                {}
+              support_2_4:
+                {}
       Update Interval: 0
       Value: true
     - Alpha: 1
@@ -123,7 +307,7 @@ Visualization Manager:
       Class: rviz_default_plugins/Map
       Color Scheme: map
       Draw Behind: true
-      Enabled: true
+      Enabled: false
       Name: Map
       Topic:
         Depth: 1
@@ -165,7 +349,7 @@ Visualization Manager:
             Value: /global_costmap/costmap_updates
           Use Timestamp: false
           Value: false
-        - Alpha: 0.7
+        - Alpha: 0.699999988079071
           Binary representation: false
           Binary threshold: 100
           Class: rviz_default_plugins/Map
@@ -266,7 +450,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 6
+      Distance: 12.142668724060059
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -285,9 +469,280 @@ Visualization Manager:
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
       Yaw: 0.7853981852531433
-    Saved: ~
+    Saved:
+      - Class: rviz_default_plugins/Orbit
+        Distance: 12.142668724060059
+        Enable Stereo Rendering:
+          Stereo Eye Separation: 0.05999999865889549
+          Stereo Focal Distance: 1
+          Swap Stereo Eyes: false
+          Value: false
+        Focal Point:
+          X: 0
+          Y: 0
+          Z: 0
+        Focal Shape Fixed Size: true
+        Focal Shape Size: 0.05000000074505806
+        Invert Z Axis: false
+        Name: Orbit
+        Near Clip Distance: 0.009999999776482582
+        Pitch: 0.7853981852531433
+        Target Frame: <Fixed Frame>
+        Value: Orbit (rviz)
+        Yaw: 0.7853981852531433
+      - Class: rviz_default_plugins/Orbit
+        Distance: 12.142668724060059
+        Enable Stereo Rendering:
+          Stereo Eye Separation: 0.05999999865889549
+          Stereo Focal Distance: 1
+          Swap Stereo Eyes: false
+          Value: false
+        Focal Point:
+          X: 0
+          Y: 0
+          Z: 0
+        Focal Shape Fixed Size: true
+        Focal Shape Size: 0.05000000074505806
+        Invert Z Axis: false
+        Name: Orbit
+        Near Clip Distance: 0.009999999776482582
+        Pitch: 0.7853981852531433
+        Target Frame: <Fixed Frame>
+        Value: Orbit (rviz)
+        Yaw: 0.7853981852531433
+      - Class: rviz_default_plugins/Orbit
+        Distance: 12.142668724060059
+        Enable Stereo Rendering:
+          Stereo Eye Separation: 0.05999999865889549
+          Stereo Focal Distance: 1
+          Swap Stereo Eyes: false
+          Value: false
+        Focal Point:
+          X: 0
+          Y: 0
+          Z: 0
+        Focal Shape Fixed Size: true
+        Focal Shape Size: 0.05000000074505806
+        Invert Z Axis: false
+        Name: Orbit
+        Near Clip Distance: 0.009999999776482582
+        Pitch: 0.7853981852531433
+        Target Frame: <Fixed Frame>
+        Value: Orbit (rviz)
+        Yaw: 0.7853981852531433
+      - Class: rviz_default_plugins/Orbit
+        Distance: 12.142668724060059
+        Enable Stereo Rendering:
+          Stereo Eye Separation: 0.05999999865889549
+          Stereo Focal Distance: 1
+          Swap Stereo Eyes: false
+          Value: false
+        Focal Point:
+          X: 0
+          Y: 0
+          Z: 0
+        Focal Shape Fixed Size: true
+        Focal Shape Size: 0.05000000074505806
+        Invert Z Axis: false
+        Name: Orbit
+        Near Clip Distance: 0.009999999776482582
+        Pitch: 0.7853981852531433
+        Target Frame: <Fixed Frame>
+        Value: Orbit (rviz)
+        Yaw: 0.7853981852531433
+      - Class: rviz_default_plugins/Orbit
+        Distance: 12.142668724060059
+        Enable Stereo Rendering:
+          Stereo Eye Separation: 0.05999999865889549
+          Stereo Focal Distance: 1
+          Swap Stereo Eyes: false
+          Value: false
+        Focal Point:
+          X: 0
+          Y: 0
+          Z: 0
+        Focal Shape Fixed Size: true
+        Focal Shape Size: 0.05000000074505806
+        Invert Z Axis: false
+        Name: Orbit
+        Near Clip Distance: 0.009999999776482582
+        Pitch: 0.7853981852531433
+        Target Frame: <Fixed Frame>
+        Value: Orbit (rviz)
+        Yaw: 0.7853981852531433
+      - Class: rviz_default_plugins/Orbit
+        Distance: 12.142668724060059
+        Enable Stereo Rendering:
+          Stereo Eye Separation: 0.05999999865889549
+          Stereo Focal Distance: 1
+          Swap Stereo Eyes: false
+          Value: false
+        Focal Point:
+          X: 0
+          Y: 0
+          Z: 0
+        Focal Shape Fixed Size: true
+        Focal Shape Size: 0.05000000074505806
+        Invert Z Axis: false
+        Name: Orbit
+        Near Clip Distance: 0.009999999776482582
+        Pitch: 0.7853981852531433
+        Target Frame: <Fixed Frame>
+        Value: Orbit (rviz)
+        Yaw: 0.7853981852531433
+      - Class: rviz_default_plugins/Orbit
+        Distance: 12.142668724060059
+        Enable Stereo Rendering:
+          Stereo Eye Separation: 0.05999999865889549
+          Stereo Focal Distance: 1
+          Swap Stereo Eyes: false
+          Value: false
+        Focal Point:
+          X: 0
+          Y: 0
+          Z: 0
+        Focal Shape Fixed Size: true
+        Focal Shape Size: 0.05000000074505806
+        Invert Z Axis: false
+        Name: Orbit
+        Near Clip Distance: 0.009999999776482582
+        Pitch: 0.7853981852531433
+        Target Frame: <Fixed Frame>
+        Value: Orbit (rviz)
+        Yaw: 0.7853981852531433
+      - Class: rviz_default_plugins/Orbit
+        Distance: 12.142668724060059
+        Enable Stereo Rendering:
+          Stereo Eye Separation: 0.05999999865889549
+          Stereo Focal Distance: 1
+          Swap Stereo Eyes: false
+          Value: false
+        Focal Point:
+          X: 0
+          Y: 0
+          Z: 0
+        Focal Shape Fixed Size: true
+        Focal Shape Size: 0.05000000074505806
+        Invert Z Axis: false
+        Name: Orbit
+        Near Clip Distance: 0.009999999776482582
+        Pitch: 0.7853981852531433
+        Target Frame: <Fixed Frame>
+        Value: Orbit (rviz)
+        Yaw: 0.7853981852531433
+      - Class: rviz_default_plugins/Orbit
+        Distance: 12.142668724060059
+        Enable Stereo Rendering:
+          Stereo Eye Separation: 0.05999999865889549
+          Stereo Focal Distance: 1
+          Swap Stereo Eyes: false
+          Value: false
+        Focal Point:
+          X: 0
+          Y: 0
+          Z: 0
+        Focal Shape Fixed Size: true
+        Focal Shape Size: 0.05000000074505806
+        Invert Z Axis: false
+        Name: Orbit
+        Near Clip Distance: 0.009999999776482582
+        Pitch: 0.7853981852531433
+        Target Frame: <Fixed Frame>
+        Value: Orbit (rviz)
+        Yaw: 0.7853981852531433
+      - Class: rviz_default_plugins/Orbit
+        Distance: 12.142668724060059
+        Enable Stereo Rendering:
+          Stereo Eye Separation: 0.05999999865889549
+          Stereo Focal Distance: 1
+          Swap Stereo Eyes: false
+          Value: false
+        Focal Point:
+          X: 0
+          Y: 0
+          Z: 0
+        Focal Shape Fixed Size: true
+        Focal Shape Size: 0.05000000074505806
+        Invert Z Axis: false
+        Name: Orbit
+        Near Clip Distance: 0.009999999776482582
+        Pitch: 0.7853981852531433
+        Target Frame: <Fixed Frame>
+        Value: Orbit (rviz)
+        Yaw: 0.7853981852531433
+      - Class: rviz_default_plugins/Orbit
+        Distance: 12.142668724060059
+        Enable Stereo Rendering:
+          Stereo Eye Separation: 0.05999999865889549
+          Stereo Focal Distance: 1
+          Swap Stereo Eyes: false
+          Value: false
+        Focal Point:
+          X: 0
+          Y: 0
+          Z: 0
+        Focal Shape Fixed Size: true
+        Focal Shape Size: 0.05000000074505806
+        Invert Z Axis: false
+        Name: Orbit
+        Near Clip Distance: 0.009999999776482582
+        Pitch: 0.7853981852531433
+        Target Frame: <Fixed Frame>
+        Value: Orbit (rviz)
+        Yaw: 0.7853981852531433
+      - Class: rviz_default_plugins/Orbit
+        Distance: 12.142668724060059
+        Enable Stereo Rendering:
+          Stereo Eye Separation: 0.05999999865889549
+          Stereo Focal Distance: 1
+          Swap Stereo Eyes: false
+          Value: false
+        Focal Point:
+          X: 0
+          Y: 0
+          Z: 0
+        Focal Shape Fixed Size: true
+        Focal Shape Size: 0.05000000074505806
+        Invert Z Axis: false
+        Name: Orbit
+        Near Clip Distance: 0.009999999776482582
+        Pitch: 0.7853981852531433
+        Target Frame: <Fixed Frame>
+        Value: Orbit (rviz)
+        Yaw: 0.7853981852531433
+      - Class: rviz_default_plugins/Orbit
+        Distance: 12.142668724060059
+        Enable Stereo Rendering:
+          Stereo Eye Separation: 0.05999999865889549
+          Stereo Focal Distance: 1
+          Swap Stereo Eyes: false
+          Value: false
+        Focal Point:
+          X: 0
+          Y: 0
+          Z: 0
+        Focal Shape Fixed Size: true
+        Focal Shape Size: 0.05000000074505806
+        Invert Z Axis: false
+        Name: Orbit
+        Near Clip Distance: 0.009999999776482582
+        Pitch: 0.7853981852531433
+        Target Frame: <Fixed Frame>
+        Value: Orbit (rviz)
+        Yaw: 0.7853981852531433
 Window Geometry:
+  Displays:
+    collapsed: false
   Height: 900
+  Hide Left Dock: false
+  Hide Right Dock: false
+  QMainWindow State: 000000ff00000000fd00000001000000000000019b0000032efc0200000004fb000000100044006900730070006c006100790073010000003b00000130000000c700fffffffb0000001200530065006c0065006300740069006f006e0100000171000000940000005c00fffffffb0000001e0054006f006f006c002000500072006f0070006500720074006900650073010000020b000000950000005c00fffffffb0000000a0056006900650077007301000002a6000000c3000000a000ffffff000003d70000032e00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  Selection:
+    collapsed: false
+  Tool Properties:
+    collapsed: false
+  Views:
+    collapsed: false
   Width: 1400
-  X: 50
-  Y: 50
+  X: 18
+  Y: 18
