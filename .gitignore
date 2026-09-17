@@ -1,0 +1,16 @@
+venv/
+__pycache__/
+*.pyc
+.DS_Store
+
+# 모델 가중치 및 변환 결과 (용량 크므로 git에 올리지 않음)
+*.pt
+*.onnx
+*.engine
+
+# 데이터 (용량 크므로 git에 올리지 않음)
+data/raw/
+data/datasets/
+
+# 추론 결과
+runs/
