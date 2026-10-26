@@ -7,6 +7,11 @@
 #include "command.h"
 
 #include <Stepper.h>
+#include <AccelStepper.h>
+
+#define DIR 28
+#define STEP 26
+AccelStepper slider = AccelStepper(1, STEP, DIR);//드라이버를 쓸때는 1을쓴다!
 bool gripper_state = false;
 bool stepper_enabled = false;
 unsigned long main_t = 0;
@@ -31,6 +36,12 @@ Command command;
 
 void setup() {
   Serial.begin(9600);
+
+  pinMode(DIR,OUTPUT);
+  pinMode(STEP,OUTPUT);
+  slider.setMaxSpeed(1000); //얘는 200이 적절한값!
+  slider.setAcceleration(1000); //50~300사이 정도로 적당한값 찾기!
+  slider.setCurrentPosition(0); //현재 스탭을 설정
   
   //various pins..
   pinMode(HEATER_0_PIN  , OUTPUT);
@@ -68,7 +79,7 @@ void setup() {
   stepperHigher.setPositionRad(0);  //90°
   stepperLower.setPositionRad(0);          // 0°
   stepperRotate.setPositionRad(0);         // 0°
-  //stepperExtruder.setPositionRad(0);
+  stepperExtruder.setPositionRad(0);
   
   //enable and init..
   setStepperEnable(false);
@@ -91,12 +102,13 @@ void setStepperEnable(bool enable) {
   stepperRotate.enable(enable);
   stepperLower.enable(enable);
   stepperHigher.enable(enable); 
-  //stepperExtruder.enable(enable); 
+  stepperExtruder.enable(enable); 
   //fan.enable(enable);
   stepper_enabled = enable;
 }
 
 void loop () {
+  slider.run();
   if(millis() - main_t > 80){
     main_t = millis();
     /*
@@ -119,6 +131,8 @@ void loop () {
     Serial.print(", ");
     Serial.print((geometry.getHighRad()-h_offset)*(180/PI)); //기어비 반영
     Serial.print(", ");
+    Serial.print(slider.currentPosition());
+    Serial.print(", ");
     Serial.print(interpolator.isFinished());
     Serial.print(", ");
     Serial.print(stepper_enabled);
@@ -130,10 +144,11 @@ void loop () {
   stepperRotate.stepToPositionRad(geometry.getRotRad());
   stepperLower.stepToPositionRad (geometry.getLowRad());
   stepperHigher.stepToPositionRad(geometry.getHighRad());
-  stepperExtruder.stepToPositionRad(interpolator.getEPosmm());
+  //stepperExtruder.stepToPositionRad(interpolator.getEPosmm());
   stepperRotate.update();
   stepperLower.update();
-  stepperHigher.update(); 
+  stepperHigher.update();
+  //stepperExtruder.update();
   fan.update();
   
   if (!queue.isFull()) {
@@ -197,6 +212,26 @@ void cmdFanOff() {
   fan.enable(false);
 }
 
+void cmdMS(int pos){
+  if(pos == 0){
+    slider.moveTo(0);
+  }
+  else if(pos == 1){
+  slider.moveTo(4000);
+  }
+  else if(pos == 2){
+  slider.moveTo(8000);
+  }
+
+  else if(pos == 3){
+  slider.moveTo(12000);
+  }
+
+  else if(pos == 4){
+  slider.moveTo(17000);
+  }
+} 
+
 void handleAsErr(Cmd (&cmd)) {
   printComment("Unknown Cmd " + String(cmd.id) + String(cmd.num) + " (queued)"); 
   printFault();
@@ -237,13 +272,19 @@ void executeCommand(Cmd cmd) {
     }
   } else if (cmd.id == 'M') {
     switch (cmd.num) {
-      //case 0: cmdEmergencyStop(); break;
+      // case 0: cmdEmergencyStop(); break;
       case 3: cmdGripperOn(cmd); break;
       case 5: cmdGripperOff(cmd); break;
       case 17: cmdStepperOn(); break;
       case 18: cmdStepperOff(); break;
       case 106: cmdFanOn(); break;
       case 107: cmdFanOff(); break;
+      case 100: cmdMS(0); break;
+      case 101: cmdMS(1); break;
+      case 102: cmdMS(2); break;
+      case 103: cmdMS(3); break;
+      case 104: cmdMS(4); break;
+
       default: handleAsErr(cmd); 
     }
   } else {
@@ -254,4 +295,9 @@ void executeCommand(Cmd cmd) {
 //G1 X0 Y100 Z134  -> 로봇이 앞으로 움직인다
 //G1 X0 Y100 Z0   -> 로봇이 아래로 하강한다
 //G1 X0 Y19.5 Z134 -> 로봇이 원점으로 이동한다
+//G1 X0 Y100 Z134
+
+//타이밍벨트
+//볼벨트
+
 
