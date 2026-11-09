@@ -10,7 +10,7 @@ AI Hub 상추 데이터셋의 JSON 라벨을 YOLO 형식(txt)으로 변환하는
   data/datasets/images/{train,val}, data/datasets/labels/{train,val} 에 정리
 
 사용법:
-    python src/utils/convert_json_to_yolo.py --images_dir "이미지가 들어있는 폴더 경로" --labels_dir "JSON 파일이 들어있는 폴더 경로" --output_dir "data/datasets" \--val_ratio 0.2
+    python src/utils/convert_json_to_yolo.py --images_dir "data/raw/tkdcn/2.Validation/원천데이터" --labels_dir "data/raw/tkdcn/2.Validation/라벨링데이터" --output_dir "data/datasets" \--val_ratio 0.2
 
 이미지 폴더와 라벨(JSON) 폴더가 같은 경우, 두 인자에 같은 경로를 넣어도 됩니다.
 """
