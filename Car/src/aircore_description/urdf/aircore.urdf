@@ -1,0 +1,417 @@
+<?xml version="1.0"?>
+<!-- Auto-generated from aircore_end CAD STL exports (mm -> m). Frame: X forward (assumed), Y left, Z up. -->
+<!-- Total mass 3.0 kg (user-specified). RPLIDAR C1 = 110 g (datasheet); remaining mass distributed in proportion to part volume. -->
+<robot name="aircore">
+
+  <material name="grey"><color rgba="0.6 0.6 0.6 1"/></material>
+  <material name="dark"><color rgba="0.15 0.15 0.15 1"/></material>
+  <material name="white"><color rgba="0.9 0.9 0.9 1"/></material>
+  <material name="blue"><color rgba="0.2 0.4 0.8 1"/></material>
+  <material name="steel"><color rgba="0.75 0.75 0.8 1"/></material>
+
+  <!-- base_footprint: ground plane under base_link (no inertia, ok for KDL root) -->
+  <link name="base_footprint">
+  </link>
+
+  <joint name="base_footprint_joint" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+    <origin xyz="0 0 0.0095" rpy="0 0 0"/>
+  </joint>
+
+  <link name="base_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://aircore_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="grey"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0.0553" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.115" length="0.1106"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0.0019 0.00019 0.03077" rpy="0 0 0"/>
+      <mass value="0.9001"/>
+      <inertia ixx="4.6647e-03" ixy="-6.7879e-06" ixz="-1.1479e-04" iyy="5.9742e-03" iyz="3.6188e-06" izz="9.2642e-03"/>
+    </inertial>
+  </link>
+
+  <link name="floor2">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://aircore_description/meshes/floor2.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="white"/>
+    </visual>
+    <collision>
+      <origin xyz="0.02469 0 0.11" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.1756 0.22499 0.08"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0.01671 -0.00047 0.09736" rpy="0 0 0"/>
+      <mass value="0.7185"/>
+      <inertia ixx="3.9721e-03" ixy="3.5910e-06" ixz="1.3072e-04" iyy="2.4425e-03" iyz="2.7311e-06" izz="5.4574e-03"/>
+    </inertial>
+  </link>
+
+  <joint name="floor2_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="floor2"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <link name="pot_put">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://aircore_description/meshes/pot_put.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="grey"/>
+    </visual>
+    <collision>
+      <origin xyz="-0.06625 0 0.095" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.0925 0.18484 0.05"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="-0.07409 0 0.07969" rpy="0 0 0"/>
+      <mass value="0.2147"/>
+      <inertia ixx="5.1371e-04" ixy="-5.8251e-09" ixz="3.1676e-05" iyy="1.6520e-04" iyz="-1.2275e-08" izz="6.0258e-04"/>
+    </inertial>
+  </link>
+
+  <joint name="pot_put_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="pot_put"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <link name="lidar_floor">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://aircore_description/meshes/lidar_floor.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="white"/>
+    </visual>
+    <collision>
+      <origin xyz="0.02465 0 0.1515" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.17562 0.22493 0.003"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0.02873 -3e-05 0.1515" rpy="0 0 0"/>
+      <mass value="0.2109"/>
+      <inertia ixx="7.8720e-04" ixy="-3.9800e-07" ixz="-4.6443e-09" iyy="3.3972e-04" iyz="2.4648e-12" izz="1.1266e-03"/>
+    </inertial>
+  </link>
+
+  <joint name="lidar_floor_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="lidar_floor"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <link name="ball_support_front">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://aircore_description/meshes/ball_support_front.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="dark"/>
+    </visual>
+    <collision>
+      <origin xyz="0.08 0 0.012" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.0494 0.06937 0.024"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0.08 0 0.0129" rpy="0 0 0"/>
+      <mass value="0.0840"/>
+      <inertia ixx="1.4937e-05" ixy="9.8919e-22" ixz="1.0225e-13" iyy="1.3462e-05" iyz="3.1775e-22" izz="1.9567e-05"/>
+    </inertial>
+  </link>
+
+  <joint name="ball_support_front_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="ball_support_front"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <link name="ball_support_rear">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://aircore_description/meshes/ball_support_rear.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="dark"/>
+    </visual>
+    <collision>
+      <origin xyz="-0.08 0 0.012" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.0494 0.06937 0.024"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="-0.08 0 0.0129" rpy="0 0 0"/>
+      <mass value="0.0840"/>
+      <inertia ixx="1.4937e-05" ixy="-1.1870e-22" ixz="-8.0258e-14" iyy="1.3462e-05" iyz="-6.3912e-22" izz="1.9567e-05"/>
+    </inertial>
+  </link>
+
+  <joint name="ball_support_rear_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="ball_support_rear"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <!-- RPLIDAR C1 (55.6 x 55.6 x 41.3 mm, 110 g). lidar_support = fixed housing -->
+  <link name="lidar_support">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://aircore_description/meshes/lidar_support.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="dark"/>
+    </visual>
+    <collision>
+      <origin xyz="0.045 0 0.16455" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.0556 0.0556 0.0231"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0.045 0 0.16455" rpy="0 0 0"/>
+      <mass value="0.0733"/>
+      <inertia ixx="2.2151e-05" ixy="-0.0000e+00" ixz="-6.1205e-20" iyy="2.2151e-05" iyz="-0.0000e+00" izz="3.7780e-05"/>
+    </inertial>
+  </link>
+
+  <joint name="lidar_support_joint" type="fixed">
+    <parent link="lidar_floor"/>
+    <child link="lidar_support"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <!-- spinning scanner head (real C1 spins clockwise seen from top; visual only) -->
+  <link name="lidar_head">
+    <visual>
+      <origin xyz="-0.045 0 -0.1761" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://aircore_description/meshes/lidar_head.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="dark"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0.0091" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.0250" length="0.0182"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0.0091" rpy="0 0 0"/>
+      <mass value="0.0367"/>
+      <inertia ixx="6.7389e-06" ixy="1.6905e-22" ixz="-3.0602e-19" iyy="6.7389e-06" iyz="6.7833e-23" izz="1.1453e-05"/>
+    </inertial>
+  </link>
+
+  <joint name="lidar_head_joint" type="continuous">
+    <parent link="lidar_support"/>
+    <child link="lidar_head"/>
+    <origin xyz="0.045 0 0.1761" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <dynamics damping="0.0" friction="0.0"/>
+  </joint>
+
+  <!-- laser: fixed scan frame (frame_id of /scan). Height = head mid-height (ASSUMED, verify optical plane) -->
+  <!-- yaw = pi: on the real robot (sllidar_ros2, inverted=false) the scan came out front/back swapped
+       with yaw 0 (checked in RViz 2026-11-23), so the C1 is mounted rotated 180 deg. -->
+  <link name="laser">
+  </link>
+
+  <joint name="laser_joint" type="fixed">
+    <parent link="lidar_support"/>
+    <child link="laser"/>
+    <origin xyz="0.045 0 0.1852" rpy="0 0 3.14159265"/>
+  </joint>
+
+  <!-- left wheel: tire R=32.5 mm, width=26.0 mm (mesh also contains motor body) -->
+  <link name="left_wheel_link">
+    <visual>
+      <origin xyz="1e-05 -0.1085 -0.023" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://aircore_description/meshes/wheel_left.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="dark"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="0.0325" length="0.0260"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="1e-05 -0.01534 0" rpy="0 0 0"/>
+      <mass value="0.3181"/>
+      <inertia ixx="2.6783e-04" ixy="8.6859e-14" ixz="-3.2135e-13" iyy="1.2687e-04" iyz="3.6708e-13" izz="2.6783e-04"/>
+    </inertial>
+  </link>
+
+  <joint name="left_wheel_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="left_wheel_link"/>
+    <origin xyz="-1e-05 0.1085 0.023" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <dynamics damping="0.0" friction="0.0"/>
+  </joint>
+
+  <!-- right wheel: tire R=32.5 mm, width=26.0 mm (mesh also contains motor body) -->
+  <link name="right_wheel_link">
+    <visual>
+      <origin xyz="1e-05 0.1085 -0.023" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://aircore_description/meshes/wheel_right.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="dark"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="1.5708 0 0"/>
+      <geometry>
+        <cylinder radius="0.0325" length="0.0260"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="1e-05 0.01534 0" rpy="0 0 0"/>
+      <mass value="0.3181"/>
+      <inertia ixx="2.6783e-04" ixy="-8.6859e-14" ixz="-3.2135e-13" iyy="1.2687e-04" iyz="-3.6708e-13" izz="2.6783e-04"/>
+    </inertial>
+  </link>
+
+  <joint name="right_wheel_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="right_wheel_link"/>
+    <origin xyz="-1e-05 -0.1085 0.023" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <dynamics damping="0.0" friction="0.0"/>
+  </joint>
+
+  <!-- front ball caster (R=12.5 mm): fixed sphere, mu=0 in Gazebo -->
+  <link name="caster_front_ball_link">
+    <visual>
+      <origin xyz="-0.08 0 -0.003" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://aircore_description/meshes/ball_front.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="steel"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <sphere radius="0.0125"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.0208"/>
+      <inertia ixx="1.2997e-06" ixy="-4.0928e-22" ixz="5.9351e-21" iyy="1.2997e-06" iyz="9.2676e-18" izz="1.2992e-06"/>
+    </inertial>
+  </link>
+
+  <joint name="caster_front_ball_joint" type="fixed">
+    <parent link="ball_support_front"/>
+    <child link="caster_front_ball_link"/>
+    <origin xyz="0.08 0 0.003" rpy="0 0 0"/>
+  </joint>
+
+  <gazebo reference="caster_front_ball_link">
+    <mu1>0.0</mu1>
+    <mu2>0.0</mu2>
+  </gazebo>
+
+  <!-- rear ball caster (R=12.5 mm): fixed sphere, mu=0 in Gazebo -->
+  <link name="caster_rear_ball_link">
+    <visual>
+      <origin xyz="0.08 0 -0.003" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://aircore_description/meshes/ball_rear.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="steel"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <sphere radius="0.0125"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.0208"/>
+      <inertia ixx="1.2997e-06" ixy="3.3014e-22" ixz="6.5286e-21" iyy="1.2997e-06" iyz="9.2676e-18" izz="1.2992e-06"/>
+    </inertial>
+  </link>
+
+  <joint name="caster_rear_ball_joint" type="fixed">
+    <parent link="ball_support_rear"/>
+    <child link="caster_rear_ball_link"/>
+    <origin xyz="-0.08 0 0.003" rpy="0 0 0"/>
+  </joint>
+
+  <gazebo reference="caster_rear_ball_link">
+    <mu1>0.0</mu1>
+    <mu2>0.0</mu2>
+  </gazebo>
+
+  <!-- ===== RPLIDAR C1 simulated sensor (values from Slamtec datasheet) =====
+       range 0.05-12 m (70% reflectivity), 10 Hz typical, 5 kHz sample rate, 0.72 deg resolution,
+       range resolution 15 mm, accuracy +/-30 mm (modelled as gaussian stddev 0.01 m = ~3 sigma, ASSUMPTION).
+       Angle 0 = laser +X = robot REAR (laser_joint yaw = pi, matches the real C1 mounting),
+       counter-clockwise positive (REP-103).
+       World file must load gz-sim-sensors-system (render_engine ogre2). -->
+  <gazebo reference="laser">
+    <sensor name="rplidar_c1" type="gpu_lidar">
+      <always_on>true</always_on>
+      <visualize>true</visualize>
+      <update_rate>10</update_rate>
+      <topic>scan</topic>
+      <frame_id>laser</frame_id>
+      <gz_frame_id>laser</gz_frame_id>
+      <lidar>
+        <scan>
+          <horizontal>
+            <samples>500</samples>
+            <resolution>1</resolution>
+            <min_angle>-3.141593</min_angle>
+            <max_angle>3.129026</max_angle>
+          </horizontal>
+          <vertical>
+            <samples>1</samples>
+            <resolution>1</resolution>
+            <min_angle>0</min_angle>
+            <max_angle>0</max_angle>
+          </vertical>
+        </scan>
+        <range>
+          <min>0.05</min>
+          <max>12.0</max>
+          <resolution>0.015</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </lidar>
+    </sensor>
+  </gazebo>
+
+</robot>

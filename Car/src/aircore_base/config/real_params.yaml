@@ -1,0 +1,42 @@
+# Aircore 실차 파라미터 (base_params.yaml 구조 복사 + 실측값 적용용, base_params.yaml 원본은 그대로 둔다)
+# 상태: 실측값 입력 완료 (apply_measurements.py 로 갱신)
+# 값 채우기: scripts/apply_measurements.py --wheel-radius R --wheel-separation L --ticks-left NL --ticks-right NR
+#   wheel_radius / wheel_separation 은 base_controller, odometry 두 섹션을 같은 값으로 함께 갱신한다.
+# 주의: max_wheel_speed > 0 (2026-11-24 사용자 승인) → bringup + /cmd_vel 로 실제 주행함. 0.0 으로 되돌리면 M,0,0 만 송신.
+base_controller:
+  ros__parameters:
+    serial_port: /dev/serial/by-id/usb-FTDI_FT232R_USB_UART_AZ5HR0DB-if00-port0
+    baudrate: 115200
+    send_rate_hz: 20.0        # keep-alive 포함 송신 주기 (STM32 timeout 300ms)
+    cmd_vel_timeout: 0.5      # [s]
+    wheel_separation: 0.217   # [m]   CAD값(aircore.urdf 바퀴 조인트 y=±0.1085, 실차 미확인) (odometry 섹션과 같은 값)
+    wheel_radius: 0.0325      # [m]   실측 2026-11-23 (odometry 섹션과 같은 값, base_controller 에서는 사용 안 함)
+    ticks_per_rev: 0          #       base_controller 에서는 사용 안 함 → odometry 의 ticks_per_rev_left/right 사용
+    max_wheel_speed: 2.65     # [m/s] duty 100일 때 바퀴 선속도. 2026-11-24 sweep 20/25/30 원점 통과 근사 (L 2.59, R 2.70, 바퀴 띄운 무부하) → 2단계 바닥 주행에서 재보정
+    invert_left: true         # motor_test.py 2026-11-23: M,+20,0 에서 왼쪽이 엔코더 기준 후진 → 반전. 2026-11-24 sweep 육안으로도 전진 확인
+    invert_right: false       # 2026-11-24 sweep (M,-20,20) 에서 사용자 육안 확인: 오른쪽 전진
+    max_duty: 100             # 2026-11-24 사용자 지시로 30 → 60 → 100 (바닥에서 duty 23 도 거의 안 움직임). 100 = 소프트웨어 상한 없음
+    dry_run: false
+
+odometry:
+  ros__parameters:
+    wheel_radius: 0.0325      # [m]   실측 2026-11-23 (0.0 = 미설정 → /odom, TF publish 안 함)
+    wheel_separation: 0.217   # [m]   CAD값(aircore.urdf 바퀴 조인트 y=±0.1085, 실차 미확인)
+    ticks_per_rev_left: 687   #       실측 2026-11-23 (바퀴 1회전당 카운트)
+    ticks_per_rev_right: 685  #       실측 2026-11-23
+    invert_enc_left: true     # 전진 시 왼쪽 카운트 감소 → 반전 (확정)
+    invert_enc_right: true    # 2026-11-24 변경: sweep 에서 바퀴는 육안으로 전진인데 카운트 감소 → 반전 (11-23 엔 false 로 정상이었음, 오른쪽 배선 손본 뒤 바뀐 것으로 추정)
+    odom_frame: odom
+    base_frame: base_footprint  # aircore.urdf 루트 링크 (base_footprint -> base_link 이하는 robot_state_publisher)
+    publish_tf: true
+
+# RPLIDAR C1 (sllidar_ros2). STM32(FTDI) 포트와 다른 CP2102N by-id 경로만 사용.
+sllidar_node:
+  ros__parameters:
+    channel_type: serial
+    serial_port: /dev/serial/by-id/usb-Silicon_Labs_CP2102N_USB_to_UART_Bridge_Controller_f03967c3351ef111b3a0c8e40f0f12f8-if00-port0
+    serial_baudrate: 460800   # C1 (sllidar_c1_launch.py 기본값)
+    frame_id: laser           # aircore.urdf 의 laser 링크
+    inverted: false
+    angle_compensate: true
+    scan_mode: Standard

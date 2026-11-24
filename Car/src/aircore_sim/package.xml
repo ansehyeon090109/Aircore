@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>aircore_sim</name>
+  <version>0.1.0</version>
+  <description>Aircore smart-farm simulation: Gazebo Fortress world from STL map + Nav2 2D map</description>
+  <maintainer email="aircore@example.com">aircore</maintainer>
+  <license>Apache-2.0</license>
+
+  <exec_depend>aircore_description</exec_depend>
+  <exec_depend>ament_index_python</exec_depend>
+  <exec_depend>launch</exec_depend>
+  <exec_depend>python3-numpy</exec_depend>
+  <exec_depend>python3-pil</exec_depend>
+  <!-- Gazebo Fortress itself: sudo apt install ignition-fortress ros-humble-ros-gz -->
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>
