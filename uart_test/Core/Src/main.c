@@ -38,6 +38,12 @@
 #define ENCODER_COUNT_SIZE sizeof("-9223372036854775808")
 #define MOTOR_TIMEOUT_MS 300U
 #define COMMAND_BUFFER_SIZE 24U
+#define STOP_NONE 0U
+#define STOP_BUSY 1U
+#define STOP_OVF 2U
+#define STOP_UARTERR 3U
+#define STOP_PARSE 4U
+#define STOP_TIMEOUT 5U
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -62,8 +68,17 @@ static uint8_t rxLength;
 static uint8_t discardLine;
 static volatile uint8_t commandReady;
 static volatile uint8_t stopRequested;
+static volatile uint8_t stopReason;
+static uint8_t lastSentStopReason;
 static uint8_t previousCR;
 static char encoderMessage[sizeof("ENC,,\r\n") + 2U * (ENCODER_COUNT_SIZE - 1U)];
+static const char stopMessages[][sizeof("STOP,uarterr\r\n")] = {
+  [STOP_BUSY]    = "STOP,busy\r\n",
+  [STOP_OVF]     = "STOP,ovf\r\n",
+  [STOP_UARTERR] = "STOP,uarterr\r\n",
+  [STOP_PARSE]   = "STOP,parse\r\n",
+  [STOP_TIMEOUT] = "STOP,timeout\r\n"
+};
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -301,22 +316,49 @@ int main(void)
       {
         setMotors(left, right);
         lastCommand = now;
+        lastSentStopReason = STOP_NONE;
       }
       else
       {
         setMotors(0, 0);
+        stopReason = STOP_PARSE;
       }
     }
 
     if (now - lastCommand >= MOTOR_TIMEOUT_MS)
     {
       setMotors(0, 0);
+      if (lastSentStopReason != STOP_TIMEOUT)
+      {
+        uint32_t irqState = __get_PRIMASK();
+        __disable_irq();
+        if (stopReason == STOP_NONE)
+        {
+          stopReason = STOP_TIMEOUT;
+        }
+        __set_PRIMASK(irqState);
+      }
     }
 
     if (now - lastEncoder >= ENCODER_TX_INTERVAL_MS)
     {
       lastEncoder = now;
       sendEncoder();
+    }
+    if (stopReason != STOP_NONE && huart3.gState == HAL_UART_STATE_READY)
+    {
+      /* Keep an RX interrupt from replacing the reason between enqueue and clear. */
+      uint32_t irqState = __get_PRIMASK();
+      __disable_irq();
+      uint8_t reason = stopReason;
+      const char *message = stopMessages[reason];
+      if (HAL_UART_Transmit_IT(&huart3, (const uint8_t *)message,
+                               (uint16_t)strlen(message)) == HAL_OK)
+      {
+        lastSentStopReason = reason;
+        stopReason = STOP_NONE;
+      }
+      __set_PRIMASK(irqState);
     }
   }
   /* USER CODE END 3 */
@@ -720,6 +762,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
       if (discardLine || rxLength == 0U || commandReady || stopRequested)
       {
         stopRequested = 1U;
+        stopReason = STOP_BUSY;
       }
       else
       {
@@ -741,6 +784,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
       {
         discardLine = 1U;
         stopRequested = 1U;
+        stopReason = STOP_OVF;
       }
       else
       {
@@ -760,6 +804,7 @@ void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
   if (huart->Instance == USART3)
   {
     stopRequested = 1U;
+    stopReason = STOP_UARTERR;
     rxLength = 0U;
     discardLine = 1U;
     previousCR = 0U;
