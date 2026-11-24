@@ -1,0 +1,681 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<package Dvendor="STMicroelectronics:13" schemaVersion="1.7.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+    <vendor>STMicroelectronics</vendor>
+    <name>X-CUBE-DISPLAY</name>
+    <description>Expansion Pack for display modules</description>
+    <url>http://sw-center.st.com/packs/x-cube/</url>
+    <license>Package_license.html</license>
+    <supportContact>https://community.st.com/</supportContact>
+    <releases>
+        <release date="2023-01-18" version="3.0.0">    - This version is compatible with STM32CubeMX V6.7.0
+        New Features:
+          - Added support for Cortex-M7 devices
+          - Added LCD Utilities to support displaying transparent Texts
+          - Added GFX01M2_Custom Application example for the NUCLEO-WB55RG board
+          - Added GFX02Z1_Custom Application example for the NUCLEO-U575ZI board
+          - Added GFX01M2_FlashLoader Application example for the NUCLEO-WB55RG board
+          - Added GFX02Z1_FlashLoader Application example for the NUCLEO-L4R5ZI board
+          - Added GFX02Z1_FlashLoader Application example for the NUCLEO-U575ZI board
+          - Added GFX02Z1_HelloWorld Application example for the NUCLEO-H723ZG board
+          - Added GFX02Z1_FlashLoader Application example for the NUCLEO-H723ZG board
+          - Removed deprecated functions
+
+        Bugfixes:
+          - Fixed issue with generated mem_io code when using DMA
+          - Fixed issues with Custom LCD and external memory interfaces
+
+        Improvements:
+          - Updated ILI9341 LCD Drivers
+          - Updated ST7789V LCD Drivers
+          - Updated MX25L6433F External Memory Drivers
+          - Enhanced HelloWorld Examples
+            - Allow displaying transparent text for the Boards information, the example’s Hints and the Copyrights
+            - Implemented rendering/display queue to allow parallel rendering and display SPI transfers
+          - Updated STM32WBxx_HAL_Drivers to v1.11.0
+          - Allow using DMA for external OctoSPI memories
+          - Rework DMA support for new devices
+          - Enable QSPI Bus Type for Custom Memory interface
+          - oswrapper: remove extra include to HAL header files for NoOS template
+          - mem_io: add flash page and block size defines
+        </release>
+        <release date="2022-05-02" version="2.2.0">    - This version is compatible with STM32CubeMX V6.5.0
+        New Features:
+          - Added Support for Custom LCD Controllers
+          - Added Support for Custom External Memory Controllers
+          - Generated PDF and CHM API Documentation
+
+        Bugfixes:
+          - Fix Issue with undefined BRR for non supported series F7 and H7
+          - Disable the SW pack when TrustZone is enabled
+
+        Improvements:
+          - Disable the SW pack for non-supported STM32 Families
+          - STM32CubeIDE: add debug launcher files
+        </release>
+        <release date="2022-04-08" version="2.1.0">  - This version is compatible with STM32CubeMX V6.5.0
+        New Features:
+          - Support Real Time Operating systems: FreeRTOS and ThreadX Native Middleware
+          - Support HW Timers for TE Event and line counting
+          - Support disabling TE Events
+          - Support Little and Big ENDIANS
+          - Support swap of Red and Blue components
+
+        Bugfixes:
+          - Deprecated API BSP_MEM_GetTransfertStatus() and renamed to BSP_MEM_GetTransferStatus()
+          - Deprecated API BSP_MEM_SignalTransfertDone() and renamed to BSP_MEM_SignalTransferDone()
+          - Deprecated API BSP_LCD_GetTransfertStatus() and renamed to BSP_LCD_GetTransferStatus()
+          - Deprecated API BSP_LCD_SignalTransfertDone() and renamed to BSP_LCD_SignalTransferDone()
+          - Fixed Dependencies for Board Part
+          - Fixed destination folder to be always DISPLAY
+          - Clean-up header file include for BSP Drivers
+          - External Loaders : Fixed issue with STM32CubeIDE not able to load external loaders
+
+        Improvements:
+          - Support Linked list GPDMA requests for FMC LCD Controllers
+          - Release LCD/MEM locks before notifying upper levels
+          - MEM: Exported size of external Flash memory
+          - LCD: Set default Vsync Frequency to 60 Hz
+          - Disable DMA parameter for OCTOSPI external memories
+          - ExternalLoaders : Added MX25L6433F_GFX01M2_STM32L4.stldr
+        </release>
+        <release date="2021-12-13" version="2.0.1">    - This version is compatible with STM32CubeMX V6.4.0
+            - Support TE Modes 1 and 2
+            - Updated template files for SPI, FMC and OCTOSPI
+            - Updated CMSIS Drivers
+            - Updated HAL Drivers
+            - Bug fixes
+              - Fix line counting on TE events
+              - Fix reading device id issue for the X-NUCLEO-GFX01M2 expansion board
+              - Check for operation status before calling apis
+              - Add PACK_SELF_CONTEXTUALIZATION keyword
+              - Return Error when DMA was not configured by user for BSP SPI
+              - NUCLEO-WB55RG - HelloWorld Example : Update system clock to 64MHz
+        </release>
+        <release date="2021-10-20" version="2.0.0">    - This version is compatible with STM32CubeMX V6.3.0
+            - Add GFX01M2_HelloWorld Application example for the NUCLEO-WB55RG board
+            - Add GFX01M2_HelloWorld Application example for the NUCLEO-G071RB board
+            - Add GFX02Z1_HelloWorld Application example for the NUCLEO-U575ZI board
+            - Add GFX02Z1_HelloWorld Application example for the NUCLEO-L4R5ZI board
+            - Add GFX01M1_HelloWorld Application example for the NUCLEO-L476RG board
+            - Add support for X-NUCLEO-GFX02Z1 Expansion board
+            - Add support for X-NUCLEO-GFX01M2 Expansion board
+            - Add new MX25L6433F driver for Quad SPI memory
+            - Add new ST7789V LCD Driver
+            - Updated ILI9341V LCD Driver
+            - Add support DMA/GPDMA for both LCD and MEM Drivers
+            - Add support for OctoSPI bus fused for external memory devices
+            - Add support for FMC display interface
+            - Enhanced Display Generator UI to support new LCD and MEM Drivers
+            - Add support for cortex-M33 core
+            - Add support for cortex-M4 core
+        </release>
+        <release date="2020-10-08" version="1.0.0">    - This version is compatible with STM32CubeMX V6.0.0
+            - GFX01M1_HelloWorld Application example for the NUCLEO-G071RB board
+            - Support for X-NUCLEO-GFX01M1 Expansion board
+            - Support for cortex-M0+ core
+        </release>
+    </releases>
+    <keywords>
+        <keyword>Cortex-M</keyword>
+        <keyword>STMicroelectronics</keyword>
+        <keyword>CUBEMX_MIGRATION_CAPABILITY</keyword>
+        <keyword>CUBE_RULES_COMPLIANT</keyword>
+        <keyword>IMPLEMENTED_WITH_STM32CUBEMX</keyword>
+        <keyword>IS_CONTEXT_EXCLUSIVE</keyword>
+        <keyword>DOES_NOT_SUPPORT_SECURE</keyword>
+        <keyword>DNS_BUSIO_X_CONTEXT_SHARING</keyword>
+        <keyword>PACK_SELF_CONTEXTUALIZATION</keyword>
+        <keyword>DISPLAY</keyword>
+    </keywords>
+    <taxonomy>
+        <description Cclass="Extension Board">The DISPLAY extension boards support class</description>
+        <description Cclass="Board Part">The DISPLAY components support class</description>
+    </taxonomy>
+    <!--
+    <apis>
+        <api Cclass="Board Part" Cgroup="LCD" Capiversion="2.1.0" exclusive="0">
+            <description>DISPLAY library for LCD Components</description>
+            <files>
+                <file category="doc" name="Documentation/X-CUBE-DISPLAY.chm"/>
+                <file category="header" name="Drivers/BSP/Components/Common/lcd.h"/>
+            </files>
+        </api>
+        <api Cclass="Board Part" Cgroup="Memory" Capiversion="2.1.0" exclusive="0">
+            <description>DISPLAY library for External Memory Components</description>
+            <files>
+                <file category="doc" name="Documentation/X-CUBE-DISPLAY.chm"/>
+                <file category="header" name="Drivers/BSP/Components/Common/mem.h"/>
+            </files>
+        </api>
+    </apis>
+    -->
+    <conditions>
+        <condition id="TZ Non-secure">
+            <description>TrustZone (Non-secure)</description>
+            <accept Dsecure="Non-secure"/>
+            <accept Dsecure="TZ-disabled"/>
+        </condition>
+        <condition id="Cortex-M Devices">
+            <description>Cortex-M processor based device: Cortex-M0, Cortex-M0+, Cortex-M4 and Cortex-M33</description>
+            <require Dname="STM32*"/>
+            <require condition="TZ Non-secure"/>
+            <accept Dcore="Cortex-M0+"/>
+            <accept Dcore="Cortex-M4"/>
+            <accept Dcore="Cortex-M7"/>
+            <accept Dcore="Cortex-M33"/>
+        </condition>
+        <!-- HAL IPs -->
+        <condition id="STM32Cube HAL - SPI">
+            <description>STM32Cube HAL - SPI</description>
+            <require condition="Cortex-M Devices"/>
+            <accept Cclass="Device" Cgroup="SPI" Csub="HAL"/> <!-- STM32CubeMX: SPI HAL -->
+            <accept Cclass="Device" Cgroup="STM32Cube HAL" Csub="SPI"/> <!-- Keil: SPI HAL -->
+        </condition>
+        <condition id="STM32Cube HAL - QSPI">
+            <description>STM32Cube HAL - QSPI</description>
+            <require condition="Cortex-M Devices"/>
+            <accept Cclass="Device" Cgroup="QSPI" Csub="HAL"/> <!-- STM32CubeMX: QSPI HAL -->
+            <accept Cclass="Device" Cgroup="STM32Cube HAL" Csub="QSPI"/> <!-- Keil: QSPI HAL -->
+        </condition>
+        <condition id="STM32Cube HAL - OSPI">
+            <description>STM32Cube HAL - OSPI</description>
+            <require condition="Cortex-M Devices"/>
+            <accept Cclass="Device" Cgroup="OSPI" Csub="HAL"/> <!-- STM32CubeMX: OSPI HAL -->
+            <accept Cclass="Device" Cgroup="STM32Cube HAL" Csub="OSPI"/> <!-- Keil: OSPI HAL -->
+        </condition>
+        <condition id="STM32Cube HAL - FMC">
+            <description>STM32Cube HAL - FSMC/FMC</description>
+            <require condition="Cortex-M Devices"/>
+            <accept Cclass="Device" Cgroup="FSMC" Csub="HAL"/> <!-- STM32CubeMX: FSMC HAL -->
+            <accept Cclass="Device" Cgroup="STM32Cube HAL" Csub="FSMC"/> <!-- Keil: FSMC HAL -->
+            <accept Cclass="Device" Cgroup="FMC" Csub="HAL"/> <!-- STM32CubeMX: FMC HAL -->
+            <accept Cclass="Device" Cgroup="STM32Cube HAL" Csub="FMC"/> <!-- Keil: FMC HAL -->
+        </condition>
+        <condition id="Custom LCD - SPI">
+            <description>Custom LCD - SPI</description>
+            <require condition="Cortex-M Devices"/>
+            <require condition="STM32Cube HAL - SPI"/>
+            <require condition="Custom Board"/>
+            <deny Cbundle="DISPLAY" Cclass="Board Part" Cgroup="LCD" Csub="ILI9341" />
+            <deny Cbundle="DISPLAY" Cclass="Board Part" Cgroup="LCD" Csub="ST7789V" />
+        </condition>
+        <condition id="Custom LCD - FMC">
+            <description>Custom LCD - FSMC/FMC</description>
+            <require condition="Cortex-M Devices"/>
+            <require condition="STM32Cube HAL - FMC"/>
+            <require condition="Custom Board"/>
+            <deny Cbundle="DISPLAY" Cclass="Board Part" Cgroup="LCD" Csub="ILI9341" />
+            <deny Cbundle="DISPLAY" Cclass="Board Part" Cgroup="LCD" Csub="ST7789V" />
+        </condition>
+        <condition id="ILI9341 - SPI">
+            <description>ILI9341 - SPI</description>
+            <require condition="Cortex-M Devices"/>
+            <require condition="STM32Cube HAL - SPI"/>
+            <deny Cbundle="DISPLAY" Cclass="Board Part" Cgroup="LCD" Csub="ST7789V" />
+        </condition>
+        <condition id="ILI9341 - FMC">
+            <description>ILI9341 - FSMC/FMC</description>
+            <require condition="Cortex-M Devices"/>
+            <require condition="STM32Cube HAL - FMC"/>
+            <deny Cbundle="DISPLAY" Cclass="Board Part" Cgroup="LCD" Csub="ST7789V" />
+        </condition>
+        <condition id="ST7789V - SPI">
+            <description>ST7789V - SPI</description>
+            <require condition="Cortex-M Devices"/>
+            <require condition="STM32Cube HAL - SPI"/>
+            <deny Cbundle="DISPLAY" Cclass="Board Part" Cgroup="LCD" Csub="ILI9341" />
+        </condition>
+        <condition id="ST7789V - FMC">
+            <description>ST7789V - FSMC/FMC</description>
+            <require condition="Cortex-M Devices"/>
+            <require condition="STM32Cube HAL - FMC"/>
+            <deny Cbundle="DISPLAY" Cclass="Board Part" Cgroup="LCD" Csub="ILI9341" />
+        </condition>
+        <condition id="Custom Memory - SPI">
+            <description>Custom Memory - SPI</description>
+            <require condition="Cortex-M Devices"/>
+            <require condition="STM32Cube HAL - SPI"/>
+            <require condition="Custom Board"/>
+            <deny Cbundle="DISPLAY" Cclass="Board Part" Cgroup="Memory" Csub="MX25L6433F" />
+        </condition>
+        <condition id="Custom Memory - QSPI">
+            <description>Custom Memory - QSPI</description>
+            <require condition="Cortex-M Devices"/>
+            <require condition="STM32Cube HAL - QSPI"/>
+            <require condition="Custom Board"/>
+            <deny Cbundle="DISPLAY" Cclass="Board Part" Cgroup="Memory" Csub="MX25L6433F" />
+        </condition>
+        <condition id="Custom Memory - OSPI">
+            <description>Custom Memory - OSPI</description>
+            <require condition="Cortex-M Devices"/>
+            <require condition="STM32Cube HAL - OSPI"/>
+            <require condition="Custom Board"/>
+            <deny Cbundle="DISPLAY" Cclass="Board Part" Cgroup="Memory" Csub="MX25L6433F" />
+        </condition>
+        <condition id="MX25L6433F - SPI">
+            <description>MX25L6433F - SPI</description>
+            <require condition="Cortex-M Devices"/>
+            <require condition="STM32Cube HAL - SPI"/>
+        </condition>
+        <!-- Disable support of QSPI IP for MX25L6433F
+        <condition id="MX25L6433F - QSPI">
+            <description>MX25L6433F - QSPI</description>
+            <require condition="Cortex-M Devices"/>
+            <require condition="STM32Cube HAL - QSPI"/>
+        </condition>
+        -->
+        <condition id="MX25L6433F - OSPI">
+            <description>MX25L6433F - OSPI</description>
+            <require condition="Cortex-M Devices"/>
+            <require condition="STM32Cube HAL - OSPI"/>
+        </condition>
+        <!-- CUSTOM Board -->
+        <condition id="Custom Board">
+            <deny Cbundle="DISPLAY" Cclass="Extension Board" Cgroup="GFX01M1"/>
+            <deny Cbundle="DISPLAY" Cclass="Extension Board" Cgroup="GFX01M2"/>
+            <deny Cbundle="DISPLAY" Cclass="Extension Board" Cgroup="GFX02Z1"/>
+        </condition>
+        <condition id="Custom Board Parts">
+            <description>Custom board</description>
+            <require condition="Cortex-M Devices"/>
+            <require condition="Custom Board"/>
+            <accept Cbundle="DISPLAY" Cclass="Board Part" Cgroup="LCD"/>
+            <accept Cbundle="DISPLAY" Cclass="Board Part" Cgroup="Memory"/>
+        </condition>
+        <!-- X-NUCLEO-GFX01M1 -->
+        <condition id="GFX01M1 LCD Parts">
+            <require condition="Cortex-M Devices"/>
+            <require Cbundle="DISPLAY" Cclass="Board Part" Cgroup="LCD" Csub="ILI9341" Cvariant="SPI"/>
+        </condition>
+        <condition id="GFX01M1 Memory Parts">
+            <require condition="Cortex-M Devices"/>
+            <require Cbundle="DISPLAY" Cclass="Board Part" Cgroup="Memory" Csub="MX25L6433F" Cvariant="SPI"/>
+        </condition>
+        <condition id="GFX01M1 Board Parts">
+            <description>GFX01M1 board require both ILI9341/SPI and MX25L6433F/SPI Board Parts</description>
+            <require condition="GFX01M1 LCD Parts"/>
+            <require condition="GFX01M1 Memory Parts"/>
+            <deny Cbundle="DISPLAY" Cclass="Board Part" Cgroup="LCD" Csub="Custom"/>
+            <deny Cbundle="DISPLAY" Cclass="Board Part" Cgroup="Memory" Csub="Custom"/>
+            <deny Cbundle="DISPLAY" Cclass="Extension Board" Cgroup="GFX01M2"/>
+            <deny Cbundle="DISPLAY" Cclass="Extension Board" Cgroup="GFX02Z1"/>
+            <deny Cbundle="DISPLAY" Cclass="Device" Cgroup="Application" Cvariant="Custom_Application"/>
+        </condition>
+        <!-- X-NUCLEO-GFX01M2 -->
+        <condition id="GFX01M2 LCD Parts">
+            <require condition="Cortex-M Devices"/>
+            <accept Cclass="Board Part" Cgroup="LCD" Csub="ILI9341" Cvariant="SPI"/>
+            <accept Cclass="Board Part" Cgroup="LCD" Csub="ST7789V" Cvariant="SPI"/>
+        </condition>
+        <condition id="GFX01M2 Memory Parts">
+            <require condition="Cortex-M Devices"/>
+            <require Cbundle="DISPLAY" Cclass="Board Part" Cgroup="Memory" Csub="MX25L6433F" Cvariant="SPI"/>
+        </condition>
+        <condition id="GFX01M2 Board Parts">
+            <description>GFX01M2 board require both ILI9341/SPI or ST7789V/SPI and MX25L6433F/SPI Board Parts</description>
+            <require condition="GFX01M2 LCD Parts"/>
+            <require condition="GFX01M2 Memory Parts"/>
+            <deny Cbundle="DISPLAY" Cclass="Board Part" Cgroup="LCD" Csub="Custom"/>
+            <deny Cbundle="DISPLAY" Cclass="Board Part" Cgroup="Memory" Csub="Custom"/>
+            <deny Cbundle="DISPLAY" Cclass="Extension Board" Cgroup="GFX01M1"/>
+            <deny Cbundle="DISPLAY" Cclass="Extension Board" Cgroup="GFX02Z1"/>
+            <deny Cbundle="DISPLAY" Cclass="Device" Cgroup="Application" Cvariant="Custom_Application"/>
+        </condition>
+        <!-- X-NUCLEO-GFX02Z1 -->
+        <condition id="GFX02Z1 LCD Parts">
+            <require condition="Cortex-M Devices"/>
+            <accept Cbundle="DISPLAY" Cclass="Board Part" Cgroup="LCD" Csub="ILI9341" Cvariant="FMC"/>
+            <accept Cbundle="DISPLAY" Cclass="Board Part" Cgroup="LCD" Csub="ST7789V" Cvariant="FMC"/>
+        </condition>
+        <condition id="GFX02Z1 Memory Parts">
+            <require condition="Cortex-M Devices"/>
+            <!-- Disable support of QSPI IP for MX25L6433F
+            <accept Cbundle="DISPLAY" Cclass="Board Part" Cgroup="Memory" Csub="MX25L6433F" Cvariant="QSPI"/>
+            <accept Cbundle="DISPLAY" Cclass="Board Part" Cgroup="Memory" Csub="MX25L6433F" Cvariant="OSPI"/>
+            -->
+            <require Cclass="Board Part" Cgroup="Memory" Csub="MX25L6433F" Cvariant="OSPI"/>
+            <!-- Disable support of QSPI IP for MX25L6433F -->
+        </condition>
+        <condition id="GFX02Z1 Board Parts">
+            <description>GFX02Z1 board require both ILI9341/FMC or ST7789V/FMC and MX25L6433F/Quad SPI Board Parts</description>
+            <require condition="GFX02Z1 LCD Parts"/>
+            <require condition="GFX02Z1 Memory Parts"/>
+            <deny Cbundle="DISPLAY" Cclass="Board Part" Cgroup="LCD" Csub="Custom"/>
+            <deny Cbundle="DISPLAY" Cclass="Board Part" Cgroup="Memory" Csub="Custom"/>
+            <deny Cbundle="DISPLAY" Cclass="Extension Board" Cgroup="GFX01M1"/>
+            <deny Cbundle="DISPLAY" Cclass="Extension Board" Cgroup="GFX01M2"/>
+            <deny Cbundle="DISPLAY" Cclass="Device" Cgroup="Application" Cvariant="Custom_Application"/>
+        </condition>
+        <!-- Device Applications -->
+        <condition id="Custom Applications">
+            <description>Condition for Custom board</description>
+            <require condition="Custom Board Parts"/>
+        </condition>
+        <condition id="GFX01M1 Applications">
+            <description>Condition for X-NUCLEO-GFX01M1 Expansion board</description>
+            <require condition="GFX01M1 Board Parts"/>
+            <require Cbundle="DISPLAY" Cclass="Extension Board" Cgroup="GFX01M1"/>
+        </condition>
+        <condition id="GFX01M2 Applications">
+            <description>Condition for X-NUCLEO-GFX01M2 Expansion board</description>
+            <require condition="GFX01M2 Board Parts"/>
+            <require Cbundle="DISPLAY" Cclass="Extension Board" Cgroup="GFX01M2"/>
+        </condition>
+        <condition id="GFX02Z1 Applications">
+            <description>Condition for X-NUCLEO-GFX02Z1 Expansion board</description>
+            <require condition="GFX02Z1 Board Parts"/>
+            <require Cbundle="DISPLAY" Cclass="Extension Board" Cgroup="GFX02Z1"/>
+        </condition>
+    </conditions>
+    <components>
+        <bundle Cvendor="STMicroelectronics" Cbundle="DISPLAY" Cclass="Board Part" Cversion="3.0.0">
+            <description>DISPLAY Board Parts for STM32 NUCLEO boards</description>
+            <doc>Release_Notes.html</doc>
+            <component Cgroup="LCD" Csub="Custom" Cvariant="SPI" Cversion="3.0.0" condition="Custom LCD - SPI">
+                <description>SPI Driver for the Custom LCD Controller</description>
+                <RTE_Components_h>
+                    #define DISPLAY_LCD_BUS_SPI
+                    #define DISPLAY_LCD_COMP
+                </RTE_Components_h>
+                <files>
+                    <file category="doc" name="Drivers/BSP/Components/Common/Release_Notes.html"/>
+                    <file category="doc" name="Drivers/BSP/Components/Common/LICENSE.txt"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/lcd.h"/>
+                </files>
+            </component>
+            <component Cgroup="LCD" Csub="Custom" Cvariant="FMC" Cversion="3.0.0" condition="Custom LCD - FMC">
+                <description>FMC Driver for the Custom LCD Controller</description>
+                <RTE_Components_h>
+                    #define DISPLAY_LCD_BUS_FMC
+                    #define DISPLAY_LCD_COMP
+                </RTE_Components_h>
+                <files>
+                    <file category="doc" name="Drivers/BSP/Components/Common/Release_Notes.html"/>
+                    <file category="doc" name="Drivers/BSP/Components/Common/LICENSE.txt"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/lcd.h"/>
+                </files>
+            </component>
+            <component Cgroup="LCD" Csub="ILI9341" Cvariant="SPI" Cversion="3.0.0" condition="ILI9341 - SPI">
+                <description>SPI Driver for the ILI9341 LCD Controller</description>
+                <RTE_Components_h>
+                    #define DISPLAY_LCD_BUS_SPI
+                    #define DISPLAY_LCD_COMP
+                    #define DISPLAY_LCD_COMP_ILI9341
+                </RTE_Components_h>
+                <files>
+                    <file category="doc" name="Drivers/BSP/Components/ili9341/Release_Notes.html"/>
+                    <file category="doc" name="Drivers/BSP/Components/ili9341/LICENSE.txt"/>
+                    <file category="source" name="Drivers/BSP/Components/ili9341/ili9341.c"/>
+                    <file category="header" name="Drivers/BSP/Components/ili9341/ili9341.h"/>
+                    <file category="source" name="Drivers/BSP/Components/ili9341/ili9341_reg.c"/>
+                    <file category="header" name="Drivers/BSP/Components/ili9341/ili9341_reg.h"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/lcd.h"/>
+                </files>
+            </component>
+            <component Cgroup="LCD" Csub="ILI9341" Cvariant="FMC" Cversion="3.0.0" condition="ILI9341 - FMC">
+                <description>FMC Driver for the ILI9341 LCD Controller</description>
+                <RTE_Components_h>
+                    #define DISPLAY_LCD_BUS_FMC
+                    #define DISPLAY_LCD_COMP
+                    #define DISPLAY_LCD_COMP_ILI9341
+                </RTE_Components_h>
+                <files>
+                    <file category="doc" name="Drivers/BSP/Components/ili9341/Release_Notes.html"/>
+                    <file category="doc" name="Drivers/BSP/Components/ili9341/LICENSE.txt"/>
+                    <file category="source" name="Drivers/BSP/Components/ili9341/ili9341.c"/>
+                    <file category="header" name="Drivers/BSP/Components/ili9341/ili9341.h"/>
+                    <file category="source" name="Drivers/BSP/Components/ili9341/ili9341_reg.c"/>
+                    <file category="header" name="Drivers/BSP/Components/ili9341/ili9341_reg.h"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/lcd.h"/>
+                </files>
+            </component>
+            <component Cgroup="LCD" Csub="ST7789V" Cvariant="SPI" Cversion="3.0.0" condition="ST7789V - SPI">
+                <description>SPI Driver for the ST7789V LCD Controller</description>
+                <RTE_Components_h>
+                    #define DISPLAY_LCD_BUS_SPI
+                    #define DISPLAY_LCD_COMP
+                    #define DISPLAY_LCD_COMP_ST7789V
+                </RTE_Components_h>
+                <files>
+                    <file category="doc" name="Drivers/BSP/Components/st7789v/Release_Notes.html"/>
+                    <file category="doc" name="Drivers/BSP/Components/st7789v/LICENSE.txt"/>
+                    <file category="source" name="Drivers/BSP/Components/st7789v/st7789v.c"/>
+                    <file category="header" name="Drivers/BSP/Components/st7789v/st7789v.h"/>
+                    <file category="source" name="Drivers/BSP/Components/st7789v/st7789v_reg.c"/>
+                    <file category="header" name="Drivers/BSP/Components/st7789v/st7789v_reg.h"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/lcd.h"/>
+                </files>
+            </component>
+            <component Cgroup="LCD" Csub="ST7789V" Cvariant="FMC" Cversion="3.0.0" condition="ST7789V - FMC">
+                <description>FMC Driver for the ST7789V LCD Controller</description>
+                <RTE_Components_h>
+                    #define DISPLAY_LCD_BUS_FMC
+                    #define DISPLAY_LCD_COMP
+                    #define DISPLAY_LCD_COMP_ST7789V
+                </RTE_Components_h>
+                <files>
+                    <file category="doc" name="Drivers/BSP/Components/st7789v/Release_Notes.html"/>
+                    <file category="doc" name="Drivers/BSP/Components/st7789v/LICENSE.txt"/>
+                    <file category="source" name="Drivers/BSP/Components/st7789v/st7789v.c"/>
+                    <file category="header" name="Drivers/BSP/Components/st7789v/st7789v.h"/>
+                    <file category="source" name="Drivers/BSP/Components/st7789v/st7789v_reg.c"/>
+                    <file category="header" name="Drivers/BSP/Components/st7789v/st7789v_reg.h"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/lcd.h"/>
+                </files>
+            </component>
+            <component Cgroup="Memory" Csub="Custom" Cvariant="SPI" Cversion="3.0.0" condition="Custom Memory - SPI">
+                <description>SPI Driver for Custom Quad SPI Flash memory</description>
+                <RTE_Components_h>
+                    #define DISPLAY_MEM_BUS_SPI
+                    #define DISPLAY_MEM_COMP
+                </RTE_Components_h>
+                <files>
+                    <file category="doc" name="Drivers/BSP/Components/Common/Release_Notes.html"/>
+                    <file category="doc" name="Drivers/BSP/Components/Common/LICENSE.txt"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/mem.h"/>
+                </files>
+            </component>
+            <component Cgroup="Memory" Csub="Custom" Cvariant="QSPI" Cversion="3.0.0" condition="Custom Memory - QSPI">
+                <description>QSPI Driver for Custom Quad SPI Flash memory</description>
+                <RTE_Components_h>
+                    #define DISPLAY_MEM_BUS_QSPI
+                    #define DISPLAY_MEM_COMP
+                </RTE_Components_h>
+                <files>
+                    <file category="doc" name="Drivers/BSP/Components/Common/Release_Notes.html"/>
+                    <file category="doc" name="Drivers/BSP/Components/Common/LICENSE.txt"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/mem.h"/>
+                </files>
+            </component>
+            <component Cgroup="Memory" Csub="Custom" Cvariant="OSPI" Cversion="3.0.0" condition="Custom Memory - OSPI">
+                <description>OSPI Driver for Custom Quad SPI Flash memory</description>
+                <RTE_Components_h>
+                    #define DISPLAY_MEM_BUS_OSPI
+                    #define DISPLAY_MEM_COMP
+                </RTE_Components_h>
+                <files>
+                    <file category="doc" name="Drivers/BSP/Components/Common/Release_Notes.html"/>
+                    <file category="doc" name="Drivers/BSP/Components/Common/LICENSE.txt"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/mem.h"/>
+                </files>
+            </component>
+            <component Cgroup="Memory" Csub="MX25L6433F" Cvariant="SPI" Cversion="3.0.0" condition="MX25L6433F - SPI">
+                <description>SPI Driver for the MX25L6433F Quad SPI Flash memory</description>
+                <RTE_Components_h>
+                    #define DISPLAY_MEM_BUS_SPI
+                    #define DISPLAY_MEM_COMP
+                    #define DISPLAY_MEM_COMP_MX25L6433F
+                </RTE_Components_h>
+                <files>
+                    <file category="doc" name="Drivers/BSP/Components/mx25l6433f/Release_Notes.html"/>
+                    <file category="doc" name="Drivers/BSP/Components/mx25l6433f/LICENSE.txt"/>
+                    <file category="source" name="Drivers/BSP/Components/mx25l6433f/spi/mx25l6433f.c" path="Drivers/BSP/Components/mx25l6433f"/>
+                    <file category="header" name="Drivers/BSP/Components/mx25l6433f/mx25l6433f.h"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/mem.h"/>
+                </files>
+            </component>
+            <!-- Disable support of QSPI IP for MX25L6433F
+            <component Cgroup="Memory" Csub="MX25L6433F" Cvariant="QSPI" Cversion="3.0.0" condition="MX25L6433F - QSPI">
+                <description>QSPI Driver for the MX25L6433F Quad SPI Flash memory</description>
+                <RTE_Components_h>
+                    #define DISPLAY_MEM_BUS_QSPI
+                    #define DISPLAY_MEM_COMP
+                    #define DISPLAY_MEM_COMP_MX25L6433F
+                </RTE_Components_h>
+                <files>
+                    <file category="doc" name="Drivers/BSP/Components/mx25l6433f/Release_Notes.html"/>
+                    <file category="doc" name="Drivers/BSP/Components/mx25l6433f/LICENSE.txt"/>
+                    <file category="source" name="Drivers/BSP/Components/mx25l6433f/qspi/mx25l6433f.c" path="Drivers/BSP/Components/mx25l6433f"/>
+                    <file category="header" name="Drivers/BSP/Components/mx25l6433f/mx25l6433f.h"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/mem.h"/>
+                </files>
+            </component>
+            -->
+            <component Cgroup="Memory" Csub="MX25L6433F" Cvariant="OSPI" Cversion="3.0.0" condition="MX25L6433F - OSPI">
+                <description>OSPI Driver for the MX25L6433F Quad SPI Flash memory</description>
+                <RTE_Components_h>
+                    #define DISPLAY_MEM_BUS_OSPI
+                    #define DISPLAY_MEM_COMP
+                    #define DISPLAY_MEM_COMP_MX25L6433F
+                </RTE_Components_h>
+                <files>
+                    <file category="doc" name="Drivers/BSP/Components/mx25l6433f/Release_Notes.html"/>
+                    <file category="doc" name="Drivers/BSP/Components/mx25l6433f/LICENSE.txt"/>
+                    <file category="source" name="Drivers/BSP/Components/mx25l6433f/ospi/mx25l6433f.c" path="Drivers/BSP/Components/mx25l6433f"/>
+                    <file category="header" name="Drivers/BSP/Components/mx25l6433f/mx25l6433f.h"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/mem.h"/>
+                </files>
+            </component>
+        </bundle>
+        <bundle Cvendor="STMicroelectronics" Cbundle="DISPLAY" Cclass="Extension Board" Cversion="3.0.0">
+            <description>DISPLAY Expansion Boards for STM32 NUCLEO boards</description>
+            <doc>Release_Notes.html</doc>
+            <component Cgroup="GFX01M1" Cversion="3.0.0" condition="GFX01M1 Board Parts">
+                <description>X-NUCLEO-GFX01M1 Expansion Board for STM32 NUCLEO boards</description>
+                <RTE_Components_h>
+                    #define DISPLAY_KEY_COMP
+                    #define DISPLAY_BOARD_GFX01M1
+                </RTE_Components_h>
+                <files/>
+            </component>
+            <component Cgroup="GFX01M2" Cversion="3.0.0" condition="GFX01M2 Board Parts">
+                <description>X-NUCLEO-GFX01M2 Expansion Board for STM32 NUCLEO boards</description>
+                <RTE_Components_h>
+                    #define DISPLAY_KEY_COMP
+                    #define DISPLAY_BOARD_GFX01M2
+                </RTE_Components_h>
+                <files/>
+            </component>
+            <component Cgroup="GFX02Z1" Cversion="3.0.0" condition="GFX02Z1 Board Parts">
+                <description>X-NUCLEO-GFX02Z1 Expansion Board for STM32 NUCLEO boards</description>
+                <RTE_Components_h>
+                    #define DISPLAY_KEY_COMP
+                    #define DISPLAY_BOARD_GFX02Z1
+                </RTE_Components_h>
+                <files/>
+            </component>
+        </bundle>
+        <bundle Cvendor="STMicroelectronics" Cbundle="DISPLAY" Cclass="Device" Cversion="3.0.0">
+            <description>DISPLAY Device Application for Display modules</description>
+            <doc>Release_Notes.html</doc>
+            <component Cgroup="Application" Cvariant="Custom_Application" Cversion="1.0.0" condition="Custom Applications">
+                <description>HelloWorld Example for the Custom board</description>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="GFX01M1_HelloWorld" Cversion="1.0.0" condition="GFX01M1 Applications">
+                <description>HelloWorld Example for the GFX01M1 Extension board</description>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="GFX01M2_HelloWorld" Cversion="2.0.0" condition="GFX01M2 Applications">
+                <description>HelloWorld Example for the GFX01M2 Extension board</description>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="GFX02Z1_HelloWorld" Cversion="1.0.0" condition="GFX02Z1 Applications">
+                <description>HelloWorld Example for the GFX02Z1 Extension board</description>
+                <files/>
+            </component>
+        </bundle>
+    </components>
+    <examples>
+        <example doc="ReadMe.txt" folder="Projects/NUCLEO-G071RB/Applications/GFX01M2_HelloWorld" name="GFX01M2_HelloWorld" public="true" version="1.0.0">
+            <description>Simple HelloWorld example for the X-NUCLEO-GFX01M2 used with the NUCLEO-G071RB STM32 board</description>
+            <board Dvendor="STMicroelectronics:13" name="NUCLEO-G071RB" vendor="STMicroelectronics"/>
+            <project>
+                <environment load="GFX01M2_HelloWorld.ioc" name="stm32cubemx"/>
+                <environment load="STM32CubeIDE/.cproject" name="stm32cubeide"/>
+                <environment load="EWARM/GFX01M2_HelloWorld.ewp" name="iar"/>
+                <environment load="MDK-ARM/GFX01M2_HelloWorld.uvprojx" name="uv"/>
+            </project>
+            <attributes>
+                <component Cbundle="DISPLAY" Cclass="Board Part" Cgroup="LCD" Csub="ILI9341" Cvariant="SPI" Cvendor="STMicroelectronics" Cversion="3.0.0"/>
+                <component Cbundle="DISPLAY" Cclass="Board Part" Cgroup="Memory" Csub="MX25L6433F" Cvariant="SPI" Cvendor="STMicroelectronics" Cversion="3.0.0"/>
+                <component Cbundle="DISPLAY" Cclass="Extension Board" Cgroup="GFX01M2" Cvendor="STMicroelectronics" Cversion="3.0.0"/>
+                <component Cclass="Device" Cgroup="Application" Cvariant="GFX01M2_HelloWorld" Cvendor="STMicroelectronics" Cversion="3.0.0"/>
+                <category>Graphics</category>
+                <category>Middleware</category>
+                <keyword>X-NUCLEO-GFX01M2</keyword>
+                <keyword>NUCLEO-G071RB</keyword>
+            </attributes>
+        </example>
+        <example doc="ReadMe.txt" folder="Projects/NUCLEO-WB55RG/Applications/GFX01M2_HelloWorld" name="GFX01M2_HelloWorld" public="true" version="1.0.0">
+            <description>Simple HelloWorld example for the X-NUCLEO-GFX01M2 used with the NUCLEO-WB55RG STM32 board</description>
+            <board Dvendor="STMicroelectronics:13" name="NUCLEO-WB55RG" vendor="STMicroelectronics"/>
+            <project>
+                <environment load="GFX01M2_HelloWorld.ioc" name="stm32cubemx"/>
+                <environment load="STM32CubeIDE/.cproject" name="stm32cubeide"/>
+                <environment load="EWARM/GFX01M2_HelloWorld.ewp" name="iar"/>
+                <environment load="MDK-ARM/GFX01M2_HelloWorld.uvprojx" name="uv"/>
+            </project>
+            <attributes>
+                <component Cbundle="DISPLAY" Cclass="Board Part" Cgroup="LCD" Csub="ST7789V" Cvariant="SPI" Cvendor="STMicroelectronics" Cversion="3.0.0"/>
+                <component Cbundle="DISPLAY" Cclass="Board Part" Cgroup="Memory" Csub="MX25L6433F" Cvariant="SPI" Cvendor="STMicroelectronics" Cversion="3.0.0"/>
+                <component Cbundle="DISPLAY" Cclass="Extension Board" Cgroup="GFX01M2" Cvendor="STMicroelectronics" Cversion="3.0.0"/>
+                <component Cclass="Device" Cgroup="Application" Cvariant="GFX01M2_HelloWorld" Cvendor="STMicroelectronics" Cversion="3.0.0"/>
+                <category>Graphics</category>
+                <category>Middleware</category>
+                <keyword>X-NUCLEO-GFX01M2</keyword>
+                <keyword>NUCLEO-WB55RG</keyword>
+            </attributes>
+        </example>
+        <example doc="ReadMe.txt" folder="Projects/NUCLEO-U575ZI-Q/Applications/GFX02Z1_HelloWorld" name="GFX02Z1_HelloWorld" public="true" version="1.0.0">
+            <description>Simple HelloWorld example for the X-NUCLEO-GFX02Z1 used with the NUCLEO-U575ZI-Q STM32 board</description>
+            <board Dvendor="STMicroelectronics:13" name="NUCLEO-U575ZI-Q" vendor="STMicroelectronics"/>
+            <project>
+                <environment load="GFX02Z1_HelloWorld.ioc" name="stm32cubemx"/>
+                <environment load="STM32CubeIDE/.project" name="stm32cubeide"/>
+                <environment load="EWARM/GFX02Z1_HelloWorld.ewp" name="iar"/>
+                <environment load="MDK-ARM/GFX02Z1_HelloWorld.uvprojx" name="uv"/>
+            </project>
+            <attributes>
+                <component Cbundle="DISPLAY" Cclass="Board Part" Cgroup="LCD" Csub="ILI9341" Cvariant="SPI" Cvendor="STMicroelectronics" Cversion="3.0.0"/>
+                <component Cbundle="DISPLAY" Cclass="Board Part" Cgroup="Memory" Csub="MX25L6433F" Cvariant="SPI" Cvendor="STMicroelectronics" Cversion="3.0.0"/>
+                <component Cbundle="DISPLAY" Cclass="Extension Board" Cgroup="GFX02Z1" Cvendor="STMicroelectronics" Cversion="3.0.0"/>
+                <component Cclass="Device" Cgroup="Application" Cvariant="GFX02Z1_HelloWorld" Cvendor="STMicroelectronics" Cversion="3.0.0"/>
+                <category>Graphics</category>
+                <category>Middleware</category>
+                <keyword>X-NUCLEO-GFX02Z1</keyword>
+                <keyword>NUCLEO-U575ZI-Q</keyword>
+            </attributes>
+        </example>
+        <example doc="ReadMe.txt" folder="Projects/NUCLEO-H723ZG/Applications/GFX02Z1_HelloWorld" name="GFX02Z1_HelloWorld" public="true" version="1.0.0">
+            <description>Simple HelloWorld example for the X-NUCLEO-GFX02Z1 used with the NUCLEO-H723ZG STM32 board</description>
+            <board Dvendor="STMicroelectronics:13" name="NUCLEO-H723ZG" vendor="STMicroelectronics"/>
+            <project>
+                <environment load="GFX02Z1_HelloWorld.ioc" name="stm32cubemx"/>
+                <environment load="STM32CubeIDE/.project" name="stm32cubeide"/>
+                <environment load="EWARM/GFX02Z1_HelloWorld.ewp" name="iar"/>
+                <environment load="MDK-ARM/GFX02Z1_HelloWorld.uvprojx" name="uv"/>
+            </project>
+            <attributes>
+                <component Cbundle="DISPLAY" Cclass="Board Part" Cgroup="LCD" Csub="ST7789V" Cvariant="SPI" Cvendor="STMicroelectronics" Cversion="3.0.0"/>
+                <component Cbundle="DISPLAY" Cclass="Board Part" Cgroup="Memory" Csub="MX25L6433F" Cvariant="SPI" Cvendor="STMicroelectronics" Cversion="3.0.0"/>
+                <component Cbundle="Graphics" Cclass="Extension Board" Cgroup="GFX02Z1" Cvendor="STMicroelectronics" Cversion="3.0.0"/>
+                <component Cbundle="Application" Cclass="Device" Cgroup="Application" Cvariant="GFX02Z1_HelloWorld" Cvendor="STMicroelectronics" Cversion="3.0.0"/>
+                <category>Graphics</category>
+                <category>Middleware</category>
+                <keyword>X-NUCLEO-GFX02Z1</keyword>
+                <keyword>NUCLEO-H723ZG</keyword>
+            </attributes>
+        </example>
+    </examples>
+</package>

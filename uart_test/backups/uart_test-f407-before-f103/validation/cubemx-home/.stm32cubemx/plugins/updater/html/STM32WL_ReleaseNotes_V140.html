@@ -1,0 +1,39 @@
+<!DOCTYPE html >
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
+<font color="blue"><b><u>STM32CubeWL Firmware Package v1.4.0 / 29-October-2025</u></b></font><br>
+<b><u>Main Changes</u></b><br>
+<ul style="list-style-type: disc;">
+<li><b>CMSIS/LL/HAL Drivers updates:</b></li>
+<ul>
+<li>Maintenance release to include latest corrections including the following IP drivers: ADC, RCC, HSEM, I2C, SUBGHZ, RTC, TIM, LPTIM, UART, USART, FLASH, SPI, DMA</li>
+<li>Fix: STM32CubeIDE projects location of the .size directive in startup code</li>
+<li>Fix: ROM symbol addresses in template files to use code region aliases</li>
+<li>Feature: Allow redefinition of the macro VECT_TAB_OFFSET externally from the IDE, makefile, or command line</li>
+<li>Fix of MISRAC2012 Rules 13.4_b, 12.3, 10.4 and 8.13 violations</li>
+</ul>
+<li><b>LoRaWAN Middleware updates:</b></li>
+<ul>
+<li>Fix: rebootTimeReq is based on GPS epoch, convert to Unix epoch</li>
+<li>Fix: LCTT Test BV_015_A for CHANNEL_PLAN_GROUP_AS923_1_JP_CH24_CH38_LBT test due to allowed data rate mismatch</li>
+<li>Fix: Backoff Algorithm issue (patch from Semtech Github #1399)</li>
+<li>Fix: Fixed typo in comments and channel plan name (From CH37 to CH33) for AS923_1 with LBT and DC</li>
+</ul>
+<li><b>Security Middleware updates:</b></li>
+<ul>
+<li>Migrate to MbedTLS V3.6.4</li>
+<li>Migrate to STM32 Key Management Services V1.2.3</li>
+<li>Migrate to STM32_Secure_Engine V2.5.4</li>
+<li>Migrate to FreeRTOS V10.6.2</li>
+</ul>
+<li><b>Projects updates:</b></li>
+<ul>
+<li>SLA0044 Legal terms updated to latest revision (Rev 6 / October 2025)</li>
+<li>Project alignment to STM32CubeMX V6.16.0</li>
+<li>Project alignment to updated FreeRTOS and MbedTLS versions</li>
+</ul>
+<li><b>Package updates:</b></li>
+<ul>
+<li>SLA0048 Legal terms updated to latest revision (Rev 5 / October 2025)</li>
+</ul>
+</ul>
+</html>

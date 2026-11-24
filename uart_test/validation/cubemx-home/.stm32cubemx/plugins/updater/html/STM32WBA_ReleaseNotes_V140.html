@@ -1,0 +1,50 @@
+<!DOCTYPE html >
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
+<font color="blue"><b><u>STM32CubeWBA Firmware Package V1.4.0 / 05-June-2024</u></b></font><br>
+<b><u>Main Changes</u></b><br>
+<b>Official Release of STM32CubeWBA Firmware package supporting STM32WBA50xx, STM32WBA52xx, STM32WBA54xx and STM32WBA55xx devices</b><br>
+<ul style="list-style-type: disc;">
+    <b>Security</b>
+    <ul>
+        <li>Introduction of Imgtool in STM32CubeProgrammer and AppliCfg script.</li>
+        <li>Update of mbed-crypto, mcuboot, TrustedFirmware for security improvements.</li>
+    </ul>
+    <b>Connectivity</b>
+        <ul>
+            <li>STM32WBA50xx is now supported.</li>
+            <li>802.15.4 Antenna Diversity.</li>
+            <li>BLE Audio Hearing Access Profile support added.</li>
+            <li>Applications based on ThreadX are delivered on MDK-ARM (Keil) toolchain.</li>
+            <li>WIFI PTA(via PTACONV) support on BLE applications.</li> 
+            <li>Adding of new Zigbee Applications (including NVM and OTA)</li> 
+            <li>Adding of two new BLE stack configurations: Basic Plus and Peripheral Only.</li> 
+            <li>Adding of BLE wrapper : pre and post command handling.</li> 
+            <li>A new command ACI_HAL_EAD_ENCRYPT_DECRYPT is added to ease implementation of Encrypted Advertising Data feature.</li> 
+            <li>802.15.4 Long term robustness improvement.</li> 
+        </ul>
+    <b>Drivers</b>
+        <ul>
+            <li>CMSIS Device Drivers supporting STM32WBA50xx, STM32WBA52xx, STM32WBA54xx and STM32WBA55xx devices.</li>
+            <li>HAL/LL Drivers available for all peripherals.</li>
+            <li>BSP Drivers supporting NUCLEO-WBA50KGU, NUCLEO-WBA52CG, NUCLEO-WBA55CG and STM32WBA55G-DK1 boards.</li>
+        </ul>
+    <b>Projects</b>
+        <ul>
+            <li>NUCLEO-WBA55CG </li>
+            <ul>
+            <li>Update Applications demonstrating BLE capabilities</li>
+            <li>Update Applications demonstrating Zigbee capabilities</li>
+            <li>Update Applications demonstrating Thread capabilities</li>
+            </ul>
+            <li> NUCLEO-WBA52CG</li>
+            <ul>
+                <li>Update Applications demonstrating SBSFU/TFM capabilities</li>
+            </ul>                       
+            <li> STM32WBA55G-DK1 </li>
+            <ul>
+                <li>Update applications demonstrating BLE, Zigbee capabilities</li>
+            </ul>        
+           
+        </ul>
+</ul>
+</html>

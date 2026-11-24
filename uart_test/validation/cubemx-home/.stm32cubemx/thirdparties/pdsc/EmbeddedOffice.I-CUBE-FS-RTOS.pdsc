@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<package Dvendor="STMicroelectronics:13" schemaVersion="1.7.7" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+    <vendor>EmbeddedOffice</vendor>
+    <name>I-CUBE-FS-RTOS</name>
+    <description>EmbeddedOffice.I-CUBE-FS-RTOS</description>
+    <url>https://www.embedded-office.net/download/public/pack/st/</url>
+    <license>License.txt</license>
+    <supportContact>support@embedded-office.de</supportContact>
+    <releases>
+        <release date="2024-06-19" version="1.0.1">Added:
+- Small getting startet description
+
+Fixed:
+- Prevent warning in generated Blinky project
+
+This version is compatible with STM32CubeMX V6.11.1
+</release>
+        <release date="2024-06-14" version="1.0.0">First public version 
+Flexible Safety RTOS with Support for ARMv7m:
+- Cortex-M3
+- Cortex-M4 with FPU
+- Cortex-M7 with FPU
+
+This version is compatible with STM32CubeMX V6.11.1
+</release>
+    </releases>
+    <keywords>
+        <keyword>IMPLEMENTED_WITH_STM32CUBEMX</keyword>
+        <keyword>CUBE_RULES_COMPLIANT</keyword>
+        <keyword>EmbeddedOffice</keyword>
+        <keyword>Flexible Safety RTOS</keyword>
+        <keyword>operating system</keyword>
+        <keyword>safety RTOS</keyword>
+    </keywords>
+    <taxonomy>
+        <description Cclass="RTOS">RTOS</description>
+        <description Cclass="Device">Device</description>
+    </taxonomy>
+    <conditions>
+        <condition id="arm">
+            <description>GCC</description>
+            <require Tcompiler="ARMCC"/>
+        </condition>
+        <condition id="gcc">
+            <description>GCC</description>
+            <require Tcompiler="GCC"/>
+        </condition>
+        <condition id="iar">
+            <description>GCC</description>
+            <require Tcompiler="IAR"/>
+        </condition>
+        <condition id="cm3-arm">
+            <description>Cortex-M3</description>
+            <accept condition="arm"/>
+            <require condition="cm3"/>
+        </condition>
+        <condition id="cm4-arm">
+            <description>Cortex-M4F</description>
+            <accept condition="arm"/>
+            <require condition="cm4"/>
+        </condition>
+        <condition id="cm7-arm">
+            <description>Cortex-M7F (8 MPU Regions)</description>
+            <accept condition="arm"/>
+            <require condition="cm7"/>
+        </condition>
+        <condition id="cm7h-arm">
+            <description>Cortex-M7F (16 MPU Regions)</description>
+            <accept condition="arm"/>
+            <require condition="cm7h"/>
+        </condition>
+        <condition id="cm3-gcc">
+            <description>Cortex-M3</description>
+            <accept condition="gcc"/>
+            <require condition="cm3"/>
+        </condition>
+        <condition id="cm4-gcc">
+            <description>Cortex-M4F</description>
+            <accept condition="gcc"/>
+            <require condition="cm4"/>
+        </condition>
+        <condition id="cm7-gcc">
+            <description>Cortex-M7F (8 MPU Regions)</description>
+            <accept condition="gcc"/>
+            <require condition="cm7"/>
+        </condition>
+        <condition id="cm7h-gcc">
+            <description>Cortex-M7F (16 MPU Regions)</description>
+            <accept condition="gcc"/>
+            <require condition="cm7h"/>
+        </condition>
+        <condition id="cm3-iar">
+            <description>Cortex-M3</description>
+            <accept condition="iar"/>
+            <require condition="cm3"/>
+        </condition>
+        <condition id="cm4-iar">
+            <description>Cortex-M4F</description>
+            <accept condition="iar"/>
+            <require condition="cm4"/>
+        </condition>
+        <condition id="cm7-iar">
+            <description>Cortex-M7F (8 MPU Regions)</description>
+            <accept condition="iar"/>
+            <require condition="cm7"/>
+        </condition>
+        <condition id="cm7h-iar">
+            <description>Cortex-M7F (16 MPU Regions)</description>
+            <accept condition="iar"/>
+            <require condition="cm7h"/>
+        </condition>
+        <condition id="armv7m">
+            <description>ARMv7M</description>
+            <accept condition="cm3-arm"/>
+            <accept condition="cm4-arm"/>
+            <accept condition="cm7-arm"/>
+            <accept condition="cm7h-arm"/>
+            <accept condition="cm3-gcc"/>
+            <accept condition="cm4-gcc"/>
+            <accept condition="cm7-gcc"/>
+            <accept condition="cm7h-gcc"/>
+            <accept condition="cm3-iar"/>
+            <accept condition="cm4-iar"/>
+            <accept condition="cm7-iar"/>
+            <accept condition="cm7h-iar"/>
+        </condition>
+        <condition id="fs-rtos">
+            <description>FS-RTOS component is selected</description>
+            <require Cclass="RTOS" Cgroup="FS-RTOS"/>
+        </condition>
+        <condition id="cm3">
+            <description>Cortex-M3</description>
+            <require Dcore="Cortex-M3" Dmpu="MPU"/>
+        </condition>
+        <condition id="cm4">
+            <description>Cortex-M4F</description>
+            <require Dcore="Cortex-M4" Dfpu="FPU" Dmpu="MPU"/>
+        </condition>
+        <condition id="cm7">
+            <description>Cortex-M7F (8 MPU Regions)</description>
+            <require Dcore="Cortex-M7" Dfpu="FPU" Dmpu="MPU" Dname="STM32F*"/>
+        </condition>
+        <condition id="cm7h">
+            <description>Cortex-M7F (16 MPU Regions)</description>
+            <require Dcore="Cortex-M7" Dfpu="FPU" Dmpu="MPU" Dname="STM32H*"/>
+        </condition>
+    </conditions>
+    <components>
+        <bundle Cbundle="Flexible_Safety_RTOS" Cclass="RTOS" Cversion="1.3.1">
+            <description>Flexible Safety RTOS by Embedded Office</description>
+            <doc>https://www.embedded-office.net/eval/manual/</doc>
+            <component Cgroup="FS-RTOS" Cvariant="Eval" condition="armv7m" isDefaultVariant="true" maxInstances="1">
+                <description>Flexible Safety RTOS</description>
+                <files>
+                    <file category="header" condition="cm3-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm3-arm/app_cfg.h" public="false"/>
+                    <file category="header" condition="cm3-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm3-arm/os_cfg.h" public="false"/>
+                    <file category="header" condition="cm3-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm3-arm/os_cpu.h" public="false"/>
+                    <file category="header" condition="cm3-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm3-arm/os_trace.h" public="false"/>
+                    <file category="header" condition="cm3-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm3-arm/sp_cfg.h" public="false"/>
+                    <file category="header" condition="cm3-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm3-arm/sp_core.h" public="false"/>
+                    <file category="header" condition="cm3-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm3-arm/sp_cpu.h" public="false"/>
+                    <file category="header" condition="cm3-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm3-arm/sp_env.h" public="false"/>
+                    <file category="header" condition="cm3-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm3-arm/sp_mon.h" public="false"/>
+                    <file category="header" condition="cm3-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm3-arm/sp_mon_cfg.h" public="false"/>
+                    <file category="header" condition="cm3-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm3-arm/sp_osapi.h" public="false"/>
+                    <file category="header" condition="cm3-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm3-arm/sp_trace.h" public="false"/>
+                    <file category="header" condition="cm3-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm3-arm/sp_type.h" public="false"/>
+                    <file category="header" condition="cm3-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm3-arm/ucos_ii.h" public="false"/>
+                    <file category="header" condition="cm4-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm4-arm/app_cfg.h" public="false"/>
+                    <file category="header" condition="cm4-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm4-arm/os_cfg.h" public="false"/>
+                    <file category="header" condition="cm4-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm4-arm/os_cpu.h" public="false"/>
+                    <file category="header" condition="cm4-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm4-arm/os_trace.h" public="false"/>
+                    <file category="header" condition="cm4-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm4-arm/sp_cfg.h" public="false"/>
+                    <file category="header" condition="cm4-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm4-arm/sp_core.h" public="false"/>
+                    <file category="header" condition="cm4-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm4-arm/sp_cpu.h" public="false"/>
+                    <file category="header" condition="cm4-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm4-arm/sp_env.h" public="false"/>
+                    <file category="header" condition="cm4-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm4-arm/sp_mon.h" public="false"/>
+                    <file category="header" condition="cm4-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm4-arm/sp_mon_cfg.h" public="false"/>
+                    <file category="header" condition="cm4-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm4-arm/sp_osapi.h" public="false"/>
+                    <file category="header" condition="cm4-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm4-arm/sp_trace.h" public="false"/>
+                    <file category="header" condition="cm4-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm4-arm/sp_type.h" public="false"/>
+                    <file category="header" condition="cm4-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm4-arm/ucos_ii.h" public="false"/>
+                    <file category="header" condition="cm7-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm7-arm/app_cfg.h" public="false"/>
+                    <file category="header" condition="cm7-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm7-arm/os_cfg.h" public="false"/>
+                    <file category="header" condition="cm7-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm7-arm/os_cpu.h" public="false"/>
+                    <file category="header" condition="cm7-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm7-arm/os_trace.h" public="false"/>
+                    <file category="header" condition="cm7-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm7-arm/sp_cfg.h" public="false"/>
+                    <file category="header" condition="cm7-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm7-arm/sp_core.h" public="false"/>
+                    <file category="header" condition="cm7-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm7-arm/sp_cpu.h" public="false"/>
+                    <file category="header" condition="cm7-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm7-arm/sp_env.h" public="false"/>
+                    <file category="header" condition="cm7-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm7-arm/sp_mon.h" public="false"/>
+                    <file category="header" condition="cm7-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm7-arm/sp_mon_cfg.h" public="false"/>
+                    <file category="header" condition="cm7-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm7-arm/sp_osapi.h" public="false"/>
+                    <file category="header" condition="cm7-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm7-arm/sp_trace.h" public="false"/>
+                    <file category="header" condition="cm7-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm7-arm/sp_type.h" public="false"/>
+                    <file category="header" condition="cm7-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm7-arm/ucos_ii.h" public="false"/>
+                    <file category="header" condition="cm7h-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm7h-arm/app_cfg.h" public="false"/>
+                    <file category="header" condition="cm7h-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm7h-arm/os_cfg.h" public="false"/>
+                    <file category="header" condition="cm7h-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm7h-arm/os_cpu.h" public="false"/>
+                    <file category="header" condition="cm7h-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm7h-arm/os_trace.h" public="false"/>
+                    <file category="header" condition="cm7h-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm7h-arm/sp_cfg.h" public="false"/>
+                    <file category="header" condition="cm7h-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm7h-arm/sp_core.h" public="false"/>
+                    <file category="header" condition="cm7h-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm7h-arm/sp_cpu.h" public="false"/>
+                    <file category="header" condition="cm7h-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm7h-arm/sp_env.h" public="false"/>
+                    <file category="header" condition="cm7h-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm7h-arm/sp_mon.h" public="false"/>
+                    <file category="header" condition="cm7h-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm7h-arm/sp_mon_cfg.h" public="false"/>
+                    <file category="header" condition="cm7h-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm7h-arm/sp_osapi.h" public="false"/>
+                    <file category="header" condition="cm7h-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm7h-arm/sp_trace.h" public="false"/>
+                    <file category="header" condition="cm7h-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm7h-arm/sp_type.h" public="false"/>
+                    <file category="header" condition="cm7h-arm" name="Middlewares/Third_Party/FS-RTOS/include/cm7h-arm/ucos_ii.h" public="false"/>
+                    <file category="header" condition="cm3-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm3-gcc/app_cfg.h" public="false"/>
+                    <file category="header" condition="cm3-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm3-gcc/os_cfg.h" public="false"/>
+                    <file category="header" condition="cm3-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm3-gcc/os_cpu.h" public="false"/>
+                    <file category="header" condition="cm3-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm3-gcc/os_trace.h" public="false"/>
+                    <file category="header" condition="cm3-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm3-gcc/sp_cfg.h" public="false"/>
+                    <file category="header" condition="cm3-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm3-gcc/sp_core.h" public="false"/>
+                    <file category="header" condition="cm3-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm3-gcc/sp_cpu.h" public="false"/>
+                    <file category="header" condition="cm3-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm3-gcc/sp_env.h" public="false"/>
+                    <file category="header" condition="cm3-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm3-gcc/sp_mon.h" public="false"/>
+                    <file category="header" condition="cm3-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm3-gcc/sp_mon_cfg.h" public="false"/>
+                    <file category="header" condition="cm3-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm3-gcc/sp_osapi.h" public="false"/>
+                    <file category="header" condition="cm3-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm3-gcc/sp_trace.h" public="false"/>
+                    <file category="header" condition="cm3-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm3-gcc/sp_type.h" public="false"/>
+                    <file category="header" condition="cm3-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm3-gcc/ucos_ii.h" public="false"/>
+                    <file category="header" condition="cm4-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm4-gcc/app_cfg.h" public="false"/>
+                    <file category="header" condition="cm4-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm4-gcc/os_cfg.h" public="false"/>
+                    <file category="header" condition="cm4-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm4-gcc/os_cpu.h" public="false"/>
+                    <file category="header" condition="cm4-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm4-gcc/os_trace.h" public="false"/>
+                    <file category="header" condition="cm4-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm4-gcc/sp_cfg.h" public="false"/>
+                    <file category="header" condition="cm4-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm4-gcc/sp_core.h" public="false"/>
+                    <file category="header" condition="cm4-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm4-gcc/sp_cpu.h" public="false"/>
+                    <file category="header" condition="cm4-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm4-gcc/sp_env.h" public="false"/>
+                    <file category="header" condition="cm4-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm4-gcc/sp_mon.h" public="false"/>
+                    <file category="header" condition="cm4-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm4-gcc/sp_mon_cfg.h" public="false"/>
+                    <file category="header" condition="cm4-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm4-gcc/sp_osapi.h" public="false"/>
+                    <file category="header" condition="cm4-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm4-gcc/sp_trace.h" public="false"/>
+                    <file category="header" condition="cm4-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm4-gcc/sp_type.h" public="false"/>
+                    <file category="header" condition="cm4-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm4-gcc/ucos_ii.h" public="false"/>
+                    <file category="header" condition="cm7-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm7-gcc/app_cfg.h" public="false"/>
+                    <file category="header" condition="cm7-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm7-gcc/os_cfg.h" public="false"/>
+                    <file category="header" condition="cm7-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm7-gcc/os_cpu.h" public="false"/>
+                    <file category="header" condition="cm7-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm7-gcc/os_trace.h" public="false"/>
+                    <file category="header" condition="cm7-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm7-gcc/sp_cfg.h" public="false"/>
+                    <file category="header" condition="cm7-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm7-gcc/sp_core.h" public="false"/>
+                    <file category="header" condition="cm7-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm7-gcc/sp_cpu.h" public="false"/>
+                    <file category="header" condition="cm7-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm7-gcc/sp_env.h" public="false"/>
+                    <file category="header" condition="cm7-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm7-gcc/sp_mon.h" public="false"/>
+                    <file category="header" condition="cm7-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm7-gcc/sp_mon_cfg.h" public="false"/>
+                    <file category="header" condition="cm7-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm7-gcc/sp_osapi.h" public="false"/>
+                    <file category="header" condition="cm7-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm7-gcc/sp_trace.h" public="false"/>
+                    <file category="header" condition="cm7-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm7-gcc/sp_type.h" public="false"/>
+                    <file category="header" condition="cm7-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm7-gcc/ucos_ii.h" public="false"/>
+                    <file category="header" condition="cm7h-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm7h-gcc/app_cfg.h" public="false"/>
+                    <file category="header" condition="cm7h-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm7h-gcc/os_cfg.h" public="false"/>
+                    <file category="header" condition="cm7h-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm7h-gcc/os_cpu.h" public="false"/>
+                    <file category="header" condition="cm7h-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm7h-gcc/os_trace.h" public="false"/>
+                    <file category="header" condition="cm7h-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm7h-gcc/sp_cfg.h" public="false"/>
+                    <file category="header" condition="cm7h-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm7h-gcc/sp_core.h" public="false"/>
+                    <file category="header" condition="cm7h-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm7h-gcc/sp_cpu.h" public="false"/>
+                    <file category="header" condition="cm7h-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm7h-gcc/sp_env.h" public="false"/>
+                    <file category="header" condition="cm7h-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm7h-gcc/sp_mon.h" public="false"/>
+                    <file category="header" condition="cm7h-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm7h-gcc/sp_mon_cfg.h" public="false"/>
+                    <file category="header" condition="cm7h-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm7h-gcc/sp_osapi.h" public="false"/>
+                    <file category="header" condition="cm7h-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm7h-gcc/sp_trace.h" public="false"/>
+                    <file category="header" condition="cm7h-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm7h-gcc/sp_type.h" public="false"/>
+                    <file category="header" condition="cm7h-gcc" name="Middlewares/Third_Party/FS-RTOS/include/cm7h-gcc/ucos_ii.h" public="false"/>
+                    <file category="header" condition="cm3-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm3-iar/app_cfg.h" public="false"/>
+                    <file category="header" condition="cm3-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm3-iar/os_cfg.h" public="false"/>
+                    <file category="header" condition="cm3-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm3-iar/os_cpu.h" public="false"/>
+                    <file category="header" condition="cm3-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm3-iar/os_trace.h" public="false"/>
+                    <file category="header" condition="cm3-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm3-iar/sp_cfg.h" public="false"/>
+                    <file category="header" condition="cm3-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm3-iar/sp_core.h" public="false"/>
+                    <file category="header" condition="cm3-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm3-iar/sp_cpu.h" public="false"/>
+                    <file category="header" condition="cm3-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm3-iar/sp_env.h" public="false"/>
+                    <file category="header" condition="cm3-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm3-iar/sp_mon.h" public="false"/>
+                    <file category="header" condition="cm3-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm3-iar/sp_mon_cfg.h" public="false"/>
+                    <file category="header" condition="cm3-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm3-iar/sp_osapi.h" public="false"/>
+                    <file category="header" condition="cm3-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm3-iar/sp_trace.h" public="false"/>
+                    <file category="header" condition="cm3-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm3-iar/sp_type.h" public="false"/>
+                    <file category="header" condition="cm3-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm3-iar/ucos_ii.h" public="false"/>
+                    <file category="header" condition="cm4-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm4-iar/app_cfg.h" public="false"/>
+                    <file category="header" condition="cm4-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm4-iar/os_cfg.h" public="false"/>
+                    <file category="header" condition="cm4-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm4-iar/os_cpu.h" public="false"/>
+                    <file category="header" condition="cm4-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm4-iar/os_trace.h" public="false"/>
+                    <file category="header" condition="cm4-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm4-iar/sp_cfg.h" public="false"/>
+                    <file category="header" condition="cm4-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm4-iar/sp_core.h" public="false"/>
+                    <file category="header" condition="cm4-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm4-iar/sp_cpu.h" public="false"/>
+                    <file category="header" condition="cm4-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm4-iar/sp_env.h" public="false"/>
+                    <file category="header" condition="cm4-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm4-iar/sp_mon.h" public="false"/>
+                    <file category="header" condition="cm4-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm4-iar/sp_mon_cfg.h" public="false"/>
+                    <file category="header" condition="cm4-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm4-iar/sp_osapi.h" public="false"/>
+                    <file category="header" condition="cm4-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm4-iar/sp_trace.h" public="false"/>
+                    <file category="header" condition="cm4-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm4-iar/sp_type.h" public="false"/>
+                    <file category="header" condition="cm4-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm4-iar/ucos_ii.h" public="false"/>
+                    <file category="header" condition="cm7-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm7-iar/app_cfg.h" public="false"/>
+                    <file category="header" condition="cm7-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm7-iar/os_cfg.h" public="false"/>
+                    <file category="header" condition="cm7-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm7-iar/os_cpu.h" public="false"/>
+                    <file category="header" condition="cm7-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm7-iar/os_trace.h" public="false"/>
+                    <file category="header" condition="cm7-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm7-iar/sp_cfg.h" public="false"/>
+                    <file category="header" condition="cm7-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm7-iar/sp_core.h" public="false"/>
+                    <file category="header" condition="cm7-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm7-iar/sp_cpu.h" public="false"/>
+                    <file category="header" condition="cm7-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm7-iar/sp_env.h" public="false"/>
+                    <file category="header" condition="cm7-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm7-iar/sp_mon.h" public="false"/>
+                    <file category="header" condition="cm7-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm7-iar/sp_mon_cfg.h" public="false"/>
+                    <file category="header" condition="cm7-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm7-iar/sp_osapi.h" public="false"/>
+                    <file category="header" condition="cm7-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm7-iar/sp_trace.h" public="false"/>
+                    <file category="header" condition="cm7-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm7-iar/sp_type.h" public="false"/>
+                    <file category="header" condition="cm7-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm7-iar/ucos_ii.h" public="false"/>
+                    <file category="header" condition="cm7h-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm7h-iar/app_cfg.h" public="false"/>
+                    <file category="header" condition="cm7h-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm7h-iar/os_cfg.h" public="false"/>
+                    <file category="header" condition="cm7h-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm7h-iar/os_cpu.h" public="false"/>
+                    <file category="header" condition="cm7h-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm7h-iar/os_trace.h" public="false"/>
+                    <file category="header" condition="cm7h-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm7h-iar/sp_cfg.h" public="false"/>
+                    <file category="header" condition="cm7h-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm7h-iar/sp_core.h" public="false"/>
+                    <file category="header" condition="cm7h-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm7h-iar/sp_cpu.h" public="false"/>
+                    <file category="header" condition="cm7h-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm7h-iar/sp_env.h" public="false"/>
+                    <file category="header" condition="cm7h-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm7h-iar/sp_mon.h" public="false"/>
+                    <file category="header" condition="cm7h-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm7h-iar/sp_mon_cfg.h" public="false"/>
+                    <file category="header" condition="cm7h-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm7h-iar/sp_osapi.h" public="false"/>
+                    <file category="header" condition="cm7h-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm7h-iar/sp_trace.h" public="false"/>
+                    <file category="header" condition="cm7h-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm7h-iar/sp_type.h" public="false"/>
+                    <file category="header" condition="cm7h-iar" name="Middlewares/Third_Party/FS-RTOS/include/cm7h-iar/ucos_ii.h" public="false"/>
+                    <file category="library" condition="cm3-arm" name="Middlewares/Third_Party/FS-RTOS/lib/libfs-rtos131_cm3_arm.a" public="false"/>
+                    <file category="library" condition="cm4-arm" name="Middlewares/Third_Party/FS-RTOS/lib/libfs-rtos131_cm4_arm.a" public="false"/>
+                    <file category="library" condition="cm7h-arm" name="Middlewares/Third_Party/FS-RTOS/lib/libfs-rtos131_cm7harmc.a" public="false"/>
+                    <file category="library" condition="cm7-arm" name="Middlewares/Third_Party/FS-RTOS/lib/libfs-rtos131_cm7_arm.a" public="false"/>
+                    <file category="library" condition="cm3-gcc" name="Middlewares/Third_Party/FS-RTOS/lib/libfs-rtos131_cm3_gcc.a" public="false"/>
+                    <file category="library" condition="cm4-gcc" name="Middlewares/Third_Party/FS-RTOS/lib/libfs-rtos131_cm4_gcc.a" public="false"/>
+                    <file category="library" condition="cm7h-gcc" name="Middlewares/Third_Party/FS-RTOS/lib/libfs-rtos131_cm7h_gcc.a" public="false"/>
+                    <file category="library" condition="cm7-gcc" name="Middlewares/Third_Party/FS-RTOS/lib/libfs-rtos131_cm7_gcc.a" public="false"/>
+                    <file category="library" condition="cm3-iar" name="Middlewares/Third_Party/FS-RTOS/lib/libfs-rtos131_cm3_iar.a" public="false"/>
+                    <file category="library" condition="cm4-iar" name="Middlewares/Third_Party/FS-RTOS/lib/libfs-rtos131_cm4_iar.a" public="false"/>
+                    <file category="library" condition="cm7h-iar" name="Middlewares/Third_Party/FS-RTOS/lib/libfs-rtos131_cm7h_iar.a" public="false"/>
+                    <file category="library" condition="cm7-iar" name="Middlewares/Third_Party/FS-RTOS/lib/libfs-rtos131_cm7_iar.a" public="false"/>
+                </files>
+            </component>
+        </bundle>
+        <bundle Cbundle="Quickstart" Cclass="Device" Cversion="1.0.0">
+            <description>Demo Applications for Quickstart</description>
+            <doc>https://www.embedded-office.net/eval/manual/</doc>
+            <component Cgroup="Application" Cvariant="Blinky" condition="fs-rtos" isDefaultVariant="true" maxInstances="1">
+                <description>LED toggle with a single task</description>
+                <files>
+                    <file category="doc" name="Projects/Blinky/Applications/Blinky/readme.txt"/>
+                </files>
+            </component>
+        </bundle>
+    </components>
+</package>

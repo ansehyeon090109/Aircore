@@ -1,0 +1,653 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<package schemaVersion="1.4.0" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>STMicroelectronics</vendor>
+  <name>X-CUBE-NFC6</name>
+  <description>Drivers and sample applications for NFC6 components</description>
+  <license>en.DM00751078.pdf</license>
+  <!-- web download link -->
+  <url>http://sw-center.st.com/packs/x-cube/</url>
+
+  <releases>
+    <release version="3.2.0" date="2025-10-06">
+	  - Aligned with the latest RFAL library 
+	  This version is compatible with STM32CubeMX v6.15.0
+	</release>
+    <release version="3.1.0" date="2024-01-18">
+	  - The bug fix related to NDEF Application is done
+	  - Support of NUCELO-G0B1RE added and support of NUCLEO-L053R8 removed
+      - This version is compatible with STM32CubeMX v6.9.1
+	</release>
+    <release version="3.0.0" date="2023-07-11">
+	  - This is the 1st Release with CubeMX support
+      - This version is compatible with STM32CubeMX v6.8.0
+	</release>
+  </releases>
+  
+  <taxonomy>
+    <description  Cclass="Board Part">The NFC8 components support class</description>      
+  </taxonomy>
+
+  <keywords>    
+    <keyword>ARM</keyword>
+    <keyword>Cortex-M</keyword>
+    <keyword>STMicroelectronics</keyword>
+    <keyword>IMPLEMENTED_WITH_STM32CUBEMX</keyword>
+	<keyword>CUBEMX_MIGRATION_CAPABILITY</keyword>
+	<keyword>DOES_NOT_SUPPORT_SECURE</keyword>
+    <keyword>NFC</keyword>
+  </keywords>
+  
+  
+  <apis>
+    <api Cclass="Board Extension" Cgroup="NFC06A1" Capiversion="3.2.0" exclusive="0">
+      <description>NFC library for X-NUCLEO-NFC06A1</description>
+      <files>
+        <file category="doc"     name="Documentation/X-CUBE-NFC6.chm"/>
+      </files>
+    </api>
+	<api Cclass="Board Extension" Cgroup="NFC08A1" Capiversion="3.2.0" exclusive="0">
+      <description>NFC library for X-NUCLEO-NFC08A1</description>
+      <files>
+        <file category="doc"     name="Documentation/X-CUBE-NFC6.chm"/>
+      </files>
+    </api>
+  </apis>
+  
+  
+  <conditions>
+    <condition id="Cortex-M Device">
+      <description>Cortex-M processor based device: Cortex-M0, Cortex-M0+, Cortex-M3, Cortex-M4, Cortex-M7</description>
+      <!-- STM32F0 -->
+      <accept Dcore="Cortex-M0"/>
+	  
+      <!-- STM32L0 -->
+      <accept Dcore="Cortex-M0+"/>
+      
+      <!-- STM32F1, STM32F2 and STM32L1 -->
+	  <accept Dcore="Cortex-M3"/>
+      
+	  <!-- STM32L5-->
+	  <accept Dcore="Cortex-M33"/>
+      <!-- STM32F4, STM32F3 and STM32L4 series -->
+      <accept Dcore="Cortex-M4"/>
+      
+      <!-- STM32F7 and STMH7 series -->
+      <accept Dcore="Cortex-M7"/>  
+
+      <!-- Deny STM32WB0 and STM32WL3 MCU families -->
+      <deny Dfamily="STM32WB0"/>
+      <deny Dfamily="STM32WL3"/>   
+    </condition>
+
+    <condition id="CM0_GCC">
+      <require Dcore="Cortex-M0"/>
+      <require Tcompiler="GCC"/>
+    </condition>
+    <condition id="CM0_IAR">
+      <require Dcore="Cortex-M0"/>
+      <require Tcompiler="IAR"/>
+    </condition>
+    <condition id="CM0_Keil">
+      <require Dcore="Cortex-M0"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+	
+	<condition id="CM3_GCC">
+      <require Dcore="Cortex-M3"/>
+      <require Tcompiler="GCC"/>
+    </condition>
+    <condition id="CM3_IAR">
+      <require Dcore="Cortex-M3"/>
+      <require Tcompiler="IAR"/>
+    </condition>
+    <condition id="CM3_Keil">
+      <require Dcore="Cortex-M3"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    
+    <condition id="CM4_GCC">
+      <require Dcore="Cortex-M4"/>
+      <require Tcompiler="GCC"/>
+    </condition>
+    <condition id="CM4_IAR">
+      <require Dcore="Cortex-M4"/>
+      <require Tcompiler="IAR"/>
+    </condition>
+    <condition id="CM4_Keil">
+      <require Dcore="Cortex-M4"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+	
+	<condition id="CM7_GCC">
+      <require Dcore="Cortex-M7"/>
+      <require Tcompiler="GCC"/>
+    </condition>
+    <condition id="CM7_IAR">
+      <require Dcore="Cortex-M7"/>
+      <require Tcompiler="IAR"/>
+    </condition>
+    <condition id="CM7_Keil">
+	  <require Dcore="Cortex-M7"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+	
+	<condition id="NFC06A1_Condition">
+	  <description>Cortex-M Device and board setup (X-NUCLEO-NFC06A1)</description> 
+	  <require condition="Cortex-M Device"/>
+	  <require  Cclass="Wireless" Csub="RFAL"/>
+      <deny Cclass="Board Extension" Csub="NFC08A1"/>
+	  <require Cclass="Board Part" Cgroup="NFCBoardIface" Csub="NFC06A1_IFACE"/>
+	  <deny Cclass="Board Part" Cgroup="NFCBoardIface" Csub="NFC08A1_IFACE"/>
+	  <require condition="NFC6IfaceSelectCondition"/>
+    </condition>
+	
+	<condition id="NFC08A1_Condition">
+	  <description>Cortex-M Device and board setup (X-NUCLEO-NFC08A1)</description> 
+	  <require condition="Cortex-M Device"/>
+	  <require  Cclass="Wireless" Csub="RFAL"/>
+      <deny Cclass="Board Extension" Csub="NFC06A1"/> 
+	  <require Cclass="Board Part" Cgroup="NFCBoardIface" Csub="NFC08A1_IFACE"/>
+	  <deny Cclass="Board Part" Cgroup="NFCBoardIface" Csub="NFC06A1_IFACE"/>
+	  <require condition="NFC8IfaceSelectCondition"/>
+    </condition>
+
+	<condition id="NFC6IfaceSelectCondition">		
+	  <description>Cortex-M Device and board setup (X-NUCLEO-NFC06A1/NFC08A1)</description>
+	  <deny Cclass="Board Part" Csub="NFC08A1IFACE"/>
+	  <require Cclass="Board Extension" Csub="NFC06A1"/>
+	  <require  Cclass="Wireless" Csub="RFAL"/>
+    </condition>
+	
+	<condition id="NFC8IfaceSelectCondition">		
+	  <description>Cortex-M Device and board setup (X-NUCLEO-NFC06A1/NFC08A1)</description>
+	  <deny Cclass="Board Part" Csub="NFC06A1IFACE"/>
+	  <require Cclass="Board Extension" Csub="NFC08A1"/>
+	  <require  Cclass="Wireless" Csub="RFAL"/>
+    </condition>
+	
+	
+	<!-- NFC06A1 Application condition -->
+    <condition id="NFC06A1_Application_Polling_TAG_Detect_Condition">
+      <require Cclass="Board Extension" Csub="NFC06A1"/>
+	  <deny  Cclass="Wireless" Csub="NDEF"/>
+	  <require  Cclass="Wireless" Csub="RFAL"/>
+	  <deny  Cclass="Board Extension" Csub="NFC08A1"/>
+    </condition>
+	
+	<!-- NFC06A1 Application condition -->
+    <condition id="NFC06A1_Application_Polling_TAG_Detect_NDEF_Condition">
+      <require  Cclass="Board Extension" Csub="NFC06A1"/>
+	  <require  Cclass="Wireless"  Csub="NDEF"/>
+	  <require  Cclass="Wireless"  Csub="RFAL"/>
+	  <deny  Cclass="Board Extension" Csub="NFC08A1"/> 
+    </condition>
+	
+	<!-- NFC08A1 Application condition -->
+    <condition id="NFC08A1_Application_Polling_TAG_Detect_Condition">
+      <require  Cclass="Board Extension" Csub="NFC08A1"/>
+	  <deny  Cclass="Wireless" Csub="NDEF"/>
+	  <require  Cclass="Wireless" Csub="RFAL"/>
+	  <deny  Cclass="Board Extension" Csub="NFC06A1"/>	  
+    </condition>
+	
+	<!-- NFC08A1 Application condition -->
+    <condition id="NFC08A1_Application_Polling_TAG_Detect_NDEF_Condition">
+      <require  Cclass="Board Extension" Csub="NFC08A1"/>
+	  <require  Cclass="Wireless" Csub="NDEF"/>
+	  <require  Cclass="Wireless" Csub="RFAL"/>
+	  <deny  Cclass="Board Extension" Csub="NFC06A1"/>  
+    </condition>
+	
+	<condition id="NDEF_Library_Condition">
+      <description>NDEF Library</description>      
+      <require condition="Cortex-M Device"/>      
+    </condition>
+	
+	<condition id="RFAL_Library_Condition">
+      <description>RFAL Library</description>      
+      <require condition="Cortex-M Device"/>  
+	  <require Cclass="Board Part" Cgroup="NFCBoardIface"/>
+    </condition>
+	
+	<condition id="RFAL_CustomLibrary_Condition">
+      <description>RFAL Library</description>      
+      <require condition="Cortex-M Device"/> 
+	  <require Cclass="Board Part" Cgroup="NFCBoardIface"/>
+      <deny  Csub="RFAL" Cvariant="Default_Config" /> 	  
+    </condition>
+  </conditions>
+  
+  <components>
+	<component Cvendor="STMicroelectronics" Cclass="Board Extension" Cgroup="NFC" Csub="NFC06A1" condition="NFC06A1_Condition" maxInstances="1" Cversion="3.2.0">
+	     <!-- short component description -->
+	     <description> BSPTAG for X-NUCLEO-NFC06A1, ST25R3916 </description>
+         <RTE_Components_h>#define USE_NFC06A1</RTE_Components_h>
+         <files>
+	        <file category="header"  name="Drivers/BSP/Components/ST25R3916/rfal_analogConfigTbl.h"/>
+		    <file category="header"  name="Drivers/BSP/Components/ST25R3916/rfal_dpoTbl.h"/>
+            <file category="header"  name="Drivers/BSP/Components/ST25R3916/rfal_features.h"/>
+            <file category="source"  name="Drivers/BSP/Components/ST25R3916/rfal_rfst25r3916.c" />
+			<file category="header"  name="Drivers/BSP/Components/ST25R3916/st_errno.h"/>
+            <file category="source"  name="Drivers/BSP/Components/ST25R3916/st25r3916.c" />
+			<file category="header"  name="Drivers/BSP/Components/ST25R3916/st25r3916.h"/>
+            <file category="source"  name="Drivers/BSP/Components/ST25R3916/st25r3916_aat.c" />
+			<file category="header"  name="Drivers/BSP/Components/ST25R3916/st25r3916_aat.h"/>
+            <file category="source"  name="Drivers/BSP/Components/ST25R3916/st25r3916_com.c" />
+			<file category="header"  name="Drivers/BSP/Components/ST25R3916/st25r3916_com.h"/>
+            <file category="source"  name="Drivers/BSP/Components/ST25R3916/st25r3916_irq.c" />
+			<file category="header"  name="Drivers/BSP/Components/ST25R3916/st25r3916_irq.h"/>
+            <file category="source"  name="Drivers/BSP/Components/ST25R3916/st25r3916_led.c" />
+			<file category="header"  name="Drivers/BSP/Components/ST25R3916/st25r3916_led.h"/>
+			<file category="source"  name="Drivers/BSP/Components/ST25R3916/timer.c" />
+			<file category="header"  name="Drivers/BSP/Components/ST25R3916/timer.h"/>
+			<file category="header"  name="Drivers/BSP/Components/ST25R3916/utils.h"/>
+			<file category="source"  name="Drivers/BSP/NFC06A1/nfc06a1.c"/>
+        </files>
+	</component>
+	<component Cvendor="STMicroelectronics" Cclass="Board Extension" Cgroup="NFC" Csub="NFC08A1" condition="NFC08A1_Condition" maxInstances="1" Cversion="3.2.0">
+	    <!-- short component description -->
+	    <description> BSPTAG for X-NUCLEO-NFC06A1, ST25R3916 </description>
+        <RTE_Components_h>#define USE_NFC08A1</RTE_Components_h>
+        <files>
+            <file category="header"  name="Drivers/BSP/Components/ST25R3916/rfal_analogConfigTbl.h"/>
+		    <file category="header"  name="Drivers/BSP/Components/ST25R3916/rfal_dpoTbl.h"/>
+            <file category="header"  name="Drivers/BSP/Components/ST25R3916/rfal_features.h"/>
+            <file category="source"  name="Drivers/BSP/Components/ST25R3916/rfal_rfst25r3916.c" />
+			<file category="header"  name="Drivers/BSP/Components/ST25R3916/st_errno.h"/>
+            <file category="source"  name="Drivers/BSP/Components/ST25R3916/st25r3916.c" />
+			<file category="header"  name="Drivers/BSP/Components/ST25R3916/st25r3916.h"/>
+            <file category="source"  name="Drivers/BSP/Components/ST25R3916/st25r3916_aat.c" />
+			<file category="header"  name="Drivers/BSP/Components/ST25R3916/st25r3916_aat.h"/>
+            <file category="source"  name="Drivers/BSP/Components/ST25R3916/st25r3916_com.c" />
+			<file category="header"  name="Drivers/BSP/Components/ST25R3916/st25r3916_com.h"/>
+            <file category="source"  name="Drivers/BSP/Components/ST25R3916/st25r3916_irq.c" />
+			<file category="header"  name="Drivers/BSP/Components/ST25R3916/st25r3916_irq.h"/>
+            <file category="source"  name="Drivers/BSP/Components/ST25R3916/st25r3916_led.c" />
+			<file category="header"  name="Drivers/BSP/Components/ST25R3916/st25r3916_led.h"/>
+			<file category="source"  name="Drivers/BSP/Components/ST25R3916/timer.c" />
+			<file category="header"  name="Drivers/BSP/Components/ST25R3916/timer.h"/>
+			<file category="header"  name="Drivers/BSP/Components/ST25R3916/utils.h"/>
+			<file category="source"  name="Drivers/BSP/NFC08A1/nfc08a1.c"/>
+        </files>
+	</component>
+	
+	<component Cvendor="STMicroelectronics" Cclass="Board Part" Cgroup="NFCBoardIface" Csub="NFC06A1_IFACE" Cvariant="I2C" isDefaultVariant="false" condition="NFC6IfaceSelectCondition" maxInstances="1" Cversion="3.2.0">
+	    <!-- short component description -->
+        <description>Interface Selection for NFC06</description>
+        <RTE_Components_h>#define USE_I2C</RTE_Components_h>
+	    <files>
+		    <file category="header"  name="Drivers/BSP/NFC06A1/nfc06a1.h"/>
+			<file category="header"  name="Drivers/BSP/NFC06A1/nfc06a1_conf_template.h"/>
+	    </files>
+    </component>
+    <component Cvendor="STMicroelectronics" Cclass="Board Part" Cgroup="NFCBoardIface" Csub="NFC06A1_IFACE" Cvariant="SPI" isDefaultVariant="true" condition="NFC6IfaceSelectCondition" maxInstances="1" Cversion="3.2.0">
+	    <!-- short component description -->
+	    <description>Interface Selection for NFC06</description>
+        <RTE_Components_h>#define USE_SPI</RTE_Components_h>
+	    <files>
+		    <file category="header"  name="Drivers/BSP/NFC06A1/nfc06a1.h"/>
+			<file category="header"  name="Drivers/BSP/NFC06A1/nfc06a1_conf_template.h"/>
+	    </files>
+    </component>
+	<component Cvendor="STMicroelectronics" Cclass="Board Part" Cgroup="NFCBoardIface" Csub="NFC08A1_IFACE" Cvariant="I2C" isDefaultVariant="false" condition="NFC8IfaceSelectCondition" maxInstances="1" Cversion="3.2.0">
+	    <!-- short component description -->
+	    <description>Interface Selection for NFC08</description>
+        <RTE_Components_h>#define USE_I2C</RTE_Components_h>
+	    <files>
+		    <file category="header"  name="Drivers/BSP/NFC08A1/nfc08a1.h"/>
+			<file category="header"  name="Drivers/BSP/NFC08A1/nfc08a1_conf_template.h"/>
+	    </files>
+    </component>
+    <component Cvendor="STMicroelectronics" Cclass="Board Part" Cgroup="NFCBoardIface" Csub="NFC08A1_IFACE" Cvariant="SPI" isDefaultVariant="true" condition="NFC8IfaceSelectCondition" maxInstances="1" Cversion="3.2.0">
+	    <!-- short component description -->
+	    <description>Interface Selection for NFC08</description>
+        <RTE_Components_h>#define USE_SPI</RTE_Components_h>
+	    <files>
+		    <file category="header"  name="Drivers/BSP/NFC08A1/nfc08a1.h"/>
+			<file category="header"  name="Drivers/BSP/NFC08A1/nfc08a1_conf_template.h"/>
+	    </files>
+    </component>
+	
+	<component Cvendor="STMicroelectronics" Cclass="Wireless" Cgroup="MID_LIB" Csub="NDEF" condition="NDEF_Library_Condition" maxInstances="1" Cversion="3.2.0">
+	    <!-- short component description -->
+	    <description>NDEF Middleware</description>
+        <RTE_Components_h>#define LIB_NDEF_DEFAULT</RTE_Components_h>
+		<files>
+		  <file category="header"  name="Middlewares/ST/ndef/Inc/ndef_config.h"/>
+		  <file category="header"  name="Middlewares/ST/ndef/Inc/message/ndef_buffer.h"/>
+		  <file category="header"  name="Middlewares/ST/ndef/Inc/message/ndef_message.h"/>
+		  <file category="header"  name="Middlewares/ST/ndef/Inc/message/ndef_record.h"/>
+		  <file category="header"  name="Middlewares/ST/ndef/Inc/message/ndef_type_aar.h"/>
+		  <file category="header"  name="Middlewares/ST/ndef/Inc/message/ndef_type_bluetooth.h"/>
+		  <file category="header"  name="Middlewares/ST/ndef/Inc/message/ndef_type_deviceinfo.h"/>
+		  <file category="header"  name="Middlewares/ST/ndef/Inc/message/ndef_type_empty.h"/>
+		  <file category="header"  name="Middlewares/ST/ndef/Inc/message/ndef_type_flat.h"/>
+		  <file category="header"  name="Middlewares/ST/ndef/Inc/message/ndef_type_media.h"/>
+		  <file category="header"  name="Middlewares/ST/ndef/Inc/message/ndef_type_text.h"/>
+		  <file category="header"  name="Middlewares/ST/ndef/Inc/message/ndef_type_tnep.h"/>
+		  <file category="header"  name="Middlewares/ST/ndef/Inc/message/ndef_type_uri.h"/>
+		  <file category="header"  name="Middlewares/ST/ndef/Inc/message/ndef_type_vcard.h"/>
+		  <file category="header"  name="Middlewares/ST/ndef/Inc/message/ndef_type_wifi.h"/>
+		  <file category="header"  name="Middlewares/ST/ndef/Inc/message/ndef_type_wlc.h"/>
+		  <file category="header"  name="Middlewares/ST/ndef/Inc/message/ndef_type_wpcwlc.h"/>
+		  <file category="header"  name="Middlewares/ST/ndef/Inc/message/ndef_types.h"/>
+		  <file category="header"  name="Middlewares/ST/ndef/Inc/poller/ndef_poller.h"/>
+		  <file category="header"  name="Middlewares/ST/ndef/Inc/poller/ndef_t2t.h"/>
+		  <file category="header"  name="Middlewares/ST/ndef/Inc/poller/ndef_t3t.h"/>
+		  <file category="header"  name="Middlewares/ST/ndef/Inc/poller/ndef_t4t.h"/>
+		  <file category="header"  name="Middlewares/ST/ndef/Inc/poller/ndef_t5t.h"/>
+		  <file category="header"  name="Middlewares/ST/ndef/Inc/poller/ndef_t5t_hal.h"/>
+		  <file category="source"  name="Middlewares/ST/ndef/Src/message/ndef_message.c"/>
+		  <file category="source"  name="Middlewares/ST/ndef/Src/message/ndef_record.c"/>
+		  <file category="source"  name="Middlewares/ST/ndef/Src/message/ndef_type_aar.c"/>
+		  <file category="source"  name="Middlewares/ST/ndef/Src/message/ndef_type_bluetooth.c"/>
+		  <file category="source"  name="Middlewares/ST/ndef/Src/message/ndef_type_deviceinfo.c"/>
+		  <file category="source"  name="Middlewares/ST/ndef/Src/message/ndef_type_empty.c"/>
+		  <file category="source"  name="Middlewares/ST/ndef/Src/message/ndef_type_flat.c"/>
+		  <file category="source"  name="Middlewares/ST/ndef/Src/message/ndef_type_media.c"/>
+		  <file category="source"  name="Middlewares/ST/ndef/Src/message/ndef_type_text.c"/>
+		  <file category="source"  name="Middlewares/ST/ndef/Src/message/ndef_type_tnep.c"/>
+		  <file category="source"  name="Middlewares/ST/ndef/Src/message/ndef_type_uri.c"/>
+		  <file category="source"  name="Middlewares/ST/ndef/Src/message/ndef_type_vcard.c"/>
+		  <file category="source"  name="Middlewares/ST/ndef/Src/message/ndef_type_wifi.c"/>
+		  <file category="source"  name="Middlewares/ST/ndef/Src/message/ndef_type_wlc.c"/>
+		  <file category="source"  name="Middlewares/ST/ndef/Src/message/ndef_type_wpcwlc.c"/>
+		  <file category="source"  name="Middlewares/ST/ndef/Src/message/ndef_types.c"/>
+          <file category="source"  name="Middlewares/ST/ndef/Src/poller/ndef_poller.c"/>
+		  <file category="source"  name="Middlewares/ST/ndef/Src/poller/ndef_poller_message.c"/>
+		  <file category="source"  name="Middlewares/ST/ndef/Src/poller/ndef_poller_rf.c"/>
+		  <file category="source"  name="Middlewares/ST/ndef/Src/poller/ndef_t2t.c"/>
+		  <file category="source"  name="Middlewares/ST/ndef/Src/poller/ndef_t3t.c"/>
+		  <file category="source"  name="Middlewares/ST/ndef/Src/poller/ndef_t4t.c"/>
+		  <file category="source"  name="Middlewares/ST/ndef/Src/poller/ndef_t5t.c"/>
+		  <file category="source"  name="Middlewares/ST/ndef/Src/poller/ndef_t5t_rf.c"/>	  
+		</files>
+	</component>
+	
+	<component Cvendor="STMicroelectronics" Cclass="Wireless" Cgroup="MID_LIB" Csub="RFAL" Cvariant="Default_Config"  condition="RFAL_Library_Condition" maxInstances="1" Cversion="3.2.0">
+	    <!-- short component description -->
+	    <description>Interface of Middleware</description>
+        <RTE_Components_h>#define LIB_RFAL_DEFAULT</RTE_Components_h>
+		<files>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_analogConfig.h"/>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_chip.h"/>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_defConfig.h"/>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_dpo.h"/>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_isoDep.h"/>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_nfc.h"/>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_nfca.h"/>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_nfcb.h"/>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_nfcDep.h"/>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_nfcf.h"/>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_nfcv.h"/>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_rf.h"/>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_st25tb.h"/>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_st25xv.h"/>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_t1t.h"/>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_t2t.h"/>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_t4t.h"/>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_utils.h"/>
+		  <file category="source"  name="Middlewares/ST/rfal/Src/rfal_analogConfig.c"/>
+		  <file category="source"  name="Middlewares/ST/rfal/Src/rfal_crc.c"/>
+		  <file category="header"  name="Middlewares/ST/rfal/Src/rfal_crc.h"/>
+		  <file category="source"  name="Middlewares/ST/rfal/Src/rfal_cd.c"/>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_cd.h"/>
+		  <file category="source"  name="Middlewares/ST/rfal/Src/rfal_dpo.c"/>
+		  <file category="source"  name="Middlewares/ST/rfal/Src/rfal_iso15693_2.c"/>
+		  <file category="header"  name="Middlewares/ST/rfal/Src/rfal_iso15693_2.h"/>
+		  <file category="source"  name="Middlewares/ST/rfal/Src/rfal_isoDep.c"/>
+		  <file category="source"  name="Middlewares/ST/rfal/Src/rfal_nfc.c"/>
+		  <file category="source"  name="Middlewares/ST/rfal/Src/rfal_nfca.c"/>
+		  <file category="source"  name="Middlewares/ST/rfal/Src/rfal_nfcb.c"/>
+		  <file category="source"  name="Middlewares/ST/rfal/Src/rfal_nfcDep.c"/>
+		  <file category="source"  name="Middlewares/ST/rfal/Src/rfal_nfcf.c"/>
+		  <file category="source"  name="Middlewares/ST/rfal/Src/rfal_nfcv.c"/>
+		  <file category="source"  name="Middlewares/ST/rfal/Src/rfal_st25tb.c"/>
+		  <file category="source"  name="Middlewares/ST/rfal/Src/rfal_st25xv.c"/>
+		  <file category="source"  name="Middlewares/ST/rfal/Src/rfal_t1t.c"/>
+		  <file category="source"  name="Middlewares/ST/rfal/Src/rfal_t2t.c"/>
+		  <file category="source"  name="Middlewares/ST/rfal/Src/rfal_t4t.c"/>
+		</files>
+	</component>
+	
+	<component Cvendor="STMicroelectronics" Cclass="Wireless" Cgroup="MID_LIB" Csub="RFAL" Cvariant="Custom_Config"  condition="RFAL_Library_Condition" maxInstances="1" Cversion="3.2.0">
+	    <!-- short component description -->
+	    <description>Interface of Middleware</description>
+        <RTE_Components_h>#define LIB_RFAL_CUSTOM</RTE_Components_h>
+		<files>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_analogConfig.h"/>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_chip.h"/>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_defConfig.h"/>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_dpo.h"/>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_isoDep.h"/>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_nfc.h"/>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_nfca.h"/>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_nfcb.h"/>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_nfcDep.h"/>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_nfcf.h"/>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_nfcv.h"/>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_rf.h"/>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_st25tb.h"/>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_st25xv.h"/>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_t1t.h"/>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_t2t.h"/>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_t4t.h"/>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_utils.h"/>
+		  <file category="source"  name="Middlewares/ST/rfal/Src/rfal_analogConfig.c"/>
+		  <file category="source"  name="Middlewares/ST/rfal/Src/rfal_crc.c"/>
+		  <file category="header"  name="Middlewares/ST/rfal/Src/rfal_crc.h"/>
+		  <file category="source"  name="Middlewares/ST/rfal/Src/rfal_dpo.c"/>
+		  <file category="source"  name="Middlewares/ST/rfal/Src/rfal_iso15693_2.c"/>
+		  <file category="header"  name="Middlewares/ST/rfal/Src/rfal_iso15693_2.h"/>
+		  <file category="source"  name="Middlewares/ST/rfal/Src/rfal_isoDep.c"/>
+		  <file category="source"  name="Middlewares/ST/rfal/Src/rfal_nfc.c"/>
+		  <file category="source"  name="Middlewares/ST/rfal/Src/rfal_nfca.c"/>
+		  <file category="source"  name="Middlewares/ST/rfal/Src/rfal_nfcb.c"/>
+		  <file category="source"  name="Middlewares/ST/rfal/Src/rfal_nfcDep.c"/>
+		  <file category="source"  name="Middlewares/ST/rfal/Src/rfal_nfcf.c"/>
+		  <file category="source"  name="Middlewares/ST/rfal/Src/rfal_nfcv.c"/>
+		  <file category="source"  name="Middlewares/ST/rfal/Src/rfal_st25tb.c"/>
+		  <file category="source"  name="Middlewares/ST/rfal/Src/rfal_st25xv.c"/>
+		  <file category="source"  name="Middlewares/ST/rfal/Src/rfal_t1t.c"/>
+		  <file category="source"  name="Middlewares/ST/rfal/Src/rfal_t2t.c"/>
+		  <file category="source"  name="Middlewares/ST/rfal/Src/rfal_t4t.c"/>
+		</files>
+	</component>
+	
+	<component Cvendor="STMicroelectronics" Cclass="Rfal_Conf" Cgroup="RfalCustomConf" Csub="RFAL_FEATURE_LISTEN_MODE" condition="RFAL_CustomLibrary_Condition" maxInstances="1" Cversion="3.2.0">
+	    <!-- short component description -->
+	    <description>Selection of RFAL Feature</description>
+        <RTE_Components_h>#define USE_RFAL_FEATURE_LISTEN_MODE</RTE_Components_h>
+		<files>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_analogConfig.h"/>
+		</files>
+	</component>
+	
+    <component Cvendor="STMicroelectronics" Cclass="Rfal_Conf" Cgroup="RfalCustomConf" Csub="RFAL_FEATURE_WAKEUP_MODE" condition="RFAL_CustomLibrary_Condition" maxInstances="1" Cversion="3.2.0">
+	    <!-- short component description -->
+	    <description>Selection of RFAL Feature</description>
+        <RTE_Components_h>#define USE_RFAL_FEATURE_WAKEUP_MODE</RTE_Components_h>
+		<files>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_analogConfig.h"/>
+		</files>
+	</component>
+	
+	<component Cvendor="STMicroelectronics" Cclass="Rfal_Conf" Cgroup="RfalCustomConf" Csub="RFAL_FEATURE_LOWPOWER_MODE"  condition="RFAL_CustomLibrary_Condition" maxInstances="1" Cversion="3.2.0">
+	    <!-- short component description -->
+	    <description>Selection of RFAL Feature</description>
+        <RTE_Components_h>#define USE_RFAL_FEATURE_LOWPOWER_MODE</RTE_Components_h>
+		<files>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_analogConfig.h"/>
+		</files>
+	</component>
+	
+	<component Cvendor="STMicroelectronics" Cclass="Rfal_Conf" Cgroup="RfalCustomConf" Csub="RFAL_FEATURE_NFCA"  condition="RFAL_CustomLibrary_Condition" maxInstances="1" Cversion="3.2.0">
+	    <!-- short component description -->
+	    <description>Selection of RFAL Feature</description>
+        <RTE_Components_h>#define USE_RFAL_FEATURE_NFCA</RTE_Components_h>
+		<files>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_analogConfig.h"/>
+		</files>
+	</component>
+	
+	<component Cvendor="STMicroelectronics" Cclass="Rfal_Conf" Cgroup="RfalCustomConf" Csub="RFAL_FEATURE_NFCB"  condition="RFAL_CustomLibrary_Condition" maxInstances="1" Cversion="3.2.0">
+	    <!-- short component description -->
+	    <description>Selection of RFAL Feature</description>
+        <RTE_Components_h>#define USE_RFAL_FEATURE_NFCB</RTE_Components_h>
+		<files>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_analogConfig.h"/>
+		</files>
+	</component>
+	
+	<component Cvendor="STMicroelectronics" Cclass="Rfal_Conf" Cgroup="RfalCustomConf" Csub="RFAL_FEATURE_NFCF"  condition="RFAL_CustomLibrary_Condition" maxInstances="1" Cversion="3.2.0">
+	    <!-- short component description -->
+	    <description>Selection of RFAL Feature</description>
+        <RTE_Components_h>#define USE_RFAL_FEATURE_NFCF</RTE_Components_h>
+		<files>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_analogConfig.h"/>
+		</files>
+	</component>
+	
+	<component Cvendor="STMicroelectronics" Cclass="Rfal_Conf" Cgroup="RfalCustomConf" Csub="RFAL_FEATURE_NFCV"  condition="RFAL_CustomLibrary_Condition" maxInstances="1" Cversion="3.2.0">
+	    <!-- short component description -->
+	    <description>Selection of RFAL Feature</description>
+        <RTE_Components_h>#define USE_RFAL_FEATURE_NFCV</RTE_Components_h>
+		<files>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_analogConfig.h"/>
+		</files>
+	</component>
+	
+	<component Cvendor="STMicroelectronics" Cclass="Rfal_Conf" Cgroup="RfalCustomConf" Csub="RFAL_FEATURE_T1T"  condition="RFAL_CustomLibrary_Condition" maxInstances="1" Cversion="3.2.0">
+	    <!-- short component description -->
+	    <description>Selection of RFAL Feature</description>
+        <RTE_Components_h>#define USE_RFAL_FEATURE_T1T</RTE_Components_h>
+		<files>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_analogConfig.h"/>
+		</files>
+	</component>
+	
+	<component Cvendor="STMicroelectronics" Cclass="Rfal_Conf" Cgroup="RfalCustomConf" Csub="RFAL_FEATURE_T2T"  condition="RFAL_CustomLibrary_Condition" maxInstances="1" Cversion="3.2.0">
+	    <!-- short component description -->
+	    <description>Selection of RFAL Feature</description>
+        <RTE_Components_h>#define USE_RFAL_FEATURE_T2T</RTE_Components_h>
+		<files>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_analogConfig.h"/>
+		</files>
+	</component>
+	
+	<component Cvendor="STMicroelectronics" Cclass="Rfal_Conf" Cgroup="RfalCustomConf" Csub="RFAL_FEATURE_T4T"  condition="RFAL_CustomLibrary_Condition" maxInstances="1" Cversion="3.2.0">
+	    <!-- short component description -->
+	    <description>Selection of RFAL Feature</description>
+        <RTE_Components_h>#define USE_RFAL_FEATURE_T4T</RTE_Components_h>
+		<files>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_analogConfig.h"/>
+		</files>
+	</component>
+	
+	<component Cvendor="STMicroelectronics" Cclass="Rfal_Conf" Cgroup="RfalCustomConf" Csub="RFAL_FEATURE_ST25TB"  condition="RFAL_CustomLibrary_Condition" maxInstances="1" Cversion="3.2.0">
+	    <!-- short component description -->
+	    <description>Selection of RFAL Feature</description>
+        <RTE_Components_h>#define USE_RFAL_FEATURE_ST25TB</RTE_Components_h>
+		<files>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_analogConfig.h"/>
+		</files>
+	</component>
+	
+	<component Cvendor="STMicroelectronics" Cclass="Rfal_Conf" Cgroup="RfalCustomConf" Csub="RFAL_FEATURE_ST25xV"  condition="RFAL_CustomLibrary_Condition" maxInstances="1" Cversion="3.2.0">
+	    <!-- short component description -->
+	    <description>Selection of RFAL Feature</description>
+        <RTE_Components_h>#define USE_RFAL_FEATURE_ST25xV</RTE_Components_h>
+		<files>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_analogConfig.h"/>
+		</files>
+	</component>
+	
+	<component Cvendor="STMicroelectronics" Cclass="Rfal_Conf" Cgroup="RfalCustomConf" Csub="RFAL_DYNAMIC_ANALOG_CONFIG"  condition="RFAL_CustomLibrary_Condition" maxInstances="1" Cversion="3.2.0">
+	    <!-- short component description -->
+	    <description>Selection of RFAL Feature</description>
+        <RTE_Components_h>#define USE_RFAL_DYNAMIC_ANALOG_CONFIG</RTE_Components_h>
+		<files>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_analogConfig.h"/>
+		</files>
+	</component>
+	
+	<component Cvendor="STMicroelectronics" Cclass="Rfal_Conf" Cgroup="RfalCustomConf" Csub="RFAL_FEATURE_DPO"  condition="RFAL_CustomLibrary_Condition" maxInstances="1" Cversion="3.2.0">
+	    <!-- short component description -->
+	    <description>Selection of RFAL Feature</description>
+        <RTE_Components_h>#define USE_RFAL_FEATURE_DPO</RTE_Components_h>
+		<files>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_analogConfig.h"/>
+		</files>
+	</component>
+	
+	<component Cvendor="STMicroelectronics" Cclass="Rfal_Conf" Cgroup="RfalCustomConf" Csub="RFAL_FEATURE_ISO_DEP"  condition="RFAL_CustomLibrary_Condition" maxInstances="1" Cversion="3.2.0">
+	    <!-- short component description -->
+	    <description>Selection of RFAL Feature</description>
+        <RTE_Components_h>#define USE_RFAL_FEATURE_ISO_DEP</RTE_Components_h>
+		<files>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_analogConfig.h"/>
+		</files>
+	</component>
+	
+	<component Cvendor="STMicroelectronics" Cclass="Rfal_Conf" Cgroup="RfalCustomConf" Csub="RFAL_FEATURE_ISO_DEP_POLL"  condition="RFAL_CustomLibrary_Condition" maxInstances="1" Cversion="3.2.0">
+	    <!-- short component description -->
+	    <description>Selection of RFAL Feature</description>
+        <RTE_Components_h>#define USE_RFAL_FEATURE_ISO_DEP_POLL</RTE_Components_h>
+		<files>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_analogConfig.h"/>
+		</files>
+	</component>
+	
+	<component Cvendor="STMicroelectronics" Cclass="Rfal_Conf" Cgroup="RfalCustomConf" Csub="RFAL_FEATURE_ISO_DEP_LISTEN"  condition="RFAL_CustomLibrary_Condition" maxInstances="1" Cversion="3.2.0">
+	    <!-- short component description -->
+	    <description>Selection of RFAL Feature</description>
+        <RTE_Components_h>#define USE_RFAL_FEATURE_ISO_DEP_LISTEN</RTE_Components_h>
+		<files>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_analogConfig.h"/>
+		</files>
+	</component>
+	
+	<component Cvendor="STMicroelectronics" Cclass="Rfal_Conf" Cgroup="RfalCustomConf" Csub="RFAL_FEATURE_NFC_DEP"  condition="RFAL_CustomLibrary_Condition" maxInstances="1" Cversion="3.2.0">
+	    <!-- short component description -->
+	    <description>Selection of RFAL Feature</description>
+        <RTE_Components_h>#define USE_RFAL_FEATURE_NFC_DEP</RTE_Components_h>
+		<files>
+		  <file category="header"  name="Middlewares/ST/rfal/Inc/rfal_analogConfig.h"/>
+		</files>
+	</component>
+	
+	
+	
+	<bundle Cvendor="STMicroelectronics" Cbundle="NFC_Applications" Cclass="Device" Cversion="3.2.0">
+    <description>URI NDEF sample application for X-NUCLEO-NFC08A1</description>
+	  <doc>Documentation/STMicroelectronics.X-CUBE-NFC6_GettingStarted.pdf</doc>
+	  <component  Cgroup="Application" Cvariant="NFC06A1_PollingTagDetect" isDefaultVariant="false" condition="NFC06A1_Application_Polling_TAG_Detect_Condition" maxInstances="1">
+        <!-- short component description -->
+		<description>Polling Tag Detect</description>
+        <RTE_Components_h>#define NFC06A1_POLLING_TAG_DETECT</RTE_Components_h>
+        <files/>
+      </component>
+	  <component  Cgroup="Application" Cvariant="NFC06A1_PollingTagDetectNDEF" isDefaultVariant="false" condition="NFC06A1_Application_Polling_TAG_Detect_NDEF_Condition" maxInstances="1">
+	    <!-- short component description -->
+        <description>Polling Tag Detect NDEF</description>
+        <RTE_Components_h>#define NFC06A1_POLLING_TAG_DETECT_NDEF</RTE_Components_h>
+        <files/>
+      </component>		
+	  <component  Cgroup="Application" Cvariant="NFC08A1_PollingTagDetect" isDefaultVariant="false" condition="NFC08A1_Application_Polling_TAG_Detect_Condition" maxInstances="1">
+	    <!-- short component description -->
+        <description>Polling Tag Detect</description>
+        <RTE_Components_h>#define NFC08A1_POLLING_TAG_DETECT</RTE_Components_h>
+        <files/>
+      </component>	
+	  <component  Cgroup="Application" Cvariant="NFC08A1_PollingTagDetectNDEF" isDefaultVariant="false" condition="NFC08A1_Application_Polling_TAG_Detect_NDEF_Condition" maxInstances="1">
+	    <!-- short component description --> 
+        <description>Polling Tag Detect NDEF</description>
+        <RTE_Components_h>#define NFC08A1_POLLING_TAG_DETECT_NDEF</RTE_Components_h>
+        <files/>
+      </component>	 
+    </bundle>    
+    	
+  </components>
+
+</package>

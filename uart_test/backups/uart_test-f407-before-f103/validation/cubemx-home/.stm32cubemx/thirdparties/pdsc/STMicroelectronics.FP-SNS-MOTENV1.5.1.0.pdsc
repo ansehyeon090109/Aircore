@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<package schemaVersion="1.7.46" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+    <vendor>STMicroelectronics</vendor>
+    <name>FP-SNS-MOTENV1</name>
+    <description>The FP-SNS-MOTENV1 is an STM32Cube function pack which lets you connect your IoT node to a smartphone via BLE and use a suitable AndroidT or iOST like the ST BLE Sensor app to view real-time environmental sensor data and motion sensor data.
+The package also enables advanced functionality such as sensor data fusion and accelerometer-based real-time activity recognition, carry position, gesture recognition, pedometer, motion Intensity and compass.
+This package, together with the suggested combination of STM32 and ST devices can be used to develop specific wearable applications, or smart things applications in general. 
+The software runs on the STM32 microcontroller and includes all the necessary drivers to recognize the devices on the STM32 Nucleo development board and expansion boards.</description>
+    <url>http://sw-center.st.com/packs/x-cube/</url>
+    <license>en.DM00251784.pdf</license>
+    <releases>
+        <release date="2025-07-22" version="5.1.0">Official release of the FP_SNS-MOTENV1 support package.
+Create sample applications with STM32CubeMX v.6.15.0 or higher</release>
+        <release date="2023-12-18" version="5.0.0">Official release of the FP_SNS-MOTENV1 support package.
+Create sample applications with STM32CubeMX v.6.10.0 or higher</release>
+        <release date="2023-06-16" version="4.3.2">Official release of the FP_SNS-MOTENV1 support package.
+Create sample applications with STM32CubeMX v.6.9.0 or higher</release>
+        <release date="2023-05-10" version="4.3.1">Official release of the FP_SNS-MOTENV1 support package.
+Create sample applications with STM32CubeMX v.6.8.0 or higher</release>
+        <release date="2022-10-20" version="4.3.0">First official release of the FP_SNS-MOTENV1 support package.
+Create sample applications with STM32CubeMX v.6.7.0 or higher</release>
+    </releases>
+    <keywords>
+        <keyword>IMPLEMENTED_WITH_STM32CUBEMX</keyword>
+        <keyword>CUBE_RULES_COMPLIANT</keyword>
+        <keyword>IS_CONTEXT_EXCLUSIVE</keyword>
+        <keyword>DNS_BUSIO_X_CONTEXT_SHARING</keyword>
+        <keyword>DOES_NOT_SUPPORT_SECURE</keyword>
+    </keywords>
+    <taxonomy>
+        <description Cclass="Device">Device</description>
+    </taxonomy>
+    <requirements>
+        <packages>
+            <package name="X-CUBE-MEMS1" vendor="STMicroelectronics" version="11.3.0"/>
+            <package name="X-CUBE-BLEMGR" vendor="STMicroelectronics" version="4.0.0"/>
+            <package name="X-CUBE-BLE2" vendor="STMicroelectronics" version="3.3.0"/>
+        </packages>
+    </requirements>
+    <conditions>
+        <condition id="Cortex-M Device">
+            <description>Cortex-M processor based device: Cortex-M0+, Cortex-M3, Cortex-M4, Cortex-M7, Cortex-M33</description>
+            <accept Dcore="Cortex-M0+"/>
+            <accept Dcore="Cortex-M3"/>
+            <accept Dcore="Cortex-M4"/>
+            <accept Dcore="Cortex-M7"/>
+            <accept Dcore="Cortex-M33"/>
+        </condition>
+        <condition id="BLE_Manager_HW_Features">
+            <description>Bluetooth hardware features for the MOTENV1 application</description>
+            <require Cclass="BLE_Features" Cgroup="HardwareSensors" Csub="AccEvent"/>
+            <require Cclass="BLE_Features" Cgroup="HardwareSensors" Csub="Environmental"/>
+            <require Cclass="BLE_Features" Cgroup="HardwareSensors" Csub="Inertial"/>
+            <require Cclass="BLE_Features" Cgroup="HardwareSensors" Csub="Led"/>
+        </condition>
+        <condition id="USE_IKS4A1">
+            <description>Condition for the MOTENV1 application with X-NUCLEO-IKS4A1 expansion board</description>
+            <require Cclass="Board Extension" Cgroup="IKS4A1"/>
+        </condition>
+        <condition id="MOTION_LIBRARIES">
+            <description>Motion libraries for the MOTENV1 application</description>
+            <require Cclass="Sensors" Cgroup="STM32_MotionAR_Library"/>
+            <require Cclass="Sensors" Cgroup="STM32_MotionCP_Library"/>
+            <require Cclass="Sensors" Cgroup="STM32_MotionFX_Library"/>
+            <require Cclass="Sensors" Cgroup="STM32_MotionGR_Library"/>
+            <require Cclass="Sensors" Cgroup="STM32_MotionID_Library"/>
+            <require Cclass="Sensors" Cgroup="STM32_MotionPM_Library"/>
+        </condition>
+        <condition id="MOTENV1_IKS4A1">
+            <require condition="USE_IKS4A1"/>
+            <require condition="BLE_Manager_HW_Features"/>
+            <require condition="MOTION_LIBRARIES"/>
+            <require condition="BLE_Manager_SW_Features"/>
+            <require condition="BLE_Manager_Manager"/>
+            <require Cclass="Data Exchange" Cgroup="parson"/>
+            <require condition="MCU_FOR_MOTION"/>
+        </condition>
+        <condition id="MCU_FOR_MOTION">
+            <accept Dname="STM32????[Z,C,D,E,F,G,H,I,J]*"/>
+            <accept Dname="STM32?????[Z,C,D,E,F,G,H,I,J]*"/>
+            <accept Dname="STM32??????[Z,C,D,E,F,G,H,I,J]*"/>
+        </condition>
+        <condition id="BLE_Manager_SW_Features">
+            <description>Bluetooth software features for the MOTENV1 application</description>
+            <require Cclass="BLE_Features" Cgroup="SoftwareLibraries" Csub="CarryPosition"/>
+            <require Cclass="BLE_Features" Cgroup="SoftwareLibraries" Csub="ActivityRecognition"/>
+            <require Cclass="BLE_Features" Cgroup="SoftwareLibraries" Csub="ECompass"/>
+            <require Cclass="BLE_Features" Cgroup="SoftwareLibraries" Csub="GestureRecognition"/>
+            <require Cclass="BLE_Features" Cgroup="SoftwareLibraries" Csub="MotionIntensity"/>
+            <require Cclass="BLE_Features" Cgroup="SoftwareLibraries" Csub="PedometerAlgorithm"/>
+            <require Cclass="BLE_Features" Cgroup="SoftwareLibraries" Csub="SensorFusion"/>
+        </condition>
+        <condition id="BLE_Manager_Manager">
+            <description>Bluetooth manager for the MOTENV1 application</description>
+            <require Cclass="BLE_Features" Cgroup="BLE_Manager"/>
+            <require Cclass="Bluetooth" Cgroup="Core" Cvariant="BLE_2"/>
+        </condition>
+        <condition id="MOTENV1_IKS4A1_Only_HW">
+            <require condition="USE_IKS4A1"/>
+            <require condition="BLE_Manager_HW_Features"/>
+            <require condition="BLE_Manager_Manager"/>
+            <require condition="MCU_FOR_Only_HW"/>
+        </condition>
+        <condition id="MCU_FOR_Only_HW">
+            <accept Dname="STM32???[R,Z][8,9,L,A,B,Z,C,D,E,F,G,H,I,J]*"/>
+            <accept Dname="STM32????[R,Z][8,9,L,A,B,Z,C,D,E,F,G,H,I,J]*"/>
+            <accept Dname="STM32?????[R,Z][8,9,L,A,B,Z,C,D,E,F,G,H,I,J]*"/>
+        </condition>
+        <condition id="MCU_FOR_FOTA">
+            <accept Dname="STM32F4??[R,Z][E,F,G,H,I,J]*"/>
+            <accept Dname="STM32L4??[R,Z][E,F,G,H,I,J]*"/>
+            <accept Dname="STM32U5??[R,Z][E,F,G,H,I,J]*"/>
+        </condition>
+        <condition id="MOTENV1_IKS4A1_FOTA">
+            <require condition="USE_IKS4A1"/>
+            <require condition="BLE_Manager_HW_Features"/>
+            <require condition="MOTION_LIBRARIES"/>
+            <require condition="BLE_Manager_SW_Features"/>
+            <require condition="BLE_Manager_Manager"/>
+            <require Cclass="Data Exchange" Cgroup="parson"/>
+            <require condition="MCU_FOR_FOTA"/>
+        </condition>
+    </conditions>
+    <components>
+        <bundle Cbundle="MOTENV1_Applications" Cclass="Device" Cversion="5.1.0">
+            <description>The MOTENV1 is an STM32Cube function pack which lets you connect your IoT node to a smartphone via BLE and use a suitable AndroidT or iOST like the ST BLE Sensor app to view real-time environmental sensor data and motion sensor data.
+The package also enables advanced functionality such as sensor data fusion and accelerometer-based real-time activity recognition, carry position, gesture recognition, pedometer, motion Intensity and campass.  
+</description>
+            <doc>Documentation/STMicroelectronics.FP-SNS-MOTENV1_GettingStarted.pdf</doc>
+            <component Cgroup="Application" Cvariant="MOTENV1_IKS4A1" condition="MOTENV1_IKS4A1" maxInstances="1">
+                <description>FP-SNS-MOTENV1 sample application for X-NUCLEO-IKS4A1 expansion board with motion libraries</description>
+                <RTE_Components_h>#define MOTENV1_IKS4A1_ALL_FEATURES</RTE_Components_h>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="MOTENV1_IKS4A1_Only_HW" condition="MOTENV1_IKS4A1_Only_HW" maxInstances="1">
+                <description>FP-SNS-MOTENV1 sample application for X-NUCLEO-IKS4A1 expansion board </description>
+                <RTE_Components_h>#define MOTENV1_IKS4A1_ONLY_HW</RTE_Components_h>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="BootLoader" condition="MCU_FOR_FOTA" maxInstances="1">
+                <description>Boot Loader firmware</description>
+                <RTE_Components_h>#define BOOT_LOADER</RTE_Components_h>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="MOTENV1_IKS4A1_FOTA" condition="MOTENV1_IKS4A1_FOTA" maxInstances="1">
+                <description>FP-SNS-MOTENV1 sample application for X-NUCLEO-IKS4A1 expansion board with motion libraries and FOTA</description>
+                <RTE_Components_h>#define MOTENV1_IKS4A1_FOTA_ALL_FEATURES</RTE_Components_h>
+                <files/>
+            </component>
+        </bundle>
+    </components>
+</package>

@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<package schemaVersion="1.7.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+    <vendor>emotas</vendor>
+    <name>I-CUBE-CANOPEN</name>
+    <description>This STM32Cube Expansion Pack by emotas
+includes a time and functional limited CANopen slave library for evaluation purposes.
+
+Limitations are:
+1 SDO server
+NMT slave
+LSS slave
+4 Receive  PDOs with dynamic mapping
+4 Transmit PDOs with dynamic mapping
+3 Heartbeat consumer
+Heartbeat producer
+3 EMCY consumer
+EMCY producer
+SYNC consumer
+SYNC producer</description>
+    <url>https://www.emotas.de/evaluation/packs/emotas.I-CUBE-CANOPEN.pdsc/</url>
+    <license>License.pdf</license>
+    <supportContact>evaluation@emotas.de</supportContact>
+    <releases>
+        <release date="2022-06-27" url="https://www.emotas.de/evaluation/packs/emotas.I-CUBE-CANOPEN.1.3.0.pack" version="1.3.0">- added support for STM32H5
+- added DeviceDesigner to reconfigure the CANopen object dictionary and CANopen services</release>
+        <release date="2022-11-02" url="https://www.emotas.de/evaluation/packs/emotas.I-CUBE-CANOPEN.1.1.3.pack" version="1.1.3">Bugfix:
+- added missing STM32G0 FDCAN Interupt Handler</release>
+        <release date="2022-02-17" url="https://www.emotas.de/evaluation/packs/emotas.I-CUBE-CANOPEN.1.1.2.pack" version="1.1.2">First official release
+
+Supported Devices:
+- STM32G0
+- STM32G4
+- STM32L5
+- STM32U5
+- STM32H7</release>
+    </releases>
+    <keywords>
+        <keyword>CUBE_RULES_COMPLIANT</keyword>
+        <keyword>CAN</keyword>
+        <keyword>FDCAN</keyword>
+        <keyword>CANopen</keyword>
+        <keyword>IMPLEMENTED_WITH_STM32CUBEMX</keyword>
+    </keywords>
+    <taxonomy>
+        <description Cclass="Device">Device</description>
+        <description Cclass="CANopen">CANopen</description>
+    </taxonomy>
+    <conditions>
+        <condition id="requireCANopenSlaveLibrary">
+            <description>Support for CANopen Slave Functionality</description>
+            <require Cclass="CANopen"/>
+            <require condition="require supported Device"/>
+        </condition>
+        <condition id="require supported Device">
+            <description>require one of the supported Devices</description>
+            <accept Dname="STM32G0*"/>
+            <accept Dname="STM32G4*"/>
+            <accept Dname="STM32H5*"/>
+            <accept Dname="STM32H7*"/>
+            <accept Dname="STM32L5*"/>
+            <accept Dname="STM32U5*"/>
+        </condition>
+        <condition id="Cortex-M0+ Devices with GCC - STM32G0">
+            <description>Support for Cortex-M0+ Devices with GCC</description>
+            <require Tcompiler="GCC"/>
+            <require condition="require STM32G0"/>
+        </condition>
+        <condition id="Cortex-M0+ Devices with ARMCC - STM32G0">
+            <description>Support for Cortex-M0+ Devices with Keil</description>
+            <require Tcompiler="ARMCC"/>
+            <require condition="require STM32G0"/>
+        </condition>
+        <condition id="Cortex-M0+ Devices with IAR - STM32G0">
+            <description>Support for Cortex-M0+ Devices with IAR</description>
+            <require Tcompiler="IAR"/>
+            <require condition="require STM32G0"/>
+        </condition>
+        <condition id="Cortex-M7 Devices with GCC - STM32H7">
+            <description>Support for Cortex-M4 Devices with GCC</description>
+            <require Tcompiler="GCC"/>
+            <require condition="require STM32H7"/>
+        </condition>
+        <condition id="Cortex-M7 Devices with ARMCC - STM32H7">
+            <description>Support for Cortex-M7 Devices with Keil</description>
+            <require Tcompiler="ARMCC"/>
+            <require condition="require STM32H7"/>
+        </condition>
+        <condition id="Cortex-M7 Devices with IAR - STM32H7">
+            <description>Support for Cortex-M7 Devices with IAR</description>
+            <require Tcompiler="IAR"/>
+            <require condition="require STM32H7"/>
+        </condition>
+        <condition id="require STM32G0">
+            <require Dname="STM32G0*"/>
+        </condition>
+        <condition id="require STM32G4">
+            <require Dname="STM32G4*"/>
+        </condition>
+        <condition id="require STM32H5">
+            <require Dname="STM32H5*"/>
+        </condition>
+        <condition id="require STM32H7">
+            <require Dname="STM32H7*"/>
+        </condition>
+        <condition id="require STM32L5">
+            <require Dname="STM32L5*"/>
+        </condition>
+        <condition id="require STM32U5">
+            <require Dname="STM32U5*"/>
+        </condition>
+        <condition id="Cortex-M33 Devices with GCC - STM32H5">
+            <require Tcompiler="GCC"/>
+            <require condition="require STM32H5"/>
+        </condition>
+        <condition id="Cortex-M33 Devices with ARMCC - STM32H5">
+            <require Tcompiler="ARMCC"/>
+            <require condition="require STM32H5"/>
+        </condition>
+        <condition id="Cortex-M33 Devices with IAR - STM32H5">
+            <require Tcompiler="IAR"/>
+            <require condition="require STM32H5"/>
+        </condition>
+        <condition id="Cortex-M33 Devices with GCC - STM32L5">
+            <require Tcompiler="GCC"/>
+            <require condition="require STM32L5"/>
+        </condition>
+        <condition id="Cortex-M33 Devices with ARMCC - STM32L5">
+            <require Tcompiler="ARMCC"/>
+            <require condition="require STM32L5"/>
+        </condition>
+        <condition id="Cortex-M33 Devices with IAR - STM32L5">
+            <require Tcompiler="IAR"/>
+            <require condition="require STM32L5"/>
+        </condition>
+        <condition id="Cortex-M33 Devices with GCC - STM32U5">
+            <require Tcompiler="GCC"/>
+            <require condition="require STM32U5"/>
+        </condition>
+        <condition id="Cortex-M33 Devices with ARMCC - STM32U5">
+            <require Tcompiler="ARMCC"/>
+            <require condition="require STM32U5"/>
+        </condition>
+        <condition id="Cortex-M33 Devices with IAR - STM32U5">
+            <require Tcompiler="ARMCC"/>
+            <require condition="require STM32U5"/>
+        </condition>
+        <condition id="Cortex-M4 Devices with GCC - STM32G4">
+            <require Tcompiler="GCC"/>
+            <require condition="require STM32G4"/>
+        </condition>
+        <condition id="Cortex-M4 Devices with ARMCC - STM32G4">
+            <require Tcompiler="ARMCC"/>
+            <require condition="require STM32G4"/>
+        </condition>
+        <condition id="Cortex-M4 Devices with IAR - STM32G4">
+            <require Tcompiler="IAR"/>
+            <require condition="require STM32G4"/>
+        </condition>
+    </conditions>
+    <components>
+        <component Cclass="CANopen" Cgroup="emotas" Cversion="3.10.2" condition="require supported Device" maxInstances="1">
+            <description>CANopen Slave Library for evaluation</description>
+            <files>
+                <file category="source" name="Middlewares/Third_Party/emotas/Config/codrv_canbittiming.c"/>
+                <file category="utility" name="Middlewares/Third_Party/emotas/Config/emotas_CANopen_Slave.cddp" public="false"/>
+                <file category="utility" name="Middlewares/Third_Party/emotas/Config/emotas_CANopen_Slave.csv" public="false"/>
+                <file category="utility" name="Middlewares/Third_Party/emotas/Config/emotas_CANopen_Slave.eds" public="false"/>
+                <file category="doc" name="Middlewares/Third_Party/emotas/Config/emotas_CANopen_Slave.html"/>
+                <file category="utility" name="Middlewares/Third_Party/emotas/Config/emotas_CANopen_Slave.icsv" public="false"/>
+                <file category="doc" name="Middlewares/Third_Party/emotas/Config/emotas_CANopen_Slave_doc.txt"/>
+                <file category="header" name="Middlewares/Third_Party/emotas/Config/gen_define.h"/>
+                <file category="header" name="Middlewares/Third_Party/emotas/Config/gen_indication.h"/>
+                <file category="header" name="Middlewares/Third_Party/emotas/Config/gen_indices.h"/>
+                <file category="source" name="Middlewares/Third_Party/emotas/Config/gen_objdict.c"/>
+                <file category="doc" name="Middlewares/Third_Party/emotas/Documentation/canopen-lib-en.pdf" public="false"/>
+                <file category="doc" name="Middlewares/Third_Party/emotas/Documentation/canopen-lib.pdf" public="false"/>
+                <file category="doc" name="Middlewares/Third_Party/emotas/Documentation/readme.txt"/>
+                <file category="image" name="Middlewares/Third_Party/emotas/Documentation/_htmresc/0190870_emotas_logo_RGB.png" public="false"/>
+                <file category="header" name="Middlewares/Third_Party/emotas/Library/inc/co_candebug.h"/>
+                <file category="header" name="Middlewares/Third_Party/emotas/Library/inc/co_canopen.h"/>
+                <file category="header" name="Middlewares/Third_Party/emotas/Library/inc/co_cfgman.h"/>
+                <file category="header" name="Middlewares/Third_Party/emotas/Library/inc/co_cob.h"/>
+                <file category="header" name="Middlewares/Third_Party/emotas/Library/inc/co_common.h"/>
+                <file category="header" name="Middlewares/Third_Party/emotas/Library/inc/co_commtask.h"/>
+                <file category="header" name="Middlewares/Third_Party/emotas/Library/inc/co_datatype.h"/>
+                <file category="header" name="Middlewares/Third_Party/emotas/Library/inc/co_drv.h"/>
+                <file category="header" name="Middlewares/Third_Party/emotas/Library/inc/co_edsparse.h"/>
+                <file category="header" name="Middlewares/Third_Party/emotas/Library/inc/co_emcy.h"/>
+                <file category="header" name="Middlewares/Third_Party/emotas/Library/inc/co_esdo.h"/>
+                <file category="header" name="Middlewares/Third_Party/emotas/Library/inc/co_flyingmaster.h"/>
+                <file category="header" name="Middlewares/Third_Party/emotas/Library/inc/co_gfc.h"/>
+                <file category="header" name="Middlewares/Third_Party/emotas/Library/inc/co_idnego.h"/>
+                <file category="header" name="Middlewares/Third_Party/emotas/Library/inc/co_led.h"/>
+                <file category="header" name="Middlewares/Third_Party/emotas/Library/inc/co_lss.h"/>
+                <file category="header" name="Middlewares/Third_Party/emotas/Library/inc/co_manager.h"/>
+                <file category="header" name="Middlewares/Third_Party/emotas/Library/inc/co_memcpy.h"/>
+                <file category="header" name="Middlewares/Third_Party/emotas/Library/inc/co_network.h"/>
+                <file category="header" name="Middlewares/Third_Party/emotas/Library/inc/co_nmt.h"/>
+                <file category="header" name="Middlewares/Third_Party/emotas/Library/inc/co_odaccess.h"/>
+                <file category="header" name="Middlewares/Third_Party/emotas/Library/inc/co_odindex.h"/>
+                <file category="header" name="Middlewares/Third_Party/emotas/Library/inc/co_pdo.h"/>
+                <file category="header" name="Middlewares/Third_Party/emotas/Library/inc/co_redundancy.h"/>
+                <file category="header" name="Middlewares/Third_Party/emotas/Library/inc/co_sdo.h"/>
+                <file category="header" name="Middlewares/Third_Party/emotas/Library/inc/co_sleep.h"/>
+                <file category="header" name="Middlewares/Third_Party/emotas/Library/inc/co_srd.h"/>
+                <file category="header" name="Middlewares/Third_Party/emotas/Library/inc/co_srdo.h"/>
+                <file category="header" name="Middlewares/Third_Party/emotas/Library/inc/co_store.h"/>
+                <file category="header" name="Middlewares/Third_Party/emotas/Library/inc/co_sync.h"/>
+                <file category="header" name="Middlewares/Third_Party/emotas/Library/inc/co_time.h"/>
+                <file category="header" name="Middlewares/Third_Party/emotas/Library/inc/co_timer.h"/>
+                <file category="header" name="Middlewares/Third_Party/emotas/Library/inc/co_user.h"/>
+                <file category="header" name="Middlewares/Third_Party/emotas/Library/inc/iso_tp.h"/>
+                <file category="library" condition="Cortex-M0+ Devices with ARMCC - STM32G0" name="Middlewares/Third_Party/emotas/Library/lib/STM32G0/I-CUBE-CANOPEN_CM0+_ARMCC.lib" public="false"/>
+                <file category="library" condition="Cortex-M0+ Devices with GCC - STM32G0" name="Middlewares/Third_Party/emotas/Library/lib/STM32G0/I-CUBE-CANOPEN_CM0+_GCC.a" public="false"/>
+                <file category="library" condition="Cortex-M0+ Devices with IAR - STM32G0" name="Middlewares/Third_Party/emotas/Library/lib/STM32G0/I-CUBE-CANOPEN_CM0+_IAR.a" public="false"/>
+                <file category="library" condition="Cortex-M4 Devices with ARMCC - STM32G4" name="Middlewares/Third_Party/emotas/Library/lib/STM32G4/I-CUBE-CANOPEN_CM4_ARMCC.lib" public="false"/>
+                <file category="library" condition="Cortex-M4 Devices with GCC - STM32G4" name="Middlewares/Third_Party/emotas/Library/lib/STM32G4/I-CUBE-CANOPEN_CM4_GCC.a" public="false"/>
+                <file category="library" condition="Cortex-M4 Devices with IAR - STM32G4" name="Middlewares/Third_Party/emotas/Library/lib/STM32G4/I-CUBE-CANOPEN_CM4_IAR.a" public="false"/>
+                <file category="library" condition="Cortex-M33 Devices with ARMCC - STM32H5" name="Middlewares/Third_Party/emotas/Library/lib/STM32H5/I-CUBE-CANOPEN_CM33_ARMCC.lib" public="false"/>
+                <file category="library" condition="Cortex-M33 Devices with GCC - STM32H5" name="Middlewares/Third_Party/emotas/Library/lib/STM32H5/I-CUBE-CANOPEN_CM33_GCC.a" public="false"/>
+                <file category="library" condition="Cortex-M33 Devices with IAR - STM32H5" name="Middlewares/Third_Party/emotas/Library/lib/STM32H5/I-CUBE-CANOPEN_CM33_IAR.a" public="false"/>
+                <file category="library" condition="Cortex-M7 Devices with ARMCC - STM32H7" name="Middlewares/Third_Party/emotas/Library/lib/STM32H7/I-CUBE-CANOPEN_CM7_ARMCC.lib" public="false"/>
+                <file category="library" condition="Cortex-M7 Devices with GCC - STM32H7" name="Middlewares/Third_Party/emotas/Library/lib/STM32H7/I-CUBE-CANOPEN_CM7_GCC.a" public="false"/>
+                <file category="library" condition="Cortex-M7 Devices with IAR - STM32H7" name="Middlewares/Third_Party/emotas/Library/lib/STM32H7/I-CUBE-CANOPEN_CM7_IAR.a" public="false"/>
+                <file category="library" condition="Cortex-M33 Devices with ARMCC - STM32L5" name="Middlewares/Third_Party/emotas/Library/lib/STM32L5/I-CUBE-CANOPEN_CM33_ARMCC.lib" public="false"/>
+                <file category="library" condition="Cortex-M33 Devices with GCC - STM32L5" name="Middlewares/Third_Party/emotas/Library/lib/STM32L5/I-CUBE-CANOPEN_CM33_GCC.a" public="false"/>
+                <file category="library" condition="Cortex-M33 Devices with IAR - STM32L5" name="Middlewares/Third_Party/emotas/Library/lib/STM32L5/I-CUBE-CANOPEN_CM33_IAR.a" public="false"/>
+                <file category="library" condition="Cortex-M33 Devices with ARMCC - STM32U5" name="Middlewares/Third_Party/emotas/Library/lib/STM32U5/I-CUBE-CANOPEN_CM33_ARMCC.lib" public="false"/>
+                <file category="library" condition="Cortex-M33 Devices with GCC - STM32U5" name="Middlewares/Third_Party/emotas/Library/lib/STM32U5/I-CUBE-CANOPEN_CM33_GCC.a" public="false"/>
+                <file category="library" condition="Cortex-M33 Devices with IAR - STM32U5" name="Middlewares/Third_Party/emotas/Library/lib/STM32U5/I-CUBE-CANOPEN_CM33_IAR.a" public="false"/>
+                <file category="doc" name="Middlewares/Third_Party/emotas/License.odt" public="false"/>
+                <file category="doc" name="Middlewares/Third_Party/emotas/License.pdf" public="false"/>
+                <file category="doc" name="Middlewares/Third_Party/emotas/Release_Notes.html"/>
+                <file category="utility" name="Middlewares/Third_Party/emotas/Utilities/CANopen DeviceDesigner/linux-emotas-cdd-3_10_1.zip" public="false"/>
+                <file category="utility" name="Middlewares/Third_Party/emotas/Utilities/CANopen DeviceDesigner/setup-emotas-cdd-3_10_1.zip" public="false"/>
+            </files>
+        </component>
+        <component Cclass="Device" Cgroup="Application" Cvariant="Slave" Cversion="1.0.0" condition="requireCANopenSlaveLibrary" maxInstances="1">
+            <description>CANopen Slave Example Application</description>
+            <files>
+                <file category="doc" name="Projects/CANopen/Applications/Slave/readme.txt"/>
+            </files>
+        </component>
+    </components>
+</package>

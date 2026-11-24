@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<package schemaVersion="1.6.3" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+    <vendor>wolfSSL</vendor>
+    <name>I-CUBE-wolfSSH</name>
+    <description>Small, fast, portable SSH implementation, including support for SCP and SFTP.</description>
+    <url>http://www.wolfSSL.com/files/ide/</url>
+    <license>wolfSSL-License.txt</license>
+    <releases>
+        <release date="2025-02-20" version="1.4.20">
+        February/20/2025,  wolfSSH pack for wolfSSH 1.4.20
+        </release>
+        <release date="2024-03-25" version="1.4.17">
+        March/25/2024,  wolfSSH pack for wolfSSH 1.4.17
+        </release>
+        <release date="2023-12-22" version="1.4.15">
+        December/22/2023,  wolfSSH pack for wolfSSH 1.4.15
+        </release>
+        <release date="2023-04-07" version="1.4.13">
+        April/07/2023,  wolfSSH pack for wolfSSH 1.4.13
+        </release>
+        <release date="2022-12-28" version="1.4.12">
+        December/28/2022,  wolfSSH pack for wolfSSH 1.4.12
+        </release>
+    </releases>
+    <keywords>
+        <keyword>wolfSSH</keyword>
+        <keyword>wolfSSL</keyword>
+        <keyword>Security</keyword>
+        <keyword>SSH-client</keyword>
+        <keyword>Portable</keyword>
+        <keyword>SCP</keyword>
+        <keyword>SSH-library</keyword>
+        <keyword>IMPLEMENTED_WITH_STM32CUBEMX</keyword>
+    </keywords>
+    <taxonomy>
+        <description Cclass="wolfSSH">wolfSSH: SSH library with SCP and SFTP support</description>
+    </taxonomy>
+    <requirements>
+        <packages>
+            <package name="I-CUBE-wolfSSL" vendor="wolfSSL" version="5.7.0"/>
+        </packages>
+    </requirements>
+    <conditions>
+        <condition id="wolfSSH-Core">
+            <require Cclass="wolfSSH" Cgroup="wolfSSH" Csub="Core"/>
+            <require Cclass="wolfSSL" Cgroup="wolfCrypt" Csub="Core"/>
+            <accept Dcore="Cortex-M0"/>
+            <accept Dcore="Cortex-M0+"/>
+            <accept Dcore="Cortex-M4"/>
+            <accept Dcore="Cortex-M7"/>
+            <accept Dcore="Cortex-M33"/>
+            <accept Dcore="Cortex-M55"/>
+            <accept Dfamily="STM32MP1"/>
+        </condition>
+    </conditions>
+    <components>
+        <bundle Cbundle="wolfSSH" Cclass="wolfSSH" Cversion="1.4.20">
+            <description>wolfSSH: SSH library with SCP and SFTP support</description>
+            <doc>Documentation/wolfSSHManual-TableofContents.htm</doc>
+            <component Cgroup="wolfSSH" Csub="Core" condition="wolfSSH-Core">
+                <description>wolfSSH: SSH library with SCP and SFTP support</description>
+                <files>
+                    <file category="include" name="Middlewares/Third_Party/wolfssh/"/>
+                    <file category="source" name="Middlewares/Third_Party/wolfssh/src/agent.c"/>
+                    <file category="source" name="Middlewares/Third_Party/wolfssh/src/certman.c"/>
+                    <file category="source" name="Middlewares/Third_Party/wolfssh/src/internal.c"/>
+                    <file category="source" name="Middlewares/Third_Party/wolfssh/src/io.c"/>
+                    <file category="source" name="Middlewares/Third_Party/wolfssh/src/keygen.c"/>
+                    <file category="source" name="Middlewares/Third_Party/wolfssh/src/log.c"/>
+                    <file category="source" name="Middlewares/Third_Party/wolfssh/src/misc.c"/>
+                    <file category="source" name="Middlewares/Third_Party/wolfssh/src/port.c"/>
+                    <file category="source" name="Middlewares/Third_Party/wolfssh/src/ssh.c"/>
+                    <file category="source" name="Middlewares/Third_Party/wolfssh/src/wolfscp.c"/>
+                    <file category="source" name="Middlewares/Third_Party/wolfssh/src/wolfsftp.c"/>
+                    <file category="source" name="Middlewares/Third_Party/wolfssh/src/wolfterm.c"/>
+                </files>
+            </component>
+            <component Cgroup="wolfSSH" Csub="Test" condition="wolfSSH-Core">
+                <description>wolfSSH Unit Tests</description>
+                <files>
+                    <file category="source" name="Middlewares/Third_Party/wolfssh/ide/STM32CUBE/wolfssh_test.c"/>
+                    <file category="source" name="Middlewares/Third_Party/wolfssh/tests/unit.c"/>
+                    <file category="source" name="Middlewares/Third_Party/wolfssh/tests/sftp.c"/>
+                    <file category="source" name="Middlewares/Third_Party/wolfssh/tests/api.c"/>
+
+                </files>
+            </component>
+        </bundle>
+    </components>
+</package>

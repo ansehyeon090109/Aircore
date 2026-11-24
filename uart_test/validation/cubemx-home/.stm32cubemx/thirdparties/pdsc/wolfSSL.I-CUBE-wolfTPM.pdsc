@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<package schemaVersion="1.6.3" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+    <vendor>wolfSSL</vendor>
+    <name>I-CUBE-wolfTPM</name>
+    <description>Highly portable TPM 2.0 library, designed for embedded use.</description>
+    <url>http://www.wolfSSL.com/files/ide/</url>
+    <license>wolfSSL-License.txt</license>
+    <releases>
+        <release date="2025-01-07" version="3.8.0">
+        January/07/2025,  wolfTPM pack for wolfTPM 3.8.0
+        </release>
+        <release date="2024-07-30" version="3.4.0">
+        July/30/2024,  wolfTPM pack for wolfTPM 3.4.0
+        </release>
+        <release date="2024-04-24" version="3.2.0">
+        April/24/2024,  wolfTPM pack for wolfTPM 3.2.0
+        </release>
+        <release date="2023-12-29" version="3.1.0">
+        December/29/2023,  wolfTPM pack for wolfTPM 3.1.0
+        </release>
+        <release date="2023-10-30" version="3.0.0">
+        October/30/2023,  wolfTPM pack for wolfTPM 3.0.0
+        </release>
+        <release date="2022-12-27" version="2.7.0">
+        December/27/2022,  wolfTPM pack for wolfTPM 2.7.0
+        </release>
+    </releases>
+    <keywords>
+        <keyword>wolfTPM</keyword>
+        <keyword>wolfSSL</keyword>
+        <keyword>Security</keyword>
+        <keyword>Embedded</keyword>
+        <keyword>TPM</keyword>
+        <keyword>TPM2</keyword>
+        <keyword>Trusted-Platform-Module</keyword>
+        <keyword>IMPLEMENTED_WITH_STM32CUBEMX</keyword>
+    </keywords>
+    <taxonomy>
+        <description Cclass="wolfTPM">wolfTPM: TPM 2.0 library designed for embedded use</description>
+    </taxonomy>
+    <requirements>
+        <packages>
+            <package name="I-CUBE-wolfSSL" vendor="wolfSSL" version="5.7.6"/>
+        </packages>
+    </requirements>
+    <conditions>
+        <condition id="wolfTPM-Core">
+            <require Cclass="wolfTPM" Cgroup="wolfTPM" Csub="Core"/>
+            <accept Dcore="Cortex-M0"/>
+            <accept Dcore="Cortex-M0+"/>
+            <accept Dcore="Cortex-M4"/>
+            <accept Dcore="Cortex-M7"/>
+            <accept Dcore="Cortex-M33"/>
+            <accept Dcore="Cortex-M55"/>
+            <accept Dfamily="STM32MP1"/>
+        </condition>
+        <condition id="wolfTPM-Crypto">
+            <require Cclass="wolfSSL" Cgroup="wolfCrypt" Csub="Core"/>
+            <accept Dcore="Cortex-M0"/>
+            <accept Dcore="Cortex-M0+"/>
+            <accept Dcore="Cortex-M4"/>
+            <accept Dcore="Cortex-M7"/>
+            <accept Dcore="Cortex-M33"/>
+            <accept Dcore="Cortex-M55"/>
+            <accept Dfamily="STM32MP1"/>
+        </condition>
+    </conditions>
+    <components>
+        <bundle Cbundle="wolfTPM" Cclass="wolfTPM" Cversion="3.8.0">
+            <description>wolfTPM: Highly portable TPM 2.0 library</description>
+            <doc>Documentation/wolfTPMManual-TableofContents.htm</doc>
+            <component Cgroup="wolfTPM" Csub="Core" condition="wolfTPM-Core">
+                <description>wolfTPM: Highly portable TPM 2.0 library </description>
+                <files>
+                    <file category="include" name="Middlewares/Third_Party/wolftpm/"/>
+                    <file category="source" name="Middlewares/Third_Party/wolftpm/hal/tpm_io.c"/>
+                    <file category="source" name="Middlewares/Third_Party/wolftpm/hal/tpm_io_st.c"/>
+                    <file category="source" name="Middlewares/Third_Party/wolftpm/src/tpm2.c"/>
+                    <file category="source" name="Middlewares/Third_Party/wolftpm/src/tpm2_cryptocb.c"/>
+                    <file category="source" name="Middlewares/Third_Party/wolftpm/src/tpm2_packet.c"/>
+                    <file category="source" name="Middlewares/Third_Party/wolftpm/src/tpm2_param_enc.c"/>
+                    <file category="source" name="Middlewares/Third_Party/wolftpm/src/tpm2_tis.c"/>
+                    <file category="source" name="Middlewares/Third_Party/wolftpm/src/tpm2_wrap.c"/>
+                </files>
+            </component>
+            <component Cgroup="wolfTPM" Csub="Crypto Functionality" condition="wolfTPM-Crypto">
+                <description>wolfTPM Crypto Functionality</description>
+                <files>
+                    <file category="include" name="Middlewares/Third_Party/wolftpm/"/>
+                </files>
+            </component>
+            <component Cgroup="wolfTPM" Csub="Test" condition="wolfTPM-Core">
+                <description>wolfTPM Examples</description>
+                <files>
+                    <file category="source" name="Middlewares/Third_Party/wolftpm/examples/tpm_test_keys.c"/>
+                    <file category="source" name="Middlewares/Third_Party/wolftpm/examples/wrap/wrap_test.c"/>
+                    <file category="source" name="Middlewares/Third_Party/wolftpm/IDE/STM32CUBE/wolftpm_test.c"/>
+                </files>
+            </component>
+        </bundle>
+    </components>
+</package>

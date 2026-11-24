@@ -1,0 +1,20 @@
+<!DOCTYPE html >
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
+<font color="blue"><b><u>STM32CubeWBA Firmware Package V1.1.1 / 04-September-2023</u></b></font><br>
+<b><u>Main Changes</u></b><br>
+<b>Official Patch Release of STM32CubeWBA Firmware package supporting STM32WBA52xx devices</b><br>
+<ul style="list-style-type: disc;">
+    <li>Connectivity</li>
+        This patch targets 2 issues related to the sleep timer overflow:
+        <ul>
+            <li>- Air events scheduling issue when sleep timer overflow occurs</li>
+            <li>- Wrong window widening calculation at the edge of sleep timer overflow</li>
+        </ul>
+    <li>Projects</li>
+        Update Applications demonstrating BLE ThreadX capabilities to fix error_handler issue due to new Link Layer integration
+        <ul>
+            <li>- NUCLEO-WBA52CG/Applications/BLE/BLE_HeartRateThreadX</li>
+            <li>- NUCLEO-WBA52CG/Applications/BLE/BLE_p2pServerThreadX</li>
+        </ul>
+</ul>
+</html>

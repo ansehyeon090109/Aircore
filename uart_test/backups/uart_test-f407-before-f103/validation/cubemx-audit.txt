@@ -1,0 +1,4 @@
+config load "C:/Users/user/STM32CubeIDE/workspace_1.19.0/uart_test/uart_test.ioc"
+config saveext "C:/Users/user/STM32CubeIDE/workspace_1.19.0/uart_test/validation/cubemx-expanded.ioc"
+csv pinout "C:/Users/user/STM32CubeIDE/workspace_1.19.0/uart_test/validation/cubemx-pinout.csv"
+exit

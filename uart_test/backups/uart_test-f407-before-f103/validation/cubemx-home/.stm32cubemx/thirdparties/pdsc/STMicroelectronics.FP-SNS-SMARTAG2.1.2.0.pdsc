@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<package schemaVersion="1.7.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+    <vendor>STMicroelectronics</vendor>
+    <name>FP-SNS-SMARTAG2</name>
+    <description>The FP-SNS-SMARTAG2 is an STM32Cube function pack. Thanks to this package you can read the ambient light, motion and environmental sensor data on your IoT node by the means of an NFC enabled reader, such as a mobile phone or tablet, throught a suitable AndroidST or iOST application such as the ST Asset Tracking and ST NFC Sensor </description>
+    <url>http://sw-center.st.com/packs/x-cube/</url>
+    <license>DM00751078.pdf</license>
+    <releases>
+        <release date="2023-04-20" version="1.2.0">First official release of the FP-SNS-SMARTAG2 support package.
+Create sample applications with STM32CubeMX v.6.9.0 or higher</release>
+    </releases>
+    <keywords>
+        <keyword>IMPLEMENTED_WITH_STM32CUBEMX</keyword>
+        <keyword>CUBE_RULES_COMPLIANT</keyword>
+        <keyword>DOES_NOT_SUPPORT_SECURE</keyword>
+        <keyword>IS_CONTEXT_EXCLUSIVE</keyword>
+        <keyword>DNS_BUSIO_X_CONTEXT_SHARING</keyword>
+    </keywords>
+    <taxonomy>
+        <description Cclass="Data Exchange">Data Exchange</description>
+        <description Cclass="Device">Device</description>
+        <description Cclass="Board Support">Board Support</description>
+    </taxonomy>
+    <requirements>
+        <packages>
+            <package name="X-CUBE-MEMS1" vendor="STMicroelectronics" version="9.6.0"/>
+            <package name="X-CUBE-NFC7" vendor="STMicroelectronics" version="1.0.0"/>
+            <package name="X-CUBE-ALS" vendor="STMicroelectronics" version="1.0.1"/>
+        </packages>
+    </requirements>
+    <conditions>
+        <condition id="STEVAL-SMARTAG2_MCU">
+            <description>MCU on STEVAL-SMARTAG2 board.</description>
+            <accept Dname="STM32L4P5CGU?"/>
+        </condition>
+        <condition id="STEVAL-SMARTAG2_BoardPart">
+            <description>STEVAL-SMARTAG2 board part dependency</description>
+            <require Cclass="Board Part" Cgroup="PressTemp" Csub="LPS22DF" Cvariant="I2C"/>
+            <require Cclass="Board Part" Cgroup="Temp" Csub="STTS22H" Cvariant="I2C"/>
+            <require Cclass="Board Part" Cgroup="AccQvar" Csub="LIS2DUXS12" Cvariant="SPI"/>
+            <require Cclass="Board Part" Cgroup="Acc" Csub="H3LIS331DL" Cvariant="SPI"/>
+            <require Cclass="Board Part" Cgroup="AccGyr" Csub="LSM6DSO32X" Cvariant="SPI"/>
+            <require Cclass="Board Part" Cgroup="Light" Csub="VD6283TX"/>
+            <require Cclass="Board Part" Cgroup="NFC7" Csub="ST25DVXXKC"/>
+        </condition>
+        <condition id="STEVAL-SMARTAG2_Board">
+            <description>SmarTag2 steval board</description>
+            <require condition="STEVAL-SMARTAG2_MCU"/>
+            <require condition="STEVAL-SMARTAG2_BoardPart"/>
+        </condition>
+        <condition id="Example_SmarTag2">
+            <require Cclass="Board Support" Cgroup="SmarTag2" Csub="BSP"/>
+            <require condition="STEVAL-SMARTAG2_MCU"/>
+        </condition>
+        <condition id="Example_OneShot">
+            <require Cclass="Board Support" Cgroup="SmarTag2" Csub="BSP"/>
+            <require condition="STEVAL-SMARTAG2_MCU"/>
+        </condition>
+        <condition id="Application_FirmwareUpdate">
+            <require Cclass="Board Support" Cgroup="SmarTag2" Csub="BSP"/>
+            <require Cclass="Data Exchange" Cgroup="ST25FTM"/>
+            <require condition="STEVAL-SMARTAG2_MCU"/>
+        </condition>
+        <condition id="Only_FTM">
+            <require Cclass="Board Support" Cgroup="SmarTag2" Csub="BSP"/>
+            <require Cclass="Device" Cgroup="CRC" Csub="HAL"/>
+        </condition>
+        <condition id="SmarTag2_Custom">
+            <description>SmarTag2 example for custom board</description>
+            <require Cclass="Board Part" Cgroup="PressTemp" Csub="LPS22DF" Cvariant="I2C"/>
+            <require Cclass="Board Part" Cgroup="Temp" Csub="STTS22H" Cvariant="I2C"/>
+            <require Cclass="Board Part" Cgroup="AccQvar" Csub="LIS2DUXS12" Cvariant="SPI"/>
+            <require Cclass="Board Part" Cgroup="Acc" Csub="H3LIS331DL" Cvariant="SPI"/>
+            <require Cclass="Board Part" Cgroup="AccGyr" Csub="LSM6DSO32X" Cvariant="SPI"/>
+            <require Cclass="Board Extension" Cgroup="6283A1"/>
+            <require Cclass="Board Part" Cgroup="NFC7" Csub="ST25DVXXKC"/>
+            <require Cclass="Board Support" Cgroup="Custom" Csub="MOTION_SENSOR"/>
+            <require Cclass="Board Support" Cgroup="Custom" Csub="ENV_SENSOR"/>
+            <require Cclass="Board Support" Cgroup="Custom" Csub="NFCTAG7"/>
+            <require condition="CUSTOM_SMARTAG2_MCU"/>
+        </condition>
+        <condition id="CUSTOM_SMARTAG2_MCU">
+            <description>MCU for custom board.</description>
+            <accept Dname="STM32L4*"/>
+            <accept Dname="STM32U5*"/>
+            <deny Dname="STM32L4P5CGU?"/>
+        </condition>
+    </conditions>
+    <components>
+        <bundle Cbundle="STEVAL-SMARTAG2" Cclass="Board Support" Cversion="1.2.0">
+            <description>STEVAL-SMARTAG2 Board Drivers.</description>
+            <doc>Drivers/BSP/SmarTag2/Release_Notes.html</doc>
+            <component Cgroup="SmarTag2" Csub="BSP" condition="STEVAL-SMARTAG2_Board" maxInstances="1">
+                <description>Contains the STEVAL-SMARTAG2 Board Drivers.</description>
+                <files>
+                    <file category="source" name="Drivers/BSP/SmarTag2/SmarTag2_env_sensors.c"/>
+                    <file category="header" name="Drivers/BSP/SmarTag2/SmarTag2_env_sensors.h"/>
+                    <file category="source" name="Drivers/BSP/SmarTag2/SmarTag2_env_sensors_ex.c"/>
+                    <file category="header" name="Drivers/BSP/SmarTag2/SmarTag2_env_sensors_ex.h"/>
+                    <file category="source" name="Drivers/BSP/SmarTag2/Smartag2_light_sensor.c"/>
+                    <file category="header" name="Drivers/BSP/SmarTag2/Smartag2_light_sensor.h"/>
+                    <file category="source" name="Drivers/BSP/SmarTag2/SmarTag2_motion_sensors.c"/>
+                    <file category="header" name="Drivers/BSP/SmarTag2/SmarTag2_motion_sensors.h"/>
+                    <file category="source" name="Drivers/BSP/SmarTag2/SmarTag2_motion_sensors_ex.c"/>
+                    <file category="header" name="Drivers/BSP/SmarTag2/SmarTag2_motion_sensors_ex.h"/>
+                    <file category="source" name="Drivers/BSP/SmarTag2/SmarTag2_nfctag.c"/>
+                    <file category="header" name="Drivers/BSP/SmarTag2/SmarTag2_nfctag.h"/>
+                    <file category="source" name="Drivers/BSP/SmarTag2/SmarTag2_nfctag_ex.c"/>
+                    <file category="header" name="Drivers/BSP/SmarTag2/SmarTag2_nfctag_ex.h"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/env_sensor.h"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/motion_sensor.h"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/light_sensor.h"/>
+                </files>
+            </component>
+        </bundle>
+        <bundle Cbundle="SMARTAG2_Examples" Cclass="Device" Cversion="1.2.0">
+            <description>The FP-SNS-SMARTAG2 Projects provide applications to read the ambient light, motion and environmental sensor data on your IoT node by the means of an NFC enabled reader, such as a mobile phone or tablet.</description>
+            <doc>Documentation/STMicroelectronics.FP-SNS-SMARTAG2_GettingStarted.pdf</doc>
+            <component Cgroup="Application" Cvariant="SmarTag2" condition="Example_SmarTag2" maxInstances="1">
+                <description>The SmarTag2 Application reads the ambient light, motion and environmental sensor data on your IoT node by the means of an NFC enabled reader, such as a mobile phone or tablet, throught a suitable AndroidST or iOST application such as the ST Asset Tracking.
+The package supports battery operated use cases.</description>
+                <RTE_Components_h>#define EXAMPLE_SMARTAG2</RTE_Components_h>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="OneShot" condition="Example_OneShot" maxInstances="1">
+                <description>The OneShot Application reads in energy harvesting mode the ambient light and environmental sensor data on your IoT node by the means of an NFC enabled reader, such as a mobile phone or tablet, throught a suitable AndroidST or iOST application such as the ST NFC Sensor.</description>
+                <RTE_Components_h>#define EXAMPLE_ONESHOT</RTE_Components_h>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="SimpleBootLoader" condition="STEVAL-SMARTAG2_MCU" maxInstances="1">
+                <description>The SimpleBootLoader apply the firmware updated replacing the current running firmware with the new version received via NFC or runs the current firmware if the new version is not available.</description>
+                <RTE_Components_h>#define EXAMPLE_SIMPLE_BOOT_LOADER</RTE_Components_h>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="FirmwareUpdate" condition="Application_FirmwareUpdate" maxInstances="1">
+                <description>The FirmwareUpdate application saves the new firwmare received via NFC using the ST FTM protocol and saves it on the right flash region and works with the SimpleBootLoader example for enabling the Firmware Update capability.</description>
+                <RTE_Components_h>#define EXAMPLE_FIRMWARE_UPDATE</RTE_Components_h>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="Custom_SmarTag2" condition="SmarTag2_Custom" maxInstances="1">
+                <description>The SmarTag2 Application reads the ambient light, motion and environmental sensor data on your IoT node by the means of an NFC enabled reader, such as a mobile phone or tablet, throught a suitable AndroidST or iOST application such as the ST Asset Tracking.
+Example for custom board.</description>
+                <RTE_Components_h>#define EXAMPLE_CUSTOM_SMARTAG2</RTE_Components_h>
+                <files/>
+            </component>
+        </bundle>
+        <bundle Cbundle="ST25FTM" Cclass="Data Exchange" Cversion="1.0.0">
+            <description>The ST25 fast transfer mode (ST25FTM) library is an embedded software library enabling fast data transfer between an NFC reader and a dynamic tag.</description>
+            <doc>Middlewares/ST/ST25FTM/Release_Notes.html</doc>
+            <component Cgroup="ST25FTM" condition="Only_FTM" maxInstances="1">
+                <description>Fast transfer mode (ST25FTM) library APIs implementation</description>
+                <RTE_Components_h>#define ST25FTM</RTE_Components_h>
+                <files>
+                    <file category="header" name="Middlewares/ST/ST25FTM/Inc/st25ftm_common.h"/>
+                    <file category="header" name="Middlewares/ST/ST25FTM/Inc/st25ftm_config_template.h"/>
+                    <file category="header" name="Middlewares/ST/ST25FTM/Inc/st25ftm_protocol.h"/>
+                    <file category="doc" name="Middlewares/ST/ST25FTM/Release_Notes.html"/>
+                    <file category="source" name="Middlewares/ST/ST25FTM/Src/st25ftm_common.c"/>
+                    <file category="source" name="Middlewares/ST/ST25FTM/Src/st25ftm_protocol.c"/>
+                    <file category="source" name="Middlewares/ST/ST25FTM/Src/st25ftm_rx.c"/>
+                    <file category="source" name="Middlewares/ST/ST25FTM/Src/st25ftm_tx.c"/>
+                    <file category="other" name="Middlewares/ST/ST25FTM/_htmresc/Add button.svg"/>
+                    <file category="other" name="Middlewares/ST/ST25FTM/_htmresc/favicon.png"/>
+                    <file category="other" name="Middlewares/ST/ST25FTM/_htmresc/mini-st.css"/>
+                    <file category="other" name="Middlewares/ST/ST25FTM/_htmresc/st_logo.png"/>
+                    <file category="other" name="Middlewares/ST/ST25FTM/_htmresc/Update.svg"/>
+                </files>
+            </component>
+        </bundle>
+    </components>
+</package>

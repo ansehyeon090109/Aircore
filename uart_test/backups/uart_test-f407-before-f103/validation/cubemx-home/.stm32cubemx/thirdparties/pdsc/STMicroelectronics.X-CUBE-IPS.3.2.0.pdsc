@@ -1,0 +1,1588 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<package schemaVersion="1.7.46" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+    <vendor>STMicroelectronics</vendor>
+    <name>X-CUBE-IPS</name>
+    <description>The X-CUBE-IPS expansion software package for STM32Cube runs on the STM32 and includes drivers that control the industrial intelligent power switches (IPS)</description>
+    <url>http://sw-center.st.com/packs/x-cube/</url>
+    <license>en.DM00751078.pdf</license>
+    <releases>
+        <release date="2025-10-07" version="3.2.0">Official CubeMX SW Pack release for X-CUBE-IPS package
+[20251007-030200-02-001]
+
+The X-CUBE-IPS software package expands the STM32Cube functionality
+adding the capability to build applications for high efficiency high-side
+and low-side switches: 
+•  octal (high-side): ISO8200BQ, ISO8200AQ, IPS8160HQ, IPS8160HQ-1, ISO808,
+    ISO808-1, ISO808A, ISO808A-1, IPS8200HQ and IPS8200HQ-1 
+•  quad (low-side): IPS4260L
+•  quad (high-side): IPS4140HQ, IPS4140HQ-1 
+•  dual (high-side): IPS2050H and IPS2050H-32 
+•  single (high-side): IPS160HF, IPS161HF, IPS1025H, IPS1025H-32
+    and IPS1025HF 
+•  single (low-side): IPS1050LQ
+
+This software allows controlling the digital output of a single expansion board,
+or a properly configured stack of these expansion boards.
+It also allows you to program the expansion boards to be switched on and off
+using PWM with a specific frequency in the 0-100 Hz range (0.1 Hz resolution),
+and specific duty cycle in the 0-100% range (1% resolution).
+The package includes examples to test the device functionality while driving the
+channels in the steady state and PWM.
+Sample implementations are available on the following expansion boards, fully
+debugged on NUCLEO-F401RE and NUCLEO-G431RB development boards: 
+•  X-NUCLEO-OUT01A2
+•  X-NUCLEO-OUT02A1
+•  X-NUCLEO-OUT03A1
+•  X-NUCLEO-OUT04A1
+•  X-NUCLEO-OUT05A1
+•  X-NUCLEO-OUT06A1
+•  X-NUCLEO-OUT07A1
+•  X-NUCLEO-OUT08A1
+•  X-NUCLEO-OUT09A1
+•  X-NUCLEO-OUT10A1
+•  X-NUCLEO-OUT11A1
+•  X-NUCLEO-OUT12A1
+•  X-NUCLEO-OUT13A1
+•  X-NUCLEO-OUT14A1
+•  X-NUCLEO-OUT15A1
+•  X-NUCLEO-OUT16A1
+•  X-NUCLEO-OUT17A1
+•  X-NUCLEO-OUT19A1
+•  X-NUCLEO-DO40A1
+•  X-NUCLEO-DO41A1
+•  X-NUCLEO-DOL10A1</release>
+        <release date="2024-12-17" version="3.1.0">Official CubeMX SW Pack release for X-CUBE-IPS package
+[20241217-030100-01-006]
+
+The X-CUBE-IPS software package expands the STM32Cube functionality
+adding the capability to build applications for high efficiency high-side
+and low-side switches: 
+•  octal (high-side): ISO8200BQ, ISO8200AQ, IPS8160HQ, IPS8160HQ-1, ISO808,
+    ISO808-1, ISO808A, ISO808A-1, IPS8200HQ and IPS8200HQ-1 
+•  quad (low-side): IPS4260L
+•  quad (high-side): IPS4140HQ, IPS4140HQ-1 
+•  dual (high-side): IPS2050H and IPS2050H-32 
+•  single (high-side): IPS160HF, IPS161HF, IPS1025H, IPS1025H-32
+    and IPS1025HF 
+This software allows controlling the digital output of a single expansion board,
+or a properly configured stack of these expansion boards.
+It also allows you to program the expansion boards to be switched on and off
+using PWM with a specific frequency in the 0-100 Hz range (0.1 Hz resolution),
+and specific duty cycle in the 0-100% range (1% resolution).
+The package includes examples to test the device functionality while driving the
+channels in the steady state and PWM.
+Sample implementations are available on the following expansion boards, fully
+debugged on NUCLEO-F401RE and NUCLEO-G431RB development boards: 
+•  X-NUCLEO-OUT01A2
+•  X-NUCLEO-OUT02A1
+•  X-NUCLEO-OUT03A1
+•  X-NUCLEO-OUT04A1
+•  X-NUCLEO-OUT05A1
+•  X-NUCLEO-OUT06A1
+•  X-NUCLEO-OUT07A1
+•  X-NUCLEO-OUT08A1
+•  X-NUCLEO-OUT09A1
+•  X-NUCLEO-OUT10A1
+•  X-NUCLEO-OUT11A1
+•  X-NUCLEO-OUT12A1
+•  X-NUCLEO-OUT13A1
+•  X-NUCLEO-OUT14A1
+•  X-NUCLEO-OUT15A1
+•  X-NUCLEO-OUT16A1
+•  X-NUCLEO-OUT17A1
+•  X-NUCLEO-OUT19A1
+•  X-NUCLEO-DO40A1
+•  X-NUCLEO-DO41A1</release>
+        <release date="2024-09-16" version="3.0.0">First CubeMX SW Pack release for X-CUBE-IPS package.
+
+The X-CUBE-IPS software package expands the STM32Cube functionality
+adding the capability to build applications for high efficiency high-side
+and low-side switches: 
+•  octal (high-side): ISO8200BQ, IPS8160HQ, IPS8160HQ-1, ISO808,
+    ISO808-1, ISO808A, ISO808A-1, IPS8200HQ and IPS8200HQ-1 
+•  quad (low-side): IPS4260L 
+•  dual (high-side): IPS2050H and IPS2050H-32 
+•  single (high-side): IPS160HF, IPS161HF, IPS1025H, IPS1025H-32
+    and IPS1025HF 
+This software allows controlling the digital output of a single expansion board,
+or a properly configured stack of these expansion boards.
+It also allows you to program the expansion boards to be switched on and off
+using PWM with a specific frequency in the 0-100 Hz range (0.1 Hz resolution),
+and specific duty cycle in the 0-100% range (1% resolution).
+The package includes examples to test the device functionality while driving the
+channels in the steady state and PWM.
+Sample implementations are available on the following expansion boards, fully
+debugged on NUCLEO-F401RE and NUCLEO-G431RB development boards: 
+•  X-NUCLEO-OUT01A2
+•  X-NUCLEO-OUT03A1
+•  X-NUCLEO-OUT04A1
+•  X-NUCLEO-OUT05A1
+•  X-NUCLEO-OUT06A1
+•  X-NUCLEO-OUT07A1
+•  X-NUCLEO-OUT08A1
+•  X-NUCLEO-OUT09A1
+•  X-NUCLEO-OUT10A1
+•  X-NUCLEO-OUT11A1
+•  X-NUCLEO-OUT12A1
+•  X-NUCLEO-OUT13A1
+•  X-NUCLEO-OUT14A1
+•  X-NUCLEO-OUT15A1
+•  X-NUCLEO-OUT16A1
+•  X-NUCLEO-OUT17A1
+•  X-NUCLEO-OUT19A1
+</release>
+    </releases>
+    <keywords>
+        <keyword>IMPLEMENTED_WITH_STM32CUBEMX</keyword>
+    </keywords>
+    <taxonomy>
+        <description Cclass="Device">Device</description>
+        <description Cclass="Extension Board">Extension Board</description>
+        <description Cclass="Board Part">Board Part</description>
+    </taxonomy>
+    <conditions>
+        <condition id="IPS_OUT01A2">
+            <require condition="STM32_NotSupported"/>
+            <require Cclass="Board Part" Cgroup="IPS" Csub="iso8200bq"/>
+        </condition>
+        <condition id="IPS_OUT02A1">
+            <require condition="STM32_NotSupported"/>
+            <require Cclass="Board Part" Cgroup="IPS" Csub="iso8200aq"/>
+        </condition>
+        <condition id="IPS_OUT03A1">
+            <require condition="STM32_NotSupported"/>
+            <require Cclass="Board Part" Cgroup="IPS" Csub="ips2050h"/>
+        </condition>
+        <condition id="IPS_OUT04A1">
+            <require condition="STM32_NotSupported"/>
+            <require Cclass="Board Part" Cgroup="IPS" Csub="ips2050h-32"/>
+        </condition>
+        <condition id="IPS_OUT05A1">
+            <require condition="STM32_NotSupported"/>
+            <require Cclass="Board Part" Cgroup="IPS" Csub="ips1025h"/>
+        </condition>
+        <condition id="IPS_OUT06A1">
+            <require condition="STM32_NotSupported"/>
+            <require Cclass="Board Part" Cgroup="IPS" Csub="ips1025h-32"/>
+        </condition>
+        <condition id="IPS_OUT07A1">
+            <require condition="STM32_NotSupported"/>
+            <require Cclass="Board Part" Cgroup="IPS" Csub="ips4260l"/>
+        </condition>
+        <condition id="IPS_OUT08A1">
+            <require condition="STM32_NotSupported"/>
+            <require Cclass="Board Part" Cgroup="IPS" Csub="ips160hf"/>
+        </condition>
+        <condition id="IPS_OUT09A1">
+            <require condition="STM32_NotSupported"/>
+            <require Cclass="Board Part" Cgroup="IPS" Csub="ips8160hq"/>
+        </condition>
+        <condition id="IPS_OUT10A1">
+            <require condition="STM32_NotSupported"/>
+            <require Cclass="Board Part" Cgroup="IPS" Csub="ips161hf"/>
+        </condition>
+        <condition id="IPS_OUT11A1">
+            <require condition="STM32_NotSupported"/>
+            <require Cclass="Board Part" Cgroup="IPS" Csub="iso808"/>
+        </condition>
+        <condition id="IPS_OUT12A1">
+            <require condition="STM32_NotSupported"/>
+            <require Cclass="Board Part" Cgroup="IPS" Csub="iso808a"/>
+        </condition>
+        <condition id="IPS_OUT13A1">
+            <require condition="STM32_NotSupported"/>
+            <require Cclass="Board Part" Cgroup="IPS" Csub="iso808-1"/>
+        </condition>
+        <condition id="IPS_OUT14A1">
+            <require condition="STM32_NotSupported"/>
+            <require Cclass="Board Part" Cgroup="IPS" Csub="iso808a-1"/>
+        </condition>
+        <condition id="IPS_OUT15A1">
+            <require condition="STM32_NotSupported"/>
+            <require Cclass="Board Part" Cgroup="IPS" Csub="ips1025hf"/>
+        </condition>
+        <condition id="IPS_OUT16A1">
+            <require condition="STM32_NotSupported"/>
+            <require Cclass="Board Part" Cgroup="IPS" Csub="ips8200hq"/>
+        </condition>
+        <condition id="IPS_OUT17A1">
+            <require condition="STM32_NotSupported"/>
+            <require Cclass="Board Part" Cgroup="IPS" Csub="ips8200hq-1"/>
+        </condition>
+        <condition id="IPS_OUT19A1">
+            <require condition="STM32_NotSupported"/>
+            <require Cclass="Board Part" Cgroup="IPS" Csub="ips8160hq-1"/>
+        </condition>
+        <condition id="IPS_DO40A1">
+            <require condition="STM32_NotSupported"/>
+            <require Cclass="Board Part" Cgroup="IPS" Csub="ips4140hq"/>
+        </condition>
+        <condition id="IPS_DO41A1">
+            <require condition="STM32_NotSupported"/>
+            <require Cclass="Board Part" Cgroup="IPS" Csub="ips4140hq-1"/>
+        </condition>
+        <condition id="ONLY_OUT01A2">
+            <require condition="IPS_OUT01A2"/>
+            <deny Cclass="Extension Board" Cgroup="OUT02A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT03A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT04A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT05A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT06A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT07A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT08A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT09A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT10A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT11A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT12A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT13A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT14A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT15A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT16A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT17A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT19A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="DO40A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="DO41A1" Csub="OUT"/>
+        </condition>
+        <condition id="ONLY_OUT02A1">
+            <require condition="IPS_OUT02A1"/>
+            <deny Cclass="Extension Board" Cgroup="OUT01A2" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT03A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT04A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT05A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT06A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT07A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT08A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT09A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT10A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT11A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT13A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT14A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT15A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT16A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT17A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT19A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT12A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="DO40A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="DO41A1" Csub="OUT"/>
+        </condition>
+        <condition id="ONLY_OUT03A1">
+            <require condition="IPS_OUT03A1"/>
+            <deny Cclass="Extension Board" Cgroup="OUT01A2" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT02A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT04A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT05A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT06A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT07A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT08A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT09A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT10A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT11A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT12A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT13A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT14A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT15A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT16A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT17A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT19A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="DO40A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="DO41A1" Csub="OUT"/>
+        </condition>
+        <condition id="ONLY_OUT04A1">
+            <require condition="IPS_OUT04A1"/>
+            <deny Cclass="Extension Board" Cgroup="OUT01A2" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT02A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT03A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT05A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT06A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT07A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT08A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT09A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT10A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT11A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT12A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT13A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT14A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT15A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT16A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT17A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT19A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="DO40A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="DO41A1" Csub="OUT"/>
+        </condition>
+        <condition id="ONLY_OUT05A1">
+            <require condition="IPS_OUT05A1"/>
+            <deny Cclass="Extension Board" Cgroup="OUT01A2" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT02A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT03A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT04A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT06A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT07A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT08A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT09A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT10A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT11A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT12A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT13A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT14A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT15A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT16A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT17A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT19A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="DO40A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="DO41A1" Csub="OUT"/>
+        </condition>
+        <condition id="ONLY_OUT06A1">
+            <require condition="IPS_OUT06A1"/>
+            <deny Cclass="Extension Board" Cgroup="OUT01A2" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT02A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT03A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT04A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT05A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT07A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT08A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT09A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT10A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT11A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT12A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT13A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT14A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT15A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT16A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT17A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT19A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="DO40A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="DO41A1" Csub="OUT"/>
+        </condition>
+        <condition id="ONLY_OUT07A1">
+            <require condition="IPS_OUT07A1"/>
+            <deny Cclass="Extension Board" Cgroup="OUT01A2" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT02A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT03A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT04A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT05A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT06A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT08A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT09A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT10A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT11A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT12A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT13A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT14A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT15A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT16A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT17A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT19A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="DO40A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="DO41A1" Csub="OUT"/>
+        </condition>
+        <condition id="ONLY_OUT08A1">
+            <require condition="IPS_OUT08A1"/>
+            <deny Cclass="Extension Board" Cgroup="OUT01A2" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT02A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT03A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT04A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT05A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT06A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT07A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT09A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT10A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT11A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT12A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT13A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT14A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT15A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT16A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT17A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT19A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="DO40A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="DO41A1" Csub="OUT"/>
+        </condition>
+        <condition id="ONLY_OUT09A1">
+            <require condition="IPS_OUT09A1"/>
+            <deny Cclass="Extension Board" Cgroup="OUT01A2" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT02A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT03A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT04A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT05A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT06A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT07A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT08A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT10A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT11A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT12A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT13A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT14A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT15A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT16A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT17A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT19A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="DO40A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="DO41A1" Csub="OUT"/>
+        </condition>
+        <condition id="ONLY_OUT10A1">
+            <require condition="IPS_OUT10A1"/>
+            <deny Cclass="Extension Board" Cgroup="OUT01A2" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT02A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT03A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT04A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT05A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT06A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT07A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT08A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT09A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT11A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT12A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT13A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT14A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT15A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT16A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT17A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT19A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="DO40A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="DO41A1" Csub="OUT"/>
+        </condition>
+        <condition id="ONLY_OUT11A1">
+            <require condition="IPS_OUT11A1"/>
+            <deny Cclass="Extension Board" Cgroup="OUT01A2" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT02A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT03A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT04A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT05A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT06A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT07A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT08A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT09A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT10A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT12A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT13A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT14A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT15A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT16A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT17A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT19A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="DO40A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="DO41A1" Csub="OUT"/>
+        </condition>
+        <condition id="ONLY_OUT12A1">
+            <require condition="IPS_OUT12A1"/>
+            <deny Cclass="Extension Board" Cgroup="OUT01A2" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT02A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT03A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT04A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT05A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT06A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT07A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT08A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT09A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT10A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT11A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT13A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT14A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT15A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT16A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT17A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT19A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="DO40A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="DO41A1" Csub="OUT"/>
+        </condition>
+        <condition id="ONLY_OUT13A1">
+            <require condition="IPS_OUT13A1"/>
+            <deny Cclass="Extension Board" Cgroup="OUT01A2" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT02A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT03A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT04A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT05A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT06A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT07A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT08A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT09A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT10A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT11A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT12A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT14A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT15A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT16A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT17A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT19A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="DO40A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="DO41A1" Csub="OUT"/>
+        </condition>
+        <condition id="ONLY_OUT14A1">
+            <require condition="IPS_OUT14A1"/>
+            <deny Cclass="Extension Board" Cgroup="OUT01A2" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT02A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT03A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT04A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT05A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT06A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT07A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT08A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT09A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT10A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT11A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT12A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT13A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT15A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT16A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT17A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT19A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="DO40A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="DO41A1" Csub="OUT"/>
+        </condition>
+        <condition id="ONLY_OUT15A1">
+            <require condition="IPS_OUT15A1"/>
+            <deny Cclass="Extension Board" Cgroup="OUT01A2" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT02A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT03A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT04A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT05A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT06A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT07A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT08A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT09A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT10A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT11A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT12A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT13A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT14A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT16A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT17A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT19A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="DO40A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="DO41A1" Csub="OUT"/>
+        </condition>
+        <condition id="ONLY_OUT16A1">
+            <require condition="IPS_OUT16A1"/>
+            <deny Cclass="Extension Board" Cgroup="OUT01A2" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT02A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT03A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT04A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT05A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT06A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT07A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT08A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT09A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT10A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT11A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT12A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT13A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT14A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT15A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT17A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT19A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="DO40A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="DO41A1" Csub="OUT"/>
+        </condition>
+        <condition id="ONLY_OUT17A1">
+            <require condition="IPS_OUT17A1"/>
+            <deny Cclass="Extension Board" Cgroup="OUT01A2" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT02A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT03A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT04A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT05A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT06A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT07A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT08A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT09A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT10A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT11A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT12A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT13A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT14A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT15A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT16A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT19A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="DO40A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="DO41A1" Csub="OUT"/>
+        </condition>
+        <condition id="ONLY_OUT19A1">
+            <require condition="IPS_OUT19A1"/>
+            <deny Cclass="Extension Board" Cgroup="OUT01A2" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT02A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT03A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT04A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT05A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT06A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT07A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT08A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT09A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT10A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT11A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT12A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT13A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT14A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT15A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT16A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT17A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="DO40A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="DO41A1" Csub="OUT"/>
+        </condition>
+        <condition id="ONLY_DO40A1">
+            <require condition="IPS_DO40A1"/>
+            <deny Cclass="Extension Board" Cgroup="OUT01A2" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT02A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT03A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT04A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT05A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT06A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT07A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT08A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT09A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT10A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT11A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT12A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT13A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT14A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT15A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT16A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT17A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT19A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="DO41A1" Csub="OUT"/>
+        </condition>
+        <condition id="ONLY_DO41A1">
+            <require condition="IPS_DO41A1"/>
+            <deny Cclass="Extension Board" Cgroup="OUT01A2" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT02A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT03A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT04A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT05A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT06A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT07A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT08A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT09A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT10A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT11A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT12A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT13A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT14A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT15A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT16A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT17A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT19A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="DO40A1" Csub="OUT"/>
+        </condition>
+        <condition id="ONLY_ISO8200BQ">
+            <require condition="STM32_NotSupported"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso8200aq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips2050h"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips2050h-32"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025h"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025h-32"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4260l"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips160hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8160hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips161hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808a"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808a-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8200hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8200hq-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8160hq-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4140hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4140hq-1"/>
+        </condition>
+        <condition id="ONLY_ISO8200AQ">
+            <require condition="STM32_NotSupported"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso8200bq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips2050h"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips2050h-32"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025h"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025h-32"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4260l"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips160hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8160hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips161hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808a"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808a-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8200hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8200hq-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8160hq-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4140hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4140hq-1"/>
+        </condition>
+        <condition id="ONLY_IPS2050H">
+            <require condition="STM32_NotSupported"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso8200bq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso8200aq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips2050h-32"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025h"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025h-32"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4260l"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips160hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8160hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips161hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808a"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808a-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8200hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8200hq-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8160hq-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4140hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4140hq-1"/>
+        </condition>
+        <condition id="ONLY_IPS2050H_32">
+            <require condition="STM32_NotSupported"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso8200bq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso8200aq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips2050h"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025h"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025h-32"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4260l"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips160hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8160hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips161hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808a"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808a-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8200hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8200hq-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8160hq-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4140hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4140hq-1"/>
+        </condition>
+        <condition id="ONLY_IPS1025H">
+            <require condition="STM32_NotSupported"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso8200bq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso8200aq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips2050h"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips2050h-32"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025h-32"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4260l"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips160hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8160hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips161hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808a"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808a-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8200hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8200hq-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8160hq-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4140hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4140hq-1"/>
+        </condition>
+        <condition id="ONLY_IPS1025H_32">
+            <require condition="STM32_NotSupported"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso8200bq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso8200aq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips2050h"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips2050h-32"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025h"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4260l"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips160hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8160hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips161hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808a"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808a-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8200hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8200hq-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8160hq-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4140hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4140hq-1"/>
+        </condition>
+        <condition id="ONLY_IPS4260L">
+            <require condition="STM32_NotSupported"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso8200bq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso8200aq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips2050h"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips2050h-32"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025h"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025h-32"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips160hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8160hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips161hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808a"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808a-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8200hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8200hq-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8160hq-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4140hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4140hq-1"/>
+        </condition>
+        <condition id="ONLY_IPS160HF">
+            <require condition="STM32_NotSupported"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso8200bq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso8200aq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips2050h"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips2050h-32"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025h"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025h-32"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4260l"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8160hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips161hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808a"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808a-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8200hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8200hq-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8160hq-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4140hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4140hq-1"/>
+        </condition>
+        <condition id="ONLY_IPS8160HQ">
+            <require condition="STM32_NotSupported"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso8200bq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso8200aq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips2050h"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips2050h-32"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025h"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025h-32"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4260l"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips160hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips161hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808a"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808a-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8200hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8200hq-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8160hq-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4140hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4140hq-1"/>
+        </condition>
+        <condition id="ONLY_IPS161HF">
+            <require condition="STM32_NotSupported"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso8200bq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso8200aq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips2050h"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips2050h-32"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025h"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025h-32"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4260l"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips160hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8160hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808a"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808a-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8200hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8200hq-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8160hq-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4140hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4140hq-1"/>
+        </condition>
+        <condition id="ONLY_ISO808">
+            <require condition="STM32_NotSupported"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso8200bq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso8200aq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips2050h"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips2050h-32"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025h"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025h-32"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4260l"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips160hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8160hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips161hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808a"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808a-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8200hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8200hq-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8160hq-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4140hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4140hq-1"/>
+        </condition>
+        <condition id="ONLY_ISO808A">
+            <require condition="STM32_NotSupported"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso8200bq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso8200aq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips2050h"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips2050h-32"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025h"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025h-32"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4260l"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips160hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8160hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips161hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808a-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8200hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8200hq-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8160hq-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4140hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4140hq-1"/>
+        </condition>
+        <condition id="ONLY_ISO808_1">
+            <require condition="STM32_NotSupported"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso8200bq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso8200aq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips2050h"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips2050h-32"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025h"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025h-32"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4260l"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips160hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8160hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips161hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808a"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808a-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8200hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8200hq-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8160hq-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4140hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4140hq-1"/>
+        </condition>
+        <condition id="ONLY_ISO808A_1">
+            <require condition="STM32_NotSupported"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso8200bq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso8200aq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips2050h"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips2050h-32"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025h"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025h-32"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4260l"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips160hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8160hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips161hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808a"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8200hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8200hq-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8160hq-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4140hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4140hq-1"/>
+        </condition>
+        <condition id="ONLY_IPS1025HF">
+            <require condition="STM32_NotSupported"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso8200bq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso8200aq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips2050h"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips2050h-32"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025h"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025h-32"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4260l"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips160hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8160hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips161hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808a"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808a-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8200hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8200hq-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8160hq-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4140hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4140hq-1"/>
+        </condition>
+        <condition id="ONLY_IPS8200HQ">
+            <require condition="STM32_NotSupported"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso8200bq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso8200aq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips2050h"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips2050h-32"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025h"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025h-32"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4260l"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips160hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8160hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips161hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808a"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808a-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8200hq-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8160hq-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4140hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4140hq-1"/>
+        </condition>
+        <condition id="ONLY_IPS8200HQ_1">
+            <require condition="STM32_NotSupported"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso8200bq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso8200aq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips2050h"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips2050h-32"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025h"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025h-32"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4260l"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips160hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8160hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips161hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808a"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808a-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8200hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8160hq-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4140hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4140hq-1"/>
+        </condition>
+        <condition id="ONLY_IPS8160HQ_1">
+            <require condition="STM32_NotSupported"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso8200bq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso8200aq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips2050h"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips2050h-32"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025h"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025h-32"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4260l"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips160hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8160hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips161hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808a"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808a-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8200hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8200hq-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4140hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4140hq-1"/>
+        </condition>
+        <condition id="ONLY_IPS4140HQ">
+            <require condition="STM32_NotSupported"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso8200bq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso8200aq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips2050h"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips2050h-32"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025h"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025h-32"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4260l"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips160hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8160hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips161hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808a"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808a-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8200hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8200hq-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8160hq-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4140hq-1"/>
+        </condition>
+        <condition id="ONLY_IPS4140HQ_1">
+            <require condition="STM32_NotSupported"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso8200bq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso8200aq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips2050h"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips2050h-32"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025h"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025h-32"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4260l"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips160hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8160hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips161hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808a"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808a-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8200hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8200hq-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8160hq-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4140hq"/>
+        </condition>
+        <condition id="OUT_X_A1">
+            <require Cclass="Extension Board" Csub="OUT"/>
+            <require condition="STM32_NotSupported"/>
+            <deny Cclass="Extension Board" Cgroup="OUT02A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT12A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT14A1" Csub="OUT"/>
+        </condition>
+        <condition id="APP_RELAY_CONDITION">
+            <require Cclass="Extension Board" Csub="OUT"/>
+            <require condition="STM32_NotSupported"/>
+            <deny Cclass="Extension Board" Cgroup="OUT01A2" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT03A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT04A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT05A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT06A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT07A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT08A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT09A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT10A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT11A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT13A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT15A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT16A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT17A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT19A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="DO40A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="DO41A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="DOL10A1" Csub="OUT"/>
+        </condition>
+        <condition id="STM32_NotSupported">
+            <description>STM32 MCU families not supported in current STM32 software pack</description>
+            <deny Dname="STM32WB0*"/>
+            <deny Dname="STM32WL3*"/>
+        </condition>
+        <condition id="IPS_DOL10A1">
+            <require condition="STM32_NotSupported"/>
+            <require Cclass="Board Part" Cgroup="IPS" Csub="ips1050lq"/>
+        </condition>
+        <condition id="ONLY_DOL10A1">
+            <require condition="IPS_DOL10A1"/>
+            <deny Cclass="Extension Board" Cgroup="OUT01A2" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT02A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT03A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT04A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT05A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT06A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT07A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT08A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT09A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT10A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT11A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT12A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT13A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT14A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT15A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT16A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT17A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="OUT19A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="DO40A1" Csub="OUT"/>
+            <deny Cclass="Extension Board" Cgroup="DO41A1" Csub="OUT"/>
+        </condition>
+        <condition id="ONLY_IPS1050LQ">
+            <require condition="STM32_NotSupported"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso8200bq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso8200aq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips2050h"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips2050h-32"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025h"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025h-32"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4260l"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips160hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8160hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips161hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808a"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="iso808a-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips1025hf"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8200hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8200hq-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips8160hq-1"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4140hq"/>
+            <deny Cclass="Board Part" Cgroup="IPS" Csub="ips4140hq-1"/>
+        </condition>
+    </conditions>
+    <components>
+        <component Cclass="Board Part" Cgroup="IPS" Csub="ips8160hq" Cversion="1.2.0" condition="ONLY_IPS8160HQ" maxInstances="1">
+            <description>Part driver for ips8160hq</description>
+            <files>
+                <file category="source" name="Drivers/BSP/Components/ips8160hq/ips8160hq.c"/>
+                <file category="header" name="Drivers/BSP/Components/ips8160hq/ips8160hq.h"/>
+            </files>
+        </component>
+        <component Cclass="Board Part" Cgroup="IPS" Csub="iso808" Cversion="1.2.0" condition="ONLY_ISO808" maxInstances="1">
+            <description>Part driver for iso808</description>
+            <files>
+                <file category="source" name="Drivers/BSP/Components/iso808/iso808.c"/>
+                <file category="header" name="Drivers/BSP/Components/iso808/iso808.h"/>
+            </files>
+        </component>
+        <component Cclass="Board Part" Cgroup="IPS" Csub="iso808a" Cversion="1.2.0" condition="ONLY_ISO808A" maxInstances="1">
+            <description>Part driver for iso808a</description>
+            <RTE_Components_h>#define ISO_808A</RTE_Components_h>
+            <files>
+                <file category="source" name="Drivers/BSP/Components/iso808a/iso808a.c"/>
+                <file category="header" name="Drivers/BSP/Components/iso808a/iso808a.h"/>
+            </files>
+        </component>
+        <component Cclass="Board Part" Cgroup="IPS" Csub="ips1025hf" Cversion="1.2.0" condition="ONLY_IPS1025HF" maxInstances="1">
+            <description>Part driver for ips1025hf</description>
+            <files>
+                <file category="source" name="Drivers/BSP/Components/ips1025hf/ips1025hf.c"/>
+                <file category="header" name="Drivers/BSP/Components/ips1025hf/ips1025hf.h"/>
+            </files>
+        </component>
+        <component Cclass="Board Part" Cgroup="IPS" Csub="iso8200bq" Cversion="1.1.0" condition="ONLY_ISO8200BQ" maxInstances="1">
+            <description>Part driver for iso8200bq</description>
+            <files>
+                <file category="source" name="Drivers/BSP/Components/iso8200bq/iso8200bq.c"/>
+                <file category="header" name="Drivers/BSP/Components/iso8200bq/iso8200bq.h"/>
+            </files>
+        </component>
+        <component Cclass="Board Part" Cgroup="IPS" Csub="ips2050h" Cversion="1.1.0" condition="ONLY_IPS2050H" maxInstances="1">
+            <description>Part driver for ips2050h</description>
+            <files>
+                <file category="source" name="Drivers/BSP/Components/ips2050h/ips2050h.c"/>
+                <file category="header" name="Drivers/BSP/Components/ips2050h/ips2050h.h"/>
+            </files>
+        </component>
+        <component Cclass="Board Part" Cgroup="IPS" Csub="ips2050h-32" Cversion="1.1.0" condition="ONLY_IPS2050H_32" maxInstances="1">
+            <description>Part driver for ips2050h-32</description>
+            <files>
+                <file category="source" name="Drivers/BSP/Components/ips2050h_32/ips2050h_32.c"/>
+                <file category="header" name="Drivers/BSP/Components/ips2050h_32/ips2050h_32.h"/>
+            </files>
+        </component>
+        <component Cclass="Board Part" Cgroup="IPS" Csub="ips1025h" Cversion="1.1.0" condition="ONLY_IPS1025H" maxInstances="1">
+            <description>Part driver for ips1025h</description>
+            <files>
+                <file category="source" name="Drivers/BSP/Components/ips1025h/ips1025h.c"/>
+                <file category="header" name="Drivers/BSP/Components/ips1025h/ips1025h.h"/>
+            </files>
+        </component>
+        <component Cclass="Board Part" Cgroup="IPS" Csub="ips1025h-32" Cversion="1.1.0" condition="ONLY_IPS1025H_32" maxInstances="1">
+            <description>Part driver for ips1025h-32</description>
+            <files>
+                <file category="source" name="Drivers/BSP/Components/ips1025h_32/ips1025h_32.c"/>
+                <file category="header" name="Drivers/BSP/Components/ips1025h_32/ips1025h_32.h"/>
+            </files>
+        </component>
+        <component Cclass="Board Part" Cgroup="IPS" Csub="ips4260l" Cversion="1.1.0" condition="ONLY_IPS4260L" maxInstances="1">
+            <description>Part driver for ips4260l</description>
+            <files>
+                <file category="source" name="Drivers/BSP/Components/ips4260l/ips4260l.c"/>
+                <file category="header" name="Drivers/BSP/Components/ips4260l/ips4260l.h"/>
+            </files>
+        </component>
+        <component Cclass="Board Part" Cgroup="IPS" Csub="ips160hf" Cversion="1.1.0" condition="ONLY_IPS160HF" maxInstances="1">
+            <description>Part driver for ips160hf</description>
+            <files>
+                <file category="source" name="Drivers/BSP/Components/ips160hf/ips160hf.c"/>
+                <file category="header" name="Drivers/BSP/Components/ips160hf/ips160hf.h"/>
+            </files>
+        </component>
+        <component Cclass="Board Part" Cgroup="IPS" Csub="ips161hf" Cversion="1.1.0" condition="ONLY_IPS161HF" maxInstances="1">
+            <description>Part driver for ips161hf</description>
+            <files>
+                <file category="source" name="Drivers/BSP/Components/ips161hf/ips161hf.c"/>
+                <file category="header" name="Drivers/BSP/Components/ips161hf/ips161hf.h"/>
+            </files>
+        </component>
+        <component Cclass="Board Part" Cgroup="IPS" Csub="iso808-1" Cversion="1.1.0" condition="ONLY_ISO808_1" maxInstances="1">
+            <description>Part driver for iso808-1</description>
+            <files>
+                <file category="source" name="Drivers/BSP/Components/iso808_1/iso808_1.c"/>
+                <file category="header" name="Drivers/BSP/Components/iso808_1/iso808_1.h"/>
+            </files>
+        </component>
+        <component Cclass="Board Part" Cgroup="IPS" Csub="iso808a-1" Cversion="1.1.0" condition="ONLY_ISO808A_1" maxInstances="1">
+            <description>Part driver for iso808a-1</description>
+            <RTE_Components_h>#define ISO_808A_1</RTE_Components_h>
+            <files>
+                <file category="source" name="Drivers/BSP/Components/iso808a_1/iso808a_1.c"/>
+                <file category="header" name="Drivers/BSP/Components/iso808a_1/iso808a_1.h"/>
+            </files>
+        </component>
+        <component Cclass="Board Part" Cgroup="IPS" Csub="ips8200hq" Cversion="1.1.0" condition="ONLY_IPS8200HQ" maxInstances="1">
+            <description>Part driver for ips8200hq</description>
+            <RTE_Components_h>#define IPS_8200HQ</RTE_Components_h>
+            <files>
+                <file category="source" name="Drivers/BSP/Components/ips8200hq/ips8200hq.c"/>
+                <file category="header" name="Drivers/BSP/Components/ips8200hq/ips8200hq.h"/>
+            </files>
+        </component>
+        <component Cclass="Board Part" Cgroup="IPS" Csub="ips8200hq-1" Cversion="1.1.0" condition="ONLY_IPS8200HQ_1" maxInstances="1">
+            <description>Part driver for ips8200hq-1</description>
+            <RTE_Components_h>#define IPS_8200HQ_1</RTE_Components_h>
+            <files>
+                <file category="source" name="Drivers/BSP/Components/ips8200hq_1/ips8200hq_1.c"/>
+                <file category="header" name="Drivers/BSP/Components/ips8200hq_1/ips8200hq_1.h"/>
+            </files>
+        </component>
+        <component Cclass="Board Part" Cgroup="IPS" Csub="ips8160hq-1" Cversion="1.1.0" condition="ONLY_IPS8160HQ_1" maxInstances="1">
+            <description>Part driver for ips8160hq-1</description>
+            <files>
+                <file category="source" name="Drivers/BSP/Components/ips8160hq_1/ips8160hq_1.c"/>
+                <file category="header" name="Drivers/BSP/Components/ips8160hq_1/ips8160hq_1.h"/>
+            </files>
+        </component>
+        <component Cclass="Board Part" Cgroup="IPS" Csub="iso8200aq" Cversion="1.0.0" condition="ONLY_ISO8200AQ" maxInstances="1">
+            <description>Part driver for iso8200aq</description>
+            <RTE_Components_h>#define ISO_8200AQ</RTE_Components_h>
+            <files>
+                <file category="source" name="Drivers/BSP/Components/iso8200aq/iso8200aq.c"/>
+                <file category="header" name="Drivers/BSP/Components/iso8200aq/iso8200aq.h"/>
+            </files>
+        </component>
+        <component Cclass="Board Part" Cgroup="IPS" Csub="ips4140hq" Cversion="1.0.0" condition="ONLY_IPS4140HQ" maxInstances="1">
+            <description>Part driver for ips4140hq</description>
+            <files>
+                <file category="source" name="Drivers/BSP/Components/ips4140hq/ips4140hq.c"/>
+                <file category="header" name="Drivers/BSP/Components/ips4140hq/ips4140hq.h"/>
+            </files>
+        </component>
+        <component Cclass="Board Part" Cgroup="IPS" Csub="ips4140hq-1" Cversion="1.0.0" condition="ONLY_IPS4140HQ_1" maxInstances="1">
+            <description>Part driver for ips4140hq-1</description>
+            <files>
+                <file category="source" name="Drivers/BSP/Components/ips4140hq_1/ips4140hq_1.c"/>
+                <file category="header" name="Drivers/BSP/Components/ips4140hq_1/ips4140hq_1.h"/>
+            </files>
+        </component>
+        <component Cclass="Board Part" Cgroup="IPS" Csub="ips1050lq" Cversion="1.0.0" condition="ONLY_IPS1050LQ" maxInstances="1">
+            <description>Part driver for ips1050lq</description>
+            <files>
+                <file category="source" name="Drivers/BSP/Components/ips1050lq/ips1050lq.c"/>
+                <file category="header" name="Drivers/BSP/Components/ips1050lq/ips1050lq.h"/>
+            </files>
+        </component>
+        <component Cclass="Extension Board" Cgroup="OUT01A2" Csub="OUT" Cversion="1.1.0" condition="ONLY_OUT01A2" maxInstances="1">
+            <description>Driver for X-NUCLEO-OUT01A2</description>
+            <RTE_Components_h>#define OUT_01</RTE_Components_h>
+            <files>
+                <file category="source" name="Drivers/BSP/OUT01A2/out01a2.c"/>
+                <file category="header" name="Drivers/BSP/OUT01A2/out01a2.h"/>
+                <file category="source" name="Drivers/BSP/OUT01A2/out01a2_bus.c"/>
+                <file category="header" name="Drivers/BSP/OUT01A2/out01a2_bus.h"/>
+                <file category="header" name="Drivers/BSP/OUT01A2/out01_error_code.h"/>
+            </files>
+        </component>
+        <component Cclass="Extension Board" Cgroup="OUT02A1" Csub="OUT" Cversion="1.0.0" condition="ONLY_OUT02A1" maxInstances="1">
+            <description>Driver for X-NUCLEO-OUT02A1</description>
+            <RTE_Components_h>#define OUT_02</RTE_Components_h>
+            <files>
+                <file category="source" name="Drivers/BSP/OUT02A1/out02a1.c"/>
+                <file category="header" name="Drivers/BSP/OUT02A1/out02a1.h"/>
+                <file category="source" name="Drivers/BSP/OUT02A1/out02a1_bus.c"/>
+                <file category="header" name="Drivers/BSP/OUT02A1/out02a1_bus.h"/>
+                <file category="header" name="Drivers/BSP/OUT02A1/out02_error_code.h"/>
+            </files>
+        </component>
+        <component Cclass="Extension Board" Cgroup="OUT03A1" Csub="OUT" Cversion="1.1.0" condition="ONLY_OUT03A1" maxInstances="1">
+            <description>Driver for X-NUCLEO-OUT03A1</description>
+            <RTE_Components_h>#define OUT_03</RTE_Components_h>
+            <files>
+                <file category="source" name="Drivers/BSP/OUT03A1/out03a1.c"/>
+                <file category="header" name="Drivers/BSP/OUT03A1/out03a1.h"/>
+                <file category="source" name="Drivers/BSP/OUT03A1/out03a1_bus.c"/>
+                <file category="header" name="Drivers/BSP/OUT03A1/out03a1_bus.h"/>
+                <file category="header" name="Drivers/BSP/OUT03A1/out03_error_code.h"/>
+            </files>
+        </component>
+        <component Cclass="Extension Board" Cgroup="OUT04A1" Csub="OUT" Cversion="1.1.0" condition="ONLY_OUT04A1" maxInstances="1">
+            <description>Driver for X-NUCLEO-OUT04A1</description>
+            <RTE_Components_h>#define OUT_04</RTE_Components_h>
+            <files>
+                <file category="source" name="Drivers/BSP/OUT04A1/out04a1.c"/>
+                <file category="header" name="Drivers/BSP/OUT04A1/out04a1.h"/>
+                <file category="source" name="Drivers/BSP/OUT04A1/out04a1_bus.c"/>
+                <file category="header" name="Drivers/BSP/OUT04A1/out04a1_bus.h"/>
+                <file category="header" name="Drivers/BSP/OUT04A1/out04_error_code.h"/>
+            </files>
+        </component>
+        <component Cclass="Extension Board" Cgroup="OUT05A1" Csub="OUT" Cversion="1.1.0" condition="ONLY_OUT05A1" maxInstances="1">
+            <description>Driver for X-NUCLEO-OUT05A1</description>
+            <RTE_Components_h>#define OUT_05</RTE_Components_h>
+            <files>
+                <file category="source" name="Drivers/BSP/OUT05A1/out05a1.c"/>
+                <file category="header" name="Drivers/BSP/OUT05A1/out05a1.h"/>
+                <file category="source" name="Drivers/BSP/OUT05A1/out05a1_bus.c"/>
+                <file category="header" name="Drivers/BSP/OUT05A1/out05a1_bus.h"/>
+                <file category="header" name="Drivers/BSP/OUT05A1/out05_error_code.h"/>
+            </files>
+        </component>
+        <component Cclass="Extension Board" Cgroup="OUT06A1" Csub="OUT" Cversion="1.1.0" condition="ONLY_OUT06A1" maxInstances="1">
+            <description>Driver for X-NUCLEO-OUT06A1</description>
+            <RTE_Components_h>#define OUT_06</RTE_Components_h>
+            <files>
+                <file category="source" name="Drivers/BSP/OUT06A1/out06a1.c"/>
+                <file category="header" name="Drivers/BSP/OUT06A1/out06a1.h"/>
+                <file category="source" name="Drivers/BSP/OUT06A1/out06a1_bus.c"/>
+                <file category="header" name="Drivers/BSP/OUT06A1/out06a1_bus.h"/>
+                <file category="header" name="Drivers/BSP/OUT06A1/out06_error_code.h"/>
+            </files>
+        </component>
+        <component Cclass="Extension Board" Cgroup="OUT07A1" Csub="OUT" Cversion="1.1.0" condition="ONLY_OUT07A1" maxInstances="1">
+            <description>Driver for X-NUCLEO-OUT07A1</description>
+            <RTE_Components_h>#define OUT_07</RTE_Components_h>
+            <files>
+                <file category="source" name="Drivers/BSP/OUT07A1/out07a1.c"/>
+                <file category="header" name="Drivers/BSP/OUT07A1/out07a1.h"/>
+                <file category="source" name="Drivers/BSP/OUT07A1/out07a1_bus.c"/>
+                <file category="header" name="Drivers/BSP/OUT07A1/out07a1_bus.h"/>
+                <file category="header" name="Drivers/BSP/OUT07A1/out07_error_code.h"/>
+            </files>
+        </component>
+        <component Cclass="Extension Board" Cgroup="OUT08A1" Csub="OUT" Cversion="1.1.0" condition="ONLY_OUT08A1" maxInstances="1">
+            <description>Driver for X-NUCLEO-OUT08A1</description>
+            <RTE_Components_h>#define OUT_08</RTE_Components_h>
+            <files>
+                <file category="source" name="Drivers/BSP/OUT08A1/out08a1.c"/>
+                <file category="header" name="Drivers/BSP/OUT08A1/out08a1.h"/>
+                <file category="source" name="Drivers/BSP/OUT08A1/out08a1_bus.c"/>
+                <file category="header" name="Drivers/BSP/OUT08A1/out08a1_bus.h"/>
+                <file category="header" name="Drivers/BSP/OUT08A1/out08_error_code.h"/>
+            </files>
+        </component>
+        <component Cclass="Extension Board" Cgroup="OUT09A1" Csub="OUT" Cversion="1.1.0" condition="ONLY_OUT09A1" maxInstances="1">
+            <description>Driver for X-NUCLEO-OUT09A1</description>
+            <RTE_Components_h>#define OUT_09</RTE_Components_h>
+            <files>
+                <file category="source" name="Drivers/BSP/OUT09A1/out09a1.c"/>
+                <file category="header" name="Drivers/BSP/OUT09A1/out09a1.h"/>
+                <file category="source" name="Drivers/BSP/OUT09A1/out09a1_bus.c"/>
+                <file category="header" name="Drivers/BSP/OUT09A1/out09a1_bus.h"/>
+                <file category="header" name="Drivers/BSP/OUT09A1/out09_error_code.h"/>
+            </files>
+        </component>
+        <component Cclass="Extension Board" Cgroup="OUT10A1" Csub="OUT" Cversion="1.1.0" condition="ONLY_OUT10A1" maxInstances="1">
+            <description>Driver for X-NUCLEO-OUT10A1</description>
+            <RTE_Components_h>#define OUT_10</RTE_Components_h>
+            <files>
+                <file category="source" name="Drivers/BSP/OUT10A1/out10a1.c"/>
+                <file category="header" name="Drivers/BSP/OUT10A1/out10a1.h"/>
+                <file category="source" name="Drivers/BSP/OUT10A1/out10a1_bus.c"/>
+                <file category="header" name="Drivers/BSP/OUT10A1/out10a1_bus.h"/>
+                <file category="header" name="Drivers/BSP/OUT10A1/out10_error_code.h"/>
+            </files>
+        </component>
+        <component Cclass="Extension Board" Cgroup="OUT11A1" Csub="OUT" Cversion="1.1.0" condition="ONLY_OUT11A1" maxInstances="1">
+            <description>Driver for X-NUCLEO-OUT11A1</description>
+            <RTE_Components_h>#define OUT_11</RTE_Components_h>
+            <files>
+                <file category="source" name="Drivers/BSP/OUT11A1/out11a1.c"/>
+                <file category="header" name="Drivers/BSP/OUT11A1/out11a1.h"/>
+                <file category="source" name="Drivers/BSP/OUT11A1/out11a1_bus.c"/>
+                <file category="header" name="Drivers/BSP/OUT11A1/out11a1_bus.h"/>
+                <file category="header" name="Drivers/BSP/OUT11A1/out11_error_code.h"/>
+            </files>
+        </component>
+        <component Cclass="Extension Board" Cgroup="OUT12A1" Csub="OUT" Cversion="1.1.0" condition="ONLY_OUT12A1" maxInstances="1">
+            <description>Driver for X-NUCLEO-OUT12A1</description>
+            <RTE_Components_h>#define OUT_12</RTE_Components_h>
+            <files>
+                <file category="source" name="Drivers/BSP/OUT12A1/out12a1.c"/>
+                <file category="header" name="Drivers/BSP/OUT12A1/out12a1.h"/>
+                <file category="source" name="Drivers/BSP/OUT12A1/out12a1_bus.c"/>
+                <file category="header" name="Drivers/BSP/OUT12A1/out12a1_bus.h"/>
+                <file category="header" name="Drivers/BSP/OUT12A1/out12_error_code.h"/>
+            </files>
+        </component>
+        <component Cclass="Extension Board" Cgroup="OUT13A1" Csub="OUT" Cversion="1.1.0" condition="ONLY_OUT13A1" maxInstances="1">
+            <description>Driver for X-NUCLEO-OUT13A1</description>
+            <RTE_Components_h>#define OUT_13</RTE_Components_h>
+            <files>
+                <file category="source" name="Drivers/BSP/OUT13A1/out13a1.c"/>
+                <file category="header" name="Drivers/BSP/OUT13A1/out13a1.h"/>
+                <file category="source" name="Drivers/BSP/OUT13A1/out13a1_bus.c"/>
+                <file category="header" name="Drivers/BSP/OUT13A1/out13a1_bus.h"/>
+                <file category="header" name="Drivers/BSP/OUT13A1/out13_error_code.h"/>
+            </files>
+        </component>
+        <component Cclass="Extension Board" Cgroup="OUT14A1" Csub="OUT" Cversion="1.1.0" condition="ONLY_OUT14A1" maxInstances="1">
+            <description>Driver for X-NUCLEO-OUT14A1</description>
+            <RTE_Components_h>#define OUT_14</RTE_Components_h>
+            <files>
+                <file category="source" name="Drivers/BSP/OUT14A1/out14a1.c"/>
+                <file category="header" name="Drivers/BSP/OUT14A1/out14a1.h"/>
+                <file category="source" name="Drivers/BSP/OUT14A1/out14a1_bus.c"/>
+                <file category="header" name="Drivers/BSP/OUT14A1/out14a1_bus.h"/>
+                <file category="header" name="Drivers/BSP/OUT14A1/out14_error_code.h"/>
+            </files>
+        </component>
+        <component Cclass="Extension Board" Cgroup="OUT15A1" Csub="OUT" Cversion="1.2.0" condition="ONLY_OUT15A1" maxInstances="1">
+            <description>Driver for X-NUCLEO-OUT15A1</description>
+            <RTE_Components_h>#define OUT_15</RTE_Components_h>
+            <files>
+                <file category="source" name="Drivers/BSP/OUT15A1/out15a1.c"/>
+                <file category="header" name="Drivers/BSP/OUT15A1/out15a1.h"/>
+                <file category="source" name="Drivers/BSP/OUT15A1/out15a1_bus.c"/>
+                <file category="header" name="Drivers/BSP/OUT15A1/out15a1_bus.h"/>
+                <file category="header" name="Drivers/BSP/OUT15A1/out15_error_code.h"/>
+            </files>
+        </component>
+        <component Cclass="Extension Board" Cgroup="OUT16A1" Csub="OUT" Cversion="1.1.0" condition="ONLY_OUT16A1" maxInstances="1">
+            <description>Driver for X-NUCLEO-OUT16A1</description>
+            <RTE_Components_h>#define OUT_16</RTE_Components_h>
+            <files>
+                <file category="source" name="Drivers/BSP/OUT16A1/out16a1.c"/>
+                <file category="header" name="Drivers/BSP/OUT16A1/out16a1.h"/>
+                <file category="source" name="Drivers/BSP/OUT16A1/out16a1_bus.c"/>
+                <file category="header" name="Drivers/BSP/OUT16A1/out16a1_bus.h"/>
+                <file category="header" name="Drivers/BSP/OUT16A1/out16_error_code.h"/>
+            </files>
+        </component>
+        <component Cclass="Extension Board" Cgroup="OUT17A1" Csub="OUT" Cversion="1.1.0" condition="ONLY_OUT17A1" maxInstances="1">
+            <description>Driver for X-NUCLEO-OUT17A1</description>
+            <RTE_Components_h>#define OUT_17</RTE_Components_h>
+            <files>
+                <file category="source" name="Drivers/BSP/OUT17A1/out17a1.c"/>
+                <file category="header" name="Drivers/BSP/OUT17A1/out17a1.h"/>
+                <file category="source" name="Drivers/BSP/OUT17A1/out17a1_bus.c"/>
+                <file category="header" name="Drivers/BSP/OUT17A1/out17a1_bus.h"/>
+                <file category="header" name="Drivers/BSP/OUT17A1/out17_error_code.h"/>
+            </files>
+        </component>
+        <component Cclass="Extension Board" Cgroup="OUT19A1" Csub="OUT" Cversion="1.1.0" condition="ONLY_OUT19A1" maxInstances="1">
+            <description>Driver for X-NUCLEO-OUT19A1</description>
+            <RTE_Components_h>#define OUT_19</RTE_Components_h>
+            <files>
+                <file category="source" name="Drivers/BSP/OUT19A1/out19a1.c"/>
+                <file category="header" name="Drivers/BSP/OUT19A1/out19a1.h"/>
+                <file category="source" name="Drivers/BSP/OUT19A1/out19a1_bus.c"/>
+                <file category="header" name="Drivers/BSP/OUT19A1/out19a1_bus.h"/>
+                <file category="header" name="Drivers/BSP/OUT19A1/out19_error_code.h"/>
+            </files>
+        </component>
+        <component Cclass="Extension Board" Cgroup="DO40A1" Csub="OUT" Cversion="1.0.0" condition="ONLY_DO40A1" maxInstances="1">
+            <description>Driver for X-NUCLEO-DO40A1</description>
+            <RTE_Components_h>#define DO_40</RTE_Components_h>
+            <files>
+                <file category="source" name="Drivers/BSP/DO40A1/do40a1.c"/>
+                <file category="header" name="Drivers/BSP/DO40A1/do40a1.h"/>
+                <file category="source" name="Drivers/BSP/DO40A1/do40a1_bus.c"/>
+                <file category="header" name="Drivers/BSP/DO40A1/do40a1_bus.h"/>
+                <file category="header" name="Drivers/BSP/DO40A1/do40_error_code.h"/>
+            </files>
+        </component>
+        <component Cclass="Extension Board" Cgroup="DO41A1" Csub="OUT" Cversion="1.0.0" condition="ONLY_DO41A1" maxInstances="1">
+            <description>Driver for X-NUCLEO-DO41A1</description>
+            <RTE_Components_h>#define DO_41</RTE_Components_h>
+            <files>
+                <file category="source" name="Drivers/BSP/DO41A1/do41a1.c"/>
+                <file category="header" name="Drivers/BSP/DO41A1/do41a1.h"/>
+                <file category="source" name="Drivers/BSP/DO41A1/do41a1_bus.c"/>
+                <file category="header" name="Drivers/BSP/DO41A1/do41a1_bus.h"/>
+                <file category="header" name="Drivers/BSP/DO41A1/do41_error_code.h"/>
+            </files>
+        </component>
+        <component Cclass="Extension Board" Cgroup="DOL10A1" Csub="OUT" Cversion="1.0.0" condition="ONLY_DOL10A1" maxInstances="1">
+            <description>Driver for X-NUCLEO-DOL10A1</description>
+            <RTE_Components_h>#define DOL_10</RTE_Components_h>
+            <files>
+                <file category="header" name="Drivers/BSP/DOL10A1/dol10_error_code.h"/>
+                <file category="source" name="Drivers/BSP/DOL10A1/dol10a1.c"/>
+                <file category="header" name="Drivers/BSP/DOL10A1/dol10a1.h"/>
+                <file category="source" name="Drivers/BSP/DOL10A1/dol10a1_bus.c"/>
+                <file category="header" name="Drivers/BSP/DOL10A1/dol10a1_bus.h"/>
+            </files>
+        </component>
+        <bundle Cbundle="IPS_application" Cclass="Device" Cversion="3.2.0">
+            <description>examples and applications for X-CUBE-IPS</description>
+            <doc>Documentation/STMicroelectronics.X-CUBE-IPS_GettingStarted.pdf</doc>
+            <component Cgroup="Application" Cvariant="APP_OUTXXA1" condition="OUT_X_A1" isDefaultVariant="true" maxInstances="1">
+                <description>Switches management sample application for X-NUCLEO-OUTxxA1</description>
+                <RTE_Components_h>#define APP_OUTXXA1</RTE_Components_h>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="APP_OUT_RELAY" condition="APP_RELAY_CONDITION" isDefaultVariant="true" maxInstances="1">
+                <description>Switches management sample application for X-NUCLEO-OUT with SPI-only input interface</description>
+                <RTE_Components_h>#define APP_OUT_RELAY</RTE_Components_h>
+                <files/>
+            </component>
+        </bundle>
+    </components>
+</package>

@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<package schemaVersion="1.7.40" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+    <vendor>STMicroelectronics</vendor>
+    <name>X-CUBE-ST60</name>
+    <description>Drivers and sample applications for ST60 Contactless Connectivity transceiver</description>
+    <url>http://sw-center.st.com/packs/x-cube/</url>
+    <license>en.DM00751078.pdf</license>
+    <releases>
+        <release date="2025-09-01" version="1.1.0">
+        - Add Contactless DFU Demo
+        - Add RF Tests Examples
+        - Updates in the BSP and ST60A3 component driver 
+        </release>
+        <release date="2024-09-27" version="1.0.0">Initial Release:
+ - Add 60L1A1 Extension Board
+ - Add 60R1A1 Extension Board
+ - Add Connectivity Applications Examples: USB; I²C and UART
+
+Created with:
+ - STM32PackCreator 3.8.0 (Compliant with CMSIS-Pack version 1.7.7)
+
+Created for : STM32CubeMX 6.13.0</release>
+    </releases>
+    <keywords>
+        <keyword>ARM</keyword>
+        <keyword>Cortex-M</keyword>
+        <keyword>STMicroelectronics</keyword>
+        <keyword>ST60A3</keyword>
+        <keyword>IMPLEMENTED_WITH_STM32CUBEMX</keyword>
+        <keyword>IS_CONTEXT_EXCLUSIVE</keyword>
+        <keyword>DNS_BUSIO_X_CONTEXT_SHARING</keyword>
+        <keyword>DOES_NOT_SUPPORT_SECURE</keyword>
+        <keyword>CUBE_RULES_COMPLIANT</keyword>
+        <keyword>DOES_NOT_SUPPORT_SECURE</keyword>
+    </keywords>
+    <taxonomy>
+        <description Cclass="Device">Device</description>
+        <description Cclass="Board Extension">Board Extension</description>
+    </taxonomy>
+    <conditions>
+        <condition id="Cortex-M Device">
+            <description>Cortex-M processor based device</description>
+            <accept Dcore="Cortex-M0"/>
+            <accept Dcore="Cortex-M0+"/>
+            <accept Dcore="Cortex-M3"/>
+            <accept Dcore="Cortex-M4"/>
+            <accept Dcore="Cortex-M7"/>
+            <accept Dcore="Cortex-M33"/>
+        </condition>
+        <condition id="Do Not Support Secure">
+            <description>Do not support secure</description>
+            <accept Dsecure="TZ-disabled"/>
+            <accept Dsecure="Non-secure"/>
+        </condition>
+        <condition id="Deny all boards but 60L1A1">
+            <description>Deny all extension boards but X-NUCLEO-60L1A1</description>
+            <deny Cclass="Board Extension" Cgroup="60R1A1"/>
+            <require condition="STM32_NotSupported"/>
+        </condition>
+        <condition id="Deny all boards but 60R1A1">
+            <description>Deny all extension boards but X-NUCLEO-60R1A1</description>
+            <deny Cclass="Board Extension" Cgroup="60L1A1"/>
+            <require condition="STM32_NotSupported"/>
+        </condition>
+        <condition id="60L1A1 Condition">
+            <description>Cortex-M Device and board setup (X-NUCLEO-60L1A1)</description>
+            <require condition="Deny all boards but 60L1A1"/>
+            <require condition="Cortex-M Device"/>
+            <require condition="Do Not Support Secure"/>
+            <require condition="Exclude NUCLEO Applications but 60L1A1"/>
+        </condition>
+        <condition id="60L1A1 Examples Condition">
+            <require condition="Deny all boards but 60L1A1"/>
+            <require Cclass="Board Extension" Cgroup="60L1A1"/>
+        </condition>
+        <condition id="60R1A1 Condition">
+            <description>Cortex-M Device and board setup (X-NUCLEO-60R1A1)</description>
+            <require condition="Deny all boards but 60R1A1"/>
+            <require condition="Cortex-M Device"/>
+            <require condition="Do Not Support Secure"/>
+            <require condition="Exclude NUCLEO Applications but 60R1A1"/>
+        </condition>
+        <condition id="60R1A1 Examples Condition">
+            <require condition="Deny all boards but 60R1A1"/>
+            <require Cclass="Board Extension" Cgroup="60R1A1"/>
+        </condition>
+        <condition id="Exclude NUCLEO Applications but 60L1A1">
+            <description>Exclude All nucleo shield applications but 60L1A1 ones</description>
+            <require condition="Exclude Applications for 60R1A1"/>
+            <require condition="STM32_NotSupported"/>
+        </condition>
+        <condition id="Exclude NUCLEO Applications but 60R1A1">
+            <description>Exclude All nucleo shield applications but 60R1A1 ones</description>
+            <require condition="Exclude Applications for 60L1A1"/>
+            <require condition="STM32_NotSupported"/>
+        </condition>
+        <condition id="Exclude Applications for 60L1A1">
+            <deny Cbundle="ST60A3_Applications" Cclass="Device" Cgroup="Application" Cvariant="60L1A1_USB_Tunneling"/>
+            <deny Cbundle="ST60A3_Applications" Cclass="Device" Cgroup="Application" Cvariant="60L1A1_I2C_Tunneling"/>
+            <deny Cbundle="ST60A3_Applications" Cclass="Device" Cgroup="Application" Cvariant="60L1A1_UART_Tunneling"/>
+            <deny Cbundle="ST60A3_Applications" Cclass="Device" Cgroup="Application" Cvariant="60L1A1_Contactless_DFU"/>
+            <deny Cbundle="ST60A3_Applications" Cclass="Device" Cgroup="Application" Cvariant="60L1A1_RF_Test_USB_HS"/>
+            <deny Cbundle="ST60A3_Applications" Cclass="Device" Cgroup="Application" Cvariant="60L1A1_Remote_RF_Test_USB_HS"/>
+            <deny Cbundle="ST60A3_Applications" Cclass="Device" Cgroup="Application" Cvariant="60L1A1_RF_Test_UART"/>
+            <deny Cbundle="ST60A3_Applications" Cclass="Device" Cgroup="Application" Cvariant="60L1A1_Remote_RF_Test_UART"/>
+            <deny Cbundle="ST60A3_Applications" Cclass="Device" Cgroup="Application" Cvariant="60L1A1_xHSETT_RF_Test_USB_HS"/>
+            <require condition="STM32_NotSupported"/>
+        </condition>
+        <condition id="Exclude Applications for 60R1A1">
+            <deny Cbundle="ST60A3_Applications" Cclass="Device" Cgroup="Application" Cvariant="60R1A1_I2C_Tunneling"/>
+            <deny Cbundle="ST60A3_Applications" Cclass="Device" Cgroup="Application" Cvariant="60R1A1_UART_Tunneling"/>
+            <require condition="STM32_NotSupported"/>
+        </condition>
+        <condition id="STM32_NotSupported">
+            <description>Not Supported STM32 MCU</description>
+            <deny Dname="STM32WB0*"/>
+            <deny Dname="STM32WL3*"/>
+        </condition>
+    </conditions>
+    <components>
+        <component Cclass="Board Extension" Cgroup="60L1A1" Cversion="1.1.0" condition="60L1A1 Condition" maxInstances="1">
+            <description>X-NUCLEO-60L1A1 BSP Drivers</description>
+            <files>
+                <file category="source" name="Drivers/BSP/60L1A1/60l1a1.c"/>
+                <file category="header" name="Drivers/BSP/60L1A1/60l1a1.h"/>
+                <file category="header" name="Drivers/BSP/60L1A1/60l1a1_conf_template.h"/>
+                <file category="source" name="Drivers/BSP/Components/st60a3/st60a3.c"/>
+                <file category="header" name="Drivers/BSP/Components/st60a3/st60a3.h"/>
+                <file category="source" name="Drivers/BSP/Components/st60a3/st60a3_reg.c"/>
+                <file category="header" name="Drivers/BSP/Components/st60a3/st60a3_reg.h"/>
+                <file category="source" name="Drivers/BSP/Components/st60a3/st60a3_reg_ota.c"/>
+                <file category="header" name="Drivers/BSP/Components/st60a3/st60a3_reg_ota.h"/>
+            </files>
+        </component>
+        <component Cclass="Board Extension" Cgroup="60R1A1" Cversion="1.0.0" condition="60R1A1 Condition" maxInstances="1">
+            <description>X-NUCLEO-60R1A1 BSP Declaration (no driver)</description>
+            <files>
+                <file category="source" name="Drivers/BSP/60R1A1/60r1a1.c"/>
+                <file category="header" name="Drivers/BSP/60R1A1/60r1a1.h"/>
+                <file category="header" name="Drivers/BSP/60R1A1/60r1a1_conf_template.h"/>
+            </files>
+        </component>
+        <bundle Cbundle="ST60A3_Applications" Cclass="Device" Cversion="1.1.0">
+            <description>Contactless sample applications for ST60A3</description>
+            <doc>Documentation/STMicroelectronics.X-CUBE-ST60_GettingStarted.pdf</doc>
+            <component Cgroup="Application" Cvariant="60L1A1_USB_Tunneling" condition="60L1A1 Examples Condition" maxInstances="1">
+                <description>Contactless USB Tunneling Application</description>
+                <RTE_Components_h>#define _60L1A1_USB_TUNNELING</RTE_Components_h>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="60L1A1_I2C_Tunneling" condition="60L1A1 Examples Condition" maxInstances="1">
+                <description>Contactless I2C Tunneling Application</description>
+                <RTE_Components_h>#define _60L1A1_I2C_TUNNELING</RTE_Components_h>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="60L1A1_UART_Tunneling" condition="60L1A1 Examples Condition" maxInstances="1">
+                <description>Contactless UART Tunneling Application</description>
+                <RTE_Components_h>#define _60L1A1_UART_TUNNELING</RTE_Components_h>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="60L1A1_Contactless_DFU" condition="60L1A1 Examples Condition" maxInstances="1">
+                <description>Contactless DFU Application</description>
+                <RTE_Components_h>#define _60L1A1_CONTACTLESS_DFU</RTE_Components_h>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="60R1A1_I2C_Tunneling" condition="60R1A1 Examples Condition" maxInstances="1">
+                <description>60R1A1 Application for I2C Tunneling.
+Requires I2C_Tunneling Application on 60L1A1 with Master on Remote parameter.</description>
+                <RTE_Components_h>#define _60R1A1_I2C_TUNNELING</RTE_Components_h>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="60R1A1_UART_Tunneling" condition="60R1A1 Examples Condition" maxInstances="1">
+                <description>60R1A1 Application for UART Tunneling.
+Requires UART_Tunneling Application on 60L1A1.</description>
+                <RTE_Components_h>#define _60R1A1_UART_TUNNELING</RTE_Components_h>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="60L1A1_RF_Test_USB_HS" condition="60L1A1 Examples Condition" maxInstances="1">
+                <description>RF Test USB HS</description>
+                <RTE_Components_h>#define _60L1A1_RF_TEST_USB_HS</RTE_Components_h>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="60L1A1_Remote_RF_Test_USB_HS" condition="60L1A1 Examples Condition" maxInstances="1">
+                <description>Remote RF Test USB HS</description>
+                <RTE_Components_h>#define _60L1A1_REMOTE_RF_TEST_USB_HS</RTE_Components_h>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="60L1A1_xHSETT_RF_Test_USB_HS" condition="60L1A1 Examples Condition" maxInstances="1">
+                <description>Remote RF Test USB HS using xHSETT</description>
+                <RTE_Components_h>#define _60L1A1_XHSETT_RF_TEST_USB_HS</RTE_Components_h>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="60L1A1_RF_Test_UART" condition="60L1A1 Examples Condition" maxInstances="1">
+                <description>RF Test UART</description>
+                <RTE_Components_h>#define _60L1A1_RF_TEST_UART</RTE_Components_h>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="60L1A1_Remote_RF_Test_UART" condition="60L1A1 Examples Condition" maxInstances="1">
+                <description>RF Test UART</description>
+                <RTE_Components_h>#define _60L1A1_REMOTE_RF_TEST_UART</RTE_Components_h>
+                <files/>
+            </component>
+        </bundle>
+    </components>
+</package>

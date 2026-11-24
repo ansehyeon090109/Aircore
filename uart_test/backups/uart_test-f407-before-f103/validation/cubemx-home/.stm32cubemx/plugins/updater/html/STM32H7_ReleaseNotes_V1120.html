@@ -1,0 +1,30 @@
+<!DOCTYPE html >
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
+<font color="blue"><b><u>STM32CubeH7 Firmware Package V1.12.0 / 30-October-2024</u></b></font><br><br>
+<b><u>Main Changes</u></b><br>
+<ul style="list-style-type: disc;">
+<li>General updates to fix known defects and enhancements implementation.</li>
+<li>Add new <b>HAL SDIO driver</b>.</li>
+<li>Update <b>USB Host</b> library to new version <b>V3.5.3</b></li>
+<li>Update <b>mbedTLS</b> library to new version <b>V2.16.2 (ST modified 20241010)</b></li>
+<li><b>One change done on the CMSIS Device may require an update on the application code based on CMSIS Device V1.10.5</b></li>
+<ul>
+    <li>Update to enhance <b>RAM(DTCM) reliability</b>. Below the update to be done on user application:</li>
+    <ul>
+        <li>Refer to the new startup and system_stm32h7xx.c template files from CMSIS device (Drivers/CMSIS/Device/ST/STM32H7xx/Source/Templates).</li>
+        <li>Define your system power supply configuration in the toolchain compiler preprocessor:</li>
+        <ul>
+            <li><b>USE_PWR_DIRECT_SMPS_SUPPLY</b> : The SMPS supplies the Vcore Power Domains. The LDO is Bypassed.</li>
+            <li><b>USE_PWR_SMPS_1V8_SUPPLIES_LDO</b> : The SMPS 1.8V output supplies the LDO. The Vcore Power Domain are supplied from the LDO.</li>
+            <li><b>USE_PWR_SMPS_2V5_SUPPLIES_LDO</b> : The SMPS 2.5V output supplies the LDO. The Vcore Power Domain are supplied from the LDO.</li>
+            <li><b>USE_PWR_SMPS_1V8_SUPPLIES_EXT_AND_LDO</b> : The SMPS 1.8V output supplies external circuits and the LDO. The Vcore Power Domains are supplied from the LDO.</li>
+            <li><b>USE_PWR_SMPS_2V5_SUPPLIES_EXT_AND_LDO</b> : The SMPS 2.5V output supplies external circuits and the LDO. The Vcore Power Domains are supplied from the LDO.</li>
+            <li><b>USE_PWR_SMPS_1V8_SUPPLIES_EXT</b> : The SMPS 1.8V output supplies external circuits. The LDO is Bypassed. The Vcore Power Domains are supplied from external source.</li>
+            <li><b>USE_PWR_SMPS_2V5_SUPPLIES_EXT</b> : The SMPS 2.5V output supplies external circuits. The LDO is Bypassed. The Vcore Power Domains are supplied from external source.</li>
+            <li><b>USE_PWR_LDO_SUPPLY</b> : The LDO regulator supplies the Vcore Power Domains. The SMPS regulator is Bypassed.</li>
+            <li><b>USE_PWR_EXTERNAL_SOURCE_SUPPLY</b> :  The SMPS and the LDO are Bypassed. The Vcore Power Domains are supplied from external source.</li>
+        </ul>
+    </ul>
+</ul>
+</ul>
+</html>

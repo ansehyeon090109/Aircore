@@ -1,0 +1,627 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<package schemaVersion="1.7.56" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+    <vendor>STMicroelectronics</vendor>
+    <name>X-CUBE-ST67W61</name>
+    <description>Host applications driving a Wi-Fi® and Bluetooth® LE coprocessor (ST67W611M1).
+</description>
+    <url>http://sw-center.st.com/packs/x-cube/</url>
+    <license>Package_license.html</license>
+    <releases>
+        <release date="2026-04-10" version="1.3.0">Minimal requirements for host device: 48kB RAM and 256kB Flash.
+The X-CUBE-ST67W61 is a set of software components implementing host applications driving a Wi-Fi® and Bluetooth® LE coprocessor (ST67W611M1).
+Please refer to the following wiki pages for details:
+ - https://wiki.st.com/stm32mcu/wiki/Connectivity:Wi-Fi_How_to_use_X_CUBE_ST67W61_STM32CubeMx_pack
+ - https://wiki.st.com/stm32mcu/wiki/Connectivity:Introduction_to_Wi-Fi#X-CUBE-ST67W61</release>
+    </releases>
+    <keywords>
+        <keyword>ARM</keyword>
+        <keyword>Cortex-M</keyword>
+        <keyword>STMicroelectronics</keyword>
+        <keyword>Wireless</keyword>
+        <keyword>Wi-Fi</keyword>
+        <keyword>Bluetooth Low Energy</keyword>
+        <keyword>CUBE_RULES_COMPLIANT</keyword>
+        <keyword>IMPLEMENTED_WITH_STM32CUBEMX</keyword>
+    </keywords>
+    <taxonomy>
+        <description Cclass="Security">Security</description>
+        <description Cclass="Debug">Debug</description>
+        <description Cclass="File System">File System</description>
+        <description Cclass="Data Exchange">Data Exchange</description>
+        <description Cclass="Utility">Utility</description>
+        <description Cclass="Device">Device</description>
+        <description Cclass="Network">Network</description>
+    </taxonomy>
+    <conditions>
+        <condition id="Service API Condition">
+            <description>Condition requested by all applications</description>
+            <require Cbundle="ST67W6X_Network_Driver" Cclass="Network" Cgroup="ServiceAPI"/>
+            <require Cbundle="ST67W6X_Network_Driver" Cclass="Network" Cgroup="ST67 Architecture"/>
+        </condition>
+        <condition id="Service API T01 Condition">
+            <description>Condition requested by all applications</description>
+            <require Cbundle="ST67W6X_Network_Driver" Cclass="Network" Cgroup="ServiceAPI"/>
+            <require Cbundle="ST67W6X_Network_Driver" Cclass="Network" Cgroup="ST67 Architecture" Cvariant="T01"/>
+        </condition>
+        <condition id="AT Driver Condition">
+            <description>Condition requested by Service API</description>
+            <require Cbundle="ST67W6X_Network_Driver" Cclass="Network" Cgroup="ATDriver"/>
+            <require Cbundle="ST67W6X_Network_Driver" Cclass="Network" Cgroup="ST67 Architecture"/>
+        </condition>
+        <condition id="Service shell Condition">
+            <description>Condition requested by Service SHELL</description>
+            <require Cbundle="ST67W6X_Network_Driver" Cclass="Network" Cgroup="Utilities" Csub="Shell"/>
+            <require Cbundle="ST67W6X_Network_Driver" Cclass="Network" Cgroup="ServiceAPI"/>
+            <require Cbundle="ST67W6X_Network_Driver" Cclass="Network" Cgroup="ST67 Architecture"/>
+        </condition>
+        <condition id="Application shell Condition">
+            <description>Condition requested by application with shell support</description>
+            <require Cbundle="ST67W6X_Network_Driver" Cclass="Network" Cgroup="ServiceShell"/>
+            <require Cbundle="ST67W6X_Network_Driver" Cclass="Network" Cgroup="ST67 Architecture"/>
+        </condition>
+        <condition id="Application cjson T01 Condition">
+            <description>Condition requested by application with cJSON support</description>
+            <require Cbundle="cJSON"/>
+            <require Cbundle="ST67W6X_Network_Driver" Cclass="Network" Cgroup="ServiceAPI"/>
+            <require Cbundle="ST67W6X_Network_Driver" Cclass="Network" Cgroup="ST67 Architecture" Cvariant="T01"/>
+        </condition>
+        <condition id="Application cjson Condition">
+            <description>Condition requested by application with cJSON support</description>
+            <require Cbundle="cJSON"/>
+            <require Cbundle="ST67W6X_Network_Driver" Cclass="Network" Cgroup="ServiceAPI"/>
+            <require Cbundle="ST67W6X_Network_Driver" Cclass="Network" Cgroup="ST67 Architecture"/>
+        </condition>
+        <condition id="Utility LPM Condition">
+            <description>Condition requested by Utilities/LPM. It need also TICKLESS flag to be selected in FreeRTOS options</description>
+            <accept Cbundle="Utilities" Cclass="Utility" Cgroup="LPM"/>
+        </condition>
+        <condition id="LwIP Condition">
+            <description>Condition requested by application with LwIP support</description>
+            <require Cbundle="LwIP" Cclass="Network" Cgroup="LwIP"/>
+            <require Cbundle="ST67W6X_Network_Driver" Cclass="Network" Cgroup="ST67 Architecture" Cvariant="T02"/>
+        </condition>
+    </conditions>
+    <components>
+        <bundle Cbundle="Applications" Cclass="Device" Cversion="1.3.0">
+            <description>ST67W6X Applications</description>
+            <doc>Projects/X-CUBE-ST67W61_ProjectsList.html</doc>
+            <component Cgroup="Application" Cvariant="User" condition="Service API Condition" maxInstances="1">
+                <description>User example</description>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="Echo" condition="Service API T01 Condition" maxInstances="1">
+                <description>Echo example</description>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="WiFi_Commissioning" condition="Service API Condition" maxInstances="1">
+                <description>WiFi_Commissioning example</description>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="CLI" condition="Application shell Condition" maxInstances="1">
+                <description>CLI example</description>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="BLE_Commissioning" condition="Service API T01 Condition" maxInstances="1">
+                <description>BLE_Commissioning example</description>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="BLE_p2pClient" condition="Service API T01 Condition" maxInstances="1">
+                <description>BLE_p2pClient example</description>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="BLE_p2pServer" condition="Service API T01 Condition" maxInstances="1">
+                <description>BLE_p2pServer example</description>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="FOTA" condition="Application cjson Condition" maxInstances="1">
+                <description>FOTA example</description>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="HTTP_Server" condition="Service API Condition" maxInstances="1">
+                <description>HTTP_Server example</description>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="HTTPS_Client" condition="Application cjson T01 Condition" maxInstances="1">
+                <description>HTTPS_Client example</description>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="MQTT" condition="Application cjson Condition" maxInstances="1">
+                <description>MQTT example</description>
+                <files/>
+            </component>
+            <component Cgroup="Freertos_Tickless" condition="Utility LPM Condition" maxInstances="1">
+                <description>Generate Low Power Control file</description>
+                <files/>
+            </component>
+        </bundle>
+        <bundle Cbundle="ST67W6X_Network_Driver" Cclass="Network" Cversion="1.3.0">
+            <description>Middleware controlling the X-NUCLEO-67W61M1 Expansion board. It exposes an API corresponding to the Network interface on Wi-Fi or BLE protocols</description>
+            <doc>Middlewares/ST/ST67W6X_Network_Driver/Release_Notes.html</doc>
+            <component Cgroup="ST67 Architecture" Cvariant="T01" isDefaultVariant="true" maxInstances="1">
+                <description>ST67 Architecture selector</description>
+                <files/>
+            </component>
+            <component Cgroup="ST67 Architecture" Cvariant="T02" condition="LwIP Condition" maxInstances="1">
+                <description>ST67 Architecture selector</description>
+                <files/>
+            </component>
+            <component Cgroup="ATDriver" maxInstances="1">
+                <description>SPI driver and ST67W611M1 AT commands parser</description>
+                <files>
+                    <file category="header" name="Middlewares/ST/ST67W6X_Network_Driver/Api/common_parser.h"/>
+                    <file category="source" name="Middlewares/ST/ST67W6X_Network_Driver/Driver/W61_at/modem_cmd_handler.c"/>
+                    <file category="header" name="Middlewares/ST/ST67W6X_Network_Driver/Driver/W61_at/modem_cmd_handler.h"/>
+                    <file category="header" name="Middlewares/ST/ST67W6X_Network_Driver/Driver/W61_at/w61_at_api.h"/>
+                    <file category="source" name="Middlewares/ST/ST67W6X_Network_Driver/Driver/W61_at/w61_at_ble.c"/>
+                    <file category="source" name="Middlewares/ST/ST67W6X_Network_Driver/Driver/W61_at/w61_at_common.c"/>
+                    <file category="header" name="Middlewares/ST/ST67W6X_Network_Driver/Driver/W61_at/w61_at_common.h"/>
+                    <file category="header" name="Middlewares/ST/ST67W6X_Network_Driver/Driver/W61_at/w61_at_internal.h"/>
+                    <file category="source" name="Middlewares/ST/ST67W6X_Network_Driver/Driver/W61_at/w61_at_mqtt.c"/>
+                    <file category="source" name="Middlewares/ST/ST67W6X_Network_Driver/Driver/W61_at/w61_at_net.c"/>
+                    <file category="source" name="Middlewares/ST/ST67W6X_Network_Driver/Driver/W61_at/w61_at_sys.c"/>
+                    <file category="source" name="Middlewares/ST/ST67W6X_Network_Driver/Driver/W61_at/w61_at_wifi.c"/>
+                    <file category="header" name="Middlewares/ST/ST67W6X_Network_Driver/Driver/W61_at/w61_default_config.h"/>
+                    <file category="source" name="Middlewares/ST/ST67W6X_Network_Driver/Driver/W61_bus/spi_iface.c"/>
+                    <file category="header" name="Middlewares/ST/ST67W6X_Network_Driver/Driver/W61_bus/spi_port.h"/>
+                    <file category="header" name="Middlewares/ST/ST67W6X_Network_Driver/Driver/W61_bus/spi_iface.h"/>
+                    <file category="source" name="Middlewares/ST/ST67W6X_Network_Driver/Driver/W61_bus/w61_io.c"/>
+                    <file category="header" name="Middlewares/ST/ST67W6X_Network_Driver/Driver/W61_bus/w61_io.h"/>
+                    <file category="source" name="Middlewares/ST/ST67W6X_Network_Driver/Utils/Misc/common_parser.c"/>
+                </files>
+            </component>
+            <component Cgroup="ServiceAPI" condition="AT Driver Condition" maxInstances="1">
+                <description>APIs to abstract ST67W611M1 AT driver as with management layer (state machines, etc)</description>
+                <files>
+                    <file category="header" name="Middlewares/ST/ST67W6X_Network_Driver/Api/logging.h"/>
+                    <file category="header" name="Middlewares/ST/ST67W6X_Network_Driver/Api/logging_levels.h"/>
+                    <file category="header" name="Middlewares/ST/ST67W6X_Network_Driver/Api/shell.h"/>
+                    <file category="header" name="Middlewares/ST/ST67W6X_Network_Driver/Api/shell_default_config.h"/>
+                    <file category="header" name="Middlewares/ST/ST67W6X_Network_Driver/Api/w6x_api.h"/>
+                    <file category="header" name="Middlewares/ST/ST67W6X_Network_Driver/Api/w6x_types.h"/>
+                    <file category="header" name="Middlewares/ST/ST67W6X_Network_Driver/Api/w6x_version.h"/>
+                    <file category="header" name="Middlewares/ST/ST67W6X_Network_Driver/Api/w6x_legacy.h"/>
+                    <file category="source" name="Middlewares/ST/ST67W6X_Network_Driver/Core/w6x_ble.c"/>
+                    <file category="header" name="Middlewares/ST/ST67W6X_Network_Driver/Core/w6x_default_config.h"/>
+                    <file category="source" name="Middlewares/ST/ST67W6X_Network_Driver/Core/w6x_http.c"/>
+                    <file category="header" name="Middlewares/ST/ST67W6X_Network_Driver/Core/w6x_internal.h"/>
+                    <file category="source" name="Middlewares/ST/ST67W6X_Network_Driver/Core/w6x_mqtt.c"/>
+                    <file category="source" name="Middlewares/ST/ST67W6X_Network_Driver/Core/w6x_net.c"/>
+                    <file category="source" name="Middlewares/ST/ST67W6X_Network_Driver/Core/w6x_netif.c"/>
+                    <file category="source" name="Middlewares/ST/ST67W6X_Network_Driver/Core/w6x_sys.c"/>
+                    <file category="source" name="Middlewares/ST/ST67W6X_Network_Driver/Core/w6x_wifi.c"/>
+                </files>
+            </component>
+            <component Cgroup="ServiceShell" condition="Service shell Condition" maxInstances="1">
+                <description>Shell support for API call via CLI commands</description>
+                <files>
+                    <file category="source" name="Middlewares/ST/ST67W6X_Network_Driver/Core/w6x_ble_shell.c"/>
+                    <file category="source" name="Middlewares/ST/ST67W6X_Network_Driver/Core/w6x_mqtt_shell.c"/>
+                    <file category="source" name="Middlewares/ST/ST67W6X_Network_Driver/Core/w6x_net_shell.c"/>
+                    <file category="source" name="Middlewares/ST/ST67W6X_Network_Driver/Core/w6x_sys_shell.c"/>
+                    <file category="source" name="Middlewares/ST/ST67W6X_Network_Driver/Core/w6x_wifi_shell.c"/>
+                </files>
+            </component>
+            <component Cgroup="Utilities" Csub="Logging" maxInstances="1">
+                <description>Logging management over communication interface (UART, ITM)</description>
+                <files>
+                    <file category="header" name="Middlewares/ST/ST67W6X_Network_Driver/Api/logging.h"/>
+                    <file category="header" name="Middlewares/ST/ST67W6X_Network_Driver/Api/logging_levels.h"/>
+                    <file category="source" name="Middlewares/ST/ST67W6X_Network_Driver/Utils/Logging/logging.c"/>
+                </files>
+            </component>
+            <component Cgroup="Utilities" Csub="Shell" maxInstances="1">
+                <description>Command line component to interact on UART</description>
+                <files>
+                    <file category="header" name="Middlewares/ST/ST67W6X_Network_Driver/Api/shell.h"/>
+                    <file category="header" name="Middlewares/ST/ST67W6X_Network_Driver/Api/shell_default_config.h"/>
+                    <file category="source" name="Middlewares/ST/ST67W6X_Network_Driver/Utils/Shell/shell.c"/>
+                    <file category="source" name="Middlewares/ST/ST67W6X_Network_Driver/Utils/Shell/shell_freertos.c"/>
+                    <file category="header" name="Middlewares/ST/ST67W6X_Network_Driver/Utils/Shell/shell_internal.h"/>
+                </files>
+            </component>
+            <component Cgroup="Utilities" Csub="Statistics" condition="Service API Condition" maxInstances="1">
+                <description>Performance measurement (statistic about memory and tasks usage, iperf, etc)</description>
+                <files>
+                    <file category="header" name="Middlewares/ST/ST67W6X_Network_Driver/Api/iperf.h"/>
+                    <file category="header" name="Middlewares/ST/ST67W6X_Network_Driver/Api/util_mem_perf.h"/>
+                    <file category="header" name="Middlewares/ST/ST67W6X_Network_Driver/Api/util_task_perf.h"/>
+                    <file category="header" name="Middlewares/ST/ST67W6X_Network_Driver/Api/wfa_tg.h"/>
+                    <file category="source" name="Middlewares/ST/ST67W6X_Network_Driver/Utils/Performance/iperf.c"/>
+                    <file category="source" name="Middlewares/ST/ST67W6X_Network_Driver/Utils/Performance/iperf_shell.c"/>
+                    <file category="source" name="Middlewares/ST/ST67W6X_Network_Driver/Utils/Performance/util_mem_perf.c"/>
+                    <file category="source" name="Middlewares/ST/ST67W6X_Network_Driver/Utils/Performance/util_task_perf.c"/>
+                    <file category="source" name="Middlewares/ST/ST67W6X_Network_Driver/Utils/Performance/wfa_tg.c"/>
+                </files>
+            </component>
+        </bundle>
+        <bundle Cbundle="TraceRecorder" Cclass="Debug" Cvendor="Percepio" Cversion="4.10.3">
+            <description>Trace Recorder source code for use with Percepio's Tracealyzer.</description>
+            <doc>Middlewares/Third_Party/TraceRecorder/README.md</doc>
+            <component Cgroup="TraceRecorder" maxInstances="1">
+                <description>Trace Recorder source code for use with Percepio's Tracealyzer.</description>
+                <files>
+                    <file category="source" name="Middlewares/Third_Party/TraceRecorder/trcAssert.c"/>
+                    <file category="source" name="Middlewares/Third_Party/TraceRecorder/trcCounter.c"/>
+                    <file category="source" name="Middlewares/Third_Party/TraceRecorder/trcDependency.c"/>
+                    <file category="source" name="Middlewares/Third_Party/TraceRecorder/trcDiagnostics.c"/>
+                    <file category="source" name="Middlewares/Third_Party/TraceRecorder/trcEntryTable.c"/>
+                    <file category="source" name="Middlewares/Third_Party/TraceRecorder/trcError.c"/>
+                    <file category="source" name="Middlewares/Third_Party/TraceRecorder/trcEvent.c"/>
+                    <file category="source" name="Middlewares/Third_Party/TraceRecorder/trcEventBuffer.c"/>
+                    <file category="source" name="Middlewares/Third_Party/TraceRecorder/trcExtension.c"/>
+                    <file category="source" name="Middlewares/Third_Party/TraceRecorder/trcHardwarePort.c"/>
+                    <file category="source" name="Middlewares/Third_Party/TraceRecorder/trcHeap.c"/>
+                    <file category="source" name="Middlewares/Third_Party/TraceRecorder/trcInternalEventBuffer.c"/>
+                    <file category="source" name="Middlewares/Third_Party/TraceRecorder/trcInterval.c"/>
+                    <file category="source" name="Middlewares/Third_Party/TraceRecorder/trcISR.c"/>
+                    <file category="source" name="Middlewares/Third_Party/TraceRecorder/trcMultiCoreEventBuffer.c"/>
+                    <file category="source" name="Middlewares/Third_Party/TraceRecorder/trcObject.c"/>
+                    <file category="source" name="Middlewares/Third_Party/TraceRecorder/trcPrint.c"/>
+                    <file category="source" name="Middlewares/Third_Party/TraceRecorder/trcRunnable.c"/>
+                    <file category="source" name="Middlewares/Third_Party/TraceRecorder/trcSnapshotRecorder.c"/>
+                    <file category="source" name="Middlewares/Third_Party/TraceRecorder/trcStackMonitor.c"/>
+                    <file category="source" name="Middlewares/Third_Party/TraceRecorder/trcStateMachine.c"/>
+                    <file category="source" name="Middlewares/Third_Party/TraceRecorder/trcStaticBuffer.c"/>
+                    <file category="source" name="Middlewares/Third_Party/TraceRecorder/trcStreamingRecorder.c"/>
+                    <file category="source" name="Middlewares/Third_Party/TraceRecorder/trcString.c"/>
+                    <file category="source" name="Middlewares/Third_Party/TraceRecorder/trcTask.c"/>
+                    <file category="source" name="Middlewares/Third_Party/TraceRecorder/trcTimestamp.c"/>
+                    <file category="source" name="Middlewares/Third_Party/TraceRecorder/kernelports/FreeRTOS/trcKernelPort.c"/>
+                    <file category="source" name="Middlewares/Third_Party/TraceRecorder/streamports/RingBuffer/trcStreamPort.c"/>
+                    <file category="include" name="Middlewares/Third_Party/TraceRecorder/include/"/>
+                    <file category="include" name="Middlewares/Third_Party/TraceRecorder/kernelports/FreeRTOS/include/"/>
+                    <file category="include" name="Middlewares/Third_Party/TraceRecorder/streamports/RingBuffer/include/"/>
+                </files>
+            </component>
+        </bundle>
+        <bundle Cbundle="cJSON" Cclass="Data Exchange" Cvendor="NoVendor" Cversion="1.7.19">
+            <description>Ultralightweight JSON parser</description>
+            <doc>Middlewares/Third_Party/cJSON/README.md</doc>
+            <component Cgroup="cJSON" maxInstances="1">
+                <description>Ultralightweight JSON parser</description>
+                <files>
+                    <file category="source" name="Middlewares/Third_Party/cJSON/cJSON.c"/>
+                    <file category="header" name="Middlewares/Third_Party/cJSON/cJSON.h"/>
+                </files>
+            </component>
+        </bundle>
+        <bundle Cbundle="LittleFS" Cclass="File System" Cvendor="Arm" Cversion="2.11.1">
+            <description>Little fail-safe filesystem designed for microcontrollers</description>
+            <doc>Middlewares/Third_Party/littlefs/README.md</doc>
+            <component Cgroup="LittleFS" maxInstances="1">
+                <description>Little fail-safe filesystem designed for microcontrollers</description>
+                <files>
+                    <file category="source" name="Middlewares/Third_Party/littlefs/lfs.c"/>
+                    <file category="header" name="Middlewares/Third_Party/littlefs/lfs.h"/>
+                    <file category="source" name="Middlewares/Third_Party/littlefs/lfs_util.c"/>
+                    <file category="header" name="Middlewares/Third_Party/littlefs/lfs_util.h"/>
+                </files>
+            </component>
+        </bundle>
+        <bundle Cbundle="Utilities" Cclass="Utility" Cversion="1.4.2">
+            <description>Utilities like LowPowerManager</description>
+            <doc>Utilities/lpm/tiny_lpm/Release_Notes.html</doc>
+            <component Cgroup="LPM" Csub="Tiny LPM" maxInstances="1">
+                <description>The code source delivered is an utility to help customer to build a low power application</description>
+                <files>
+                    <file category="source" name="Utilities/lpm/tiny_lpm/stm32_lpm.c"/>
+                    <file category="header" name="Utilities/lpm/tiny_lpm/stm32_lpm.h"/>
+                </files>
+            </component>
+        </bundle>
+        <bundle Cbundle="LwIP" Cclass="Network" Cvendor="SICS" Cversion="2.2.1">
+            <description>Small independent implementation of the TCP/IP protocol suite</description>
+            <doc>Middlewares/Third_Party/LwIP/README</doc>
+            <component Cgroup="LwIP" maxInstances="1">
+                <description>Small independent implementation of the TCP/IP protocol suite</description>
+                <files>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/api/api_lib.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/api/api_msg.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/api/err.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/api/if_api.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/api/netbuf.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/api/netdb.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/api/netifapi.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/api/sockets.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/api/tcpip.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/ipv4/acd.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/ipv4/autoip.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/ipv4/dhcp.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/ipv4/etharp.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/ipv4/icmp.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/ipv4/igmp.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/ipv4/ip4.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/ipv4/ip4_addr.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/ipv4/ip4_frag.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/ipv6/dhcp6.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/ipv6/ethip6.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/ipv6/icmp6.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/ipv6/inet6.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/ipv6/ip6.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/ipv6/ip6_addr.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/ipv6/ip6_frag.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/ipv6/mld6.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/ipv6/nd6.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/altcp.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/altcp_tcp.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/def.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/dns.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/inet_chksum.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/init.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/ip.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/ipv4/acd.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/ipv4/autoip.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/ipv4/dhcp.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/ipv4/etharp.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/ipv4/icmp.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/ipv4/igmp.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/ipv4/ip4.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/ipv4/ip4_addr.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/ipv4/ip4_frag.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/ipv6/dhcp6.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/ipv6/ethip6.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/ipv6/icmp6.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/ipv6/inet6.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/ipv6/ip6.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/ipv6/ip6_addr.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/ipv6/ip6_frag.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/ipv6/mld6.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/ipv6/nd6.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/mem.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/memp.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/netif.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/pbuf.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/raw.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/stats.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/sys.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/tcp.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/tcp_in.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/tcp_out.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/timeouts.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/core/udp.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/netif/bridgeif.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/netif/bridgeif_fdb.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/netif/ethernet.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/netif/ppp/auth.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/netif/ppp/ccp.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/netif/ppp/chap-md5.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/netif/ppp/chap-new.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/netif/ppp/chap_ms.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/netif/ppp/demand.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/netif/ppp/eap.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/netif/ppp/ecp.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/netif/ppp/eui64.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/netif/ppp/fsm.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/netif/ppp/ipcp.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/netif/ppp/ipv6cp.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/netif/ppp/lcp.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/netif/ppp/magic.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/netif/ppp/mppe.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/netif/ppp/multilink.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/netif/ppp/ppp.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/netif/ppp/pppapi.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/netif/ppp/pppcrypt.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/netif/ppp/pppoe.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/netif/ppp/pppol2tp.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/netif/ppp/pppos.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/netif/ppp/upap.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/netif/ppp/utils.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/netif/ppp/vj.c"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/src/netif/slipif.c"/>
+                    <file category="include" name="Middlewares/Third_Party/LwIP/src/include/"/>
+                    <file category="include" name="Middlewares/Third_Party/LwIP/src/include/netif/"/>
+                    <file category="include" name="Middlewares/Third_Party/LwIP/src/include/netif/ppp/"/>
+                    <file category="include" name="Middlewares/Third_Party/LwIP/src/include/lwip/"/>
+                    <file category="include" name="Middlewares/Third_Party/LwIP/src/include/lwip/priv/"/>
+                    <file category="include" name="Middlewares/Third_Party/LwIP/src/include/lwip/prot/"/>
+                    <file category="include" name="Middlewares/Third_Party/LwIP/src/include/compat/stdc/"/>
+                    <file category="include" name="Middlewares/Third_Party/LwIP/src/include/compat/posix/"/>
+                    <file category="include" name="Middlewares/Third_Party/LwIP/src/include/compat/posix/sys/"/>
+                    <file category="include" name="Middlewares/Third_Party/LwIP/src/include/compat/posix/net/"/>
+                    <file category="include" name="Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa/"/>
+                    <file category="source" name="Middlewares/Third_Party/LwIP/system/OS/sys_arch.c"/>
+                </files>
+            </component>
+        </bundle>
+        <bundle Cbundle="MQTT-C" Cclass="Data Exchange" Cvendor="LiamBindle" Cversion="1.1.6">
+            <description>MQTT client for lightweight publisher-subscriber-based messaging protocol</description>
+            <doc>Middlewares/Third_Party/MQTT-C/README.md</doc>
+            <component Cgroup="MQTT-C" condition="LwIP Condition" maxInstances="1">
+                <description>MQTT client for lightweight publisher-subscriber-based messaging protocol</description>
+                <files>
+                    <file category="header" name="Middlewares/Third_Party/MQTT-C/include/mqtt.h"/>
+                    <file category="header" name="Middlewares/Third_Party/MQTT-C/include/mqtt_pal.h"/>
+                    <file category="source" name="Middlewares/Third_Party/MQTT-C/src/mqtt.c"/>
+                    <file category="source" name="Middlewares/Third_Party/MQTT-C/src/mqtt_pal.c"/>
+                </files>
+            </component>
+        </bundle>
+        <bundle Cbundle="mbedTLS" Cclass="Security" Cvendor="Arm" Cversion="3.6.4">
+            <description>The Mbed cryptography library is a reference implementation of the cryptography interface of the Arm Platform Security Architecture (PSA)</description>
+            <doc>Middlewares/Third_Party/mbedTLS/MBEDTLS_README.md</doc>
+            <component Cgroup="mbedTLS" condition="LwIP Condition" maxInstances="1">
+                <description>The Mbed cryptography library is a reference implementation of the cryptography interface of the Arm Platform Security Architecture (PSA)</description>
+                <files>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/aes.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/asn1parse.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/asn1write.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/base64.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/bignum.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/bignum_core.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/bignum_mod.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/bignum_mod_raw.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/block_cipher.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/camellia.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/ccm.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/cipher.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/cipher_wrap.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/chacha20.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/chachapoly.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/cmac.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/constant_time.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/ctr_drbg.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/debug.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/des.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/dhm.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/ecdh.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/ecdsa.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/ecp.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/ecp_curves.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/ecp_curves_new.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/entropy.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/entropy_poll.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/gcm.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/hmac_drbg.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/hkdf.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/md.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/md5.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/memory_buffer_alloc.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/mps_reader.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/mps_trace.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/nist_kw.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/oid.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/pem.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/pk.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/pk_ecc.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/pk_wrap.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/pkcs5.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/pkparse.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/pkwrite.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/platform.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/platform_util.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/poly1305.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/psa_crypto.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/psa_crypto_aead.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/psa_crypto_cipher.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/psa_crypto_client.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/psa_crypto_driver_wrappers_no_static.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/psa_crypto_ecp.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/psa_crypto_ffdh.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/psa_crypto_hash.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/psa_crypto_mac.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/psa_crypto_pake.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/psa_crypto_rsa.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/psa_crypto_se.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/psa_crypto_slot_management.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/psa_util.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/ripemd160.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/rsa.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/rsa_alt_helpers.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/sha1.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/sha3.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/sha256.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/sha512.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/ssl_debug_helpers_generated.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/ssl_cache.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/ssl_ciphersuites.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/ssl_client.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/ssl_cookie.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/ssl_msg.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/ssl_ticket.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/ssl_tls.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/ssl_tls12_client.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/ssl_tls12_server.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/ssl_tls13_client.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/ssl_tls13_generic.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/ssl_tls13_keys.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/ssl_tls13_server.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/version_features.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/x509.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/x509_create.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/x509_crl.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/x509_crt.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/x509_csr.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/x509write.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/x509write_crt.c"/>
+                    <file category="source" name="Middlewares/Third_Party/mbedTLS/library/x509write_csr.c"/>
+                    <file category="include" name="Middlewares\Third_Party\mbedTLS\include\"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/include/psa/build_info.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/include/psa/crypto.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/include/psa/crypto_adjust_auto_enabled.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/include/psa/crypto_adjust_config_dependencies.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/include/psa/crypto_adjust_config_key_pair_types.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/include/psa/crypto_adjust_config_synonyms.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/include/psa/crypto_builtin_composites.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/include/psa/crypto_builtin_key_derivation.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/include/psa/crypto_builtin_primitives.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/include/psa/crypto_compat.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/include/psa/crypto_config.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/include/psa/crypto_driver_common.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/include/psa/crypto_driver_contexts_composites.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/include/psa/crypto_driver_contexts_key_derivation.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/include/psa/crypto_driver_contexts_primitives.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/include/psa/crypto_extra.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/include/psa/crypto_legacy.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/include/psa/crypto_platform.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/include/psa/crypto_se_driver.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/include/psa/crypto_sizes.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/include/psa/crypto_struct.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/include/psa/crypto_types.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/include/psa/crypto_values.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/aesce.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/aesni.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/alignment.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/base64_internal.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/bignum_core.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/bignum_core_invasive.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/bignum_internal.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/bignum_mod.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/bignum_mod_raw.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/bignum_mod_raw_invasive.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/block_cipher_internal.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/bn_mul.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/check_crypto_config.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/cipher_invasive.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/cipher_wrap.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/common.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/constant_time_impl.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/constant_time_internal.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/ctr.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/debug_internal.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/ecp_internal_alt.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/ecp_invasive.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/entropy_poll.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/lmots.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/md_psa.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/md_wrap.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/mps_common.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/mps_error.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/mps_reader.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/mps_trace.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/padlock.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/pk_internal.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/pk_wrap.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/pkwrite.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/psa_crypto_aead.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/psa_crypto_cipher.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/psa_crypto_core.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/psa_crypto_core_common.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/psa_crypto_driver_wrappers.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/psa_crypto_driver_wrappers_no_static.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/psa_crypto_ecp.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/psa_crypto_ffdh.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/psa_crypto_hash.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/psa_crypto_invasive.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/psa_crypto_its.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/psa_crypto_mac.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/psa_crypto_pake.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/psa_crypto_random_impl.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/psa_crypto_rsa.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/psa_crypto_se.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/psa_crypto_slot_management.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/psa_crypto_storage.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/psa_util_internal.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/rsa_alt_helpers.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/rsa_internal.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/ssl_ciphersuites_internal.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/ssl_client.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/ssl_debug_helpers.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/ssl_misc.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/ssl_tls13_invasive.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/ssl_tls13_keys.h"/>
+                    <file category="header" name="Middlewares/Third_Party/mbedTLS/library/x509_internal.h"/>
+                </files>
+            </component>
+        </bundle>
+    </components>
+</package>

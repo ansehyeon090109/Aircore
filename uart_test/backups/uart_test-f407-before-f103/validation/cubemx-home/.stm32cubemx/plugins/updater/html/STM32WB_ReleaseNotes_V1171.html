@@ -1,0 +1,22 @@
+<!DOCTYPE html >
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
+<font color="blue"><b><u>STM32CubeWB Firmware Package V1.17.1 / 28-July-2023</u></b></font><br>
+<b><u>Main Changes</u></b><br>
+<b>Patch Release for BLE, 802.15.4, Thread and Zigbee updates</b>
+<ul style="list-style-type: disc;">
+	<li><b>CKS </b>updates</li>
+		<ul>Security improvement.</ul>
+	<li><b>BLE </b>updates</li>
+		<ul>Compliancy TCRL 2023-1 with BLE 5.4 certification.</ul>
+		<ul>New BT SIG Certification: [Declaration ID D063070 / QDID 216169] (https://launchstudio.bluetooth.com/ListingDetails/186628).</ul>
+	<li><b>Zigbee </b>updates</li>
+		<ul>In case of FreeRTOS Application, a new mutex is now being used to protect the sending of commands to the M0.</ul>
+	<li><b>Thread </b>updates</li>
+		<ul>Thread Compliant Platform Certification done on current version.</ul>
+	<li><b>MAC 802.15.4 </b>updates</li>
+		<ul>Proprietary MAC Pib Attribute has been introduced to let End Device to enter in sleep mode once MacDataPollReq is acknowledged with empty data pending field information.</ul>
+	<li><b>BLE/Zigbee Dynamic  </b>updates</li>
+		<ul>Corrected an issue on radio access between BLE and Thread that could cause a freeze in the firmware.</ul>
+
+</ul>
+</html>

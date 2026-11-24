@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<package schemaVersion="1.7.7" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+    <vendor>RealThread</vendor>
+    <name>X-CUBE-RT-Thread_Nano</name>
+    <description>RT-Thread Software Components</description>
+    <url>https://download.rt-thread.org/download/cube/</url>
+    <license>License.txt</license>
+    <supportContact>https://www.rt-thread.org</supportContact>
+    <releases>
+        <release date="2025-01-15" url="https://download.rt-thread.org/download/cube/RealThread.X-CUBE-RT-Thread_Nano.4.1.1.pack" version="4.1.1">Major update: Some important updates have been made to issues found in the released version
+
+* Fixed compilation issues caused by different definitions of USART registers in different STM32 families.
+* Fixed the STM32H7 series assembly not found definition issue.
+* The nano version does not support libc adaptation at this time.
+* Added some user configurable macro definitions.
+* This component supports export projects as MDK, STM32 CubeIDE, IAR, please focus on the important notice below!!!
+
+Important note: Using STM32 Cubemx to generate projects under different toolchains, please refer to this document link.
+
+&gt; https://download.rt-thread.org/download/cube/RT-Thread-nano_v4.1.1_Development_Guide.html</release>
+    </releases>
+    <keywords>
+        <keyword>rt-thread</keyword>
+        <keyword>rtthread</keyword>
+        <keyword>rtt</keyword>
+        <keyword>IMPLEMENTED_WITH_STM32CUBEMX</keyword>
+    </keywords>
+    <taxonomy>
+        <description Cclass="RTOS">RT-Thread</description>
+    </taxonomy>
+    <conditions>
+        <condition id="ARM Compiler">
+            <require Tcompiler="ARMCC"/>
+        </condition>
+        <condition id="Cortex-M">
+            <accept Dcore="Cortex-M0"/>
+            <accept Dcore="Cortex-M0+"/>
+            <accept Dcore="Cortex-M3"/>
+            <accept Dcore="Cortex-M4"/>
+            <accept Dcore="Cortex-M7"/>
+            <accept Dcore="Cortex-M33"/>
+            <accept Dcore="Cortex-M23"/>
+        </condition>
+        <condition id="CM0">
+            <description>Cortex-M0 based device</description>
+            <accept Dcore="Cortex-M0"/>
+            <accept Dcore="Cortex-M0+"/>
+        </condition>
+        <condition id="CM3">
+            <description>Cortex-M3 based device</description>
+            <accept Dcore="Cortex-M3"/>
+        </condition>
+        <condition id="CM4">
+            <description>Cortex-M4 based device</description>
+            <accept Dcore="Cortex-M4"/>
+        </condition>
+        <condition id="CM7">
+            <description>Cortex-M7 based device</description>
+            <accept Dcore="Cortex-M7"/>
+        </condition>
+        <condition id="CM0_GCC">
+            <accept Dcore="Cortex-M0"/>
+            <accept Dcore="Cortex-M0+"/>
+            <require Tcompiler="GCC"/>
+        </condition>
+        <condition id="CM0_IAR">
+            <accept Dcore="Cortex-M0"/>
+            <accept Dcore="Cortex-M0+"/>
+            <require Tcompiler="IAR"/>
+        </condition>
+        <condition id="CM0_KEIL">
+            <accept Dcore="Cortex-M0"/>
+            <accept Dcore="Cortex-M0+"/>
+            <require Tcompiler="ARMCC"/>
+        </condition>
+        <condition id="CM3_GCC">
+            <require Dcore="Cortex-M3"/>
+            <require Tcompiler="GCC"/>
+        </condition>
+        <condition id="CM3_IAR">
+            <require Dcore="Cortex-M3"/>
+            <require Tcompiler="IAR"/>
+        </condition>
+        <condition id="CM3_KEIL">
+            <require Dcore="Cortex-M3"/>
+            <require Tcompiler="ARMCC"/>
+        </condition>
+        <condition id="CM4_GCC">
+            <require Dcore="Cortex-M4"/>
+            <require Tcompiler="GCC"/>
+        </condition>
+        <condition id="CM4_IAR">
+            <require Dcore="Cortex-M4"/>
+            <require Tcompiler="IAR"/>
+        </condition>
+        <condition id="CM4_KEIL">
+            <require Dcore="Cortex-M4"/>
+            <require Tcompiler="ARMCC"/>
+        </condition>
+        <condition id="CM7_GCC">
+            <require Dcore="Cortex-M7"/>
+            <require Tcompiler="GCC"/>
+        </condition>
+        <condition id="CM7_IAR">
+            <require Dcore="Cortex-M7"/>
+            <require Tcompiler="IAR"/>
+        </condition>
+        <condition id="CM7_KEIL">
+            <require Dcore="Cortex-M7"/>
+            <require Tcompiler="ARMCC"/>
+        </condition>
+        <condition id="CMSIS Core with RTOS">
+            <description>CMSIS Core with RTOS for Cortex-M processor</description>
+            <accept condition="Cortex-M"/>
+        </condition>
+        <condition id="CM23">
+            <description>Cortex-M23 based device</description>
+            <accept Dcore="Cortex-M23"/>
+        </condition>
+        <condition id="CM33">
+            <description>Cortex-M33 based device</description>
+            <accept Dcore="Cortex-M33"/>
+        </condition>
+        <condition id="CM23_GCC">
+            <require Tcompiler="GCC"/>
+            <require Dcore="Cortex-M23"/>
+        </condition>
+        <condition id="CM23_IAR">
+            <require Tcompiler="IAR"/>
+            <require Dcore="Cortex-M23"/>
+        </condition>
+        <condition id="CM23_KEIL">
+            <require Tcompiler="ARMCC"/>
+            <require Dcore="Cortex-M23"/>
+        </condition>
+        <condition id="CM33_GCC">
+            <require Tcompiler="GCC"/>
+            <require Dcore="Cortex-M33"/>
+        </condition>
+        <condition id="CM33_IAR">
+            <require Tcompiler="IAR"/>
+            <require Dcore="Cortex-M33"/>
+        </condition>
+        <condition id="CM33_KEIL">
+            <require Tcompiler="ARMCC"/>
+            <require Dcore="Cortex-M33"/>
+        </condition>
+    </conditions>
+    <components>
+        <bundle Cbundle="RT-Thread" Cclass="RTOS" Cversion="4.1.1">
+            <description>RT-Bundle</description>
+            <doc>https://www.rt-thread.io/document/site/</doc>
+            <component Cgroup="kernel" condition="CMSIS Core with RTOS" maxInstances="1">
+                <description>rt-thread kernel files</description>
+                <files>
+                    <file category="source" name="Middlewares/Third_Party/bsp/_template/cubemx_config/board.c"/>
+                    <file category="include" name="Middlewares\Third_Party\include\"/>
+                    <file category="source" name="Middlewares/Third_Party/src/clock.c"/>
+                    <file category="source" name="Middlewares/Third_Party/src/components.c"/>
+                    <file category="source" name="Middlewares/Third_Party/src/cpu.c"/>
+                    <file category="source" name="Middlewares/Third_Party/src/idle.c"/>
+                    <file category="source" name="Middlewares/Third_Party/src/ipc.c"/>
+                    <file category="source" name="Middlewares/Third_Party/src/irq.c"/>
+                    <file category="source" name="Middlewares/Third_Party/src/kservice.c"/>
+                    <file category="source" name="Middlewares/Third_Party/src/mem.c"/>
+                    <file category="source" name="Middlewares/Third_Party/src/memheap.c"/>
+                    <file category="source" name="Middlewares/Third_Party/src/mempool.c"/>
+                    <file category="source" name="Middlewares/Third_Party/src/object.c"/>
+                    <file category="source" name="Middlewares/Third_Party/src/scheduler.c"/>
+                    <file category="source" name="Middlewares/Third_Party/src/signal.c"/>
+                    <file category="source" name="Middlewares/Third_Party/src/slab.c"/>
+                    <file category="source" name="Middlewares/Third_Party/src/thread.c"/>
+                    <file category="source" name="Middlewares/Third_Party/src/timer.c"/>
+                </files>
+            </component>
+            <component Cgroup="device" maxInstances="1">
+                <description>rt-thread device</description>
+                <files>
+                    <file category="source" name="Middlewares/Third_Party/components/device/device.c"/>
+                </files>
+            </component>
+            <component Cgroup="shell" maxInstances="1">
+                <description>rt-thread shell</description>
+                <files>
+                    <file category="source" name="Middlewares/Third_Party/components/finsh/src/cmd.c"/>
+                    <file category="source" name="Middlewares/Third_Party/components/finsh/src/msh.c"/>
+                    <file category="source" name="Middlewares/Third_Party/components/finsh/src/msh_file.c"/>
+                    <file category="source" name="Middlewares/Third_Party/components/finsh/src/msh_parse.c"/>
+                    <file category="source" name="Middlewares/Third_Party/components/finsh/src/shell.c"/>
+                    <file category="include" name="Middlewares\Third_Party\components\finsh\inc\"/>
+                </files>
+            </component>
+            <component Cgroup="libcpu" condition="CMSIS Core with RTOS" maxInstances="1">
+                <description>rt-thread libcpu files</description>
+                <files>
+                    <file category="sourceAsm" condition="CM0_GCC" name="Middlewares/Third_Party/libcpu/arm/cortex-m0/context_gcc.S" public="false"/>
+                    <file category="sourceAsm" condition="CM0_IAR" name="Middlewares/Third_Party/libcpu/arm/cortex-m0/context_iar.S" public="false"/>
+                    <file category="sourceAsm" condition="CM0_KEIL" name="Middlewares/Third_Party/libcpu/arm/cortex-m0/context_rvds.S" public="false"/>
+                    <file category="source" condition="CM0" name="Middlewares/Third_Party/libcpu/arm/cortex-m0/cpuport.c" public="false"/>
+                    <file category="sourceAsm" condition="CM23_GCC" name="Middlewares/Third_Party/libcpu/arm/cortex-m23/context_gcc.S" public="false"/>
+                    <file category="sourceAsm" condition="CM23_IAR" name="Middlewares/Third_Party/libcpu/arm/cortex-m23/context_iar.S" public="false"/>
+                    <file category="sourceAsm" condition="CM23_KEIL" name="Middlewares/Third_Party/libcpu/arm/cortex-m23/context_rvds.S" public="false"/>
+                    <file category="source" condition="CM23" name="Middlewares/Third_Party/libcpu/arm/cortex-m23/cpuport.c" public="false"/>
+                    <file category="sourceAsm" condition="CM3_GCC" name="Middlewares/Third_Party/libcpu/arm/cortex-m3/context_gcc.S" public="false"/>
+                    <file category="sourceAsm" condition="CM3_IAR" name="Middlewares/Third_Party/libcpu/arm/cortex-m3/context_iar.S" public="false"/>
+                    <file category="sourceAsm" condition="CM3_KEIL" name="Middlewares/Third_Party/libcpu/arm/cortex-m3/context_rvds.S" public="false"/>
+                    <file category="source" condition="CM3" name="Middlewares/Third_Party/libcpu/arm/cortex-m3/cpuport.c" public="false"/>
+                    <file category="sourceAsm" condition="CM33_GCC" name="Middlewares/Third_Party/libcpu/arm/cortex-m33/context_gcc.S" public="false"/>
+                    <file category="sourceAsm" condition="CM33_IAR" name="Middlewares/Third_Party/libcpu/arm/cortex-m33/context_iar.S" public="false"/>
+                    <file category="sourceAsm" condition="CM33_KEIL" name="Middlewares/Third_Party/libcpu/arm/cortex-m33/context_rvds.S" public="false"/>
+                    <file category="source" condition="CM33" name="Middlewares/Third_Party/libcpu/arm/cortex-m33/cpuport.c" public="false"/>
+                    <file category="sourceAsm" condition="CM33_GCC" name="Middlewares/Third_Party/libcpu/arm/cortex-m33/syscall_gcc.S" public="false"/>
+                    <file category="sourceAsm" condition="CM33_IAR" name="Middlewares/Third_Party/libcpu/arm/cortex-m33/syscall_iar.S" public="false"/>
+                    <file category="sourceAsm" condition="CM33_KEIL" name="Middlewares/Third_Party/libcpu/arm/cortex-m33/syscall_rvds.S" public="false"/>
+                    <file category="source" condition="CM33" name="Middlewares/Third_Party/libcpu/arm/cortex-m33/trustzone.c" public="false"/>
+                    <file category="sourceAsm" condition="CM4_GCC" name="Middlewares/Third_Party/libcpu/arm/cortex-m4/context_gcc.S" public="false"/>
+                    <file category="sourceAsm" condition="CM4_IAR" name="Middlewares/Third_Party/libcpu/arm/cortex-m4/context_iar.S" public="false"/>
+                    <file category="sourceAsm" condition="CM4_KEIL" name="Middlewares/Third_Party/libcpu/arm/cortex-m4/context_rvds.S" public="false"/>
+                    <file category="source" condition="CM4" name="Middlewares/Third_Party/libcpu/arm/cortex-m4/cpuport.c" public="false"/>
+                    <file category="sourceAsm" condition="CM7_GCC" name="Middlewares/Third_Party/libcpu/arm/cortex-m7/context_gcc.S" public="false"/>
+                    <file category="sourceAsm" condition="CM7_IAR" name="Middlewares/Third_Party/libcpu/arm/cortex-m7/context_iar.S" public="false"/>
+                    <file category="sourceAsm" condition="CM7_KEIL" name="Middlewares/Third_Party/libcpu/arm/cortex-m7/context_rvds.S" public="false"/>
+                    <file category="source" condition="CM7" name="Middlewares/Third_Party/libcpu/arm/cortex-m7/cpuport.c" public="false"/>
+                    <file category="source" condition="CM7" name="Middlewares/Third_Party/libcpu/arm/cortex-m7/cpu_cache.c" public="false"/>
+                </files>
+            </component>
+        </bundle>
+    </components>
+</package>

@@ -1,0 +1,37 @@
+<!DOCTYPE html >
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
+<font color="blue"><b><u>STM32CubeWL Firmware Package v1.3.1 / 20-December-2024</u></b></font><br>
+<b><u>Main Changes</u></b><br>
+<b>Patch Release of STM32CubeWL Firmware package</b><br>
+<ul style="list-style-type: disc;">
+<li><b>CMSIS/LL/HAL Drivers updates:</b></li>
+<ul>
+<li>Update HAL/LL drivers to align content to latest github version - Update of ADC, CORTEX, CRC, CRYP, DAC, Generic, I2C, RTC, SUBGHZ, TIM, UART, UTILS drivers</li>
+</ul>
+<li><b>LoRaWAN Middleware updates:</b></li>
+<ul>
+<li>Fix: Re-start LoraMac stack if it is stopped and device is already joined</li>
+<li>Fix: Unalignment memory access within FUOTA Fragmentation package</li>
+<li>Feature: Integration of LoRaWAN Link Layer v1.0.4/v1.1 + Regional Parameters RP002-1.0.3 from LoRa Mac Semtech/StackForce master branch:<br>
+    - Semtech release [v4.7.0](https://github.com/Lora-net/LoRaMac-node/releases/tag/v4.7.0) integration (latest commit [672b37d] 09-Dec-2022)</li>
+<li>Feature: Added support for new release of ARIB STD-T108 Ver1.4 under AS923 region</li>
+<li>Feature/Fix: Class C Certification support fix</li>
+</ul>
+<li><b>LoRaWAN SubGHz Physical Layer Middleware updates:</b></li>
+<ul>
+<li>Fix: Application hangs because MBMUXIF_LoraSendCmd() command stuck</li>
+<li>Fix: typo in setting MaxPayloadLength for GENERIC_LORA in RadioSetRxGenericConfig</li>
+</ul>
+<li><b>Projects updates:</b></li>
+NUCLEO-WBA55CG
+<ul>
+<li>Update Applications LoRaWAN_End_Node_FreeRTOS and LoRaWAN_End_Node_DualCoreFreeRTOS to fix RTC wakeup timer</li>
+<li>Update Examples/PWR/PWR_STOP2_RTC to fix execution with CubeIDE toolchain</li>
+<li>Update LoRaWAN_FUOTA_DualCore, LoRaWAN_SBSFU_1_Slot_DualCore and Sigfox_SBSFU_1_Slot_DualCore to fix compilation issue under Linux</li>
+</ul>
+B-WL5M-SUBG1
+<ul>
+<li>Update LoRaWAN_FUOTA_DualCore_ExtFlash to fix compilation issue under Linux</li>
+</ul>
+</ul>
+</html>

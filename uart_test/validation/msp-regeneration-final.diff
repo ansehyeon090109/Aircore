@@ -1,0 +1,20 @@
+﻿diff --git a/backups/config_audit_20261117_175200/stm32f4xx_hal_msp.c b/Core/Src/stm32f4xx_hal_msp.c
+index c6145b6..fbd97fb 100644
+--- a/backups/config_audit_20261117_175200/stm32f4xx_hal_msp.c
++++ b/Core/Src/stm32f4xx_hal_msp.c
+@@ -404,7 +404,6 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* huart)
+ 
+ }
+ 
+-/* USER CODE BEGIN 1 */
+ void HAL_TIM_PWM_MspInit(TIM_HandleTypeDef *htim)
+ {
+   if (htim->Instance == TIM3)
+@@ -436,6 +435,6 @@ void HAL_TIM_PWM_MspDeInit(TIM_HandleTypeDef *htim)
+     HAL_GPIO_DeInit(GPIOB, GPIO_PIN_4 | GPIO_PIN_5);
+   }
+ }
+-
++/* USER CODE BEGIN 1 */
+ 
+ /* USER CODE END 1 */

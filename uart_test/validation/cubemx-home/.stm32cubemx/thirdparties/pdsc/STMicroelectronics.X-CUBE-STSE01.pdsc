@@ -1,0 +1,822 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<package schemaVersion="1.4.0" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>STMicroelectronics</vendor>
+  <name>X-CUBE-STSE01</name>
+  <description>Drivers and sample applications for STSAFE</description>
+  <license>Additional_License_Terms_forX-CUBE-STSE01.html</license>
+  <!-- web download link -->
+  <url>http://sw-center.st.com/packs/x-cube/</url>
+
+  <releases>
+    <release version="2.0.0" date="2025-09-23">
+      - Added STSAFEL010 board part driver component
+      - Added X-NUCLEO-ESE02A1 board extension component
+      - Updated the STSELib Middleware
+    </release>
+    <release version="1.0.0" date="2025-05-19">
+      - BSP driver development as per the CubeMX model
+      - Support for STSAFEA110 and STSAFEA120
+      - Added the latest ST Secured element Library as STSELib as Middleware
+      - Created latest sample applications with latest middleware on STM32CubeMX V6.14.1
+      - This version is compatible with STM32CubeMX V6.14.1
+    </release>
+  </releases>
+  
+  <taxonomy>
+    <description  Cclass="Board Component">The STSAFE components support class</description>
+    <description  Cclass="Board Extension">The expansion boards support class</description>
+    <description  Cclass="Security">STSELib</description>
+    <description  Cclass="Security">STM32_Crypto</description>
+  </taxonomy>
+
+  <keywords>    
+    <keyword>ARM</keyword>
+    <keyword>Cortex-M</keyword>
+    <keyword>STMicroelectronics</keyword>
+    <keyword>IMPLEMENTED_WITH_STM32CUBEMX</keyword>
+    <keyword>CUBEMX_MIGRATION_CAPABILITY</keyword>
+    <keyword>IS_CONTEXT_EXCLUSIVE</keyword> <!-- Do not allow to instantiate the pack in more than one context -->
+    <keyword>DOES_NOT_SUPPORT_SECURE</keyword> <!-- Do not support secure context -->
+    <keyword>STSAFE</keyword>
+  </keywords>
+  
+  <apis>
+    <!-- API -->
+    <api Cclass="Board Extension" Cgroup="SAFEA1" Capiversion="2.0.0" exclusive="0">
+      <description>Driver for X-NUCLEO-SAFEA1</description>
+      <files>
+        <file category="doc"    name="Documentation/X-CUBE-STSE01.chm"/>
+      </files>
+    </api>
+    <api Cclass="Board Extension" Cgroup="ESE01A1" Capiversion="2.0.0" exclusive="0">
+      <description>Driver for X-NUCLEO-ESE01A1</description>
+      <files>
+        <file category="doc"    name="Documentation/X-CUBE-STSE01.chm"/>
+      </files>
+    </api>
+    <api Cclass="Board Extension" Cgroup="ESE02A1" Capiversion="2.0.0" exclusive="0">
+      <description>Driver for X-NUCLEO-ESE02A1</description>
+      <files>
+        <file category="doc"    name="Documentation/X-CUBE-STSE01.chm"/>
+      </files>
+    </api>
+    <api Cclass="Board Part" Cgroup="STSAFEA110" Capiversion="2.0.0" exclusive="0">
+      <description>Driver for STSAFEA110</description>
+      <files>
+        <file category="doc"    name="Documentation/X-CUBE-STSE01.chm"/>
+      </files>
+    </api>
+    <api Cclass="Board Part" Cgroup="STSAFEA120" Capiversion="2.0.0" exclusive="0">
+      <description>Driver for STSAFEA120</description>
+      <files>
+        <file category="doc"    name="Documentation/X-CUBE-STSE01.chm"/>
+      </files>
+    </api>
+    <api Cclass="Board Part" Cgroup="STSAFEL010" Capiversion="2.0.0" exclusive="0">
+      <description>Driver for STSAFEL010</description>
+      <files>
+        <file category="doc"    name="Documentation/X-CUBE-STSE01.chm"/>
+      </files>
+    </api>
+    <api Cclass="Security" Cgroup="STM32_Cryptographic" Capiversion="4.0.3" exclusive="0">
+      <description>Cortex -M Optimized Crypto Stack (CMOX)</description>
+      <files>
+        <file category="doc"    name="Documentation/X-CUBE-STSE01.chm"/>
+      </files>
+    </api>
+    <api Cclass="Security" Cgroup="STSELib" Capiversion="1.1.4" exclusive="0">
+      <description>Middleware Driver for STSAFE</description>
+      <files>
+        <file category="doc"    name="Documentation/X-CUBE-STSE01.chm"/>
+      </files>
+    </api>
+  </apis>
+  
+  
+  <conditions>
+    <condition id="Cortex-M Device">
+      <description>Cortex-M processor based device: Cortex-M0, Cortex-M0+, Cortex-M3, Cortex-M4, Cortex-M7</description>
+      <!-- STM32F0 -->
+      <accept Dcore="Cortex-M0"/>
+      
+      <!-- STM32L0 -->
+      <accept Dcore="Cortex-M0+"/>
+      
+      <!-- STM32F1, STM32F2 and STM32L1 -->
+      <accept Dcore="Cortex-M3"/>
+      
+      <!-- STM32L5-->
+      <accept Dcore="Cortex-M33"/>
+      <!-- STM32F4, STM32F3 and STM32L4 series -->
+      <accept Dcore="Cortex-M4"/>
+      
+      <!-- STM32F7 and STMH7 series -->
+      <accept Dcore="Cortex-M7"/>     
+      <!-- Explicitly exclude unsupported wireless series -->
+      <deny Dname="STM32WB09*"/>
+      <deny Dname="STM32WL33*"/>
+    </condition>
+
+    <condition id="CM0_GCC">
+      <require Dcore="Cortex-M0"/>
+      <require Tcompiler="GCC"/>
+    </condition>
+    <condition id="CM0_IAR">
+      <require Dcore="Cortex-M0"/>
+      <require Tcompiler="IAR"/>
+    </condition>
+    <condition id="CM0_Keil">
+      <require Dcore="Cortex-M0"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <condition id="CM0+_GCC">
+      <require Dcore="Cortex-M0+"/>
+      <require Tcompiler="GCC"/>
+    </condition>
+    <condition id="CM0+_IAR">
+      <require Dcore="Cortex-M0+"/>
+      <require Tcompiler="IAR"/>
+    </condition>
+    <condition id="CM0+_Keil">
+      <require Dcore="Cortex-M0+"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <condition id="CM3_GCC">
+      <require Dcore="Cortex-M3"/>
+      <require Tcompiler="GCC"/>
+    </condition>
+    <condition id="CM3_IAR">
+      <require Dcore="Cortex-M3"/>
+      <require Tcompiler="IAR"/>
+    </condition>
+    <condition id="CM3_Keil">
+      <require Dcore="Cortex-M3"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    
+    <condition id="CM4_GCC">
+      <require Dcore="Cortex-M4"/>
+      <require Tcompiler="GCC"/>
+    </condition>
+    <condition id="CM4_IAR">
+      <require Dcore="Cortex-M4"/>
+      <require Tcompiler="IAR"/>
+    </condition>
+    <condition id="CM4_Keil">
+      <require Dcore="Cortex-M4"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    
+    <condition id="CM7_GCC">
+      <require Dcore="Cortex-M7"/>
+      <require Tcompiler="GCC"/>
+    </condition>
+    <condition id="CM7_IAR">
+      <require Dcore="Cortex-M7"/>
+      <require Tcompiler="IAR"/>
+    </condition>
+    <condition id="CM7_Keil">
+      <require Dcore="Cortex-M7"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+    <condition id="CM33_GCC">
+      <require Dcore="Cortex-M33"/>
+      <require Tcompiler="GCC"/>
+    </condition>
+    <condition id="CM33_IAR">
+      <require Dcore="Cortex-M33"/>
+      <require Tcompiler="IAR"/>
+    </condition>
+    <condition id="CM33_Keil">
+      <require Dcore="Cortex-M33"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    
+    <!-- CRC VPDSC condition -->
+    <condition id="CRC HAL">
+    <description>Driver HAL CRC</description>
+      <require Cclass="Device" Cgroup="CRC" Csub="HAL"/>
+    </condition>
+
+    <!-- RNG VPDSC condition -->
+    <condition id="RNG HAL">
+      <description>Driver HAL RNG</description>
+      <require Cclass="Device" Cgroup="RNG" Csub="HAL"/>
+    </condition>
+
+    <condition id="SAFEA1 Condition">
+      <description>Cortex-M Device and board setup (X-NUCLEO-SAFEA1)</description> 
+      <require condition="Cortex-M Device"/>   
+      <deny Cbundle="STSAFE" Cclass="Board Part" Cgroup="STSAFEA110"/>
+      <deny Cbundle="STSAFE" Cclass="Board Part" Cgroup="STSAFEA120"/>
+      <deny Cbundle="STSAFE" Cclass="Board Extension" Cgroup="ESE01A1"/>
+      <deny Cbundle="STSAFE" Cclass="Board Part" Cgroup="STSAFEL010"/>
+      <deny Cbundle="STSAFE" Cclass="Board Extension" Cgroup="ESE02A1"/>
+    </condition>
+    <condition id="ESE01A1 Condition">
+      <description>Cortex-M Device and board setup (X-NUCLEO-ESE01A1)</description> 
+      <require condition="Cortex-M Device"/>   
+      <deny Cbundle="STSAFE" Cclass="Board Part" Cgroup="STSAFEA120"/>
+      <deny Cbundle="STSAFE" Cclass="Board Part" Cgroup="STSAFEA110"/>
+      <deny Cbundle="STSAFE" Cclass="Board Extension" Cgroup="SAFEA1"/>
+      <deny Cbundle="STSAFE" Cclass="Board Part" Cgroup="STSAFEL010"/>
+      <deny Cbundle="STSAFE" Cclass="Board Extension" Cgroup="ESE02A1"/>
+    </condition>
+    <condition id="ESE02A1 Condition">
+      <description>Cortex-M Device and board setup (X-NUCLEO-ESE02A1)</description> 
+      <require condition="Cortex-M Device"/>   
+      <deny Cbundle="STSAFE" Cclass="Board Part" Cgroup="STSAFEA120"/>
+      <deny Cbundle="STSAFE" Cclass="Board Part" Cgroup="STSAFEA110"/>
+      <deny Cbundle="STSAFE" Cclass="Board Extension" Cgroup="SAFEA1"/>
+      <deny Cbundle="STSAFE" Cclass="Board Extension" Cgroup="ESE01A1"/>
+      <deny Cbundle="STSAFE" Cclass="Board Part" Cgroup="STSAFEL010"/>
+    </condition>
+
+    <!-- STSAFE Examples condition -->
+    <condition id="HOST_KEY_PROVISIONING Condition">
+      <require Cbundle="STSAFE" Cclass="Board Extension" />
+      <require Cclass="Security" Cgroup="STM32_Cryptographic"/>
+      <require Cclass="Security" Cgroup="STSELib"/>
+      <deny Cbundle="STSAFE" Cclass="Board Extension" Cgroup="ESE02A1"/>
+      <deny Cbundle="STSAFE" Cclass="Board Part" Cgroup="STSAFEA110"/>
+      <deny Cbundle="STSAFE" Cclass="Board Part" Cgroup="STSAFEA120"/>
+      <deny Cbundle="STSAFE" Cclass="Board Part" Cgroup="STSAFEL010"/>
+    </condition>
+    <condition id="Authentication Condition">
+      <require Cbundle="STSAFE" Cclass="Board Extension" />
+      <require Cclass="Security" Cgroup="STM32_Cryptographic"/>
+      <require Cclass="Security" Cgroup="STSELib"/>
+      <deny Cbundle="STSAFE" Cclass="Board Extension" Cgroup="ESE02A1"/>
+      <deny Cbundle="STSAFE" Cclass="Board Part" Cgroup="STSAFEA110"/>
+      <deny Cbundle="STSAFE" Cclass="Board Part" Cgroup="STSAFEA120"/>
+      <deny Cbundle="STSAFE" Cclass="Board Part" Cgroup="STSAFEL010"/>
+    </condition>
+    <condition id="ZoneAccess Condition">
+      <require Cbundle="STSAFE" Cclass="Board Extension" />
+      <require Cclass="Security" Cgroup="STM32_Cryptographic"/>
+      <require Cclass="Security" Cgroup="STSELib"/>
+      <deny Cbundle="STSAFE" Cclass="Board Extension" Cgroup="ESE02A1"/>
+      <deny Cbundle="STSAFE" Cclass="Board Part" Cgroup="STSAFEA110"/>
+      <deny Cbundle="STSAFE" Cclass="Board Part" Cgroup="STSAFEA120"/>
+      <deny Cbundle="STSAFE" Cclass="Board Part" Cgroup="STSAFEL010"/>
+    </condition>
+
+    <condition id="Secured_Counter_access Condition">
+      <require Cbundle="STSAFE" Cclass="Board Extension" />
+      <require Cclass="Security" Cgroup="STM32_Cryptographic"/>
+      <require Cclass="Security" Cgroup="STSELib"/>
+      <deny Cbundle="STSAFE" Cclass="Board Part" Cgroup="STSAFEA110"/>
+      <deny Cbundle="STSAFE" Cclass="Board Part" Cgroup="STSAFEA120"/>
+      <deny Cbundle="STSAFE" Cclass="Board Part" Cgroup="STSAFEL010"/>
+    </condition>
+    
+    <condition id="Echo_Loop Condition">
+      <require Cbundle="STSAFE" Cclass="Board Extension" />
+      <require Cclass="Security" Cgroup="STM32_Cryptographic"/>
+      <require Cclass="Security" Cgroup="STSELib"/>
+      <deny Cbundle="STSAFE" Cclass="Board Part" Cgroup="STSAFEA110"/>
+      <deny Cbundle="STSAFE" Cclass="Board Part" Cgroup="STSAFEA120"/>
+      <deny Cbundle="STSAFE" Cclass="Board Part" Cgroup="STSAFEL010"/>
+    </condition>
+
+    <condition id="Multi_Step_Authentication Condition">
+      <require Cbundle="STSAFE" Cclass="Board Extension" />
+      <require Cclass="Security" Cgroup="STM32_Cryptographic"/>
+      <require Cclass="Security" Cgroup="STSELib"/>
+      <deny Cbundle="STSAFE" Cclass="Board Part" Cgroup="STSAFEA110"/>
+      <deny Cbundle="STSAFE" Cclass="Board Part" Cgroup="STSAFEA120"/>
+      <deny Cbundle="STSAFE" Cclass="Board Part" Cgroup="STSAFEL010"/>
+    </condition>
+
+    <condition id="Random_Number_Generation Condition">
+      <require Cbundle="STSAFE" Cclass="Board Extension" />
+      <require Cclass="Security" Cgroup="STM32_Cryptographic"/>
+      <require Cclass="Security" Cgroup="STSELib"/>
+      <deny Cbundle="STSAFE" Cclass="Board Extension" Cgroup="ESE02A1"/>
+      <deny Cbundle="STSAFE" Cclass="Board Part" Cgroup="STSAFEA110"/>
+      <deny Cbundle="STSAFE" Cclass="Board Part" Cgroup="STSAFEA120"/>
+      <deny Cbundle="STSAFE" Cclass="Board Part" Cgroup="STSAFEL010"/>
+    </condition>
+
+    <condition id="Symmetric_Key_AES_128_CMAC Condition">
+      <require Cbundle="STSAFE" Cclass="Board Extension" Cgroup="SAFEA1"/>
+      <deny Cbundle="STSAFE" Cclass="Board Extension" Cgroup="ESE01A1"/>
+      <deny Cbundle="STSAFE" Cclass="Board Extension" Cgroup="ESE02A1"/>
+      <require Cclass="Security" Cgroup="STM32_Cryptographic"/>
+      <require Cclass="Security" Cgroup="STSELib"/>
+      <deny Cbundle="STSAFE" Cclass="Board Part" Cgroup="STSAFEA110"/>
+      <deny Cbundle="STSAFE" Cclass="Board Part" Cgroup="STSAFEA120"/>
+      <deny Cbundle="STSAFE" Cclass="Board Part" Cgroup="STSAFEL010"/>
+    </condition>
+
+    <condition id="Key_Pair_Generation Condition">
+      <require Cbundle="STSAFE" Cclass="Board Extension" />
+      <require Cclass="Security" Cgroup="STM32_Cryptographic"/>
+      <require Cclass="Security" Cgroup="STSELib"/>
+      <deny Cbundle="STSAFE" Cclass="Board Extension" Cgroup="ESE02A1"/>
+      <deny Cbundle="STSAFE" Cclass="Board Part" Cgroup="STSAFEA110"/>
+      <deny Cbundle="STSAFE" Cclass="Board Part" Cgroup="STSAFEA120"/>
+      <deny Cbundle="STSAFE" Cclass="Board Part" Cgroup="STSAFEL010"/>
+    </condition>
+
+    <condition id="Wrap_Unwrap Condition">
+      <require Cbundle="STSAFE" Cclass="Board Extension" />
+      <require Cclass="Security" Cgroup="STM32_Cryptographic"/>
+      <require Cclass="Security" Cgroup="STSELib"/>
+      <deny Cbundle="STSAFE" Cclass="Board Extension" Cgroup="ESE02A1"/>
+      <deny Cbundle="STSAFE" Cclass="Board Part" Cgroup="STSAFEA110"/>
+      <deny Cbundle="STSAFE" Cclass="Board Part" Cgroup="STSAFEA120"/>
+      <deny Cbundle="STSAFE" Cclass="Board Part" Cgroup="STSAFEL010"/>
+    </condition>
+
+    <condition id="STSAFEA110 Condition">
+      <description>Cortex-M Device and board setup (STSAFEA110 Driver)</description>      
+      <require condition="Cortex-M Device"/>
+      <deny Cbundle="STSAFE" Cclass="Board Extension" Cgroup="SAFEA1"/>
+      <deny Cbundle="STSAFE" Cclass="Board Extension" Cgroup="ESE01A1"/>
+      <deny Cbundle="STSAFE" Cclass="Board Part"      Cgroup="STSAFEA120"/>
+      <deny Cbundle="STSAFE" Cclass="Board Extension" Cgroup="ESE02A1"/>
+      <deny Cbundle="STSAFE" Cclass="Board Part"      Cgroup="STSAFEL010"/>
+    </condition>
+
+    <condition id="STSAFEA120 Condition">
+      <description>Cortex-M Device and board setup (STSAFEA120 Driver)</description>      
+      <require condition="Cortex-M Device"/>
+      <deny Cbundle="STSAFE" Cclass="Board Extension" Cgroup="SAFEA1"/>
+      <deny Cbundle="STSAFE" Cclass="Board Extension" Cgroup="ESE01A1"/>
+      <deny Cbundle="STSAFE" Cclass="Board Part"      Cgroup="STSAFEA110"/>
+      <deny Cbundle="STSAFE" Cclass="Board Extension" Cgroup="ESE02A1"/>
+      <deny Cbundle="STSAFE" Cclass="Board Part"      Cgroup="STSAFEL010"/>
+    </condition>
+    <condition id="STSAFEL010 Condition">
+      <description>Cortex-M Device and board setup (STSAFEL010 Driver)</description>      
+      <require condition="Cortex-M Device"/>
+      <deny Cbundle="STSAFE" Cclass="Board Extension" Cgroup="SAFEA1"/>
+      <deny Cbundle="STSAFE" Cclass="Board Extension" Cgroup="ESE01A1"/>
+      <deny Cbundle="STSAFE" Cclass="Board Extension" Cgroup="ESE02A1"/>
+      <deny Cbundle="STSAFE" Cclass="Board Part"      Cgroup="STSAFEA110"/>
+      <deny Cbundle="STSAFE" Cclass="Board Part"      Cgroup="STSAFEA120"/>
+    </condition>
+
+    <condition id="STSELib Condition">
+      <description>Cortex-M Device and board setup (STSELib Middleware)</description>
+      <require condition="Cortex-M Device"/>
+      <require Cclass="Security" Cgroup="STM32_Cryptographic"/>
+      <require condition="CRC HAL"/>
+      <require condition="RNG HAL"/>
+    </condition>
+    
+    <condition id="STM32_Cryptographic Condition">
+      <description>Cortex-M Device and board setup (STM32 Crypto Middleware)</description>
+      <require condition="Cortex-M Device"/>
+      <require Cclass="Security" Cgroup="STSELib"/>
+    </condition>
+  </conditions>
+  
+  <components>
+    <bundle Cvendor="STMicroelectronics" Cbundle="STSAFE" Cclass="Board Part" Cversion="2.0.0">
+      <description>STSAFE Driver for custom boards</description>
+      <doc>Documentation/STMicroelectronics.X-CUBE-STSE01_GettingStarted.pdf</doc>
+      <component Cgroup="STSAFEA110" Csub="SAFEA110" condition="STSAFEA110 Condition" maxInstances="1" Capiversion="2.0.0">
+        <description>STSAFEA110 files</description>
+        <RTE_Components_h>#define STSAFEA110</RTE_Components_h>
+      <files>
+            <file category="header"  name="Drivers/BSP/Components/STSAFEA110/stsafea110.h"/>
+            <file category="source"  name="Drivers/BSP/Components/STSAFEA110/stsafea110.c"/>
+      </files>
+      </component>
+      <component Cgroup="STSAFEA120" Csub="SAFEA120" condition="STSAFEA120 Condition" maxInstances="1" Capiversion="2.0.0">
+        <description>STSAFEA120 files</description>
+        <RTE_Components_h>#define STSAFEA120</RTE_Components_h>
+      <files>
+            <file category="header"  name="Drivers/BSP/Components/STSAFEA120/stsafea120.h"/>
+            <file category="source"  name="Drivers/BSP/Components/STSAFEA120/stsafea120.c"/>
+      </files>
+      </component>
+      <component Cgroup="STSAFEL010" Csub="SAFEL010" condition="STSAFEL010 Condition" maxInstances="1" Capiversion="2.0.0">
+        <description>STSAFEL010 files</description>
+        <RTE_Components_h>#define STSAFEL010</RTE_Components_h>
+      <files>
+            <file category="header"  name="Drivers/BSP/Components/STSAFEL010/stsafel010.h"/>
+            <file category="source"  name="Drivers/BSP/Components/STSAFEL010/stsafel010.c"/>
+      </files>
+      </component>
+    </bundle>
+
+    <bundle Cvendor="STMicroelectronics" Cbundle="STSAFE" Cclass="Board Extension" Cversion="2.0.0">
+    <description>Board Extension</description>
+      <doc>Documentation/STMicroelectronics.X-CUBE-STSE01_GettingStarted.pdf</doc>
+      <component Cgroup="SAFEA1" condition="SAFEA1 Condition" maxInstances="1" Capiversion="2.0.0">
+        <description> BSP for X-NUCLEO-SAFEA1 </description>
+        <RTE_Components_h>#define SAFEA1_A110</RTE_Components_h>
+        <files>
+            <file category="header"  name="Drivers/BSP/SAFE_Axx0/safea1_A110.h"/>
+            <file category="source"  name="Drivers/BSP/SAFE_Axx0/safea1_A110.c"/>
+            <file category="header"  name="Drivers/BSP/Components/STSAFEA110/stsafea110.h"/>
+            <file category="source"  name="Drivers/BSP/Components/STSAFEA110/stsafea110.c"/>
+        </files>
+      </component>
+      <component Cgroup="ESE01A1" condition="ESE01A1 Condition" maxInstances="1" Capiversion="2.0.0">
+        <description> BSP for X-NUCLEO-ESE01A1 </description>
+        <RTE_Components_h>#define SAFEA1C_A120</RTE_Components_h>
+        <files>
+            <file category="header"  name="Drivers/BSP/SAFE_Axx0/safea1_A120.h"/>
+            <file category="source"  name="Drivers/BSP/SAFE_Axx0/safea1_A120.c"/>
+            <file category="header"  name="Drivers/BSP/Components/STSAFEA120/stsafea120.h"/>
+            <file category="source"  name="Drivers/BSP/Components/STSAFEA120/stsafea120.c"/>
+        </files>
+      </component>
+      <component Cgroup="ESE02A1" condition="ESE02A1 Condition" maxInstances="1" Capiversion="2.0.0">
+        <description> BSP for X-NUCLEO-ESE02A1 </description>
+        <RTE_Components_h>#define ESE02A1</RTE_Components_h>
+        <files>
+            <file category="header"  name="Drivers/BSP/ESE02A1/safel0_L010.h"/>
+            <file category="source"  name="Drivers/BSP/ESE02A1/safel0_L010.c"/>
+            <file category="header"  name="Drivers/BSP/Components/STSAFEL010/stsafel010.h"/>
+            <file category="source"  name="Drivers/BSP/Components/STSAFEL010/stsafel010.c"/>
+        </files>
+      </component>
+    </bundle>
+
+      <component Cclass="Security" Cgroup="STM32_Cryptographic"  Cvendor="STMicroelectronics" Cversion="4.0.3" Capiversion="4.0.3" condition="STM32_Cryptographic Condition" maxInstances="1">
+        <description> Middleware for STM32_Cryptographic Library</description>
+        <RTE_Components_h>#define STCRYPTOLIB</RTE_Components_h>
+        <files>
+        <file category="include" name="Middlewares/ST/STM32_Cryptographic/_htmresc/"/>
+        <file category="include" name="Middlewares/ST/STM32_Cryptographic/include/"/>
+        <file category="include" name="Middlewares/ST/STM32_Cryptographic/interface/"/>
+        <file category="include" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/"/>
+        <file category="include" name="Middlewares/ST/STM32_Cryptographic/lib/"/>
+        <!--file category="doc" name="Middlewares/ST/STM32_Cryptographic/CMOX.chm"/-->
+        <file category="doc" name="Middlewares/ST/STM32_Cryptographic/LICENSE.txt"/>
+        <file category="doc" name="Middlewares/ST/STM32_Cryptographic/ReadMe.txt"/>
+        <file category="doc" name="Middlewares/ST/STM32_Cryptographic/Release_Notes.html"/>
+        <file category="include" name="Middlewares/ST/STM32_Cryptographic/include/cipher/"/>
+        <file category="include" name="Middlewares/ST/STM32_Cryptographic/include/drbg/"/>
+        <file category="include" name="Middlewares/ST/STM32_Cryptographic/include/ecc/"/>
+        <file category="include" name="Middlewares/ST/STM32_Cryptographic/include/hash/"/>
+        <file category="include" name="Middlewares/ST/STM32_Cryptographic/include/mac/"/>
+        <file category="include" name="Middlewares/ST/STM32_Cryptographic/include/rsa/"/>
+        <file category="include" name="Middlewares/ST/STM32_Cryptographic/include/utils/"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/cmox_common.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/cmox_crypto.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/cmox_cta.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/cmox_default_config.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/cmox_default_defs.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/cmox_fast_config.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/cmox_info.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/cmox_init.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/cmox_low_level.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/cmox_small_config.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/cipher/cmox_blockcipher.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/cipher/cmox_cbc.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/cipher/cmox_ccm.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/cipher/cmox_cfb.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/cipher/cmox_chachapoly.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/cipher/cmox_check_default_aes.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/cipher/cmox_check_default_gcm.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/cipher/cmox_cipher.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/cipher/cmox_cipher_retvals.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/cipher/cmox_ctr.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/cipher/cmox_ecb.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/cipher/cmox_gcm.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/cipher/cmox_keywrap.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/cipher/cmox_ofb.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/cipher/cmox_xts.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/drbg/cmox_ctr_drbg.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/drbg/cmox_drbg.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/drbg/cmox_drbg_retvals.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/ecc/cmox_ecc.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/ecc/cmox_ecc_custom_curves.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/ecc/cmox_ecc_retvals.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/ecc/cmox_ecc_types.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/ecc/cmox_ecdh.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/ecc/cmox_ecdsa.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/ecc/cmox_eddsa.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/ecc/cmox_sm2.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/hash/cmox_hash.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/hash/cmox_hash_retvals.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/hash/cmox_md.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/hash/cmox_sha1.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/hash/cmox_sha224.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/hash/cmox_sha256.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/hash/cmox_sha3.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/hash/cmox_sha384.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/hash/cmox_sha512.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/hash/cmox_sm3.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/hash/cmox_sponge.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/mac/cmox_cmac.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/mac/cmox_hmac.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/mac/cmox_kmac.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/mac/cmox_mac.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/mac/cmox_mac_retvals.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/rsa/cmox_rsa.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/rsa/cmox_rsa_pkcs1v15.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/rsa/cmox_rsa_pkcs1v22.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/rsa/cmox_rsa_retvals.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/rsa/cmox_rsa_types.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/utils/cmox_utils_compare.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/include/utils/cmox_utils_retvals.h"/>
+        <file category="source" name="Middlewares/ST/STM32_Cryptographic/interface/cmox_low_level_template.c"/>
+        <file category="include" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/include/"/>
+        <file category="include" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/src/"/>
+        <file category="include" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/include/cipher/"/>
+        <file category="include" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/include/drbg/"/>
+        <file category="include" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/include/ecc/"/>
+        <file category="include" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/include/hash/"/>
+        <file category="include" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/include/mac/"/>
+        <file category="include" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/include/membuf/"/>
+        <file category="include" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/include/rsa/"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/include/crypto.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/include/err_codes.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/include/cipher/legacy_v3_aes.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/include/cipher/legacy_v3_aes_cbc.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/include/cipher/legacy_v3_aes_ccm.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/include/cipher/legacy_v3_aes_cfb.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/include/cipher/legacy_v3_aes_ctr.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/include/cipher/legacy_v3_aes_ecb.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/include/cipher/legacy_v3_aes_gcm.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/include/cipher/legacy_v3_aes_keywrap.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/include/cipher/legacy_v3_aes_ofb.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/include/cipher/legacy_v3_aes_xts.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/include/cipher/legacy_v3_chachapoly.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/include/drbg/legacy_v3_ctr_drbg.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/include/ecc/legacy_v3_c25519.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/include/ecc/legacy_v3_ecc.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/include/ecc/legacy_v3_ed25519.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/include/hash/legacy_v3_hash.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/include/hash/legacy_v3_sha1.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/include/hash/legacy_v3_sha224.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/include/hash/legacy_v3_sha256.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/include/hash/legacy_v3_sha384.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/include/hash/legacy_v3_sha512.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/include/mac/legacy_v3_cmac.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/include/mac/legacy_v3_hmac.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/include/mac/legacy_v3_hmac_sha1.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/include/mac/legacy_v3_hmac_sha224.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/include/mac/legacy_v3_hmac_sha256.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/include/mac/legacy_v3_hmac_sha384.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/include/mac/legacy_v3_hmac_sha512.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/include/membuf/legacy_v3_membuf.h"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/include/rsa/legacy_v3_rsa.h"/>
+        <file category="include" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/src/cipher/"/>
+        <file category="include" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/src/drbg/"/>
+        <file category="include" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/src/ecc/"/>
+        <file category="include" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/src/hash/"/>
+        <file category="include" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/src/mac/"/>
+        <file category="include" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/src/membuf/"/>
+        <file category="include" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/src/rsa/"/>
+        <file category="source" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/src/cipher/legacy_v3_aes_cbc.c"/>
+        <file category="source" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/src/cipher/legacy_v3_aes_ccm.c"/>
+        <file category="source" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/src/cipher/legacy_v3_aes_cfb.c"/>
+        <file category="source" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/src/cipher/legacy_v3_aes_ctr.c"/>
+        <file category="source" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/src/cipher/legacy_v3_aes_ecb.c"/>
+        <file category="source" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/src/cipher/legacy_v3_aes_gcm.c"/>
+        <file category="source" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/src/cipher/legacy_v3_aes_keywrap.c"/>
+        <file category="source" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/src/cipher/legacy_v3_aes_ofb.c"/>
+        <file category="source" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/src/cipher/legacy_v3_aes_xts.c"/>
+        <file category="source" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/src/cipher/legacy_v3_chachapoly.c"/>
+        <file category="source" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/src/drbg/legacy_v3_ctr_drbg.c"/>
+        <file category="source" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/src/ecc/legacy_v3_c25519.c"/>
+        <file category="source" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/src/ecc/legacy_v3_ecc.c"/>
+        <file category="source" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/src/ecc/legacy_v3_ed25519.c"/>
+        <file category="source" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/src/hash/legacy_v3_sha1.c"/>
+        <file category="source" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/src/hash/legacy_v3_sha224.c"/>
+        <file category="source" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/src/hash/legacy_v3_sha256.c"/>
+        <file category="source" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/src/hash/legacy_v3_sha384.c"/>
+        <file category="source" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/src/hash/legacy_v3_sha512.c"/>
+        <file category="source" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/src/mac/legacy_v3_cmac.c"/>
+        <file category="source" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/src/mac/legacy_v3_hmac_sha1.c"/>
+        <file category="source" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/src/mac/legacy_v3_hmac_sha224.c"/>
+        <file category="source" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/src/mac/legacy_v3_hmac_sha256.c"/>
+        <file category="source" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/src/mac/legacy_v3_hmac_sha384.c"/>
+        <file category="source" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/src/mac/legacy_v3_hmac_sha512.c"/>
+        <file category="source" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/src/membuf/legacy_v3_membuf.c"/>
+        <file category="header" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/src/membuf/legacy_v3_membuf_internal.h"/>
+        <file category="source" name="Middlewares/ST/STM32_Cryptographic/legacy_v3/src/rsa/legacy_v3_rsa.c"/>
+        <file category="library" condition="CM0_GCC" name="Middlewares/ST/STM32_Cryptographic/lib/libSTM32Cryptographic_CM0_CM0PLUS.a"/>
+        <file category="library" condition="CM0_IAR" name="Middlewares/ST/STM32_Cryptographic/lib/libSTM32Cryptographic_CM0_CM0PLUS.a"/>
+        <file category="library" condition="CM0_Keil" name="Middlewares/ST/STM32_Cryptographic/lib/libSTM32Cryptographic_CM0_CM0PLUS.a"/>
+        <file category="library" condition="CM0+_GCC" name="Middlewares/ST/STM32_Cryptographic/lib/libSTM32Cryptographic_CM0_CM0PLUS.a"/>
+        <file category="library" condition="CM0+_IAR" name="Middlewares/ST/STM32_Cryptographic/lib/libSTM32Cryptographic_CM0_CM0PLUS.a"/>
+        <file category="library" condition="CM0+_Keil" name="Middlewares/ST/STM32_Cryptographic/lib/libSTM32Cryptographic_CM0_CM0PLUS.a"/>
+        <file category="library" condition="CM3_GCC" name="Middlewares/ST/STM32_Cryptographic/lib/libSTM32Cryptographic_CM3.a"/>
+        <file category="library" condition="CM3_IAR" name="Middlewares/ST/STM32_Cryptographic/lib/libSTM32Cryptographic_CM3.a"/>
+        <file category="library" condition="CM3_Keil" name="Middlewares/ST/STM32_Cryptographic/lib/libSTM32Cryptographic_CM3.a"/>
+        <file category="library" condition="CM33_GCC" name="Middlewares/ST/STM32_Cryptographic/lib/libSTM32Cryptographic_CM33.a"/>
+        <file category="library" condition="CM33_IAR" name="Middlewares/ST/STM32_Cryptographic/lib/libSTM32Cryptographic_CM33.a"/>
+        <file category="library" condition="CM33_Keil" name="Middlewares/ST/STM32_Cryptographic/lib/libSTM32Cryptographic_CM33.a"/>
+        <file category="library" condition="CM4_GCC" name="Middlewares/ST/STM32_Cryptographic/lib/libSTM32Cryptographic_CM4.a"/>
+        <file category="library" condition="CM4_IAR" name="Middlewares/ST/STM32_Cryptographic/lib/libSTM32Cryptographic_CM4.a"/>
+        <file category="library" condition="CM4_Keil" name="Middlewares/ST/STM32_Cryptographic/lib/libSTM32Cryptographic_CM4.a"/>
+        <file category="library" condition="CM7_GCC" name="Middlewares/ST/STM32_Cryptographic/lib/libSTM32Cryptographic_CM7.a"/>
+        <file category="library" condition="CM7_IAR" name="Middlewares/ST/STM32_Cryptographic/lib/libSTM32Cryptographic_CM7.a"/>
+        <file category="library" condition="CM7_Keil" name="Middlewares/ST/STM32_Cryptographic/lib/libSTM32Cryptographic_CM7.a"/>
+        <file category="doc" name="Middlewares/ST/STM32_Cryptographic/_htmresc/Add button.svg"/>
+        <file category="doc" name="Middlewares/ST/STM32_Cryptographic/_htmresc/architecture.PNG"/>
+        <file category="doc" name="Middlewares/ST/STM32_Cryptographic/_htmresc/favicon.png"/>
+        <file category="doc" name="Middlewares/ST/STM32_Cryptographic/_htmresc/mini-st_2020.css"/>
+        <file category="doc" name="Middlewares/ST/STM32_Cryptographic/_htmresc/st_logo_2020.png"/>
+        <file category="doc" name="Middlewares/ST/STM32_Cryptographic/_htmresc/Update.svg"/>
+        </files>
+      </component>
+
+      <component Cclass="Security" Cgroup="STSELib" Cvendor="STMicroelectronics" Cversion="1.1.4" Capiversion="1.1.4" condition="STSELib Condition" maxInstances="1">
+        <description> Middleware for STSecure Element </description>
+        <RTE_Components_h>#define STSELib</RTE_Components_h>
+        <files>
+        <file category="include" name="Middlewares/ST/STSELib/api/"/>
+        <file category="include" name="Middlewares/ST/STSELib/certificate/"/>
+        <file category="include" name="Middlewares/ST/STSELib/core/"/>
+        <file category="include" name="Middlewares/ST/STSELib/services/"/>
+        <file category="doc" name="Middlewares/ST/STSELib/LICENSE.txt"/>
+        <file category="doc" name="Middlewares/ST/STSELib/README.md"/>
+        <file category="header" name="Middlewares/ST/STSELib/stselib.h"/>
+        <file category="source" name="Middlewares/ST/STSELib/api/stse_aes.c"/>
+        <file category="header" name="Middlewares/ST/STSELib/api/stse_aes.h"/>
+        <file category="source" name="Middlewares/ST/STSELib/api/stse_asymmetric_keys_management.c"/>
+        <file category="header" name="Middlewares/ST/STSELib/api/stse_asymmetric_keys_management.h"/>
+        <file category="source" name="Middlewares/ST/STSELib/api/stse_data_storage.c"/>
+        <file category="header" name="Middlewares/ST/STSELib/api/stse_data_storage.h"/>
+        <file category="source" name="Middlewares/ST/STSELib/api/stse_device_authentication.c"/>
+        <file category="header" name="Middlewares/ST/STSELib/api/stse_device_authentication.h"/>
+        <file category="source" name="Middlewares/ST/STSELib/api/stse_device_management.c"/>
+        <file category="header" name="Middlewares/ST/STSELib/api/stse_device_management.h"/>
+        <file category="source" name="Middlewares/ST/STSELib/api/stse_ecc.c"/>
+        <file category="header" name="Middlewares/ST/STSELib/api/stse_ecc.h"/>
+        <file category="source" name="Middlewares/ST/STSELib/api/stse_hash.c"/>
+        <file category="header" name="Middlewares/ST/STSELib/api/stse_hash.h"/>
+        <file category="source" name="Middlewares/ST/STSELib/api/stse_mac.c"/>
+        <file category="header" name="Middlewares/ST/STSELib/api/stse_mac.h"/>
+        <file category="source" name="Middlewares/ST/STSELib/api/stse_random.c"/>
+        <file category="header" name="Middlewares/ST/STSELib/api/stse_random.h"/>
+        <file category="source" name="Middlewares/ST/STSELib/api/stse_symmetric_keys_management.c"/>
+        <file category="header" name="Middlewares/ST/STSELib/api/stse_symmetric_keys_management.h"/>
+        <file category="source" name="Middlewares/ST/STSELib/certificate/stse_certificate.c"/>
+        <file category="header" name="Middlewares/ST/STSELib/certificate/stse_certificate.h"/>
+        <file category="source" name="Middlewares/ST/STSELib/certificate/stse_certificate_crypto.c"/>
+        <file category="header" name="Middlewares/ST/STSELib/certificate/stse_certificate_crypto.h"/>
+        <file category="source" name="Middlewares/ST/STSELib/certificate/stse_certificate_prints.c"/>
+        <file category="header" name="Middlewares/ST/STSELib/certificate/stse_certificate_prints.h"/>
+        <file category="source" name="Middlewares/ST/STSELib/certificate/stse_certificate_subparsing.c"/>
+        <file category="header" name="Middlewares/ST/STSELib/certificate/stse_certificate_subparsing.h"/>
+        <file category="header" name="Middlewares/ST/STSELib/certificate/stse_certificate_types.h"/>
+        <file category="source" name="Middlewares/ST/STSELib/core/stse_device.c"/>
+        <file category="header" name="Middlewares/ST/STSELib/core/stse_device.h"/>
+        <file category="source" name="Middlewares/ST/STSELib/core/stse_frame.c"/>
+        <file category="header" name="Middlewares/ST/STSELib/core/stse_frame.h"/>
+        <file category="header" name="Middlewares/ST/STSELib/core/stse_generic_typedef.h"/>
+        <file category="source" name="Middlewares/ST/STSELib/core/stse_platform.c"/>
+        <file category="header" name="Middlewares/ST/STSELib/core/stse_platform.h"/>
+        <file category="header" name="Middlewares/ST/STSELib/core/stse_return_codes.h"/>
+        <file category="source" name="Middlewares/ST/STSELib/core/stse_session.c"/>
+        <file category="header" name="Middlewares/ST/STSELib/core/stse_session.h"/>
+        <file category="header" name="Middlewares/ST/STSELib/core/stse_util.h"/>
+        <file category="include" name="Middlewares/ST/STSELib/services/stsafea/"/>
+        <file category="source" name="Middlewares/ST/STSELib/services/stsafea/stsafea_aes.c"/>
+        <file category="header" name="Middlewares/ST/STSELib/services/stsafea/stsafea_aes.h"/>
+        <file category="source" name="Middlewares/ST/STSELib/services/stsafea/stsafea_asymmetric_key_slots.c"/>
+        <file category="header" name="Middlewares/ST/STSELib/services/stsafea/stsafea_asymmetric_key_slots.h"/>
+        <file category="source" name="Middlewares/ST/STSELib/services/stsafea/stsafea_commands.c"/>
+        <file category="header" name="Middlewares/ST/STSELib/services/stsafea/stsafea_commands.h"/>
+        <file category="source" name="Middlewares/ST/STSELib/services/stsafea/stsafea_data_partition.c"/>
+        <file category="header" name="Middlewares/ST/STSELib/services/stsafea/stsafea_data_partition.h"/>
+        <file category="source" name="Middlewares/ST/STSELib/services/stsafea/stsafea_ecc.c"/>
+        <file category="header" name="Middlewares/ST/STSELib/services/stsafea/stsafea_ecc.h"/>
+        <file category="source" name="Middlewares/ST/STSELib/services/stsafea/stsafea_echo.c"/>
+        <file category="header" name="Middlewares/ST/STSELib/services/stsafea/stsafea_echo.h"/>
+        <file category="source" name="Middlewares/ST/STSELib/services/stsafea/stsafea_hash.c"/>
+        <file category="header" name="Middlewares/ST/STSELib/services/stsafea/stsafea_hash.h"/>
+        <file category="source" name="Middlewares/ST/STSELib/services/stsafea/stsafea_host_key_slot.c"/>
+        <file category="header" name="Middlewares/ST/STSELib/services/stsafea/stsafea_host_key_slot.h"/>
+        <file category="source" name="Middlewares/ST/STSELib/services/stsafea/stsafea_low_power.c"/>
+        <file category="header" name="Middlewares/ST/STSELib/services/stsafea/stsafea_low_power.h"/>
+        <file category="source" name="Middlewares/ST/STSELib/services/stsafea/stsafea_mac.c"/>
+        <file category="header" name="Middlewares/ST/STSELib/services/stsafea/stsafea_mac.h"/>
+        <file category="source" name="Middlewares/ST/STSELib/services/stsafea/stsafea_password.c"/>
+        <file category="header" name="Middlewares/ST/STSELib/services/stsafea/stsafea_password.h"/>
+        <file category="source" name="Middlewares/ST/STSELib/services/stsafea/stsafea_patch.c"/>
+        <file category="header" name="Middlewares/ST/STSELib/services/stsafea/stsafea_patch.h"/>
+        <file category="source" name="Middlewares/ST/STSELib/services/stsafea/stsafea_put_query.c"/>
+        <file category="header" name="Middlewares/ST/STSELib/services/stsafea/stsafea_put_query.h"/>
+        <file category="source" name="Middlewares/ST/STSELib/services/stsafea/stsafea_random.c"/>
+        <file category="header" name="Middlewares/ST/STSELib/services/stsafea/stsafea_random.h"/>
+        <file category="source" name="Middlewares/ST/STSELib/services/stsafea/stsafea_reset.c"/>
+        <file category="header" name="Middlewares/ST/STSELib/services/stsafea/stsafea_reset.h"/>
+        <file category="source" name="Middlewares/ST/STSELib/services/stsafea/stsafea_sessions.c"/>
+        <file category="header" name="Middlewares/ST/STSELib/services/stsafea/stsafea_sessions.h"/>
+        <file category="source" name="Middlewares/ST/STSELib/services/stsafea/stsafea_symmetric_key_slots.c"/>
+        <file category="header" name="Middlewares/ST/STSELib/services/stsafea/stsafea_symmetric_key_slots.h"/>
+        <file category="source" name="Middlewares/ST/STSELib/services/stsafea/stsafea_timings.c"/>
+        <file category="header" name="Middlewares/ST/STSELib/services/stsafea/stsafea_timings.h"/>
+        <file category="source" name="Middlewares/ST/STSELib/services/stsafea/stsafea_wrap_unwrap.c"/>
+        <file category="header" name="Middlewares/ST/STSELib/services/stsafea/stsafea_wrap_unwrap.h"/>
+        <file category="source" name="Middlewares/ST/STSELib/core/stse_generic_typedef.c"/>
+        <file category="include" name="Middlewares/ST/STSELib/services/stsafel/"/>
+        <file category="source" name="Middlewares/ST/STSELib/services/stsafea/stsafea_entity_auth.c"/>
+        <file category="header" name="Middlewares/ST/STSELib/services/stsafea/stsafea_entity_auth.h"/>
+        <file category="source" name="Middlewares/ST/STSELib/services/stsafea/stsafea_frame_transfer.c"/>
+        <file category="header" name="Middlewares/ST/STSELib/services/stsafea/stsafea_frame_transfer.h"/>
+        <file category="source" name="Middlewares/ST/STSELib/services/stsafea/stsafea_public_key_slots.c"/>
+        <file category="header" name="Middlewares/ST/STSELib/services/stsafea/stsafea_public_key_slots.h"/>
+        <file category="source" name="Middlewares/ST/STSELib/services/stsafel/stsafel_commands.c"/>
+        <file category="header" name="Middlewares/ST/STSELib/services/stsafel/stsafel_commands.h"/>
+        <file category="source" name="Middlewares/ST/STSELib/services/stsafel/stsafel_data_partition.c"/>
+        <file category="header" name="Middlewares/ST/STSELib/services/stsafel/stsafel_data_partition.h"/>
+        <file category="source" name="Middlewares/ST/STSELib/services/stsafel/stsafel_device_info.c"/>
+        <file category="header" name="Middlewares/ST/STSELib/services/stsafel/stsafel_device_info.h"/>
+        <file category="source" name="Middlewares/ST/STSELib/services/stsafel/stsafel_ecc.c"/>
+        <file category="header" name="Middlewares/ST/STSELib/services/stsafel/stsafel_ecc.h"/>
+        <file category="source" name="Middlewares/ST/STSELib/services/stsafel/stsafel_echo.c"/>
+        <file category="header" name="Middlewares/ST/STSELib/services/stsafel/stsafel_echo.h"/>
+        <file category="source" name="Middlewares/ST/STSELib/services/stsafel/stsafel_frame_transfer.c"/>
+        <file category="header" name="Middlewares/ST/STSELib/services/stsafel/stsafel_frame_transfer.h"/>
+        <file category="source" name="Middlewares/ST/STSELib/services/stsafel/stsafel_low_power.c"/>
+        <file category="header" name="Middlewares/ST/STSELib/services/stsafel/stsafel_low_power.h"/>
+        <file category="source" name="Middlewares/ST/STSELib/services/stsafel/stsafel_reset.c"/>
+        <file category="header" name="Middlewares/ST/STSELib/services/stsafel/stsafel_reset.h"/>
+        <file category="source" name="Middlewares/ST/STSELib/services/stsafel/stsafel_timings.c"/>
+        <file category="header" name="Middlewares/ST/STSELib/services/stsafel/stsafel_timings.h"/>
+        </files>
+      </component>
+
+    <bundle Cvendor="STMicroelectronics" Cbundle="STSE_Applications" Cclass="Device" Cversion="2.0.0">
+    <description>STSAFE Authentication example</description>
+      <doc>Documentation/STMicroelectronics.X-CUBE-STSE01_GettingStarted.pdf</doc>
+      <component  Cgroup="Application" Cvariant="HOST_KEY_PROVISIONING" isDefaultVariant="true" condition="HOST_KEY_PROVISIONING Condition" maxInstances="1">
+        <!-- short component description -->
+        <description>HOST_KEY_PROVISIONING example for X-NUCLEO-STSAFEA1x</description>
+        <RTE_Components_h>#define HOST_KEY_PROVISIONING</RTE_Components_h>
+        <files/>
+      </component>
+      <component  Cgroup="Application" Cvariant="STSAFEA1_AUTHENTICATION" isDefaultVariant="true" condition="Authentication Condition" maxInstances="1">
+        <!-- short component description -->
+        <description>Authentication example of X-NUCLEO-STSAFEA1x</description>
+        <RTE_Components_h>#define STSAFEA1_AUTHENTICATION</RTE_Components_h>
+        <files/>
+      </component>
+
+      <component  Cgroup="Application" Cvariant="SECURED_DATA_ZONE_ACCESS" isDefaultVariant="true" condition="ZoneAccess Condition" maxInstances="1">
+        <!-- short component description -->
+        <description>All Use case Example of X-NUCLEO-STSAFEA1</description>
+        <RTE_Components_h>#define SECURED_DATA_ZONE_ACCESS</RTE_Components_h>
+        <files/>
+      </component>
+
+      <component  Cgroup="Application" Cvariant="SECURED_COUNTER_ACCESS" isDefaultVariant="true" condition="Secured_Counter_access Condition" maxInstances="1">
+        <!-- short component description -->
+        <description>Secured_Counter_access Example of X-NUCLEO-STSAFEA1</description>
+        <RTE_Components_h>#define SECURED_COUNTER_ACCESS</RTE_Components_h>
+        <files/>
+      </component>
+
+      <component  Cgroup="Application" Cvariant="ECHO_LOOP" isDefaultVariant="true" condition="Echo_Loop Condition" maxInstances="1">
+        <!-- short component description -->
+        <description>ECHO_LOOP Example of X-NUCLEO-STSAFEA1</description>
+        <RTE_Components_h>#define ECHO_LOOP</RTE_Components_h>
+        <files/>
+      </component>
+
+      <component  Cgroup="Application" Cvariant="MULTI_STEP_AUTHENTICATION" isDefaultVariant="true" condition="Multi_Step_Authentication Condition" maxInstances="1">
+        <!-- short component description -->
+        <description>MULTI_STEP_AUTHENTICATION Example of X-NUCLEO-STSAFEA1</description>
+        <RTE_Components_h>#define MULTI_STEP_AUTHENTICATION</RTE_Components_h>
+        <files/>
+      </component>
+
+      <component  Cgroup="Application" Cvariant="RANDOM_NUMBER_GENERATION" isDefaultVariant="true" condition="Random_Number_Generation Condition" maxInstances="1">
+        <!-- short component description -->
+        <description>RANDOM_NUMBER_GENERATION Example of X-NUCLEO-STSAFEA1</description>
+        <RTE_Components_h>#define RANDOM_NUMBER_GENERATION</RTE_Components_h>
+        <files/>
+      </component>
+  
+      <component  Cgroup="Application" Cvariant="SYMMETRIC_KEY_AES_128_CMAC" isDefaultVariant="true" condition="Symmetric_Key_AES_128_CMAC Condition" maxInstances="1">
+        <!-- short component description -->
+        <description>SYMMETRIC_KEY_AES_128_CMAC Example of X-NUCLEO-STSAFEA1</description>
+        <RTE_Components_h>#define SYMMETRIC_KEY_AES_128_CMAC</RTE_Components_h>
+        <files/>
+      </component>
+  
+      <component  Cgroup="Application" Cvariant="NIST-P256_KEY_PAIR_GENERATION" isDefaultVariant="true" condition="Key_Pair_Generation Condition" maxInstances="1">
+        <!-- short component description -->
+        <description>Key_Pair_Generation Example of X-NUCLEO-STSAFEA1</description>
+        <RTE_Components_h>#define STSAFEA1_KEY_PAIR_GENERATION</RTE_Components_h>
+        <files/>
+      </component>
+    
+      <component  Cgroup="Application" Cvariant="STSAFEA1_WRAP_UNWRAP" isDefaultVariant="true" condition="Wrap_Unwrap Condition" maxInstances="1">
+        <!-- short component description -->
+        <description>Wrap_Unwrap Example of X-NUCLEO-STSAFEA1</description>
+        <RTE_Components_h>#define STSAFEA1_WRAP_UNWRAP</RTE_Components_h>
+        <files/>
+      </component>
+    </bundle>    
+    
+  </components>
+
+</package>

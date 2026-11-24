@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<package schemaVersion="1.4.0" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>STMicroelectronics</vendor>
+  <name>X-CUBE-PM33A1</name>
+  <description>Drivers and sample applications for STPM3x components</description>
+  <license>en.DM00751078.pdf</license>
+  <!-- web download link -->
+  <url>http://sw-center.st.com/packs/x-cube/</url>
+
+  <releases>
+    <release version="1.0.0" date="2025-01-23">
+	  - Example Support added
+	  - Create sample applications with STM32CubeMX V6.13.0
+	</release>
+  </releases>
+  
+  <taxonomy>
+    <description  Cclass="Board Part">The STPM3x components support class</description>      
+  </taxonomy>
+
+  <keywords>    
+    <keyword>ARM</keyword>
+    <keyword>Cortex-M</keyword>
+    <keyword>STMicroelectronics</keyword>
+    <keyword>IMPLEMENTED_WITH_STM32CUBEMX</keyword>
+	<keyword>CUBEMX_MIGRATION_CAPABILITY</keyword>
+    <keyword>METROLOGY</keyword>
+  </keywords>
+  
+  
+  <apis>
+    
+    <api Cclass="Board Extension" Cgroup="PM33A1" exclusive="0">
+      <description>Metrology library for X-NUCLEO-PM33A1</description>
+      <files>
+        <file category="doc"     name="Documentation/X-CUBE-PM33A1.chm"/>
+      </files>
+    </api>
+  </apis>
+  
+  
+  <conditions>
+    <condition id="Cortex-M Device">
+      <description>Cortex-M processor based device: Cortex-M0, Cortex-M0+, Cortex-M3, Cortex-M4, Cortex-M7</description>
+      <!-- STM32F0 -->
+      <accept Dcore="Cortex-M0"/>
+	  
+      <!-- STM32L0 -->
+      <accept Dcore="Cortex-M0+"/>
+      
+      <!-- STM32F1, STM32F2 and STM32L1 -->
+	  <accept Dcore="Cortex-M3"/>
+      
+	  <!-- STM32L5-->
+	  <accept Dcore="Cortex-M33"/>
+      <!-- STM32F4, STM32F3 and STM32L4 series -->
+      <accept Dcore="Cortex-M4"/>
+      
+      <!-- STM32F7 and STMH7 series -->
+      <accept Dcore="Cortex-M7"/>     
+    </condition>
+
+    <condition id="CM0_GCC">
+      <require Dcore="Cortex-M0"/>
+      <require Tcompiler="GCC"/>
+    </condition>
+    <condition id="CM0_IAR">
+      <require Dcore="Cortex-M0"/>
+      <require Tcompiler="IAR"/>
+    </condition>
+    <condition id="CM0_Keil">
+      <require Dcore="Cortex-M0"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+	
+	<condition id="CM3_GCC">
+      <require Dcore="Cortex-M3"/>
+      <require Tcompiler="GCC"/>
+    </condition>
+    <condition id="CM3_IAR">
+      <require Dcore="Cortex-M3"/>
+      <require Tcompiler="IAR"/>
+    </condition>
+    <condition id="CM3_Keil">
+      <require Dcore="Cortex-M3"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+	
+	<condition id="CM33_GCC">
+      <require Dcore="Cortex-M33"/>
+      <require Tcompiler="GCC"/>
+    </condition>
+    <condition id="CM33_IAR">
+      <require Dcore="Cortex-M33"/>
+      <require Tcompiler="IAR"/>
+    </condition>
+    <condition id="CM33_Keil">
+      <require Dcore="Cortex-M33"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    
+    <condition id="CM4_GCC">
+      <require Dcore="Cortex-M4"/>
+      <require Tcompiler="GCC"/>
+    </condition>
+    <condition id="CM4_IAR">
+      <require Dcore="Cortex-M4"/>
+      <require Tcompiler="IAR"/>
+    </condition>
+    <condition id="CM4_Keil">
+      <require Dcore="Cortex-M4"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+	
+	<condition id="CM7_GCC">
+      <require Dcore="Cortex-M7"/>
+      <require Tcompiler="GCC"/>
+    </condition>
+    <condition id="CM7_IAR">
+      <require Dcore="Cortex-M7"/>
+      <require Tcompiler="IAR"/>
+    </condition>
+    <condition id="CM7_Keil">
+	  <require Dcore="Cortex-M7"/>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+    
+	<condition id="PM33A1_Condition">
+	  <description>Cortex-M Device and board setup (X-NUCLEO-PM33A1)</description> 
+	  <require condition="Cortex-M Device"/>   
+      <require Cclass="Board Part" Cgroup="PM33A1_IFACE"/>       
+    </condition>
+	
+    <condition id="PM33A1IfaceSelectCondition">
+	  <description>Cortex-M Device and board setup (X-NUCLEO-PM33A1)</description> 
+	  <require condition="Cortex-M Device"/>   
+      <require Cclass="Board Extension" Cgroup="PM33A1"/>       
+    </condition>
+	
+	<!-- PM33A1 Examples condition -->
+    <condition id="PM33A1_Application_SPI_Condition">
+	  <require condition="PM33A1_Condition"/>
+	  <require condition="Cortex-M Device"/> 
+	  <require Cclass="Board Extension" Cgroup="PM33A1"/> 
+	  <require Cclass="Board Part" Cgroup="PM33A1_IFACE" Cvariant="SPI"/> 
+    </condition>
+	<condition id="PM33A1_Application_UART_Condition">
+	  <require condition="PM33A1_Condition"/>
+	  <require condition="Cortex-M Device"/> 
+	  <require Cclass="Board Extension" Cgroup="PM33A1"/> 
+	  <require Cclass="Board Part" Cgroup="PM33A1_IFACE" Cvariant="UART"/> 
+    </condition>
+	
+  </conditions>
+  
+  <components>
+  	<component Cvendor="STMicroelectronics" Cclass="Board Part" Cgroup="PM33A1_IFACE" Cvariant="UART" isDefaultVariant="false" condition="PM33A1IfaceSelectCondition" maxInstances="1" Cversion="1.0.0">
+	    <!-- short component description -->
+        <description>Interface Selection for PM33A1</description>
+        <RTE_Components_h>#define USE_UART</RTE_Components_h>
+	    <files>
+			<file category="header"  name="Drivers/BSP/Components/STPM3x/metrology.h"/>
+			<file category="source"  name="Drivers/BSP/Components/STPM3x/metrology.c" />
+			<file category="header"  name="Drivers/BSP/Components/STPM3x/metrology_hal.h"/>
+			<file category="source"  name="Drivers/BSP/Components/STPM3x/metrology_hal.c"/>
+			<file category="header"  name="Drivers/BSP/Components/STPM3x/stpm_metrology.h"/>
+			<file category="header"  name="Drivers/BSP/Components/STPM3x/metroTask.h"/>
+			<file category="source"  name="Drivers/BSP/Components/STPM3x/metroTask.c"/>
+	    </files>
+    </component>
+    <component Cvendor="STMicroelectronics" Cclass="Board Part" Cgroup="PM33A1_IFACE" Cvariant="SPI" isDefaultVariant="true" condition="PM33A1IfaceSelectCondition" maxInstances="1" Cversion="1.0.0">
+	    <!-- short component description -->
+	    <description>Interface Selection for PM33A1</description>
+        <RTE_Components_h>#define USE_SPI</RTE_Components_h>
+	    <files>
+			<file category="header"  name="Drivers/BSP/Components/STPM3x/metrology.h"/>
+			<file category="source"  name="Drivers/BSP/Components/STPM3x/metrology.c" />
+			<file category="header"  name="Drivers/BSP/Components/STPM3x/metrology_hal.h"/>
+			<file category="source"  name="Drivers/BSP/Components/STPM3x/metrology_hal.c"/>
+			<file category="header"  name="Drivers/BSP/Components/STPM3x/stpm_metrology.h"/>
+			<file category="header"  name="Drivers/BSP/Components/STPM3x/metroTask.h"/>
+			<file category="source"  name="Drivers/BSP/Components/STPM3x/metroTask.c"/>
+	    </files>
+    </component>
+	
+    <component Cvendor="STMicroelectronics" Cclass="Board Extension" Cgroup="PM33A1" condition="PM33A1_Condition" maxInstances="1" Cversion="1.0.0">
+	     <!-- short component description -->
+	     <description> BSPTAG for X-NUCLEO-PM33A1, STPM33 Device </description>
+         <RTE_Components_h>#define USE_STPM3X</RTE_Components_h>
+		 <!-- short component description -->
+         <files>
+			<file category="header"  name="Drivers/BSP/PM33A1/st_device.h"/>
+		    <file category="header"  name="Drivers/BSP/PM33A1/st_types.h"/>
+		    <file category="header"  name="Drivers/BSP/PM33A1/pm33a1.h"/>
+		    <file category="source"  name="Drivers/BSP/PM33A1/pm33a1.c"/>
+         </files>
+	</component>
+	
+	<bundle Cvendor="STMicroelectronics" Cbundle="PM33A1_Applications" Cclass="Device" Cversion="1.0.0">
+    <description>PM33A1 sample application for X-NUCLEO-PM33A1</description>
+	  <doc>Documentation/STMicroelectronics.X-CUBE-PM33A1_GettingStarted.pdf</doc>
+	  <component  Cgroup="Application" Cvariant="PM33A1_METROLOGY_SPI" isDefaultVariant="false" condition="PM33A1_Application_SPI_Condition" maxInstances="1">
+	     <!-- short component description -->
+         <description>Application for Metrology Using SPI</description>
+        <RTE_Components_h>#define PM33A1_METROLOGY_SPI</RTE_Components_h>
+        <files/>
+      </component>
+	  <component  Cgroup="Application" Cvariant="PM33A1_METROLOGY_UART" isDefaultVariant="false" condition="PM33A1_Application_UART_Condition" maxInstances="1">
+	     <!-- short component description -->
+         <description>Application for Metrology Using UART</description>
+        <RTE_Components_h>#define PM33A1_METROLOGY_UART</RTE_Components_h>
+        <files/>
+      </component>
+	  
+    </bundle>    
+    	
+		
+    
+  </components>
+
+</package>

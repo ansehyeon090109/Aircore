@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<package schemaVersion="1.7.56" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+    <vendor>STMicroelectronics</vendor>
+    <name>X-CUBE-SMBUS</name>
+    <description>SMBus stack and sample applications for selected boards</description>
+    <url>http://sw-center.st.com/packs/x-cube/</url>
+    <license>Documents/SLA0048_STM32CUBEPROG.pdf</license>
+    <releases>
+        <release date="2026-05-01" version="2.1.1">Alert PEC bugfix
+Improved reaction to arbitration loss
+Other minor improvements</release>
+        <release date="2023-01-30" version="2.1.0">First CubeMX enabled release</release>
+        <release date="2015-02-04" version="1.0.0">     - First official release
+    </release>
+    </releases>
+    <keywords>
+        <keyword>ARM</keyword>
+        <keyword>Cortex-M</keyword>
+        <keyword>STMicroelectronics</keyword>
+        <keyword>IMPLEMENTED_WITH_STM32CUBEMX</keyword>
+        <keyword>STM32F3</keyword>
+        <keyword>STM32F0</keyword>
+        <keyword>STM32G4</keyword>
+        <keyword>STM32H7</keyword>
+        <keyword>STM32L0</keyword>
+        <keyword>STM32L4</keyword>
+        <keyword>STM32L4+</keyword>
+        <keyword>STM32LWB</keyword>
+        <keyword>SMBus</keyword>
+        <keyword>PMBus</keyword>
+    </keywords>
+    <taxonomy>
+        <description Cclass="Application">Application</description>
+        <description Cclass="SMbus">SMbus</description>
+        <description Cclass="Data Exchange">Communication stack for SMBus 3.0 protocol with PMBus 1.3.1 extension</description>
+    </taxonomy>
+    <conditions>
+        <condition id="Cortex-M Device">
+            <description>Cortex-M processor based device: Cortex-M0, Cortex-M0+, Cortex-M3, Cortex-M4, Cortex-M7, Cortex-M33</description>
+            <accept Dcore="Cortex-M0"/>
+            <accept Dcore="Cortex-M0+"/>
+            <accept Dcore="Cortex-M3"/>
+            <accept Dcore="Cortex-M4"/>
+            <accept Dcore="Cortex-M7"/>
+            <accept Dcore="Cortex-M33"/>
+        </condition>
+        <condition id="SMBus Stack Condition">
+            <description>Cortex-M Device and board setup (BlueNRG-MS)</description>
+            <require condition="Cortex-M Device"/>
+            <deny Dname="STM32F0"/>
+            <deny Dname="STM32F2"/>
+            <deny Dname="STM32F4"/>
+        </condition>
+        <condition id="Application dependency">
+            <description>stack must be selected</description>
+            <require Cbundle="SMBus_PMBus_Stack"/>
+        </condition>
+    </conditions>
+    <components>
+        <bundle Cbundle="SMBus_PMBus_Stack" Cclass="SMbus" Cversion="2.1.0">
+            <description>SMBus and PMBus stack implementation</description>
+            <doc>Middlewares/ST/STM32_SMBus_Stack/Release_Notes.html</doc>
+            <component Cgroup="SMBus" condition="SMBus Stack Condition" maxInstances="1">
+                <description>SMBus 3.0 and PMBus 1.3.1 stack implementation</description>
+                <files>
+                    <file category="source" name="Middlewares/ST/STM32_SMBus_Stack/src/stm32_PMBUS_stack.c"/>
+                    <file category="source" name="Middlewares/ST/STM32_SMBus_Stack/src/stm32_SMBUS_stack.c"/>
+                    <file category="header" name="Middlewares/ST/STM32_SMBus_Stack/inc/stm32_PMBUS_stack.h"/>
+                    <file category="header" name="Middlewares/ST/STM32_SMBus_Stack/inc/stm32_SMBUS_stack.h"/>
+                </files>
+            </component>
+        </bundle>
+        <bundle Cbundle="Application" Cclass="Application" Cversion="1.0.1">
+            <description>Application</description>
+            <doc>st.com</doc>
+            <component Cgroup="Application" condition="Application dependency" maxInstances="1">
+                <description>initialization part</description>
+                <files/>
+            </component>
+        </bundle>
+    </components>
+    <examples>
+        <example doc="readme.txt" folder="Projects/STM32F3-Discovery" name="STM32F3-Discovery" public="false" version="1.0.0">
+            <description>STM32F3-Discovery</description>
+            <board Dvendor="STMicroelectronics:13" name="STM32F3-Discovery" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="EWARM" load="Project.ewp" name="iar"/>
+                <environment folder="MDK-ARM" load="Project.uvprojx" name="uv"/>
+                <environment folder="STM32F303-Discovery" load=".cproject" name="stm32cubeide"/>
+            </project>
+            <attributes>
+                <component Cbundle="SMBus/PMBus Stack" Cclass="SMbus" Cgroup="SMBus" Cvendor="STMicroelectronics" Cversion="2.0.3"/>
+            </attributes>
+        </example>
+        <example doc="readme.txt" folder="Projects/STM32F072B-Discovery" name="STM32F072B-Discovery" public="false" version="1.0.0">
+            <description>STM32F072B-Discovery</description>
+            <board Dvendor="STMicroelectronics:13" name="STM32F072B-Discovery" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="EWARM" load="Project.ewp" name="iar"/>
+                <environment folder="MDK-ARM" load="Project.uvprojx" name="uv"/>
+                <environment folder="STM32F072B-Discovery" load=".cproject" name="stm32cubeide"/>
+            </project>
+            <attributes>
+                <component Cbundle="SMBus/PMBus Stack" Cclass="SMbus" Cgroup="SMBus" Cvendor="STMicroelectronics" Cversion="2.0.3"/>
+            </attributes>
+        </example>
+        <example doc="readme.txt" folder="Projects/STM32G431RB-Nucleo" name="STM32G431RB-Nucleo" public="false" version="1.0.0">
+            <description>STM32G431RB-Nucleo</description>
+            <board name="STM32G431RB-Nucleo" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="EWARM" load="Project.ewp" name="iar"/>
+                <environment folder="MDK-ARM" load="Project.uvprojx" name="uv"/>
+                <environment folder="STM32G431_SMBus_example" load=".cproject" name="stm32cubeide"/>
+            </project>
+            <attributes>
+                <component Cbundle="SMBus/PMBus Stack" Cclass="SMbus" Cgroup="SMBus" Cvendor="STMicroelectronics" Cversion="2.0.3"/>
+            </attributes>
+        </example>
+        <example doc="readme.txt" folder="Projects/STM32H743ZI-Nucleo" name="STM32H743ZI-Nucleo" public="false" version="1.0.0">
+            <description>STM32H743ZI-Nucleo</description>
+            <board Dvendor="STMicroelectronics:13" name="STM32H743ZI-Nucleo" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="EWARM" load="Project.ewp" name="iar"/>
+                <environment folder="MDK-ARM" load="Project.uvprojx" name="uv"/>
+                <environment folder="STM32H743ZI-Nucleo" load=".cproject" name="stm32cubeide"/>
+            </project>
+            <attributes>
+                <component Cbundle="SMBus/PMBus Stack" Cclass="SMbus" Cgroup="SMBus" Cvendor="STMicroelectronics" Cversion="2.0.3"/>
+            </attributes>
+        </example>
+        <example doc="readme.txt" folder="Projects/STM32L4-Discovery" name="STM32L4-Discovery" public="false" version="1.0.0">
+            <description>STM32L4-Discovery</description>
+            <board Dvendor="STMicroelectronics:13" name="STM32L4-Discovery" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="EWARM" load="Project.ewp" name="iar"/>
+                <environment folder="MDK-ARM" load="Project.uvprojx" name="uv"/>
+                <environment folder="STM32L476G-Discovery" load=".cproject" name="stm32cubeide"/>
+            </project>
+            <attributes>
+                <component Cbundle="SMBus/PMBus Stack" Cclass="SMbus" Cgroup="SMBus" Cvendor="STMicroelectronics" Cversion="2.0.3"/>
+            </attributes>
+        </example>
+        <example doc="readme.txt" folder="Projects/STM32L4R5ZI-Nucleo" name="STM32L4R5ZI-Nucleo" public="false" version="1.0.0">
+            <description>STM32L4R5ZI-Nucleo</description>
+            <board name="STM32L4R5ZI-Nucleo" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="EWARM" load="Project.ewp" name="iar"/>
+                <environment folder="MDK-ARM" load="Project.uvprojx" name="uv"/>
+                <environment folder="STM32L4R5ZI_NUCLEO" load=".cproject" name="stm32cubeide"/>
+            </project>
+            <attributes>
+                <component Cbundle="SMBus/PMBus Stack" Cclass="SMbus" Cgroup="SMBus" Cvendor="STMicroelectronics" Cversion="2.0.3"/>
+            </attributes>
+        </example>
+        <example doc="readme.txt" folder="Projects/STM32L0538-Discovery" name="STM32L0538-Discovery" public="false" version="1.0.0">
+            <description>STM32L0538-Discovery</description>
+            <board Dvendor="STMicroelectronics:13" name="STM32L0538-Discovery" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="EWARM" load="Project.ewp" name="iar"/>
+                <environment folder="MDK-ARM" load="Project.uvprojx" name="uv"/>
+                <environment folder="STM32L0538-Discovery" load=".cproject" name="stm32cubeide"/>
+            </project>
+            <attributes>
+                <component Cbundle="SMBus/PMBus Stack" Cclass="SMbus" Cgroup="SMBus" Cvendor="STMicroelectronics" Cversion="2.0.3"/>
+            </attributes>
+        </example>
+        <example doc="readme.txt" folder="Projects/NUCLEO-WB55RG" name="NUCLEO-WB55RG" public="false" version="1.0.0">
+            <description>NUCLEO-WB55RG</description>
+            <board Dvendor="STMicroelectronics:13" name="NUCLEO-WB55RG" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="EWARM" load="Project.ewp" name="iar"/>
+                <environment folder="MDK-ARM" load="Project.uvprojx" name="uv"/>
+                <environment folder="STM32WB55_SMBus_example" load=".cproject" name="stm32cubeide"/>
+            </project>
+            <attributes>
+                <component Cbundle="SMBus/PMBus Stack" Cclass="SMbus" Cgroup="SMBus" Cvendor="STMicroelectronics" Cversion="2.0.3"/>
+            </attributes>
+        </example>
+    </examples>
+</package>

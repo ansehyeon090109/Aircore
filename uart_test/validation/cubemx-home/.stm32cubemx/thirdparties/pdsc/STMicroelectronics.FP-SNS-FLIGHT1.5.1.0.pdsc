@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<package schemaVersion="1.7.40" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+    <vendor>STMicroelectronics</vendor>
+    <name>FP-SNS-FLIGHT1</name>
+    <description>The FP-SNS-FLIGHT1 is an STM32Cube function pack which lets you connect your IoT node to a smartphone via BLE and use a suitable Android or iOS like the ST BLE Sensor app to view real-time time-of-flight sensors data. 
+This package, together with the suggested combination of STM32 and ST devices can be used to develop specific wearable applications, or smart things applications in general. The software runs on the STM32 microcontroller and includes all the necessary drivers to recognize the devices on the STM32 Nucleo development board and expansion boards.</description>
+    <url>http://sw-center.st.com/packs/x-cube/</url>
+    <license>en.DM00251784.pdf</license>
+    <releases>
+        <release date="2024-12-04" version="5.1.0">Official release of the FP_SNS-FLIGHT1 support package.
+Create sample applications with STM32CubeMX v.6.13.0 or higher</release>
+        <release date="2023-06-20" version="5.0.2">Official release of the FP_SNS-FLIGHT1 support package.
+Create sample applications with STM32CubeMX v.6.9.0 or higher</release>
+        <release date="2023-05-10" version="5.0.1">Official release of the FP_SNS-FLIGHT1 support package.
+Create sample applications with STM32CubeMX v.6.8.0 or higher</release>
+        <release date="2023-02-21" version="5.0.0">First official release of the FP_SNS-FLIGHT1 support package.
+Create sample applications with STM32CubeMX v.67.0 or higher</release>
+    </releases>
+    <keywords>
+        <keyword>CUBE_RULES_COMPLIANT</keyword>
+        <keyword>IMPLEMENTED_WITH_STM32CUBEMX</keyword>
+        <keyword>IS_CONTEXT_EXCLUSIVE</keyword>
+        <keyword>DNS_BUSIO_X_CONTEXT_SHARING</keyword>
+        <keyword>DOES_NOT_SUPPORT_SECURE</keyword>
+    </keywords>
+    <taxonomy>
+        <description Cclass="Device">Device</description>
+    </taxonomy>
+    <requirements>
+        <packages>
+            <package name="X-CUBE-TOF1" vendor="STMicroelectronics" version="3.4.2"/>
+            <package name="X-CUBE-BLEMGR" vendor="STMicroelectronics" version="4.0.0"/>
+            <package name="X-CUBE-BLE2" vendor="STMicroelectronics" version="3.3.0"/>
+        </packages>
+    </requirements>
+    <conditions>
+        <condition id="Cortex-M Device">
+            <description>Cortex-M processor based device: Cortex-M0+, Cortex-M3, Cortex-M4, Cortex-M7, Cortex-M33</description>
+            <accept Dcore="Cortex-M0+"/>
+            <accept Dcore="Cortex-M3"/>
+            <accept Dcore="Cortex-M4"/>
+            <accept Dcore="Cortex-M7"/>
+            <accept Dcore="Cortex-M33"/>
+        </condition>
+        <condition id="Board_53L3A2">
+            <require Cclass="Board Extension" Cgroup="53L3A2"/>
+        </condition>
+        <condition id="BLE_Manager">
+            <require Cclass="BLE_Features" Cgroup="BLE_Manager"/>
+            <require Cclass="BLE_Features" Cgroup="HardwareSensors" Csub="Led"/>
+            <require Cclass="BLE_Features" Cgroup="HardwareSensors" Csub="ObjectsDetection"/>
+            <require Cclass="Data Exchange" Cgroup="parson"/>
+            <require Cclass="Bluetooth" Cgroup="Core" Cvariant="BLE_2"/>
+        </condition>
+        <condition id="FLIGHT1_53L3A2">
+            <require condition="Board_53L3A2"/>
+            <require condition="BLE_Manager"/>
+            <require condition="MCU_WITHOUT_FOTA"/>
+        </condition>
+        <condition id="MCU_WITHOUT_FOTA">
+            <accept Dname="STM32F4??[R,Z][Z,C,D,E,F,G,H,I,J]*"/>
+            <accept Dname="STM32L4??[R,Z][Z,C,D,E,F,G,H,I,J]*"/>
+            <accept Dname="STM32U5??[R,Z][Z,C,D,E,F,G,H,I,J]*"/>
+        </condition>
+        <condition id="MCU_FOR_FOTA">
+            <accept Dname="STM32F4??[R,Z][E,F,G,H,I,J]*"/>
+            <accept Dname="STM32L4??[R,Z][E,F,G,H,I,J]*"/>
+            <accept Dname="STM32U5??[R,Z][E,F,G,H,I,J]*"/>
+        </condition>
+        <condition id="FLIGHT1_53L3A2_FOTA">
+            <require condition="Board_53L3A2"/>
+            <require condition="BLE_Manager"/>
+            <require condition="MCU_FOR_FOTA"/>
+            <require condition="CRC HAL"/>
+        </condition>
+        <condition id="CRC HAL">
+            <require Cclass="Device" Cgroup="CRC" Csub="HAL"/>
+        </condition>
+        <condition id="MCU_CUSTOM">
+            <accept Dname="STM32F4???[8,9,L,B,Z,C,D,E,F,G,H,I,J]*"/>
+            <accept Dname="STM32L4???[8,9,L,B,Z,C,D,E,F,G,H,I,J]*"/>
+            <accept Dname="STM32U5???[8,9,L,B,Z,C,D,E,F,G,H,I,J]*"/>
+        </condition>
+        <condition id="Sensor_VL53L3CX">
+            <require Cclass="Board Part" Cgroup="Ranging" Csub="VL53L3CX"/>
+            <require Cclass="Board Support" Cgroup="Custom" Csub="RANGING_SENSOR"/>
+        </condition>
+        <condition id="FLIGHT1_CUSTOM">
+            <require condition="Sensor_VL53L3CX"/>
+            <require condition="BLE_Manager"/>
+            <require condition="MCU_CUSTOM"/>
+        </condition>
+    </conditions>
+    <components>
+        <bundle Cbundle="FLIGHT1_Applications" Cclass="Device" Cversion="5.1.0">
+            <description>The FLIGHT1 application  lets you connect your IoT node to a smartphone via BLE and use a suitable Android or iOS like the ST BLE Sensor app to view real-time time-of-flight sensors data.
+The software runs on the STM32 microcontroller and includes all the necessary drivers to recognize the devices on the STM32 Nucleo development board and expansion boards.</description>
+            <doc>Documentation/STMicroelectronics.FP-SNS-FLIGHT1_GettingStarted.pdf</doc>
+            <component Cgroup="Application" Cvariant="FLIGHT1_53L3A2" condition="FLIGHT1_53L3A2" maxInstances="1">
+                <description>FP-SNS-FLIGHT1 sample application for X-NUCLEO-53L3A2 expansion board</description>
+                <RTE_Components_h>#define FLIGHT1_53L3A2</RTE_Components_h>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="BootLoader" condition="MCU_FOR_FOTA" maxInstances="1">
+                <description>Boot Loader firmware</description>
+                <RTE_Components_h>#define BOOT_LOADER</RTE_Components_h>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="FLIGHT1_53L3A2_FOTA" condition="FLIGHT1_53L3A2_FOTA" maxInstances="1">
+                <description>FP-SNS-FLIGHT1 sample application for X-NUCLEO-53L3A2 expansion board and FOTA</description>
+                <RTE_Components_h>#define FLIGHT1_FOTA_53L3A2</RTE_Components_h>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="FLIGHT1_Custom" condition="FLIGHT1_CUSTOM" maxInstances="1">
+                <description>FP-SNS-FLIGHT1 sample custom application for vl53l3cx Tof sensor</description>
+                <RTE_Components_h>#define FLIGHT1_CUSTOM</RTE_Components_h>
+                <files/>
+            </component>
+        </bundle>
+    </components>
+</package>

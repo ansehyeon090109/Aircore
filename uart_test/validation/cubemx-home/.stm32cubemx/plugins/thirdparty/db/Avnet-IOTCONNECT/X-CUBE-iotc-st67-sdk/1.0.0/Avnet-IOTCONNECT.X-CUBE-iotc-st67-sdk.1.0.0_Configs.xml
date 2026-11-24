@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<IP xmlns="http://mcd.rou.st.com/modules.php?name=mcu" DBVersion="V4.0" Name="X-CUBE-iotc-st67-sdk" RootFolder="C:\Users\user\STM32CubeIDE\workspace_1.19.0\uart_test\validation\cubemx-home\.stm32cubemx\thirdparties\pdsc/Avnet-IOTCONNECT/X-CUBE-iotc-st67-sdk/1.0.0/" Version="1.0.0" xmlns:ns0="http://www.w3.org/2001/XMLSchema-instance" ns0:schemaLocation="http://mcd.rou.st.com/modules.php?name=mcu ../../../../../../../doc/V4/Development/Specifications/db/thirdPartyDb.xsd">
+    <RefConfig Name="IoTOoUtilityJjiotcAacAalib">
+        <Component Name="IoTOoUtility:iotcAacAalib:$IoTOoUtilityJjiotcAacAalib"/>
+    </RefConfig>
+    <RefConfig Name="IoTOoUtilityJjiotcAast67Aasdk">
+        <Component Name="IoTOoUtility:iotcAast67Aasdk:$IoTOoUtilityJjiotcAast67Aasdk"/>
+    </RefConfig>
+    <RefComponent Cclass="IoTOoUtility" Cgroup="iotcAacAalib" Cversion="3Gg1Gg1">
+        <File Category="other" Condition="" Name="Middlewares/Third_Party/iotc-c-lib/CONTRIBUTING.md"/>
+        <File Category="header" Condition="" Name="Middlewares/Third_Party/iotc-c-lib/core/include/iotcl.h"/>
+        <File Category="header" Condition="" Name="Middlewares/Third_Party/iotc-c-lib/core/include/iotcl_c2d.h"/>
+        <File Category="header" Condition="" Name="Middlewares/Third_Party/iotc-c-lib/core/include/iotcl_certs.h"/>
+        <File Category="header" Condition="" Name="Middlewares/Third_Party/iotc-c-lib/core/include/iotcl_cfg.h"/>
+        <File Category="header" Condition="" Name="Middlewares/Third_Party/iotc-c-lib/core/include/iotcl_example_config.h"/>
+        <File Category="header" Condition="" Name="Middlewares/Third_Party/iotc-c-lib/core/include/iotcl_internal.h"/>
+        <File Category="header" Condition="" Name="Middlewares/Third_Party/iotc-c-lib/core/include/iotcl_log.h"/>
+        <File Category="header" Condition="" Name="Middlewares/Third_Party/iotc-c-lib/core/include/iotcl_telemetry.h"/>
+        <File Category="header" Condition="" Name="Middlewares/Third_Party/iotc-c-lib/core/include/iotcl_util.h"/>
+        <File Category="source" Condition="" Name="Middlewares/Third_Party/iotc-c-lib/core/src/iotcl.c"/>
+        <File Category="source" Condition="" Name="Middlewares/Third_Party/iotc-c-lib/core/src/iotcl_c2d.c"/>
+        <File Category="source" Condition="" Name="Middlewares/Third_Party/iotc-c-lib/core/src/iotcl_internal.c"/>
+        <File Category="source" Condition="" Name="Middlewares/Third_Party/iotc-c-lib/core/src/iotcl_telemetry.c"/>
+        <File Category="source" Condition="" Name="Middlewares/Third_Party/iotc-c-lib/core/src/iotcl_util.c"/>
+        <File Category="source" Condition="" Name="Middlewares/Third_Party/iotc-c-lib/lib/cJSON/cJSON.c"/>
+        <File Category="header" Condition="" Name="Middlewares/Third_Party/iotc-c-lib/lib/cJSON/cJSON.h"/>
+        <File Category="source" Condition="" Name="Middlewares/Third_Party/iotc-c-lib/modules/device-rest-api/iotcl_dra_discovery.c"/>
+        <File Category="header" Condition="" Name="Middlewares/Third_Party/iotc-c-lib/modules/device-rest-api/iotcl_dra_discovery.h"/>
+        <File Category="source" Condition="" Name="Middlewares/Third_Party/iotc-c-lib/modules/device-rest-api/iotcl_dra_identity.c"/>
+        <File Category="header" Condition="" Name="Middlewares/Third_Party/iotc-c-lib/modules/device-rest-api/iotcl_dra_identity.h"/>
+        <File Category="source" Condition="" Name="Middlewares/Third_Party/iotc-c-lib/modules/device-rest-api/iotcl_dra_url.c"/>
+        <File Category="header" Condition="" Name="Middlewares/Third_Party/iotc-c-lib/modules/device-rest-api/iotcl_dra_url.h"/>
+        <File Category="other" Condition="" Name="Middlewares/Third_Party/iotc-c-lib/README.md"/>
+    </RefComponent>
+    <RefComponent Cclass="IoTOoUtility" Cgroup="iotcAast67Aasdk" Cversion="1Gg0Gg0">
+        <File Category="source" Condition="" Name="Middlewares/Third_Party/iotc-st67-sdk/iotconnect.c"/>
+        <File Category="header" Condition="" Name="Middlewares/Third_Party/iotc-st67-sdk/iotconnect.h"/>
+        <File Category="header" Condition="" Name="Middlewares/Third_Party/iotc-st67-sdk/iotc_config.h"/>
+        <File Category="source" Condition="" Name="Middlewares/Third_Party/iotc-st67-sdk/iotc_http_client.c"/>
+        <File Category="header" Condition="" Name="Middlewares/Third_Party/iotc-st67-sdk/iotc_http_client.h"/>
+    </RefComponent>
+</IP>

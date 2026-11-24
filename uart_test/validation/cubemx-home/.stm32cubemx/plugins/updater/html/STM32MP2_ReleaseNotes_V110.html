@@ -1,0 +1,42 @@
+<!DOCTYPE html >
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
+<font color="blue"><b><u>STM32CubeMP2 Firmware Package V1.1.0 / 07-Nov-2024</u></b></font><br>
+<b><u>Main Changes</u></b><br>
+<b>This is a **Maintenance release of STM32CubeMP2** Firmware Package v1.1.0 release</b><br>
+<ul style="list-style-type: disc;">
+	<li>Added support for a new derivative of MP2x: MP23</li>
+		<ul>
+			<li>Added CMSIS for all CPNs of this derivative.</li>
+			<li>Added BSP for a new Board STM32MP235F-DK (This board is not available, but a BSP is available which has been tested on STM32MP257F-DK board)</li>
+			<li>Added new examples, Applications and Demonstration projects for MP23.</li>
+			<li>ResourceManager updated to handle requests for MP23 resources.</li>
+		</ul>
+		<li>MP25: Support added for Cortex-M0</li>
+		<ul>
+			<li>CMSIS for all CPNs available.</li>
+			<li>OpenOCD scripts updated to support CM0+ project compilation.</li>
+			<li>Demonstration project running in production mode showing usage of LPUART</li>
+			<li>Cortex-M0 firmware is running in production mode.</li>
+			<li>Added script fw_cortex_m0.sh to load, start, stop the firmware.</li>
+			<li>This project can be compiled using Cmake or STM32CubeIDE.</li>
+			<li>Uses Open config of OSTL.</li>
+		</ul>
+		
+	<li>CMSIS updated to v5.9.0</li>
+	<li>MP25: Low Power modes demonstration.</li>
+		<ul>
+			<li>Demo Cube Firmware project that is loaded and executed from the SRAM in production mode.</li>
+		</ul>
+	<li>MP2x: Support added to encrypt the Cube Firmware and decrypt when loaded on M33.</li>
+	<li>MP2x: Updated Resource Manager</li>
+			<ul>
+			<li>Support for multiple GPIO pins request/release.</li>
+			<li>Support to request RTC features as resources.</li>
+			<li>Bug Fixes, refactoring of codebase to allow addition of MP2x derivatives.</li>
+		</ul>
+	<li>MP25: Support added for 16x16 package.</li>
+	<li>MP2x: Miscellaneous bug fixes in DMA, GPIO, RCC</li>
+	<li>Misra, MCUAstyle fixes.</li>
+	<li>General Code cleanup</li>
+</ul>
+</html>

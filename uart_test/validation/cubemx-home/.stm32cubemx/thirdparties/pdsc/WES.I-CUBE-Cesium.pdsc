@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<package schemaVersion="1.7.46" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+    <vendor>WES</vendor>
+    <name>I-CUBE-Cesium</name>
+    <description>Cesium RTOS by Weston Embedded Solutions 
+www.weston-embedded.com</description>
+    <url>https://www.weston-embedded.com/stm_packages/</url>
+    <license>Cesium RTOS Evaluation License for STM Cube.pdf</license>
+    <supportContact>https://helpdesk.weston-embedded.com/index.php?pg=request</supportContact>
+    <releases>
+        <release date="2025-07-27" version="1.4.0">- Added support for Cortex-M55 processors
+- Added NUCLEO-N657X0-Q example</release>
+        <release date="2022-03-26" version="1.3.0">- Added support for Cortex-M7, Cortex-M4 and Cortex-M3 processors
+- Added GPIO_Blinky example for B-G474E-DPOW1 board.</release>
+        <release date="2021-10-06" version="1.2.0">- Removed Cesium source code.
+- Added Cesium library file for IAR, Keil-MDK, and GNU using SysTick or DynamicTick
+- Added BSP OS template file to enable SysTick or DynamicTick
+- Added GPIO_Blinky example for IAR, Keil-MDK and STM32CubeIDE
+- Added DynamicTick example for IAR, Keil-MDK and STM32CubeIDE
+- Added examples for STM32U575I-EV and NUCLEO-L552ZE-Q boards</release>
+        <release date="2021-09-22" version="1.1.0">- Add Blinky example startup code for Initializing Cesium RTOS
+- Generate BSP LED code</release>
+        <release date="2022-09-22" version="1.0.0">- Add Cesium Cs/OS3 files and ARMv8M port files 
+- Add RTOS configuration files
+- Add Cs/CPU and Cs/LIB files, which are required to run Cs/OS3</release>
+    </releases>
+    <keywords>
+        <keyword>IMPLEMENTED_WITH_STM32CUBEMX</keyword>
+        <keyword>CUBE_RULES_COMPLIANT</keyword>
+        <keyword>WestonEmbeddedSolutions</keyword>
+        <keyword>WES</keyword>
+        <keyword>Cesium</keyword>
+        <keyword>RTOS</keyword>
+        <keyword>OS</keyword>
+        <keyword>Operating system</keyword>
+        <keyword>real-time</keyword>
+        <keyword>Cs/OS</keyword>
+        <keyword>Cortex-M</keyword>
+        <keyword>STM32F7</keyword>
+        <keyword>STM32F2</keyword>
+        <keyword>STM32H7</keyword>
+        <keyword>STM32L5</keyword>
+        <keyword>STM32L4</keyword>
+        <keyword>STM32F1</keyword>
+        <keyword>STM32F3</keyword>
+        <keyword>STM32F4</keyword>
+        <keyword>STM32G0</keyword>
+        <keyword>STM32G4</keyword>
+        <keyword>STM32L0</keyword>
+        <keyword>STM32L1</keyword>
+        <keyword>STM32L4+</keyword>
+        <keyword>STM32LWB</keyword>
+        <keyword>STM32L+</keyword>
+    </keywords>
+    <taxonomy>
+        <description Cclass="Device">Device</description>
+        <description Cclass="RTOS">RTOS</description>
+    </taxonomy>
+    <requirements>
+        <compilers>
+            <compiler name="ARMCC" version="4.0.0"/>
+            <compiler name="GCC" version="1.0.0"/>
+            <compiler name="IAR" version="9.10.1"/>
+        </compilers>
+    </requirements>
+    <conditions>
+        <condition id="Use_Cesium">
+            <description>The condition to link the application to Cesium RTOS</description>
+            <require Cclass="RTOS" Cgroup="Cesium"/>
+        </condition>
+        <condition id="EWARM &amp; ARMv8-M">
+            <description>Using EWARM Cesium ARMv8-M Port</description>
+            <accept Tcompiler="IAR"/>
+            <accept Dcore="Cortex-M23"/>
+            <accept Dcore="Cortex-M33"/>
+            <accept Dcore="Cortex-M55"/>
+        </condition>
+        <condition id="MDK-ARM &amp; ARMv8-M">
+            <description>Using ARMCC Cesium with ARMv8-M Port</description>
+            <accept Tcompiler="ARMCC"/>
+            <accept Dcore="Cortex-M23"/>
+            <accept Dcore="Cortex-M33"/>
+            <accept Dcore="Cortex-M55"/>
+        </condition>
+        <condition id="GCC/MDK-ARM &amp; ARMv8-M">
+            <description>Using GCC/ARMCLANG Cesium with ARMv8-M Port</description>
+            <accept Dcore="Cortex-M23"/>
+            <accept Dcore="Cortex-M33"/>
+            <accept Dcore="Cortex-M55"/>
+            <accept Tcompiler="GCC"/>
+            <accept Tcompiler="ARMCC"/>
+        </condition>
+        <condition id="ARMv8-M Core">
+            <description>Supported Cores for the ARMv8-M</description>
+            <accept Dcore="Cortex-M33"/>
+            <accept Dcore="Cortex-M23"/>
+            <accept Dcore="Cortex-M55"/>
+        </condition>
+        <condition id="ARMv7-M Core">
+            <description>Suported Cores for ARMv7-M</description>
+            <accept Dcore="Cortex-M3"/>
+            <accept Dcore="Cortex-M4"/>
+            <accept Dcore="Cortex-M7"/>
+        </condition>
+        <condition id="ARM-Cortex-M">
+            <description>Supports the ARMv8-M and ARMv7-M architectures</description>
+            <accept Dcore="Cortex-M3"/>
+            <accept Dcore="Cortex-M4"/>
+            <accept Dcore="Cortex-M7"/>
+            <accept Dcore="Cortex-M23"/>
+            <accept Dcore="Cortex-M33"/>
+            <accept Dcore="Cortex-M55"/>
+        </condition>
+        <condition id="EWARM &amp; ARMv7-M">
+            <description>Using EWARM with Cesium ARMv7-M Port</description>
+            <accept Tcompiler="IAR"/>
+            <accept Dcore="Cortex-M3"/>
+            <accept Dcore="Cortex-M4"/>
+            <accept Dcore="Cortex-M7"/>
+        </condition>
+        <condition id="MDK-ARM &amp; ARMv7-M">
+            <description>Using ARMCC with Cesium ARMv7-M Port</description>
+            <accept Tcompiler="ARMCC"/>
+            <accept Dcore="Cortex-M3"/>
+            <accept Dcore="Cortex-M4"/>
+            <accept Dcore="Cortex-M7"/>
+        </condition>
+        <condition id="GCC &amp; ARMv7-M">
+            <description>Using GCC with Cesium ARMv7-M Port</description>
+            <accept Tcompiler="GCC"/>
+            <accept Dcore="Cortex-M3"/>
+            <accept Dcore="Cortex-M4"/>
+            <accept Dcore="Cortex-M7"/>
+        </condition>
+        <condition id="EWARM &amp; Cortex-M55 TZ Secure">
+            <description>Library using EWARM Cesium ARMv8-M Port with TrustZone "Secure"</description>
+            <accept Tcompiler="IAR"/>
+            <accept Dcore="Cortex-M55" Dsecure="Secure" Dtz="TZ"/>
+            <accept Dcore="Cortex-M55" Dsecure="Secure-only" Dtz="TZ"/>
+        </condition>
+        <condition id="EWARM &amp; Cortex-M55 TZ NonSecure/Disabled">
+            <description>Library using EWARM Cesium ARMv8-M Port with TrustZone "Disabled" or "NonSecure"</description>
+            <accept Tcompiler="IAR"/>
+            <accept Dcore="Cortex-M55" Dsecure="Non-secure" Dtz="TZ"/>
+            <accept Dcore="Cortex-M55" Dsecure="TZ-disabled" Dtz="TZ"/>
+        </condition>
+        <condition id="EWARM &amp; Cortex-M33 TZ NonSecure/Disabled">
+            <description>Library using EWARM Cesium ARMv8-M Port with TrustZone "Disabled" or "NonSecure"</description>
+            <accept Tcompiler="IAR"/>
+            <accept Dcore="Cortex-M33" Dsecure="TZ-disabled" Dtz="TZ"/>
+            <accept Dcore="Cortex-M33" Dsecure="Non-secure" Dtz="TZ"/>
+        </condition>
+        <condition id="EWARM &amp; Cortex-M33 TZ Secure">
+            <description>Library using EWARM Cesium ARMv8-M Port with TrustZone "Secure"</description>
+            <accept Tcompiler="IAR"/>
+            <accept Dcore="Cortex-M33" Dsecure="Secure" Dtz="TZ"/>
+        </condition>
+        <condition id="MDK-ARM &amp; Cortex-M55 TZ Secure">
+            <description>Library using MDK-ARM Cesium ARMv8-M Port with TrustZone "Secure"</description>
+            <accept Tcompiler="ARMCC"/>
+            <accept Dcore="Cortex-M55" Dsecure="Secure" Dtz="TZ"/>
+            <accept Dcore="Cortex-M55" Dsecure="Secure-only" Dtz="TZ"/>
+        </condition>
+        <condition id="MDK-ARM &amp; Cortex-M55 TZ NonSecure/Disabled">
+            <description>Library using MDK-ARM Cesium ARMv8-M Port with TrustZone "Disabled" or "NonSecure"</description>
+            <accept Tcompiler="ARMCC"/>
+            <accept Dcore="Cortex-M55" Dsecure="Non-secure" Dtz="TZ"/>
+            <accept Dcore="Cortex-M55" Dsecure="TZ-disabled" Dtz="TZ"/>
+        </condition>
+        <condition id="MDK-ARM &amp; Cortex-M33 TZ Secure">
+            <description>Library using MDK-ARM Cesium ARMv8-M Port with TrustZone "Secure"</description>
+            <accept Tcompiler="ARMCC"/>
+            <accept Dcore="Cortex-M33" Dsecure="Secure" Dtz="TZ"/>
+        </condition>
+        <condition id="MDK-ARM &amp; Cortex-M33 TZ NonSecure/Disabled">
+            <description>Library using MDK-ARM Cesium ARMv8-M Port with TrustZone "Disabled" or "NonSecure"</description>
+            <accept Tcompiler="ARMCC"/>
+            <accept Dcore="Cortex-M33" Dsecure="TZ-disabled" Dtz="TZ"/>
+            <accept Dcore="Cortex-M33" Dsecure="Non-secure" Dtz="TZ"/>
+        </condition>
+        <condition id="GCC &amp; Cortex-M55 TZ Secure">
+            <description>Library using GCC Cesium ARMv8-M Port with TrustZone "Secure"</description>
+            <accept Tcompiler="GCC"/>
+            <accept Dcore="Cortex-M55" Dsecure="Secure" Dtz="TZ"/>
+            <accept Dcore="Cortex-M55" Dsecure="Secure-only" Dtz="TZ"/>
+        </condition>
+        <condition id="GCC &amp; Cortex-M55 TZ NonSecure/Disabled">
+            <description>Library using GCC Cesium ARMv8-M Port with TrustZone "Disabled" or "NonSecure"</description>
+            <accept Tcompiler="GCC"/>
+            <accept Dcore="Cortex-M55" Dsecure="Non-secure" Dtz="TZ"/>
+            <accept Dcore="Cortex-M55" Dsecure="TZ-disabled" Dtz="TZ"/>
+        </condition>
+        <condition id="GCC &amp; Cortex-M33 TZ Secure">
+            <description>Library using GCC Cesium ARMv8-M Port with TrustZone "Secure"</description>
+            <accept Tcompiler="GCC"/>
+            <accept Dcore="Cortex-M33" Dsecure="Secure" Dtz="TZ"/>
+        </condition>
+        <condition id="GCC &amp; Cortex-M33 TZ NonSecure/Disabled">
+            <description>Library using GCC Cesium ARMv8-M Port with TrustZone "Disabled" or "NonSecure"</description>
+            <accept Tcompiler="GCC"/>
+            <accept Dcore="Cortex-M33" Dsecure="TZ-disabled" Dtz="TZ"/>
+            <accept Dcore="Cortex-M33" Dsecure="Non-secure" Dtz="TZ"/>
+        </condition>
+    </conditions>
+    <components>
+        <bundle Cbundle="Cesium" Cclass="RTOS" Cversion="1.0.0">
+            <description>- Cs/OS3 V3.08.03
+- Cs/CPU V1.32.02
+- Cs/LIB V1.39.01</description>
+            <doc>http://weston-embedded.com</doc>
+            <component Cgroup="Cesium" Cvariant="SysTick" condition="ARM-Cortex-M" maxInstances="1">
+                <description>Files for Cesium Cs/OS3, Cs/CPU and Cs/LIB using SysTick</description>
+                <files>
+                    <file category="header" condition="MDK-ARM &amp; ARMv7-M" name="Middlewares/Third_Party/Cesium/Cs-CPU/ARM-Cortex-M/ARMv7-M/ARM/cpu.h" public="false"/>
+                    <file category="header" condition="GCC &amp; ARMv7-M" name="Middlewares/Third_Party/Cesium/Cs-CPU/ARM-Cortex-M/ARMv7-M/GNU/cpu.h" public="false"/>
+                    <file category="header" condition="EWARM &amp; ARMv7-M" name="Middlewares/Third_Party/Cesium/Cs-CPU/ARM-Cortex-M/ARMv7-M/IAR/cpu.h" public="false"/>
+                    <file category="header" condition="GCC/MDK-ARM &amp; ARMv8-M" name="Middlewares/Third_Party/Cesium/Cs-CPU/ARM-Cortex-M/ARMv8-M/GNU/cpu.h" public="false"/>
+                    <file category="header" condition="EWARM &amp; ARMv8-M" name="Middlewares/Third_Party/Cesium/Cs-CPU/ARM-Cortex-M/ARMv8-M/IAR/cpu.h" public="false"/>
+                    <file category="header" name="Middlewares/Third_Party/Cesium/Cs-CPU/cpu_cache.h"/>
+                    <file category="header" name="Middlewares/Third_Party/Cesium/Cs-CPU/cpu_core.h"/>
+                    <file category="header" name="Middlewares/Third_Party/Cesium/Cs-CPU/cpu_def.h"/>
+                    <file category="header" name="Middlewares/Third_Party/Cesium/Cs-LIB/lib_ascii.h"/>
+                    <file category="header" name="Middlewares/Third_Party/Cesium/Cs-LIB/lib_def.h"/>
+                    <file category="header" name="Middlewares/Third_Party/Cesium/Cs-LIB/lib_math.h"/>
+                    <file category="header" name="Middlewares/Third_Party/Cesium/Cs-LIB/lib_mem.h"/>
+                    <file category="header" name="Middlewares/Third_Party/Cesium/Cs-LIB/lib_str.h"/>
+                    <file category="header" condition="MDK-ARM &amp; ARMv7-M" name="Middlewares/Third_Party/Cesium/Cs-OS3/Ports/ARM-Cortex-M/ARMv7-M/ARM/os_cpu.h" public="false"/>
+                    <file category="header" condition="GCC &amp; ARMv7-M" name="Middlewares/Third_Party/Cesium/Cs-OS3/Ports/ARM-Cortex-M/ARMv7-M/GNU/os_cpu.h" public="false"/>
+                    <file category="header" condition="EWARM &amp; ARMv7-M" name="Middlewares/Third_Party/Cesium/Cs-OS3/Ports/ARM-Cortex-M/ARMv7-M/IAR/os_cpu.h" public="false"/>
+                    <file category="header" condition="GCC/MDK-ARM &amp; ARMv8-M" name="Middlewares/Third_Party/Cesium/Cs-OS3/Ports/ARM-Cortex-M/ARMv8-M/GNU/os_cpu.h" public="false"/>
+                    <file category="header" condition="EWARM &amp; ARMv8-M" name="Middlewares/Third_Party/Cesium/Cs-OS3/Ports/ARM-Cortex-M/ARMv8-M/IAR/os_cpu.h" public="false"/>
+                    <file category="header" name="Middlewares/Third_Party/Cesium/Cs-OS3/Source/os.h"/>
+                    <file category="header" name="Middlewares/Third_Party/Cesium/Cs-OS3/Source/os_trace.h"/>
+                    <file category="header" name="Middlewares/Third_Party/Cesium/Cs-OS3/Source/os_type.h"/>
+                    <file category="library" condition="MDK-ARM &amp; ARMv7-M" name="Middlewares/Third_Party/Cesium/Library/ARMv7-M/libCesium_v7m_SysTick_ARMCC.lib" public="false"/>
+                    <file category="library" condition="GCC &amp; ARMv7-M" name="Middlewares/Third_Party/Cesium/Library/ARMv7-M/libCesium_v7m_SysTick_GNU.a" public="false"/>
+                    <file category="library" condition="EWARM &amp; ARMv7-M" name="Middlewares/Third_Party/Cesium/Library/ARMv7-M/libCesium_v7m_SysTick_IAR.a" public="false"/>
+                    <file category="library" condition="MDK-ARM &amp; Cortex-M33 TZ NonSecure/Disabled" name="Middlewares/Third_Party/Cesium/Library/ARMv8-M/libCesium_m33_tz_nonsec_SysTick_ARMCLANG.lib" public="false"/>
+                    <file category="library" condition="GCC &amp; Cortex-M33 TZ NonSecure/Disabled" name="Middlewares/Third_Party/Cesium/Library/ARMv8-M/libCesium_m33_tz_nonsec_SysTick_GNU.a" public="false"/>
+                    <file category="library" condition="EWARM &amp; Cortex-M33 TZ NonSecure/Disabled" name="Middlewares/Third_Party/Cesium/Library/ARMv8-M/libCesium_m33_tz_nonsec_SysTick_IAR.a" public="false"/>
+                    <file category="library" condition="MDK-ARM &amp; Cortex-M33 TZ Secure" name="Middlewares/Third_Party/Cesium/Library/ARMv8-M/libCesium_m33_tz_sec_SysTick_ARMCLANG.lib" public="false"/>
+                    <file category="library" condition="GCC &amp; Cortex-M33 TZ Secure" name="Middlewares/Third_Party/Cesium/Library/ARMv8-M/libCesium_m33_tz_sec_SysTick_GNU.a" public="false"/>
+                    <file category="library" condition="EWARM &amp; Cortex-M33 TZ Secure" name="Middlewares/Third_Party/Cesium/Library/ARMv8-M/libCesium_m33_tz_sec_SysTick_IAR.a" public="false"/>
+                    <file category="library" condition="MDK-ARM &amp; Cortex-M55 TZ NonSecure/Disabled" name="Middlewares/Third_Party/Cesium/Library/ARMv8-M/libCesium_m55_tz_nonsec_SysTick_ARMCLANG.lib" public="false"/>
+                    <file category="library" condition="GCC &amp; Cortex-M55 TZ NonSecure/Disabled" name="Middlewares/Third_Party/Cesium/Library/ARMv8-M/libCesium_m55_tz_nonsec_SysTick_GNU.a" public="false"/>
+                    <file category="library" condition="EWARM &amp; Cortex-M55 TZ NonSecure/Disabled" name="Middlewares/Third_Party/Cesium/Library/ARMv8-M/libCesium_m55_tz_nonsec_SysTick_IAR.a" public="false"/>
+                    <file category="library" condition="MDK-ARM &amp; Cortex-M55 TZ Secure" name="Middlewares/Third_Party/Cesium/Library/ARMv8-M/libCesium_m55_tz_sec_SysTick_ARMCLANG.lib" public="false"/>
+                    <file category="library" condition="GCC &amp; Cortex-M55 TZ Secure" name="Middlewares/Third_Party/Cesium/Library/ARMv8-M/libCesium_m55_tz_sec_SysTick_GNU.a" public="false"/>
+                    <file category="library" condition="EWARM &amp; Cortex-M55 TZ Secure" name="Middlewares/Third_Party/Cesium/Library/ARMv8-M/libCesium_m55_tz_sec_SysTick_IAR.a" public="false"/>
+                </files>
+            </component>
+            <component Cgroup="Cesium" Cvariant="DynamicTick" condition="ARM-Cortex-M" maxInstances="1">
+                <description>Files for Cesium Cs/OS3, Cs/CPU and Cs/LIB using Dynamic tick</description>
+                <files>
+                    <file category="header" condition="MDK-ARM &amp; ARMv7-M" name="Middlewares/Third_Party/Cesium/Cs-CPU/ARM-Cortex-M/ARMv7-M/ARM/cpu.h" public="false"/>
+                    <file category="header" condition="GCC &amp; ARMv7-M" name="Middlewares/Third_Party/Cesium/Cs-CPU/ARM-Cortex-M/ARMv7-M/GNU/cpu.h" public="false"/>
+                    <file category="header" condition="EWARM &amp; ARMv7-M" name="Middlewares/Third_Party/Cesium/Cs-CPU/ARM-Cortex-M/ARMv7-M/IAR/cpu.h" public="false"/>
+                    <file category="header" condition="GCC/MDK-ARM &amp; ARMv8-M" name="Middlewares/Third_Party/Cesium/Cs-CPU/ARM-Cortex-M/ARMv8-M/GNU/cpu.h" public="false"/>
+                    <file category="header" condition="EWARM &amp; ARMv8-M" name="Middlewares/Third_Party/Cesium/Cs-CPU/ARM-Cortex-M/ARMv8-M/IAR/cpu.h" public="false"/>
+                    <file category="header" name="Middlewares/Third_Party/Cesium/Cs-CPU/cpu_cache.h"/>
+                    <file category="header" name="Middlewares/Third_Party/Cesium/Cs-CPU/cpu_core.h"/>
+                    <file category="header" name="Middlewares/Third_Party/Cesium/Cs-CPU/cpu_def.h"/>
+                    <file category="header" name="Middlewares/Third_Party/Cesium/Cs-LIB/lib_ascii.h"/>
+                    <file category="header" name="Middlewares/Third_Party/Cesium/Cs-LIB/lib_def.h"/>
+                    <file category="header" name="Middlewares/Third_Party/Cesium/Cs-LIB/lib_math.h"/>
+                    <file category="header" name="Middlewares/Third_Party/Cesium/Cs-LIB/lib_mem.h"/>
+                    <file category="header" name="Middlewares/Third_Party/Cesium/Cs-LIB/lib_str.h"/>
+                    <file category="header" condition="MDK-ARM &amp; ARMv7-M" name="Middlewares/Third_Party/Cesium/Cs-OS3/Ports/ARM-Cortex-M/ARMv7-M/ARM/os_cpu.h" public="false"/>
+                    <file category="header" condition="GCC &amp; ARMv7-M" name="Middlewares/Third_Party/Cesium/Cs-OS3/Ports/ARM-Cortex-M/ARMv7-M/GNU/os_cpu.h" public="false"/>
+                    <file category="header" condition="EWARM &amp; ARMv7-M" name="Middlewares/Third_Party/Cesium/Cs-OS3/Ports/ARM-Cortex-M/ARMv7-M/IAR/os_cpu.h" public="false"/>
+                    <file category="header" condition="GCC/MDK-ARM &amp; ARMv8-M" name="Middlewares/Third_Party/Cesium/Cs-OS3/Ports/ARM-Cortex-M/ARMv8-M/GNU/os_cpu.h" public="false"/>
+                    <file category="header" condition="EWARM &amp; ARMv8-M" name="Middlewares/Third_Party/Cesium/Cs-OS3/Ports/ARM-Cortex-M/ARMv8-M/IAR/os_cpu.h" public="false"/>
+                    <file category="header" name="Middlewares/Third_Party/Cesium/Cs-OS3/Source/os.h"/>
+                    <file category="header" name="Middlewares/Third_Party/Cesium/Cs-OS3/Source/os_trace.h"/>
+                    <file category="header" name="Middlewares/Third_Party/Cesium/Cs-OS3/Source/os_type.h"/>
+                    <file category="library" condition="MDK-ARM &amp; ARMv7-M" name="Middlewares/Third_Party/Cesium/Library/ARMv7-M/libCesium_v7m_DynTick_ARMCC.lib" public="false"/>
+                    <file category="library" condition="GCC &amp; ARMv7-M" name="Middlewares/Third_Party/Cesium/Library/ARMv7-M/libCesium_v7m_DynTick_GNU.a" public="false"/>
+                    <file category="library" condition="EWARM &amp; ARMv7-M" name="Middlewares/Third_Party/Cesium/Library/ARMv7-M/libCesium_v7m_DynTick_IAR.a" public="false"/>
+                    <file category="library" condition="MDK-ARM &amp; Cortex-M33 TZ NonSecure/Disabled" name="Middlewares/Third_Party/Cesium/Library/ARMv8-M/libCesium_m33_tz_nonsec_DynTick_ARMCLANG.lib" public="false"/>
+                    <file category="library" condition="GCC &amp; Cortex-M33 TZ NonSecure/Disabled" name="Middlewares/Third_Party/Cesium/Library/ARMv8-M/libCesium_m33_tz_nonsec_DynTick_GNU.a" public="false"/>
+                    <file category="library" condition="EWARM &amp; Cortex-M33 TZ NonSecure/Disabled" name="Middlewares/Third_Party/Cesium/Library/ARMv8-M/libCesium_m33_tz_nonsec_DynTick_IAR.a" public="false"/>
+                    <file category="library" condition="MDK-ARM &amp; Cortex-M33 TZ Secure" name="Middlewares/Third_Party/Cesium/Library/ARMv8-M/libCesium_m33_tz_sec_DynTick_ARMCLANG.lib" public="false"/>
+                    <file category="library" condition="GCC &amp; Cortex-M33 TZ Secure" name="Middlewares/Third_Party/Cesium/Library/ARMv8-M/libCesium_m33_tz_sec_DynTick_GNU.a" public="false"/>
+                    <file category="library" condition="EWARM &amp; Cortex-M33 TZ Secure" name="Middlewares/Third_Party/Cesium/Library/ARMv8-M/libCesium_m33_tz_sec_DynTick_IAR.a" public="false"/>
+                    <file category="library" condition="MDK-ARM &amp; Cortex-M55 TZ NonSecure/Disabled" name="Middlewares/Third_Party/Cesium/Library/ARMv8-M/libCesium_m55_tz_nonsec_DynTick_ARMCLANG.lib" public="false"/>
+                    <file category="library" condition="GCC &amp; Cortex-M55 TZ NonSecure/Disabled" name="Middlewares/Third_Party/Cesium/Library/ARMv8-M/libCesium_m55_tz_nonsec_DynTick_GNU.a" public="false"/>
+                    <file category="library" condition="EWARM &amp; Cortex-M55 TZ NonSecure/Disabled" name="Middlewares/Third_Party/Cesium/Library/ARMv8-M/libCesium_m55_tz_nonsec_DynTick_IAR.a" public="false"/>
+                    <file category="library" condition="MDK-ARM &amp; Cortex-M55 TZ Secure" name="Middlewares/Third_Party/Cesium/Library/ARMv8-M/libCesium_m55_tz_sec_DynTick_ARMCLANG.lib" public="false"/>
+                    <file category="library" condition="GCC &amp; Cortex-M55 TZ Secure" name="Middlewares/Third_Party/Cesium/Library/ARMv8-M/libCesium_m55_tz_sec_DynTick_GNU.a" public="false"/>
+                    <file category="library" condition="EWARM &amp; Cortex-M55 TZ Secure" name="Middlewares/Third_Party/Cesium/Library/ARMv8-M/libCesium_m55_tz_sec_DynTick_IAR.a" public="false"/>
+                </files>
+            </component>
+        </bundle>
+        <bundle Cbundle="RTOS Application" Cclass="Device" Cversion="1.0.0">
+            <description>RTOS application for Cesium</description>
+            <doc>www.weston-embedded.com</doc>
+            <component Cgroup="Application" Cvariant="GPIO_Blinky" condition="Use_Cesium" maxInstances="1">
+                <description>GPIO toggle using Cesium RTOS</description>
+                <files/>
+            </component>
+        </bundle>
+    </components>
+    <examples>
+        <example doc="README.txt" folder="Projects/B-G474E-DPOW1/Examples/GPIO_Blinky" name="GPIO_Blinky" public="false" version="1.0.0">
+            <description>Example application creating a task to blink an LED using SysTick as the RTOS tick source</description>
+            <board Dvendor="STMicroelectronics:13" name="B-G474E-DPOW1" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="EWARM" load="GPIO_Blinky.ewp" name="iar"/>
+                <environment folder="GPIO_Blinky" load="GPIO_Blinky.ioc" name="stm32cubemx"/>
+                <environment folder="MDK-ARM" load="GPIO_Blinky.uvprojx" name="uv"/>
+                <environment folder="STM32CubeIDE" load=".cproject" name="stm32cubeide"/>
+            </project>
+            <attributes>
+                <component Cbundle="Cesium" Cclass="RTOS" Cgroup="Cesium" Cvariant="SysTick" Cvendor="WES" Cversion="1.0.0"/>
+                <component Cbundle="RTOS Application" Cclass="Device" Cgroup="Application" Cvariant="GPIO_Blinky" Cvendor="WES" Cversion="1.0.0"/>
+            </attributes>
+        </example>
+        <example doc="README.txt" folder="Projects/STM32U575I-EV/Examples/GPIO_Blinky" name="GPIO_Blinky" public="false" version="1.0.0">
+            <description>Example application creating a task to blink an LED using SysTick as the RTOS tick source</description>
+            <board Dvendor="STMicroelectronics:13" name="STM32U575I-EV" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="EWARM" load="GPIO_Blinky.ewp" name="iar"/>
+                <environment folder="GPIO_Blinky" load="GPIO_Blinky.ioc" name="stm32cubemx"/>
+                <environment folder="MDK-ARM" load="GPIO_Blinky.uvprojx" name="uv"/>
+                <environment folder="STM32CubeIDE" load=".cproject" name="stm32cubeide"/>
+            </project>
+            <attributes>
+                <component Cbundle="Cesium" Cclass="RTOS" Cgroup="Cesium" Cvariant="SysTick" Cvendor="WES" Cversion="1.0.0"/>
+                <component Cbundle="RTOS Application" Cclass="Device" Cgroup="Application" Cvariant="GPIO_Blinky" Cvendor="WES" Cversion="1.0.0"/>
+            </attributes>
+        </example>
+        <example doc="README.txt" folder="Projects/NUCLEO-L552ZE-Q/Examples/DynamicTick" name="DynamicTick" public="false" version="1.0.0">
+            <description>Example application creating a task to blink an LED using Dynamic Tick feature from Cesium OS</description>
+            <board Dvendor="STMicroelectronics:13" name="NUCLEO-L552ZE-Q" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="DynamicTick" load="DynamicTick.ioc" name="stm32cubemx"/>
+                <environment folder="EWARM" load="DynamicTick.ewp" name="iar"/>
+                <environment folder="MDK-ARM" load="DynamicTick.uvprojx" name="uv"/>
+                <environment folder="STM32CubeIDE" load=".cproject" name="stm32cubeide"/>
+            </project>
+            <attributes>
+                <component Cbundle="Cesium" Cclass="RTOS" Cgroup="Cesium" Cvariant="DynamicTick" Cvendor="WES" Cversion="1.0.0"/>
+                <component Cbundle="RTOS Application" Cclass="Device" Cgroup="Application" Cvariant="GPIO_Blinky" Cvendor="WES" Cversion="1.0.0"/>
+            </attributes>
+        </example>
+        <example doc="README.txt" folder="Projects/STM32U575I-EV/Examples/DynamicTick" name="DynamicTick" public="false" version="1.0.0">
+            <description>Example application creating a task to blink an LED using Dynamic Tick feature from Cesium OS</description>
+            <board Dvendor="STMicroelectronics:13" name="STM32U575I-EV" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="DynamicTick" load="DynamicTick.ioc" name="stm32cubemx"/>
+                <environment folder="EWARM" load="DynamicTick.ewp" name="iar"/>
+                <environment folder="MDK-ARM" load="DynamicTick.uvprojx" name="uv"/>
+                <environment folder="STM32CubeIDE" load=".cproject" name="stm32cubeide"/>
+            </project>
+            <attributes>
+                <component Cbundle="Cesium" Cclass="RTOS" Cgroup="Cesium" Cvariant="DynamicTick" Cvendor="WES" Cversion="1.0.0"/>
+                <component Cbundle="RTOS Application" Cclass="Device" Cgroup="Application" Cvariant="GPIO_Blinky" Cvendor="WES" Cversion="1.0.0"/>
+            </attributes>
+        </example>
+        <example doc="README.txt" folder="Projects/NUCLEO-N657X0-Q/Examples/GPIO_Blinky" name="GPIO_Blinky" public="false" version="1.0.0">
+            <description>Example application creating a task to blink an LED using SysTick as the RTOS tick source</description>
+            <board Dvendor="STMicroelectronics:13" name="NUCLEO-N657X0-Q" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="FSBL" load="GPIO_Blinky_FSBL.ewp" name="iar"/>
+                <environment folder="GPIO_Blinky" load="GPIO_Blinky.ioc" name="stm32cubemx"/>
+                <environment folder="FSBL" load="GPIO_Blinky_FSBL.uvprojx" name="uv"/>
+                <environment folder="FSBL" load=".cproject" name="stm32cubeide"/>
+            </project>
+            <attributes>
+                <component Cbundle="Cesium" Cclass="RTOS" Cgroup="Cesium" Cvariant="SysTick" Cvendor="WES" Cversion="1.0.0"/>
+                <component Cbundle="RTOS Application" Cclass="Device" Cgroup="Application" Cvariant="GPIO_Blinky" Cvendor="WES" Cversion="1.0.0"/>
+            </attributes>
+        </example>
+    </examples>
+</package>

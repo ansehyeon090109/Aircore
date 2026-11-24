@@ -1,0 +1,862 @@
+[
+  {
+    "name": "bluenrg-ms",
+    "CPN": [
+      {
+        "id": "CP424967",
+        "part_number": "BLUENRG-MSCSP"
+      },
+      {
+        "id": "CP424956",
+        "part_number": "BLUENRG-MSQTR"
+      }
+    ]
+  },
+  {
+    "name": "fp-atr-astra1",
+    "CPN": [
+      {
+        "id": "CP540056",
+        "part_number": "FP-ATR-ASTRA1"
+      }
+    ]
+  },
+  {
+    "name": "fp-atr-sigfox1",
+    "CPN": [
+      {
+        "id": "CP525365",
+        "part_number": "FP-ATR-SIGFOX1"
+      }
+    ]
+  },
+  {
+    "name": "fp-sns-flight1",
+    "CPN": [
+      {
+        "id": "CP466215",
+        "part_number": "FP-SNS-FLIGHT1"
+      }
+    ]
+  },
+  {
+    "name": "fp-sns-motenv1",
+    "CPN": [
+      {
+        "id": "CP466214",
+        "part_number": "FP-SNS-MOTENV1"
+      }
+    ]
+  },
+  {
+    "name": "fp-sns-motenvwb1",
+    "CPN": [
+      {
+        "id": "CP528785",
+        "part_number": "FP-SNS-MOTENVWB1"
+      }
+    ]
+  },
+  {
+    "name": "fp-sns-smartag2",
+    "CPN": [
+      {
+        "id": "CP537626",
+        "part_number": "FP-SNS-SMARTAG2"
+      }
+    ]
+  },
+  {
+    "name": "fp-sns-staiotcft",
+    "CPN": [
+      {
+        "id": "CP554529",
+        "part_number": "FP-SNS-STAIOTCFT"
+      }
+    ]
+  },
+  {
+    "name": "fp-sns-stbox1",
+    "CPN": [
+      {
+        "id": "CP529071",
+        "part_number": "FP-SNS-STBOX1"
+      }
+    ]
+  },
+  {
+    "name": "stm32cubec0",
+    "CPN": [
+      {
+        "id": "CP540154",
+        "part_number": "Patch_CubeC0"
+      },
+      {
+        "id": "CP540153",
+        "part_number": "STM32CubeC0"
+      }
+    ]
+  },
+  {
+    "name": "stm32cubef0",
+    "CPN": [
+      {
+        "id": "CP528462",
+        "part_number": "Patch-CubeF0"
+      },
+      {
+        "id": "CP423808",
+        "part_number": "STM32CubeF0"
+      }
+    ]
+  },
+  {
+    "name": "stm32cubef1",
+    "CPN": [
+      {
+        "id": "CP525625",
+        "part_number": "Patch_CubeF1"
+      },
+      {
+        "id": "CP425069",
+        "part_number": "STM32CubeF1"
+      }
+    ]
+  },
+  {
+    "name": "stm32cubef2",
+    "CPN": [
+      {
+        "id": "CP534935",
+        "part_number": "Patch-CubeF2"
+      },
+      {
+        "id": "CP421088",
+        "part_number": "STM32CubeF2"
+      }
+    ]
+  },
+  {
+    "name": "stm32cubef3",
+    "CPN": [
+      {
+        "id": "CP534621",
+        "part_number": "Patch-CubeF3"
+      },
+      {
+        "id": "CP423809",
+        "part_number": "STM32CubeF3"
+      }
+    ]
+  },
+  {
+    "name": "stm32cubef4",
+    "CPN": [
+      {
+        "id": "CP528018",
+        "part_number": "Patch-CubeF4"
+      },
+      {
+        "id": "CP403599",
+        "part_number": "STM32CubeF4"
+      }
+    ]
+  },
+  {
+    "name": "stm32cubef7",
+    "CPN": [
+      {
+        "id": "CP536937",
+        "part_number": "Patch_CubeF7"
+      },
+      {
+        "id": "CP457429",
+        "part_number": "STM32CubeF7"
+      }
+    ]
+  },
+  {
+    "name": "stm32cubeg0",
+    "CPN": [
+      {
+        "id": "CP536938",
+        "part_number": "Patch_CubeG0"
+      },
+      {
+        "id": "CP521243",
+        "part_number": "STM32CubeG0"
+      }
+    ]
+  },
+  {
+    "name": "stm32cubeg4",
+    "CPN": [
+      {
+        "id": "CP529090",
+        "part_number": "Patch_CubeG4"
+      },
+      {
+        "id": "CP527430",
+        "part_number": "STM32CubeG4"
+      }
+    ]
+  },
+  {
+    "name": "stm32cubeh5",
+    "CPN": [
+      {
+        "id": "CP540130",
+        "part_number": "Patch_CubeH5"
+      },
+      {
+        "id": "CP540129",
+        "part_number": "STM32CubeH5"
+      }
+    ]
+  },
+  {
+    "name": "stm32cubeh7",
+    "CPN": [
+      {
+        "id": "CP526848",
+        "part_number": "Patch_CubeH7"
+      },
+      {
+        "id": "CP518753",
+        "part_number": "STM32CubeH7"
+      }
+    ]
+  },
+  {
+    "name": "stm32cubeh7rs",
+    "CPN": [
+      {
+        "id": "CP549171",
+        "part_number": "STM32CubeH7RS"
+      }
+    ]
+  },
+  {
+    "name": "stm32cubel0",
+    "CPN": [
+      {
+        "id": "CP527341",
+        "part_number": "Patch_CubeL0"
+      },
+      {
+        "id": "CP422807",
+        "part_number": "STM32CubeL0"
+      }
+    ]
+  },
+  {
+    "name": "stm32cubel1",
+    "CPN": [
+      {
+        "id": "CP525746",
+        "part_number": "Patch_CubeL1"
+      },
+      {
+        "id": "CP425070",
+        "part_number": "STM32CubeL1"
+      }
+    ]
+  },
+  {
+    "name": "stm32cubel4",
+    "CPN": [
+      {
+        "id": "CP532082",
+        "part_number": "Patch_CubeL4"
+      },
+      {
+        "id": "CP457430",
+        "part_number": "STM32CubeL4"
+      }
+    ]
+  },
+  {
+    "name": "stm32cubel5",
+    "CPN": [
+      {
+        "id": "CP534989",
+        "part_number": "Patch_CubeL5"
+      },
+      {
+        "id": "CP528641",
+        "part_number": "STM32CubeL5"
+      }
+    ]
+  },
+  {
+    "name": "stm32cubemp1",
+    "CPN": [
+      {
+        "id": "CP528139",
+        "part_number": "Patch_CubeMP1"
+      },
+      {
+        "id": "CP526914",
+        "part_number": "STM32CubeMP1"
+      }
+    ]
+  },
+  {
+    "name": "stm32cubemp13",
+    "CPN": [
+      {
+        "id": "CP547781",
+        "part_number": "STM32CubeMP13"
+      }
+    ]
+  },
+  {
+    "name": "stm32cubemp2",
+    "CPN": [
+      {
+        "id": "CP550867",
+        "part_number": "Patch-CubeMP2"
+      },
+      {
+        "id": "CP550866",
+        "part_number": "STM32CubeMP2"
+      }
+    ]
+  },
+  {
+    "name": "stm32cuben6",
+    "CPN": [
+      {
+        "id": "CP561764",
+        "part_number": "GH-MW-OPUS"
+      },
+      {
+        "id": "CP552789",
+        "part_number": "N6OOBv1"
+      },
+      {
+        "id": "CP552934",
+        "part_number": "Patch-CubeN6"
+      },
+      {
+        "id": "CP551113",
+        "part_number": "STM32CubeN6"
+      }
+    ]
+  },
+  {
+    "name": "stm32cubeu0",
+    "CPN": [
+      {
+        "id": "CP549038",
+        "part_number": "STM32CubeU0"
+      }
+    ]
+  },
+  {
+    "name": "stm32cubeu3",
+    "CPN": [
+      {
+        "id": "CP556157",
+        "part_number": "Patch-CubeU3"
+      },
+      {
+        "id": "CP551839",
+        "part_number": "STM32CubeU3"
+      }
+    ]
+  },
+  {
+    "name": "stm32cubeu5",
+    "CPN": [
+      {
+        "id": "CP538721",
+        "part_number": "Patch-CubeU5"
+      },
+      {
+        "id": "CP538008",
+        "part_number": "STM32CubeU5"
+      }
+    ]
+  },
+  {
+    "name": "stm32cubewb",
+    "CPN": [
+      {
+        "id": "CP528472",
+        "part_number": "Patch-CubeWB"
+      },
+      {
+        "id": "CP515408",
+        "part_number": "STM32CubeWB"
+      }
+    ]
+  },
+  {
+    "name": "stm32cubewb0",
+    "CPN": [
+      {
+        "id": "CP546350",
+        "part_number": "Patch-CubeWB0"
+      },
+      {
+        "id": "CP546216",
+        "part_number": "STM32CubeWB0"
+      }
+    ]
+  },
+  {
+    "name": "stm32cubewba",
+    "CPN": [
+      {
+        "id": "CP540396",
+        "part_number": "Patch-CubeWBA"
+      },
+      {
+        "id": "CP552133",
+        "part_number": "Patch-CubeWBA52A"
+      },
+      {
+        "id": "CP540395",
+        "part_number": "STM32CubeWBA"
+      },
+      {
+        "id": "CP552132",
+        "part_number": "STM32CubeWBA52A"
+      }
+    ]
+  },
+  {
+    "name": "stm32cubewl",
+    "CPN": [
+      {
+        "id": "CP540188",
+        "part_number": "Patch-CubeWL"
+      },
+      {
+        "id": "CP529821",
+        "part_number": "STM32CubeWL"
+      }
+    ]
+  },
+  {
+    "name": "stm32cubewl3",
+    "CPN": [
+      {
+        "id": "CP546349",
+        "part_number": "Patch-CubeWL3"
+      },
+      {
+        "id": "CP546348",
+        "part_number": "STM32CubeWL3"
+      }
+    ]
+  },
+  {
+    "name": "x-cube-ai",
+    "CPN": [
+      {
+        "id": "CP535289",
+        "part_number": "X-CUBE-AI-Linux"
+      },
+      {
+        "id": "CP535290",
+        "part_number": "X-CUBE-AI-Mac"
+      },
+      {
+        "id": "CP546449",
+        "part_number": "X-CUBE-AI-MacArm"
+      },
+      {
+        "id": "CP535288",
+        "part_number": "X-CUBE-AI-Win"
+      }
+    ]
+  },
+  {
+    "name": "x-cube-algobuild",
+    "CPN": [
+      {
+        "id": "CP531775",
+        "part_number": "X-CUBE-ALGOBUILD"
+      }
+    ]
+  },
+  {
+    "name": "x-cube-als",
+    "CPN": [
+      {
+        "id": "CP537778",
+        "part_number": "X-CUBE-ALS"
+      }
+    ]
+  },
+  {
+    "name": "x-cube-azrtos-f4",
+    "CPN": [
+      {
+        "id": "CP539058",
+        "part_number": "X-CUBE-AZRTOS-F4"
+      }
+    ]
+  },
+  {
+    "name": "x-cube-azrtos-f7",
+    "CPN": [
+      {
+        "id": "CP539695",
+        "part_number": "X-CUBE-AZRTOS-F7"
+      }
+    ]
+  },
+  {
+    "name": "x-cube-azrtos-g0",
+    "CPN": [
+      {
+        "id": "CP540208",
+        "part_number": "X-CUBE-AZRTOS-G0"
+      }
+    ]
+  },
+  {
+    "name": "x-cube-azrtos-g4",
+    "CPN": [
+      {
+        "id": "CP539821",
+        "part_number": "X-CUBE-AZRTOS-G4"
+      }
+    ]
+  },
+  {
+    "name": "x-cube-azrtos-h7",
+    "CPN": [
+      {
+        "id": "CP536456",
+        "part_number": "X-CUBE-AZRTOS-H7"
+      }
+    ]
+  },
+  {
+    "name": "x-cube-azrtos-l4",
+    "CPN": [
+      {
+        "id": "CP539217",
+        "part_number": "X-CUBE-AZRTOS-L4"
+      }
+    ]
+  },
+  {
+    "name": "x-cube-azrtos-l5",
+    "CPN": [
+      {
+        "id": "CP539694",
+        "part_number": "X-CUBE-AZRTOS-L5"
+      }
+    ]
+  },
+  {
+    "name": "x-cube-azrtos-wb",
+    "CPN": [
+      {
+        "id": "CP540211",
+        "part_number": "X-CUBE-AZRTOS-WB"
+      }
+    ]
+  },
+  {
+    "name": "x-cube-azrtos-wl",
+    "CPN": [
+      {
+        "id": "CP540209",
+        "part_number": "X-CUBE-AZRTOS-WL"
+      }
+    ]
+  },
+  {
+    "name": "x-cube-ble1",
+    "CPN": [
+      {
+        "id": "CP430618",
+        "part_number": "X-CUBE-BLE1"
+      }
+    ]
+  },
+  {
+    "name": "x-cube-ble2",
+    "CPN": [
+      {
+        "id": "CP529865",
+        "part_number": "X-CUBE-BLE2"
+      }
+    ]
+  },
+  {
+    "name": "x-cube-blemgr",
+    "CPN": [
+      {
+        "id": "CP542218",
+        "part_number": "X-CUBE-BLEMGR"
+      }
+    ]
+  },
+  {
+    "name": "x-cube-display",
+    "CPN": [
+      {
+        "id": "CP532684",
+        "part_number": "X-CUBE-DISPLAY"
+      }
+    ]
+  },
+  {
+    "name": "x-cube-dpower",
+    "CPN": [
+      {
+        "id": "CP543753",
+        "part_number": "X-CUBE-DPOWER"
+      }
+    ]
+  },
+  {
+    "name": "x-cube-eeprma1",
+    "CPN": [
+      {
+        "id": "CP524447",
+        "part_number": "X-CUBE-EEPRMA1"
+      }
+    ]
+  },
+  {
+    "name": "x-cube-freertos",
+    "CPN": [
+      {
+        "id": "CP545102",
+        "part_number": "X-CUBE-FREERTOS"
+      }
+    ]
+  },
+  {
+    "name": "x-cube-gnss1",
+    "CPN": [
+      {
+        "id": "CP519148",
+        "part_number": "X-CUBE-GNSS1"
+      }
+    ]
+  },
+  {
+    "name": "x-cube-ips",
+    "CPN": [
+      {
+        "id": "CP541378",
+        "part_number": "X-CUBE-IPS"
+      }
+    ]
+  },
+  {
+    "name": "x-cube-ispu",
+    "CPN": [
+      {
+        "id": "CP542206",
+        "part_number": "X-CUBE-ISPU"
+      }
+    ]
+  },
+  {
+    "name": "x-cube-mems1",
+    "CPN": [
+      {
+        "id": "CP429901",
+        "part_number": "X-CUBE-MEMS1"
+      }
+    ]
+  },
+  {
+    "name": "x-cube-nfc10",
+    "CPN": [
+      {
+        "id": "CP551175",
+        "part_number": "X-CUBE-NFC10"
+      }
+    ]
+  },
+  {
+    "name": "x-cube-nfc12",
+    "CPN": [
+      {
+        "id": "CP553057",
+        "part_number": "X-CUBE-NFC12"
+      }
+    ]
+  },
+  {
+    "name": "x-cube-nfc13",
+    "CPN": [
+      {
+        "id": "CP558345",
+        "part_number": "X-CUBE-NFC13"
+      }
+    ]
+  },
+  {
+    "name": "x-cube-nfc4",
+    "CPN": [
+      {
+        "id": "CP519064",
+        "part_number": "X-CUBE-NFC4"
+      }
+    ]
+  },
+  {
+    "name": "x-cube-nfc6",
+    "CPN": [
+      {
+        "id": "CP528311",
+        "part_number": "X-CUBE-NFC6"
+      }
+    ]
+  },
+  {
+    "name": "x-cube-nfc7",
+    "CPN": [
+      {
+        "id": "CP539495",
+        "part_number": "X-CUBE-NFC7"
+      }
+    ]
+  },
+  {
+    "name": "x-cube-nfc9",
+    "CPN": [
+      {
+        "id": "CP551174",
+        "part_number": "X-CUBE-NFC9"
+      }
+    ]
+  },
+  {
+    "name": "x-cube-pm33a1",
+    "CPN": [
+      {
+        "id": "CP552682",
+        "part_number": "X-CUBE-PM33A1"
+      }
+    ]
+  },
+  {
+    "name": "x-cube-safea1",
+    "CPN": [
+      {
+        "id": "CP529266",
+        "part_number": "X-CUBE-SAFEA1"
+      }
+    ]
+  },
+  {
+    "name": "x-cube-sfxs2lp1",
+    "CPN": [
+      {
+        "id": "CP524578",
+        "part_number": "X-CUBE-SFXS2LP1"
+      }
+    ]
+  },
+  {
+    "name": "x-cube-smbus",
+    "CPN": [
+      {
+        "id": "CP429647",
+        "part_number": "X-CUBE-SMBUS"
+      }
+    ]
+  },
+  {
+    "name": "x-cube-st60",
+    "CPN": [
+      {
+        "id": "CP552184",
+        "part_number": "X-CUBE-ST60"
+      }
+    ]
+  },
+  {
+    "name": "x-cube-st67w61",
+    "CPN": [
+      {
+        "id": "CP554930",
+        "part_number": "ST67W6X-RCT-TOOL"
+      },
+      {
+        "id": "CP560816",
+        "part_number": "X-CUBE-ST67W61"
+      }
+    ]
+  },
+  {
+    "name": "x-cube-stse01",
+    "CPN": [
+      {
+        "id": "CP552943",
+        "part_number": "X-CUBE-STSE01"
+      }
+    ]
+  },
+  {
+    "name": "x-cube-subg2",
+    "CPN": [
+      {
+        "id": "CP531151",
+        "part_number": "X-CUBE-SUBG2"
+      }
+    ]
+  },
+  {
+    "name": "x-cube-tcpp",
+    "CPN": [
+      {
+        "id": "CP536847",
+        "part_number": "X-CUBE-TCPP"
+      }
+    ]
+  },
+  {
+    "name": "x-cube-tof1",
+    "CPN": [
+      {
+        "id": "CP537013",
+        "part_number": "X-CUBE-TOF1"
+      }
+    ]
+  },
+  {
+    "name": "x-cube-touchgfx",
+    "CPN": [
+      {
+        "id": "CP531119",
+        "part_number": "X-CUBE-TOUCHGFX"
+      },
+      {
+        "id": "CP551142",
+        "part_number": "X-TOUCHGFX-MPU"
+      }
+    ]
+  },
+  {
+    "name": "x-cube-wb05n",
+    "CPN": [
+      {
+        "id": "CP551176",
+        "part_number": "X-CUBE-WB05N"
+      }
+    ]
+  },
+  {
+    "name": "x-cube-wba",
+    "CPN": [
+      {
+        "id": "CP556172",
+        "part_number": "X-CUBE-WBA"
+      }
+    ]
+  }
+]

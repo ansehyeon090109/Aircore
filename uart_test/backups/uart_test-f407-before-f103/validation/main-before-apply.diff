@@ -1,0 +1,189 @@
+﻿diff --git a/Core/Src/main.c b/.work/main.c
+index 1564666..68280b5 100644
+--- a/Core/Src/main.c
++++ b/.work/main.c
+@@ -59,6 +59,9 @@ static char pendingCommand[COMMAND_BUFFER_SIZE];
+ static uint8_t rxLength;
+ static uint8_t discardLine;
+ static volatile uint8_t commandReady;
++static volatile uint8_t stopRequested;
++static uint8_t previousCR;
++static char encoderMessage[sizeof("ENC,4294967295,4294967295\r\n")];
+ /* USER CODE END PV */
+ 
+ /* Private function prototypes -----------------------------------------------*/
+@@ -69,6 +72,7 @@ static void MX_USART3_UART_Init(void);
+ static void MX_TIM3_Init(void);
+ static void MX_TIM2_Init(void);
+ static void MX_TIM5_Init(void);
++void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
+ 
+ /* USER CODE BEGIN PFP */
+ 
+@@ -165,12 +169,15 @@ static void sendEncoder(void)
+ {
+   uint32_t left = __HAL_TIM_GET_COUNTER(&htim5);
+   uint32_t right = __HAL_TIM_GET_COUNTER(&htim2);
+-  char message[sizeof("ENC,4294967295,4294967295\r\n")];
+-  int length = snprintf(message, sizeof(message), "ENC,%" PRIu32 ",%" PRIu32 "\r\n", left, right);
++  if (huart3.gState != HAL_UART_STATE_READY)
++  {
++    return;
++  }
++  int length = snprintf(encoderMessage, sizeof(encoderMessage), "ENC,%" PRIu32 ",%" PRIu32 "\r\n", left, right);
+ 
+-  if (length > 0 && (size_t)length < sizeof(message))
++  if (length > 0 && (size_t)length < sizeof(encoderMessage))
+   {
+-    HAL_UART_Transmit(&huart3, (uint8_t *)message, (uint16_t)length, 5U);
++    HAL_UART_Transmit_IT(&huart3, (uint8_t *)encoderMessage, (uint16_t)length);
+   }
+ }
+ /* USER CODE END 0 */
+@@ -234,6 +241,16 @@ int main(void)
+     /* USER CODE BEGIN 3 */
+     uint32_t now = HAL_GetTick();
+ 
++    if (stopRequested)
++    {
++      uint32_t irqState = __get_PRIMASK();
++      __disable_irq();
++      commandReady = 0U;
++      stopRequested = 0U;
++      __set_PRIMASK(irqState);
++      setMotors(0, 0);
++    }
++
+     if (commandReady)
+     {
+       char command[COMMAND_BUFFER_SIZE];
+@@ -402,11 +419,11 @@ static void MX_TIM3_Init(void)
+ 
+   TIM_MasterConfigTypeDef sMasterConfig = {0};
+   TIM_OC_InitTypeDef sConfigOC = {0};
++  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
+ 
+   /* USER CODE BEGIN TIM3_Init 1 */
+ 
+   /* USER CODE END TIM3_Init 1 */
+-  __HAL_RCC_TIM3_CLK_ENABLE();
+   htim3.Instance = TIM3;
+   htim3.Init.Prescaler = 83;
+   htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
+@@ -417,6 +434,11 @@ static void MX_TIM3_Init(void)
+   {
+     Error_Handler();
+   }
++  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
++  if (HAL_TIM_ConfigClockSource(&htim3, &sClockSourceConfig) != HAL_OK)
++  {
++    Error_Handler();
++  }
+   sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+   if (HAL_TIMEx_MasterConfigSynchronization(&htim3, &sMasterConfig) != HAL_OK)
+@@ -435,14 +457,7 @@ static void MX_TIM3_Init(void)
+   /* USER CODE BEGIN TIM3_Init 2 */
+ 
+   /* USER CODE END TIM3_Init 2 */
+-  __HAL_RCC_GPIOB_CLK_ENABLE();
+-  GPIO_InitTypeDef pwmPins = {0};
+-  pwmPins.Pin = GPIO_PIN_4 | GPIO_PIN_5;
+-  pwmPins.Mode = GPIO_MODE_AF_PP;
+-  pwmPins.Pull = GPIO_NOPULL;
+-  pwmPins.Speed = GPIO_SPEED_FREQ_LOW;
+-  pwmPins.Alternate = GPIO_AF2_TIM3;
+-  HAL_GPIO_Init(GPIOB, &pwmPins);
++  HAL_TIM_MspPostInit(&htim3);
+ 
+ }
+ 
+@@ -635,43 +650,61 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+     return;
+   }
+ 
+-  if (rxByte == '\n')
++  if (rxByte == '\r' || rxByte == '\n')
+   {
+-    if (!discardLine && rxLength > 0U && !commandReady)
++    if (!(rxByte == '\n' && previousCR))
+     {
+-      if (rxLine[rxLength - 1U] == '\r')
++      if (discardLine || rxLength == 0U || commandReady || stopRequested)
+       {
+-        --rxLength;
++        stopRequested = 1U;
++      }
++      else
++      {
++        rxLine[rxLength] = '\0';
++        memcpy(pendingCommand, rxLine, rxLength + 1U);
++        commandReady = 1U;
+       }
+-      rxLine[rxLength] = '\0';
+-      memcpy(pendingCommand, rxLine, rxLength + 1U);
+-      commandReady = 1U;
+     }
++    previousCR = (rxByte == '\r');
+     rxLength = 0U;
+     discardLine = 0U;
+   }
+-  else if (!discardLine)
++  else
+   {
+-    if (rxByte == '\0' || rxLength >= sizeof(rxLine) - 1U)
+-    {
+-      discardLine = 1U;
+-    }
+-    else
++    previousCR = 0U;
++    if (!discardLine)
+     {
+-      rxLine[rxLength++] = (char)rxByte;
++      if (rxByte == '\0' || rxLength >= sizeof(rxLine) - 1U)
++      {
++        discardLine = 1U;
++        stopRequested = 1U;
++      }
++      else
++      {
++        rxLine[rxLength++] = (char)rxByte;
++      }
+     }
+   }
+ 
+-  HAL_UART_Receive_IT(huart, &rxByte, 1U);
++  if (HAL_UART_Receive_IT(huart, &rxByte, 1U) != HAL_OK)
++  {
++    stopRequested = 1U;
++  }
+ }
+ 
+ void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
+ {
+   if (huart->Instance == USART3)
+   {
++    stopRequested = 1U;
+     rxLength = 0U;
+     discardLine = 1U;
+-    HAL_UART_Receive_IT(huart, &rxByte, 1U);
++    previousCR = 0U;
++    HAL_UART_AbortReceive(huart);
++    if (HAL_UART_Receive_IT(huart, &rxByte, 1U) != HAL_OK)
++    {
++      Error_Handler();
++    }
+   }
+ }
+ /* USER CODE END 4 */
+@@ -683,6 +716,10 @@ void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
+ void Error_Handler(void)
+ {
+   /* USER CODE BEGIN Error_Handler_Debug */
++  __HAL_RCC_TIM3_CLK_ENABLE();
++  TIM3->CCR1 = 0U;
++  TIM3->CCR2 = 0U;
++  TIM3->CCER = 0U;
+ 	  /* User can add his own implementation to report the HAL error return state */
+ 	  __disable_irq();
+ 	  while (1)

@@ -1,0 +1,52 @@
+<!DOCTYPE html >
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
+<font color="blue"><b><u>STM32CubeWB Firmware Package V1.20.0 / 05-June-2024</u></b></font><br>
+<b><u>Main Changes</u></b><br>
+<ul style="list-style-type: disc;">
+<b>Maintenance Release for BLE, 802.15.4, Concurrent, Thread and Zigbee updates</b>
+<li><b>BLE</b> updates</li>
+<ul>
+    <li>A new command ACI_HAL_EAD_ENCRYPT_DECRYPT is added to ease implementation of Encrypted Advertising Data feature.</li>
+</ul>
+<li><b>MAC</b> updates</li>
+<ul>
+    <li>To reduce the ROM footprint, optional features have been excluded from the MAC RFD configuration.</li>
+    <li>Correct PANID conflict notification that might return wrong channel.</li>
+</ul>
+<li><b>Thread</b> updates</li>
+<ul>
+    <li>Increased speed of Thread commissioning and SRP key exchanges, using PKA HW accelerator when possible.</li>
+    <li>Increased Thread RCP stability, robustness and efficiency.</li>
+</ul>
+<li><b>Zigbee</b> updates</li>
+<ul>
+    <li>Fix startup memory leak issue when using TouchLink.</li>
+    <li>Fixed zcl_send_response issue for loopback Default Response.</li>
+</ul>
+<li><b>BLE Thread</b> updates</li>
+<ul>
+    <li>Corrected a low-power over consumption when BLE advertising is started or stopped during runtime.</li>
+    <li>Corrected a bug that prevented to erase flash during BLE activity.</li>
+</ul>
+<li><b>BLE Zigbee</b> updates</li>
+<ul>
+    <li>Corrected a bug that prevented to erase flash during BLE activity..</li>
+</ul>
+
+<b>Maintenance Release for HAL/LL Drivers and Projects updates</b>
+<li><b>HAL/LL Drivers</b> updates</li>
+<ul>
+    <li> Update HAL/LL drivers to include latest corrections</li>
+    <ul> Update of HAL CRYP, I2C, QSPI, TIM, UART drivers.</ul>
+    <ul> Update of LL LPUART, TIM drivers.</ul>
+    <li> Refer to release notes for further details</li>
+
+   
+</ul>
+<li><b>Projects </b> updates</li>
+<ul>
+    <li> Update of FW projects following changes in latest version of HAL/LL and Middlewares and alignments with CubeMx</li>
+    <ul> P-NUCLEO-WB55.Nucleo/Examples_LL/TIM/TIM_PWMOutput.</ul>
+</ul>
+
+</html>

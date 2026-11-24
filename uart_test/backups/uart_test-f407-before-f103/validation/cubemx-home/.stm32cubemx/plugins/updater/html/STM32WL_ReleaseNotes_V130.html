@@ -1,0 +1,35 @@
+<!DOCTYPE html >
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
+<font color="blue"><b><u>STM32CubeWL Firmware Package v1.3.0 / 09-November-2022</u></b></font><br>
+<b><u>Main Changes</u></b><br>
+<ul style="list-style-type: disc;">
+<li><b>CMSIS/LL/HAL Drivers updates:</b></li>
+<ul>
+<li>Maintenance to include latest corrections</li>
+</ul>
+<li><b>LoRaWAN Middleware updates:</b></li>
+<ul>
+<li>Feature: Integration of LoRaWAN Link Layer v1.0.4 + Regional Parameters RP002-1.0.1 from LoRa Mac Semtech/StackForce master branch (11-Jan-2022 commits from tag v4.6.0 + some fixes from latest master commits )</li>
+<li>Support of AS923-4 from RP002-1.0.3</li>
+<li>Feature: Support of RU864-870 16 channels from Regional Parameters RP002-1.0.2</li>
+<li>Feature: LoRaWAN FUOTA packages v2.0.0 integration</li>
+<li>Feature: LoRaWAN Key Provisioning: Join EUI/Dev EUI/Dev Address with KMS</li>
+<li>Feature: Set Tx power before join overridden by Mac</li>
+<li>Fix: EIRP default configuration(AS923 JP channel plan) needs to be corrected, 13.0 -> 16.0</li>
+</ul>
+<li><b>LoRaWAN SubGHz Physical Layer Middleware updates:</b></li>
+<ul>
+<li>Feature: 169MHz validation support</li>
+<li>Feature: Add LoRa-E support (LR-FHSS)</li>
+<li>Feature: RF output optimization</li>
+<li>Chore: Sync Word register addresses not matching Semtech SX1261/2 datasheet</li>
+<li>Fix: SUBGHz GCFO registers not in line with the RM</li>
+<li>Fix: AGC of radio stuck when jammed</li>
+</ul>
+<li><b>Security Middleware updates:</b></li>
+<ul>
+<li>KMS: Secure counters</li>
+<li>KMS: Give possibility to encrypt the blob objects in NVM</li>
+</ul>
+</ul>
+</html>

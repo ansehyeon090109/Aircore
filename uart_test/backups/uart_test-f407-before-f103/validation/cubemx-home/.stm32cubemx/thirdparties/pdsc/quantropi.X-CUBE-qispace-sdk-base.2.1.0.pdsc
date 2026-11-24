@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<package schemaVersion="1.7.7" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+    <vendor>quantropi</vendor>
+    <name>X-CUBE-qispace-sdk-base</name>
+    <description>Qispace SDK ( digital signature and key encapsulation mechanism )</description>
+    <url>https://download.quantropi.com/sdk/</url>
+    <license>LICENSE</license>
+    <releases>
+        <release date="2025-07-17" version="2.1.0">Qispace SDK ( digital signature and key encapsulation mechanism )</release>
+        <release date="2025-02-24" version="2.0.0">Qispace SDK ( digital signature and key encapsulation mechanism )</release>
+        <release date="2024-11-12" version="1.9.3">Qispace SDK ( digital signature and key encapsulation mechanism )</release>
+    </releases>
+    <keywords>
+        <keyword>Cortex-M</keyword>
+        <keyword>CUBE_RULES_COMPLIANT</keyword>
+    </keywords>
+    <taxonomy>
+        <description Cclass="SDK">SDK</description>
+    </taxonomy>
+    <conditions>
+        <condition id="Cortex-M Device">
+            <description>Support Cortex M4, M7, M33</description>
+            <accept Dcore="Cortex-M4"/>
+            <accept Dcore="Cortex-M7"/>
+            <accept Dcore="Cortex-M33"/>
+        </condition>
+        <condition id="CM4_GCC">
+            <description>support for Cortex-M4 based devices and gcc</description>
+            <require Tcompiler="GCC"/>
+            <require Dcore="Cortex-M4"/>
+        </condition>
+        <condition id="CM7_GCC">
+            <description>support for Cortex-M7 based devices and gcc</description>
+            <require Tcompiler="GCC"/>
+            <require Dcore="Cortex-M7"/>
+        </condition>
+        <condition id="CM33_GCC">
+            <description>support for Cortex-M33 based devices and gcc</description>
+            <require Tcompiler="GCC"/>
+            <require Dcore="Cortex-M33"/>
+        </condition>
+        <condition id="CA7_GCC">
+            <description>support for Cortex-A7 based devices and gcc</description>
+            <require Tcompiler="GCC"/>
+        </condition>
+    </conditions>
+    <components>
+        <component Cclass="SDK" Cgroup="mcu_lib" Cvendor="Quantropi" Cversion="2.1.0" condition="Cortex-M Device" maxInstances="1">
+            <description>libraries for MCU device</description>
+            <files>
+                <file category="library" condition="CM4_GCC" name="Middlewares/Third_Party/mcu_lib/libmasq_ds_mldsa-armgcc-cortexm4.a" public="false"/>
+                <file category="library" condition="CM7_GCC" name="Middlewares/Third_Party/mcu_lib/libmasq_ds_mldsa-armgcc-cortexm7.a" public="false"/>
+                <file category="library" condition="CM33_GCC" name="Middlewares/Third_Party/mcu_lib/libmasq_ds_mldsa-armgcc-cortexm33.a" public="false"/>
+                <file category="library" condition="CM4_GCC" name="Middlewares/Third_Party/mcu_lib/libmasq_kem_mlkem-armgcc-cortexm4.a" public="false"/>
+                <file category="library" condition="CM7_GCC" name="Middlewares/Third_Party/mcu_lib/libmasq_kem_mlkem-armgcc-cortexm7.a" public="false"/>
+                <file category="library" condition="CM33_GCC" name="Middlewares/Third_Party/mcu_lib/libmasq_kem_mlkem-armgcc-cortexm33.a" public="false"/>
+            </files>
+        </component>
+        <component Cclass="SDK" Cgroup="samp" Cvendor="Quantropi" Cversion="2.1.0" maxInstances="1">
+            <description>sample code</description>
+            <files>
+                <file category="source" name="Middlewares/Third_Party/samp/ds_samp.c"/>
+                <file category="source" name="Middlewares/Third_Party/samp/kem_samp.c"/>
+            </files>
+        </component>
+        <component Cclass="SDK" Cgroup="mpu_lib" Cvendor="Quantropi" Cversion="2.1.0" condition="Cortex-A Device" maxInstances="1">
+            <description>library for MPU device</description>
+            <files>
+                <file category="library" name="Middlewares/Third_Party/mpu_lib/libmasq_ds_mldsa-ostgcc-cortexa7.a"/>
+                <file category="library" name="Middlewares/Third_Party/mpu_lib/libmasq_kem_mlkem-ostgcc-cortexa7.a"/>
+            </files>
+        </component>
+        <component Cclass="SDK" Cgroup="inc" Cvendor="Quantropi" Cversion="2.1.0" maxInstances="1">
+            <description>head files</description>
+            <files>
+                <file category="header" name="Middlewares/Third_Party/inc/masq_ds_error.h"/>
+                <file category="header" name="Middlewares/Third_Party/inc/masq_ds.h"/>
+                <file category="header" name="Middlewares/Third_Party/inc/masq_ds_mldsa.h"/>
+                <file category="header" name="Middlewares/Third_Party/inc/masq_kem_error.h"/>
+                <file category="header" name="Middlewares/Third_Party/inc/masq_kem.h"/>
+                <file category="header" name="Middlewares/Third_Party/inc/masq_kem_mlkem.h"/>
+            </files>
+        </component>
+    </components>
+</package>

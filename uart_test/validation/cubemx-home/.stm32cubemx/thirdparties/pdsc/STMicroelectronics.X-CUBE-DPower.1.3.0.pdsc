@@ -1,0 +1,506 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<package Dvendor="STMicroelectronics:13" schemaVersion="1.7.7" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+    <vendor>STMicroelectronics</vendor>
+    <name>X-CUBE-DPower</name>
+    <description>This pack has been developped to start-up with various DSMPS topologies.
+
+It contains our Digital Power source code library and projects, as well as one jointly developped with our Biricha Digital Power Ltd. partner. All supporting the STM32 for numerous PFC and PSU topologies.
+
+The projects are implementing Poles&amp;Zeros controllers to present better system performances than usual PID based controllers, while making easier complete system tuning.
+
+However, when resonnant converters are used, PID controller is still used.</description>
+    <url>http://sw-center.st.com/packs/x-cube/</url>
+    <license>Package_license.html</license>
+    <supportContact>www.st.com</supportContact>
+    <releases>
+        <release date="2025-02-10" version="1.3.0">This pack has been generated with STM32CubeMX v6.12.0 &amp; STM32PackCreator 3.8.0
+		
+The supported topologies are the folowing:
+1/ AC/DC converter :
+   -&gt; Interleaved Boost (CCM)
+   -&gt; Interleaved Totem Pole (CCM)
+
+2/ DC/DC converter :
+   -&gt; Full-Bridge Phase-Shifted (CCM)
+   -&gt; Buck in Voltage and Current mode (CCM)
+   -&gt; Boost in Voltage mode (CCM)
+   -&gt; LLC in Voltage and Current mode (CCM)
+		</release>
+        <release date="2024-06-30" version="1.2.0">This pack has been generated with STM32CubeMX v6.11.1 &amp; STM32PackCreator 3.7.0
+		
+The supported topologies are the folowing:
+1/ AC/DC converter :
+   -&gt; Interleaved Boost (CCM)
+   -&gt; Interleaved Totem Pole (CCM)
+
+2/ DC/DC converter :
+   -&gt; Full-Bridge Phase-Shifted (CCM)
+   -&gt; Buck in Voltage and Current mode (CCM)
+   -&gt; Boost in Voltage mode (CCM)
+   -&gt; LLC in Voltage mode (CCM)
+		</release>
+        <release date="2024-01-23" version="1.1.0">This pack has been generated with STM32CubeMX v6.9.2 &amp; STM32PackCreator 3.6.0
+		
+The supported topologies are the folowing:
+1/ AC/DC converter :
+   -&gt; Interleaved Boost (CCM)
+   -&gt; Totem Pole (CCM)
+
+2/ DC/DC converter :
+   -&gt; Full-Bridge Phase-Shifted (CCM)
+   -&gt; Buck in Voltage and Current mode (CCM)
+   -&gt; Boost in Voltage mode (CCM)
+   -&gt; LLC in Resonant mode (TCM)
+		</release>
+        <release date="2023-02-01" version="1.0.2">This pack has been generated with STM32CubeMX v6.6.1
+Small Bug fixed.
+		
+The supported topologies are the folowing:
+1/ AC/DC converter :
+   -&gt; Interleaved Boost (CCM)
+
+2/ DC/DC converter :
+   -&gt; Full-Bridge Phase-Shifted (CCM)
+   -&gt; Buck in Voltage and Current mode (CCM)
+   -&gt; Boost in Voltage mode (CCM)
+		</release>
+        <release date="2022-01-06" version="1.0.1">This pack has been generated with STM32CubeMX v6.6.1
+		
+The supported topologies are the folowing:
+1/ AC/DC converter :
+   -&gt; Interleaved Boost (CCM)
+
+2/ DC/DC converter :
+   -&gt; Full-Bridge Phase-Shifted (CCM)
+   -&gt; Buck in Voltage and Current mode (CCM)
+   -&gt; Boost in Voltage mode (CCM)
+		</release>
+        <release date="2022-12-16" tag="V1.0.0" version="1.0.0">This is official release still supporting F334 &amp; G474. We have reduced library entry points as only one.
+
+Want to know more ? Please, check the text file history version for each converter type.
+
+To be exhaustive, we currently support :
+1/ AC/DC converter :
+   -&gt; Interleaved Boost (CCM)
+
+2/ DC/DC converter :
+   -&gt; Full-Bridge Phase-Shifted (CCM)
+   -&gt; Buck in Voltage and Current mode (CCM)
+   -&gt; Boost in Voltage mode (CCM)
+		</release>
+        <release date="2022-12-15" version="0.0.7">This pack has been generated with STM32CubeMX v6.5.0
+
+This is seventh draft still supporting F334 &amp; G474. We have reduced library entry points as only one.
+
+Want to know more ? Please, check the text file history version for each converter type.
+
+To be exhaustive, we currently support :
+1/ AC/DC converter :
+   -&gt; Interleaved Boost (CCM)
+
+2/ DC/DC converter :
+   -&gt; Full-Bridge Phase-Shifted (CCM)
+   -&gt; Buck in Voltage and Current mode (CCM)
+   -&gt; Boost in Voltage mode (CCM)
+   -&gt; LLC in Voltage mode (CCM)
+   
+
+The CMSIS pack design is still as follow (CMSIS compliancy):
+-&gt; Module = Library
+-&gt; Bundle = Digital Power
+	-&gt; Variant = Converter type (e.g. PFC; PSU; Inverter; AC Voltage Regulation)
+	-&gt; Condition = Component Class matching
+-&gt; Module = Selected converter
+	-&gt; Class = Converter type  (e.g. PFC; PSU; Inverter; AC Voltage Regulation)
+	-&gt; Group = Control mode (e.g. CCM; DCM; TM)
+	-&gt; Subgroup = Converter topology (e.g. Interleaved Boost; Full-Bridge Phase-Shifted)
+	-&gt; Variant = Regulation mode (e.g. Current mode; Voltage mode)
+        </release>
+        <release date="2022-11-07" version="0.0.6">This pack has been generated with STM32CubeMX v6.5.0
+
+This is sixth draft still supporting F334 &amp; G474. We have reduced library entry points as only one.
+
+Want to know more ? Please, check the text file history version for each converter type.
+
+To be exhaustive, we currently support :
+1/ AC/DC converter :
+   -&gt; Interleaved Boost (CCM)
+
+2/ DC/DC converter :
+   -&gt; Full-Bridge Phase-Shifted (CCM)
+   -&gt; Buck in Voltage and Current mode (CCM)
+   
+
+The CMSIS pack design is still as follow (CMSIS compliancy):
+-&gt; Module = Library
+-&gt; Bundle = Digital Power
+	-&gt; Variant = Converter type (e.g. PFC; PSU; Inverter; AC Voltage Regulation)
+	-&gt; Condition = Component Class matching
+-&gt; Module = Selected converter
+	-&gt; Class = Converter type  (e.g. PFC; PSU; Inverter; AC Voltage Regulation)
+	-&gt; Group = Control mode (e.g. CCM; DCM; TM)
+	-&gt; Subgroup = Converter topology (e.g. Interleaved Boost; Full-Bridge Phase-Shifted)
+	-&gt; Variant = Regulation mode (e.g. Current mode; Voltage mode)
+		</release>
+        <release date="2022-05-13" version="0.0.5">This pack has been generated with STM32CubeMX v6.5.0
+
+This is fifth draft still supporting F334 &amp; G474. We have introduced more entry points to support additional topologies and libraries during selection.
+
+Want to know more ? Please, check the text file history version for each converter type.
+
+To be exhaustive, we currently support :
+1/ AC/DC converter :
+   -&gt; Interleaved Boost (CCM)
+
+2/ DC/DC converter :
+   -&gt; Full-Bridge Phase-Shifted (CCM)
+
+The CMSIS pack design is still as follow (CMSIS compliancy):
+-&gt; Module = Library
+-&gt; Bundle = Digital Power
+	-&gt; Variant = Converter type (e.g. PFC; PSU; Inverter; AC Voltage Regulation)
+	-&gt; Condition = Component Class matching
+-&gt; Module = Selected converter
+	-&gt; Class = Converter type  (e.g. PFC; PSU; Inverter; AC Voltage Regulation)
+	-&gt; Group = Control mode (e.g. CCM; DCM; TM)
+	-&gt; Subgroup = Converter topology (e.g. Interleaved Boost; Full-Bridge Phase-Shifted)
+	-&gt; Variant = Regulation mode (e.g. Current mode; Voltage mode)
+		</release>
+        <release date="2022-03-31" version="0.0.4">This pack has been generated with STM32CubeMX v6.5.0
+
+This is forth draft implementing PFC (Interleaved Boost) and PSU (Full-Bridge Phase-Shifted), tested with F334 &amp; G474. In this later case, FMAC usage is automatically detected to generate ad'hoc source code as previously.
+
+The files have been reshuffled to converge toward common files architecture usage accross teams. In addition, a file history version as text file has been created for each converter type ... rather than for each source or header files.
+
+Last, some application parameters maybe be changed directly from the CubeMx GUI. It is available for the ACDC (aka PFC) and the DCDC converters (aka PSU).
+
+The CMSIS pack design is still as follow (CMSIS compliancy):
+-&gt; Module = Library
+-&gt; Bundle = Digital Power
+	-&gt; Variant = Converter type (e.g. PFC; PSU; Inverter; AC Voltage Regulation)
+	-&gt; Condition = Component Class matching
+-&gt; Module = Selected converter
+	-&gt; Class = Converter type  (e.g. PFC; PSU; Inverter; AC Voltage Regulation)
+	-&gt; Group = Control mode (e.g. CCM; DCM; TM)
+	-&gt; Subgroup = Converter topology (e.g. Interleaved Boost; Full-Bridge Phase-Shifted)
+	-&gt; Variant = Regulation mode (e.g. Current mode; Voltage mode)
+		</release>
+        <release date="2022-03-04" version="0.0.3">This pack has been generated with STM32CubeMX v6.4.0
+
+This is third draft implementing PFC (Interleaved Boost) and PSU (Full-Bridge Phase-Shifted), tested with G474. FMAC usage is automatically detected to generate ad'hoc source code.
+
+The CMSIS pack design is as follow (CMSIS compliancy):
+-&gt; Module = Library
+-&gt; Bundle = Digital Power
+	-&gt; Variant = Converter type (e.g. PFC; PSU; Inverter; AC Voltage Regulation)
+	-&gt; Condition = Component Class matching
+-&gt; Module = Selected converter
+	-&gt; Class = Converter type  (e.g. PFC; PSU; Inverter; AC Voltage Regulation)
+	-&gt; Group = Control mode (e.g. CCM; DCM; TM)
+	-&gt; Subgroup = Converter topology (e.g. Interleaved Boost; Full-Bridge Phase-Shifted)
+	-&gt; Variant = Regulation mode (e.g. Current mode; Voltage mode)
+		</release>
+        <release date="2022-02-22" version="0.0.2">This pack has been generated with STM32CubeMX v6.4.0
+
+This is second draft implementing PFC (Interleaved Boost) and PSU (Full-Bridge Phase-Shifted), tested with G474. FMAC usage is not implemented.
+
+The CMSIS pack design is as follow:
+-&gt; Module = Library
+-&gt; Bundle = PFC
+	-&gt; Variant = Converter topology (eg.. Interleaved Boost)
+-&gt; Bundle = PSU
+	-&gt; Variant = Converter topology (e.g. Full-Bridge Phase-Shifted)
+		</release>
+        <release date="2021-12-23" version="0.0.1">This pack has been generated with STM32CubeMX v6.3.0
+
+This is initial draft implementing PFC (Interleaved Boost) and PSU (Full-Bridge Phase-Shifted), tested with F334 only.
+		</release>
+    </releases>
+    <keywords>
+        <keyword>STM32F3</keyword>
+        <keyword>STM32G4</keyword>
+        <keyword>CUBE_RULES_COMPLIANT</keyword>
+        <keyword>STMicroelectronics</keyword>
+        <keyword>IMPLEMENTED_WITH_STM32CUBEMX</keyword>
+    </keywords>
+    <taxonomy>
+        <description Cclass="Utility">Utility</description>
+        <description Cclass="Library">Library</description>
+        <description Cclass="Device">Device</description>
+    </taxonomy>
+    <conditions>
+        <condition id="STM32F334">
+            <description>HRTimer needed together with STM32F3</description>
+            <require Dname="STM32F334*"/>
+        </condition>
+        <condition id="STM32G474">
+            <description>HRTimer needed together with STM32G4</description>
+            <require Dname="STM32G474*"/>
+        </condition>
+        <condition id="Accepted_Devices">
+            <description>List all accepted devices</description>
+            <accept condition="STM32G474"/>
+            <accept condition="STM32F334"/>
+        </condition>
+        <condition id="ARM/KEIL">
+            <description>ARM or KEIL IDE usage</description>
+            <accept Tcompiler="IAR"/>
+        </condition>
+        <condition id="CubeIDE">
+            <description>CubeIDE usage</description>
+            <accept Tcompiler="GCC"/>
+        </condition>
+        <condition id="AC/DC Applications">
+            <description>Condition applicable to all AC/DC converters (aka PFC)</description>
+            <require Cclass="AC-DC_converter"/>
+        </condition>
+        <condition id="DC/DC Applications">
+            <description>Condition applicable to all DC/DC converters (aka PSU)</description>
+            <require Cclass="DC-DC_converter"/>
+        </condition>
+        <condition id="Buck Topology">
+            <description>Condition applicable to Buck converter topology</description>
+            <require Cclass="DC-DC_converter"/>
+            <require Csub="Buck"/>
+        </condition>
+        <condition id="PS-FB Topology">
+            <description>Condition applicable to Phase-Shift Full-Bridge converter topology</description>
+            <require Cclass="DC-DC_converter"/>
+            <require Csub="Phase-Shifted Full-Bridge"/>
+        </condition>
+    </conditions>
+    <components>
+        <component Cclass="Library" Cgroup="Digital_Power_Converter" Csub="PolesZerosControler" Cversion="1.2.1" condition="Accepted_Devices" maxInstances="1">
+            <description>Digital Power library initiated with our partner Biricha Digital Power Ltd.</description>
+            <files>
+                <file category="header" name="Middlewares/ST/Third_Party/Biricha/Inc/biricha-dpow-lib.h"/>
+                <file category="header" name="Middlewares/ST/Third_Party/Biricha/Inc/dpwr.h"/>
+                <file category="header" name="Middlewares/ST/Third_Party/Biricha/Inc/dpwr_cntrl.h"/>
+                <file category="header" name="Middlewares/ST/Third_Party/Biricha/Inc/dpwr_dcdc.h" public="false"/>
+                <file category="header" name="Middlewares/ST/Third_Party/Biricha/Inc/dpwr_filt.h"/>
+                <file category="header" name="Middlewares/ST/Third_Party/Biricha/Inc/dpwr_pfc.h" public="false"/>
+                <file category="source" name="Middlewares/ST/Third_Party/Biricha/Src/dpwr.c"/>
+                <file category="source" name="Middlewares/ST/Third_Party/Biricha/Src/dpwr_cntrl.c"/>
+                <file category="source" name="Middlewares/ST/Third_Party/Biricha/Src/dpwr_dcdc.c" public="false"/>
+                <file category="source" name="Middlewares/ST/Third_Party/Biricha/Src/dpwr_filt.c"/>
+                <file category="source" name="Middlewares/ST/Third_Party/Biricha/Src/dpwr_pfc.c" public="false"/>
+                <file category="header" condition="PS-FB Topology" name="Middlewares/ST/Third_Party/Biricha/Inc/i2c_app.h" public="false"/>
+                <file category="source" condition="PS-FB Topology" name="Middlewares/ST/Third_Party/Biricha/Src/i2c_app.c" public="false"/>
+            </files>
+        </component>
+        <component Cclass="Library" Cgroup="Digital_Power_Converter" Csub="Legacy" Cversion="1.1.1" condition="Accepted_Devices" maxInstances="1">
+            <description>Provides library functions and data structures to support DSMPS services</description>
+            <files>
+                <file category="header" name="Middlewares/ST/DPC_Library/Inc/DPC_DebugMode.h"/>
+                <file category="source" name="Middlewares/ST/DPC_Library/Src/DPC_DebugMode.c"/>
+                <file category="header" name="Middlewares/ST/DPC_Library/Inc/DPC_Miscellaneous.h"/>
+                <file category="source" name="Middlewares/ST/DPC_Library/Src/DPC_Miscellaneous.c"/>
+                <file category="header" name="Middlewares/ST/DPC_Library/Inc/DPC_Pid.h"/>
+                <file category="source" name="Middlewares/ST/DPC_Library/Src/DPC_Pid.c"/>
+            </files>
+        </component>
+        <component Cclass="AC-DC_converter" Cgroup="in CCM" Csub="Totem Pole" Cversion="1.1.0" condition="AC/DC Applications" maxInstances="1">
+            <description>PFC application running Interleaved Totem Pole topology in CCM</description>
+            <RTE_Components_h>#define PFC_TTP_TOPOLOGY</RTE_Components_h>
+            <files>
+                <file category="doc" name="Middlewares/ST/History - ACDC_Converters.txt"/>
+            </files>
+        </component>
+        <component Cclass="AC-DC_converter" Cgroup="in CCM" Csub="Interleaved Boost" Cversion="1.1.0" condition="AC/DC Applications" maxInstances="1">
+            <description>PFC application running Interleaved Boost topology in CCM</description>
+            <RTE_Components_h>#define PFC_BOOST_TOPOLOGY</RTE_Components_h>
+            <files>
+                <file category="doc" name="Middlewares/ST/History - ACDC_Converters.txt"/>
+            </files>
+        </component>
+        <component Cclass="DC-DC_converter" Cgroup="in CCM" Csub="Buck" Cvariant="Voltage_Mode" Cversion="1.1.0" condition="DC/DC Applications" maxInstances="1">
+            <description>PSU application running Buck topology in CCM using Voltage Mode</description>
+            <RTE_Components_h>#define VOLTAGE_MODE</RTE_Components_h>
+            <files>
+                <file category="doc" name="Middlewares/ST/History - DCDC_Converters.txt"/>
+            </files>
+        </component>
+        <component Cclass="DC-DC_converter" Cgroup="in CCM" Csub="Buck" Cvariant="Current_Mode" Cversion="1.1.0" condition="DC/DC Applications" isDefaultVariant="true" maxInstances="1">
+            <description>PSU application running Buck topology in CCM using Current Mode</description>
+            <RTE_Components_h>#define CURRENT_MODE</RTE_Components_h>
+            <files>
+                <file category="doc" name="Middlewares/ST/History - DCDC_Converters.txt"/>
+            </files>
+        </component>
+        <component Cclass="DC-DC_converter" Cgroup="in CCM" Csub="Boost" Cvariant="Voltage_Mode" Cversion="2.0.0" condition="DC/DC Applications" isDefaultVariant="true" maxInstances="1">
+            <description>PSU application running Boost topology in CCM using Voltage Mode</description>
+            <RTE_Components_h>#define VOLTAGE_MODE</RTE_Components_h>
+            <files>
+                <file category="doc" name="Middlewares/ST/History - DCDC_Converters.txt"/>
+            </files>
+        </component>
+        <component Cclass="DC-DC_converter" Cgroup="in CCM" Csub="Phase-Shifted Full-Bridge" Cversion="1.1.1" condition="DC/DC Applications" maxInstances="1">
+            <description>PSU application running Phase-Shifted Full-Bridge topology in CCM</description>
+            <RTE_Components_h>#define PSFB_TOPOLOGY</RTE_Components_h>
+            <files>
+                <file category="doc" name="Middlewares/ST/History - DCDC_Converters.txt"/>
+            </files>
+        </component>
+        <component Cclass="DC-DC_converter" Cgroup="in CCM" Csub="LLC" Cversion="1.0.0" condition="DC/DC Applications" isDefaultVariant="true" maxInstances="1">
+            <description>PSU application running LLC topology using Voltage Mode</description>
+            <RTE_Components_h>#define LLC_TOPOLOGY
+#define VOLTAGE_MODE</RTE_Components_h>
+            <files>
+                <file category="doc" name="Middlewares/ST/History - DCDC_Converters.txt"/>
+            </files>
+        </component>
+        <component Cclass="Utility" Cgroup="MISC" Cversion="1.1.0" maxInstances="1">
+            <description>These scripts are managing the CCM-SRAM setup within the chosen IDE. Rational is that STM32CubeMX doesn't allow to declare or not this usage.</description>
+            <files>
+                <file category="other" name="Utilities/MISC/CCMRAM_CubeIDE_LinkerFileCleaner_STM32F334.exe"/>
+                <file category="other" name="Utilities/MISC/CCMRAM_LinkerFilePlacement.exe"/>
+            </files>
+        </component>
+        <bundle Cbundle="DSMPS" Cclass="Device" Cversion="1.2.1">
+            <description>Digital Power generating applications</description>
+            <doc>readme.txt</doc>
+            <component Cgroup="Application" Cvariant="PFC" condition="AC/DC Applications" maxInstances="1">
+                <description>Generates AC/DC converter application example from various topologies and control mode conditions</description>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="PSU" condition="DC/DC Applications" maxInstances="1">
+                <description>Generates DC/DC converter application example from various topologies and control mode conditions</description>
+                <files/>
+            </component>
+        </bundle>
+    </components>
+    <examples>
+        <example doc="ReadMe.txt" folder="Projects/NUCLEO-G474RE/Examples/PFC_Boost_Converter" name="PFC_Boost_Converter" public="false" version="1.0.0">
+            <description>This example presents How To configure HRTimer for a PFC Boost converter.</description>
+            <board Dvendor="STMicroelectronics:13" name="NUCLEO-G474RE" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="PFC_Boost_Converter" load="PFC Boost converter.ioc" name="stm32cubemx"/>
+            </project>
+            <attributes>
+                <category>Example</category>
+                <keyword>HRTimer</keyword>
+            </attributes>
+        </example>
+        <example doc="ReadMe.txt" folder="Projects/NUCLEO-G474RE/Examples/PSU_iBuck_Converter_w_Phases_Mgt" name="PSU_iBuck_Converter_w_Phases_Mgt" public="false" version="1.0.0">
+            <description>This example presents How To configure HRTimer for a PSU Interleaved Buck converter using phases management.</description>
+            <board Dvendor="STMicroelectronics:13" name="NUCLEO-G474RE" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="PSU_iBuck_Converter_w_Phases_Mgt" load="Interleaved Buck converter w phases mgt.ioc" name="stm32cubemx"/>
+            </project>
+            <attributes>
+                <category>Example</category>
+                <keyword>HRTimer</keyword>
+            </attributes>
+        </example>
+        <example doc="ReadMe.txt" folder="Projects/NUCLEO-G474RE/Examples/PSU_iBuck_Converter" name="PSU_iBuck_Converter" public="false" version="1.0.0">
+            <description>This example presents How To configure HRTimer for a PSU Interleaved Buck converter.</description>
+            <board Dvendor="STMicroelectronics:13" name="NUCLEO-G474RE" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="PSU_iBuck_Converter" load="Interleaved Buck converter.ioc" name="stm32cubemx"/>
+            </project>
+            <attributes>
+                <category>Example</category>
+                <keyword>HRTimer</keyword>
+            </attributes>
+        </example>
+        <example doc="ReadMe.txt" folder="Projects/NUCLEO-G474RE/Examples/PSU_Sync_Buck_Converter_w_Fault_Event" name="PSU_Sync_Buck_Converter_w_Fault_Event" public="false" version="1.0.0">
+            <description>This example presents How To configure HRTimer for a PSU Synchronous Buck converter with fault event management.</description>
+            <board Dvendor="STMicroelectronics:13" name="NUCLEO-G474RE" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="PSU_Sync_Buck_Converter_w_Fault_Event" load="Synchronous Buck converter fault event.ioc" name="stm32cubemx"/>
+            </project>
+            <attributes>
+                <category>Example</category>
+                <keyword>HRTimer</keyword>
+            </attributes>
+        </example>
+        <example doc="ReadMe.txt" folder="Projects/NUCLEO-G474RE/Examples/PSU_Sync_Buck_Converter" name="PSU_Sync_Buck_Converter" public="false" version="1.0.0">
+            <description>This example presents How To configure HRTimer for a PSU Synchronous Buck converter.</description>
+            <board Dvendor="STMicroelectronics:13" name="NUCLEO-G474RE" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="PSU_Sync_Buck_Converter" load="Synchronous Buck converter.ioc" name="stm32cubemx"/>
+            </project>
+            <attributes>
+                <category>Example</category>
+                <keyword>HRTimer</keyword>
+            </attributes>
+        </example>
+        <example doc="ReadMe.txt" folder="Projects/NUCLEO-G474RE/Examples/PSU_Buck_Converter" name="PSU_Buck_Converter" public="false" version="1.0.0">
+            <description>This example presents How To configure HRTimer for a PSU Buck converter.</description>
+            <board Dvendor="STMicroelectronics:13" name="NUCLEO-G474RE" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="PSU_Buck_Converter" load="Buck converter.ioc" name="stm32cubemx"/>
+            </project>
+            <attributes>
+                <category>Example</category>
+                <keyword>HRTimer</keyword>
+            </attributes>
+        </example>
+        <example doc="ReadMe.txt" folder="Projects/NUCLEO-G474RE/Examples/PFC_TTP_Converter" name="PFC_TTP_Converter" public="false" version="1.1.0">
+            <description>This example presents How To configure HRTimer for a PFC Totem Pole converter.</description>
+            <board Dvendor="STMicroelectronics:13" name="NUCLEO-G474RE" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="PFC_TTP_Converter" load="PFC TTP converter.ioc" name="stm32cubemx"/>
+            </project>
+            <attributes>
+                <category>Example</category>
+                <keyword>HRTimer</keyword>
+            </attributes>
+        </example>
+        <example doc="ReadMe.txt" folder="Projects/NUCLEO-G474RE/Examples/PSU_LLC_Converter" name="PSU_LLC_Converter" public="false" version="1.1.0">
+            <description>This example presents How To configure HRTimer for a PSU resonnant LLC converter.</description>
+            <board Dvendor="STMicroelectronics:13" name="NUCLEO-G474RE" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="PSU_LLC_Converter" load="LLC converter.ioc" name="stm32cubemx"/>
+            </project>
+            <attributes>
+                <category>Example</category>
+                <keyword>HRTimer</keyword>
+            </attributes>
+        </example>
+        <example doc="ReadMe.txt" folder="Projects/NUCLEO-G474RE/Examples/PSU_CLLC_Converter" name="PSU_CLLC_Converter" public="false" version="1.0.0">
+            <description>This example presents How To configure HRTimer for a PSU resonnant CLLC converter.</description>
+            <board Dvendor="STMicroelectronics:13" name="NUCLEO-G474RE" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="PSU_CLLC_Converter" load="CLLC converter.ioc" name="stm32cubemx"/>
+            </project>
+            <attributes>
+                <category>Example</category>
+                <keyword>HRTimer</keyword>
+            </attributes>
+        </example>
+        <example doc="ReadMe.txt" folder="Projects/NUCLEO-G474RE/Examples/PSU_DAB_Converter" name="PSU_DAB_Converter" public="false" version="1.0.0">
+            <description>This example presents How To configure HRTimer for a PSU Dual Active Bridge converter.</description>
+            <board Dvendor="STMicroelectronics:13" name="NUCLEO-G474RE" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="PSU_DAB_Converter" load="DAB converter.ioc" name="stm32cubemx"/>
+            </project>
+            <attributes>
+                <category>Example</category>
+                <keyword>HRTimer</keyword>
+            </attributes>
+        </example>
+        <example doc="ReadMe.txt" folder="Projects/NUCLEO-G474RE/Examples/PSU_3Phases_Rectifier_Converter" name="PSU_3Phases_Rectifier_Converter" public="false" version="1.0.0">
+            <description>This example presents How To configure HRTimer for a PSU converter using 3 phases rectifier.</description>
+            <board Dvendor="STMicroelectronics:13" name="NUCLEO-G474RE" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="PSU_3Phases_Rectifier_Converter" load="3 phase rectifier.ioc" name="stm32cubemx"/>
+            </project>
+            <attributes>
+                <category>Example</category>
+                <keyword>HRTimer</keyword>
+            </attributes>
+        </example>
+        <example doc="ReadMe.txt" folder="Projects/NUCLEO-G474RE/Examples/PSU_HSFB_Converter" name="PSU_HSFB_Converter" public="false" version="1.0.0">
+            <description>This example presents How To configure HRTimer for a PSU Hard Switching Full-Bridge converter.</description>
+            <board Dvendor="STMicroelectronics:13" name="NUCLEO-G474RE" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="PSU_HSFB_Converter" load="HSFB converter.ioc" name="stm32cubemx"/>
+            </project>
+            <attributes>
+                <category>Example</category>
+                <keyword>HRTimer</keyword>
+            </attributes>
+        </example>
+    </examples>
+</package>

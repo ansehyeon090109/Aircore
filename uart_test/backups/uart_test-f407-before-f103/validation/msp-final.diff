@@ -1,0 +1,87 @@
+﻿diff --git a/backups/20261117_174247/Core/Src/stm32f4xx_hal_msp.c b/Core/Src/stm32f4xx_hal_msp.c
+index fb6313f..c6145b6 100644
+--- a/backups/20261117_174247/Core/Src/stm32f4xx_hal_msp.c
++++ b/Core/Src/stm32f4xx_hal_msp.c
+@@ -87,27 +87,13 @@ void HAL_MspInit(void)
+   */
+ void HAL_I2C_MspInit(I2C_HandleTypeDef* hi2c)
+ {
+-  GPIO_InitTypeDef GPIO_InitStruct = {0};
+   if(hi2c->Instance==I2C1)
+   {
+     /* USER CODE BEGIN I2C1_MspInit 0 */
+ 
+     /* USER CODE END I2C1_MspInit 0 */
+ 
+-    __HAL_RCC_GPIOB_CLK_ENABLE();
+-    /**I2C1 GPIO Configuration
+-    PB8     ------> I2C1_SCL
+-    PB9     ------> I2C1_SDA
+-    */
+-    GPIO_InitStruct.Pin = GPIO_PIN_8|GPIO_PIN_9;
+-    GPIO_InitStruct.Mode = GPIO_MODE_AF_OD;
+-    GPIO_InitStruct.Pull = GPIO_NOPULL;
+-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+-    GPIO_InitStruct.Alternate = GPIO_AF4_I2C1;
+-    HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+ 
+-    /* Peripheral clock enable */
+-    __HAL_RCC_I2C1_CLK_ENABLE();
+     /* USER CODE BEGIN I2C1_MspInit 1 */
+ 
+     /* USER CODE END I2C1_MspInit 1 */
+@@ -129,16 +115,7 @@ void HAL_I2C_MspDeInit(I2C_HandleTypeDef* hi2c)
+     /* USER CODE BEGIN I2C1_MspDeInit 0 */
+ 
+     /* USER CODE END I2C1_MspDeInit 0 */
+-    /* Peripheral clock disable */
+-    __HAL_RCC_I2C1_CLK_DISABLE();
+-
+-    /**I2C1 GPIO Configuration
+-    PB8     ------> I2C1_SCL
+-    PB9     ------> I2C1_SDA
+-    */
+-    HAL_GPIO_DeInit(GPIOB, GPIO_PIN_8);
+ 
+-    HAL_GPIO_DeInit(GPIOB, GPIO_PIN_9);
+ 
+     /* USER CODE BEGIN I2C1_MspDeInit 1 */
+ 
+@@ -428,5 +405,37 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* huart)
+ }
+ 
+ /* USER CODE BEGIN 1 */
++void HAL_TIM_PWM_MspInit(TIM_HandleTypeDef *htim)
++{
++  if (htim->Instance == TIM3)
++  {
++    __HAL_RCC_TIM3_CLK_ENABLE();
++  }
++}
++
++void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim)
++{
++  if (htim->Instance == TIM3)
++  {
++    GPIO_InitTypeDef pins = {0};
++    __HAL_RCC_GPIOB_CLK_ENABLE();
++    pins.Pin = GPIO_PIN_4 | GPIO_PIN_5;
++    pins.Mode = GPIO_MODE_AF_PP;
++    pins.Pull = GPIO_NOPULL;
++    pins.Speed = GPIO_SPEED_FREQ_LOW;
++    pins.Alternate = GPIO_AF2_TIM3;
++    HAL_GPIO_Init(GPIOB, &pins);
++  }
++}
++
++void HAL_TIM_PWM_MspDeInit(TIM_HandleTypeDef *htim)
++{
++  if (htim->Instance == TIM3)
++  {
++    __HAL_RCC_TIM3_CLK_DISABLE();
++    HAL_GPIO_DeInit(GPIOB, GPIO_PIN_4 | GPIO_PIN_5);
++  }
++}
++
+ 
+ /* USER CODE END 1 */

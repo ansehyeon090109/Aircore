@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<Computer DBVersion="2.0">
+    <Software>
+        <PackDescription Release="MX.6.15.0"/>
+    </Software>
+    <DataBase>
+        <PackDescription Release="DB.6.0.150"/>
+    </DataBase>
+</Computer>

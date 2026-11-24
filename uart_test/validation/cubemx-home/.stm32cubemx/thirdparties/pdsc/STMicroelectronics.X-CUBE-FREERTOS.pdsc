@@ -1,0 +1,302 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<package Dname="STM32H5*|STM32U5*|STM32C0*|STM32WBA*|STM32U0*|STM32N6*|STM32U3*" Dvendor="STMicroelectronics:13" schemaVersion="1.7.46" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+    <vendor>STMicroelectronics</vendor>
+    <name>X-CUBE-FREERTOS</name>
+    <description>FreeRTOS STM32Cube expansion package for STM32H5/U5/WBA/C0/U0/N6/U3 series
+
+</description>
+    <url>http://sw-center.st.com/packs/x-cube/</url>
+    <license>Package_License.html</license>
+    <releases>
+        <release date="2026-06-19" version="1.6.0">STM32CubeExpansion_FREERTOS V1.6.0
+FreeRTOS kernel version: v11.2.0 (ST modified 2026-03-27)
+
+Maintenance release V1.6.0 of FreeRTOS STM32Cube expansion package for STM32H5/U5/WBA/C0/U0/N6/U3 series
+
+This version is compatible with STM32CubeMX 6.18.0 and STM32PackCreator 4.3.0</release>
+        <release date="2026-02-20" version="1.5.0">STM32CubeExpansion_FREERTOS V1.5.0
+FreeRTOS kernel version: v11.2.0 (ST modified 2025-06-20)
+
+Maintenance release V1.5.0 of FreeRTOS STM32Cube expansion package for STM32H5/U5/WBA/C0/U0/N6/U3 series
+
+This version is compatible with STM32CubeMX 6.17.0 and STM32PackCreator 4.1.0</release>
+        <release date="2025-11-14" version="1.4.0">STM32CubeExpansion_FREERTOS V1.4.0
+FreeRTOS kernel version: v11.2.0 (ST modified 2025-06-20)
+
+Maintenance release V1.4.0 of FreeRTOS STM32Cube expansion package for STM32H5/U5/WBA/C0/U0/N6/U3 series
+
+This version is compatible with STM32CubeMX 6.16.0 and STM32PackCreator 4.1.0</release>
+        <release date="2025-04-22" version="1.3.1">STM32CubeExpansion_FREERTOS V1.3.1
+FreeRTOS kernel version: v10.6.2 (ST modified 2024-10-11)
+
+Maintenance release V1.3.1 of FreeRTOS STM32Cube expansion package for STM32H5/U5/WBA/C0/U0/N6/U3 series
+
+This version is compatible with STM32CubeMX 6.14.1 and STM32PackCreator 4.0.0</release>
+        <release date="2024-11-22" version="1.3.0">STM32CubeExpansion_FREERTOS V1.3.0
+FreeRTOS kernel version: v10.6.2 (ST modified 2024-10-11)
+
+Maintenance release V1.3.0 of FreeRTOS STM32Cube expansion package for STM32H5/U5/WBA/C0/U0/U3 series
+
+This version is compatible with STM32CubeMX 6.13.0 and STM32PackCreator 3.9.0</release>
+        <release date="2024-04-05" version="1.2.0">STM32CubeExpansion_FREERTOS V1.2.0
+FreeRTOS kernel version: v10.5.1 (ST modified 2023-11-17)
+
+Maintenance release V1.2.0 of FreeRTOS STM32Cube expansion package for STM32H5/U5/WBA/C0/U0 series
+
+This version is compatible with STM32CubeMX 6.11.0 and STM32PackCreator 3.7.0</release>
+        <release date="2023-06-23" version="1.1.0">STM32CubeExpansion_FREERTOS V1.1.0
+FreeRTOS kernel version: v10.5.1 (ST modified 2023-11-17)
+
+Maintenance release V1.1.0 of FreeRTOS STM32Cube expansion package for STM32H5/U5/WBA/C0 series
+
+This version is compatible with STM32CubeMX 6.9.1 and STM32PackCreator 3.6.0</release>
+        <release date="2023-03-24" version="1.0.1">STM32CubeExpansion_FREERTOS V1.0.1
+FreeRTOS kernel version: v10.4.6 (ST modified 2022-08-05)
+
+Maintenance release V1.0.1 of FreeRTOS STM32Cube expansion package for STM32H5/U5 series
+
+This version is compatible with STM32CubeMX 6.8.0 and STM32PackCreator 3.5.0</release>
+        <release date="2023-02-24" version="1.0.0">STM32CubeExpansion_FREERTOS V1.0.0
+FreeRTOS kernel version: v10.4.6 (ST modified 2022-08-05)
+
+First official release of FreeRTOS STM32Cube expansion package for STM32H5/U5 series
+
+This version is compatible with STM32CubeMX 6.8.0 and STM32PackCreator 3.5.0</release>
+    </releases>
+    <keywords>
+        <keyword>CUBE_RULES_COMPLIANT</keyword>
+        <keyword>IMPLEMENTED_WITH_STM32CUBEMX</keyword>
+    </keywords>
+    <taxonomy>
+        <description Cclass="CMSIS">CMSIS</description>
+    </taxonomy>
+    <conditions>
+        <condition id="TrustZone DISABLED Condition">
+            <description>TrustZone disabled condition</description>
+            <require Dsecure="TZ-disabled"/>
+            <require Cbundle="RTOS2" Cclass="CMSIS" Cgroup="RTOS2" Csub="Heap"/>
+        </condition>
+        <condition id="TZ NON SECURE Condition">
+            <description>TrustZone Non secure context condition</description>
+            <require Dsecure="Non-secure"/>
+            <require Cbundle="RTOS2" Cclass="CMSIS" Cgroup="RTOS2" Csub="Heap"/>
+        </condition>
+        <condition id="TZ SECURE Condition">
+            <description>TrustZone Secure context condition</description>
+            <require Dsecure="Secure"/>
+        </condition>
+        <condition id="TZ SECURE ONLY Condition">
+            <description>TrustZone Secure Only context condition</description>
+            <require Dsecure="Secure-only"/>
+            <require Cbundle="RTOS2" Cclass="CMSIS" Cgroup="RTOS2" Csub="Heap"/>
+        </condition>
+        <condition id="CM33 IAR Condition">
+            <description>CortexM33 / IAR compiler</description>
+            <require Tcompiler="IAR"/>
+            <require Dcore="Cortex-M33"/>
+        </condition>
+        <condition id="CM33 ARMC6 Condition">
+            <description>CortexM33 / ARM compiler 6</description>
+            <require Tcompiler="ARMCC"/>
+            <require Dcore="Cortex-M33"/>
+        </condition>
+        <condition id="CM33 GNU Condition">
+            <description>CortexM33 / GNU compiler</description>
+            <require Tcompiler="GCC"/>
+            <require Dcore="Cortex-M33"/>
+        </condition>
+        <condition id="CM33 GNU ARMC6 Condition">
+            <description>CortexM33 / GNU compiler -or-  ARM compiler 6</description>
+            <accept condition="CM33 ARMC6 Condition"/>
+            <accept condition="CM33 GNU Condition"/>
+        </condition>
+        <condition id="Heap Core Condition">
+            <description>Heap Core context condition</description>
+            <accept Dsecure="Secure-only"/>
+            <accept Dsecure="TZ-disabled"/>
+            <accept Dsecure="Non-secure"/>
+            <require Cbundle="RTOS2" Cclass="CMSIS" Cgroup="RTOS2" Csub="Core"/>
+        </condition>
+        <condition id="CM0 IAR Condition">
+            <description>CortexM0 / IAR compiler</description>
+            <require Tcompiler="IAR"/>
+            <require Dcore="Cortex-M0+"/>
+        </condition>
+        <condition id="CM0 ARMC6 Condition">
+            <description>CortexM0 / ARM compiler 6</description>
+            <require Tcompiler="ARMCC"/>
+            <require Dcore="Cortex-M0+"/>
+        </condition>
+        <condition id="CM0 GNU Condition">
+            <description>CortexM0 / GNU compiler</description>
+            <require Tcompiler="GCC"/>
+            <require Dcore="Cortex-M0+"/>
+        </condition>
+        <condition id="CM0 GNU ARMC6 Condition">
+            <description>CortexM0 / GNU compiler -or-  ARM compiler 6</description>
+            <accept condition="CM0 ARMC6 Condition"/>
+            <accept condition="CM0 GNU Condition"/>
+        </condition>
+        <condition id="CM55 IAR Condition">
+            <description>CortexM55 / IAR compiler</description>
+            <require Tcompiler="IAR"/>
+            <require Dcore="Cortex-M55"/>
+        </condition>
+        <condition id="CM55 ARMC6 Condition">
+            <description>CortexM55 / ARM compiler 6</description>
+            <require Tcompiler="ARMCC"/>
+            <require Dcore="Cortex-M55"/>
+        </condition>
+        <condition id="CM55 GNU Condition">
+            <description>CortexM55 / GNU compiler</description>
+            <require Tcompiler="GCC"/>
+            <require Dcore="Cortex-M55"/>
+        </condition>
+        <condition id="CM55 GNU ARMC6 Condition">
+            <description>CortexM55 / GNU compiler -or-  ARM compiler 6</description>
+            <accept condition="CM55 ARMC6 Condition"/>
+            <accept condition="CM55 GNU Condition"/>
+        </condition>
+    </conditions>
+    <components>
+        <bundle Cbundle="RTOS2" Cclass="CMSIS" Cversion="11.2.0">
+            <description>FreeRTOS bundle</description>
+            <doc>Middlewares/Third_Party/FreeRTOS/Source/README.md</doc>
+            <component Cgroup="RTOS2" Csub="Core" Cvariant="TZ_Non_Supported" condition="TrustZone DISABLED Condition" maxInstances="1">
+                <description>FreeRTOS Core group.</description>
+                <files>
+                    <file category="source" name="Middlewares/Third_Party/FreeRTOS/Source/croutine.c"/>
+                    <file category="source" name="Middlewares/Third_Party/FreeRTOS/Source/event_groups.c"/>
+                    <file category="source" name="Middlewares/Third_Party/FreeRTOS/Source/list.c"/>
+                    <file category="source" name="Middlewares/Third_Party/FreeRTOS/Source/queue.c"/>
+                    <file category="source" name="Middlewares/Third_Party/FreeRTOS/Source/stream_buffer.c"/>
+                    <file category="source" name="Middlewares/Third_Party/FreeRTOS/Source/tasks.c"/>
+                    <file category="source" name="Middlewares/Third_Party/FreeRTOS/Source/timers.c"/>
+                    <file category="include" name="Middlewares/Third_Party/FreeRTOS/Source/include/"/>
+                    <file category="source" condition="CM33 IAR Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/IAR/ARM_CM33_NTZ/non_secure/port.c" public="false"/>
+                    <file category="sourceAsm" condition="CM33 IAR Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/IAR/ARM_CM33_NTZ/non_secure/portasm.s" public="false"/>
+                    <file category="include" condition="CM33 IAR Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/IAR/ARM_CM33_NTZ/non_secure/" public="false"/>
+                    <file category="source" condition="CM33 GNU ARMC6 Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM33_NTZ/non_secure/port.c" public="false"/>
+                    <file category="source" condition="CM33 GNU ARMC6 Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM33_NTZ/non_secure/portasm.c" public="false"/>
+                    <file category="include" condition="CM33 GNU ARMC6 Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM33_NTZ/non_secure/" public="false"/>
+                    <file category="source" name="Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.c"/>
+                    <file category="include" name="Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/"/>
+                    <file category="include" name="Drivers/CMSIS/RTOS2/Include/"/>
+                    <file category="source" condition="CM0 IAR Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/IAR/ARM_CM0/port.c" public="false"/>
+                    <file category="sourceAsm" condition="CM0 IAR Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/IAR/ARM_CM0/portasm.s" public="false"/>
+                    <file category="include" condition="CM0 IAR Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/IAR/ARM_CM0/" public="false"/>
+                    <file category="source" condition="CM0 GNU ARMC6 Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM0/port.c" public="false"/>
+                    <file category="source" condition="CM0 GNU ARMC6 Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM0/portasm.c" public="false"/>
+                    <file category="include" condition="CM0 GNU ARMC6 Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM0/" public="false"/>
+                </files>
+            </component>
+            <component Cgroup="RTOS2" Csub="Core" Cvariant="TZ_Non_Secure" condition="TZ NON SECURE Condition" maxInstances="1">
+                <description>FreeRTOS Core group.</description>
+                <files>
+                    <file category="source" name="Middlewares/Third_Party/FreeRTOS/Source/croutine.c"/>
+                    <file category="source" name="Middlewares/Third_Party/FreeRTOS/Source/event_groups.c"/>
+                    <file category="source" name="Middlewares/Third_Party/FreeRTOS/Source/list.c"/>
+                    <file category="source" name="Middlewares/Third_Party/FreeRTOS/Source/queue.c"/>
+                    <file category="source" name="Middlewares/Third_Party/FreeRTOS/Source/stream_buffer.c"/>
+                    <file category="source" name="Middlewares/Third_Party/FreeRTOS/Source/tasks.c"/>
+                    <file category="source" name="Middlewares/Third_Party/FreeRTOS/Source/timers.c"/>
+                    <file category="include" name="Middlewares/Third_Party/FreeRTOS/Source/include/"/>
+                    <file category="source" condition="CM33 IAR Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/IAR/ARM_CM33/non_secure/port.c" public="false"/>
+                    <file category="sourceAsm" condition="CM33 IAR Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/IAR/ARM_CM33/non_secure/portasm.s" public="false"/>
+                    <file category="include" condition="CM33 IAR Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/IAR/ARM_CM33/non_secure/" public="false"/>
+                    <file category="source" condition="CM33 GNU ARMC6 Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM33/non_secure/port.c" public="false"/>
+                    <file category="source" condition="CM33 GNU ARMC6 Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM33/non_secure/portasm.c" public="false"/>
+                    <file category="include" condition="CM33 GNU ARMC6 Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM33/non_secure/" public="false"/>
+                    <file category="include" condition="CM33 IAR Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/IAR/ARM_CM33/secure/" public="false"/>
+                    <file category="include" condition="CM33 GNU ARMC6 Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM33/secure/" public="false"/>
+                    <file category="source" condition="CM55 IAR Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/IAR/ARM_CM55/non_secure/port.c" public="false"/>
+                    <file category="sourceAsm" condition="CM55 IAR Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/IAR/ARM_CM55/non_secure/portasm.s" public="false"/>
+                    <file category="include" condition="CM55 IAR Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/IAR/ARM_CM55/non_secure/" public="false"/>
+                    <file category="include" condition="CM55 IAR Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/IAR/ARM_CM55/secure/" public="false"/>
+                    <file category="source" condition="CM55 GNU ARMC6 Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM55/non_secure/port.c" public="false"/>
+                    <file category="source" condition="CM55 GNU ARMC6 Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM55/non_secure/portasm.c" public="false"/>
+                    <file category="include" condition="CM55 GNU ARMC6 Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM55/non_secure/" public="false"/>
+                    <file category="include" condition="CM55 GNU ARMC6 Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM55/secure/" public="false"/>
+                    <file category="source" name="Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.c"/>
+                    <file category="include" name="Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/"/>
+                    <file category="include" name="Drivers/CMSIS/RTOS2/Include/"/>
+                </files>
+            </component>
+            <component Cgroup="RTOS2" Csub="Core" Cvariant="TZ_Secure" condition="TZ SECURE Condition" maxInstances="1">
+                <description>FreeRTOS Core group.</description>
+                <files>
+                    <file category="source" condition="CM33 IAR Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/IAR/ARM_CM33/secure/secure_context.c" public="false"/>
+                    <file category="sourceAsm" condition="CM33 IAR Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/IAR/ARM_CM33/secure/secure_context_port_asm.s" public="false"/>
+                    <file category="source" condition="CM33 IAR Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/IAR/ARM_CM33/secure/secure_heap.c" public="false"/>
+                    <file category="source" condition="CM33 IAR Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/IAR/ARM_CM33/secure/secure_init.c" public="false"/>
+                    <file category="include" condition="CM33 IAR Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/IAR/ARM_CM33/secure/" public="false"/>
+                    <file category="source" condition="CM33 GNU ARMC6 Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM33/secure/secure_context.c" public="false"/>
+                    <file category="source" condition="CM33 GNU ARMC6 Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM33/secure/secure_context_port.c" public="false"/>
+                    <file category="source" condition="CM33 GNU ARMC6 Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM33/secure/secure_heap.c" public="false"/>
+                    <file category="source" condition="CM33 GNU ARMC6 Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM33/secure/secure_init.c" public="false"/>
+                    <file category="include" condition="CM33 GNU ARMC6 Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM33/secure/" public="false"/>
+                    <file category="source" condition="CM55 IAR Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/IAR/ARM_CM55/secure/secure_context.c" public="false"/>
+                    <file category="sourceAsm" condition="CM55 IAR Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/IAR/ARM_CM55/secure/secure_context_port_asm.s" public="false"/>
+                    <file category="source" condition="CM55 IAR Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/IAR/ARM_CM55/secure/secure_heap.c" public="false"/>
+                    <file category="source" condition="CM55 IAR Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/IAR/ARM_CM55/secure/secure_init.c" public="false"/>
+                    <file category="include" condition="CM55 IAR Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/IAR/ARM_CM55/secure/" public="false"/>
+                    <file category="source" condition="CM55 GNU ARMC6 Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM55/secure/secure_context.c" public="false"/>
+                    <file category="source" condition="CM55 GNU ARMC6 Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM55/secure/secure_context_port.c" public="false"/>
+                    <file category="source" condition="CM55 GNU ARMC6 Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM55/secure/secure_heap.c" public="false"/>
+                    <file category="source" condition="CM55 GNU ARMC6 Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM55/secure/secure_init.c" public="false"/>
+                    <file category="include" condition="CM55 GNU ARMC6 Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM55/secure/" public="false"/>
+                </files>
+            </component>
+            <component Cgroup="RTOS2" Csub="Core" Cvariant="TZ_Secure_Only" condition="TZ SECURE ONLY Condition" maxInstances="1">
+                <description>FreeRTOS Core group.</description>
+                <files>
+                    <file category="source" name="Middlewares/Third_Party/FreeRTOS/Source/croutine.c"/>
+                    <file category="source" name="Middlewares/Third_Party/FreeRTOS/Source/event_groups.c"/>
+                    <file category="source" name="Middlewares/Third_Party/FreeRTOS/Source/list.c"/>
+                    <file category="source" name="Middlewares/Third_Party/FreeRTOS/Source/queue.c"/>
+                    <file category="source" name="Middlewares/Third_Party/FreeRTOS/Source/stream_buffer.c"/>
+                    <file category="source" name="Middlewares/Third_Party/FreeRTOS/Source/tasks.c"/>
+                    <file category="source" name="Middlewares/Third_Party/FreeRTOS/Source/timers.c"/>
+                    <file category="include" name="Middlewares/Third_Party/FreeRTOS/Source/include/"/>
+                    <file category="source" condition="CM55 IAR Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/IAR/ARM_CM55_NTZ/non_secure/port.c" public="false"/>
+                    <file category="sourceAsm" condition="CM55 IAR Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/IAR/ARM_CM55_NTZ/non_secure/portasm.s" public="false"/>
+                    <file category="include" condition="CM55 IAR Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/IAR/ARM_CM55_NTZ/non_secure/" public="false"/>
+                    <file category="source" condition="CM55 GNU ARMC6 Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM55_NTZ/non_secure/port.c" public="false"/>
+                    <file category="source" condition="CM55 GNU ARMC6 Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM55_NTZ/non_secure/portasm.c" public="false"/>
+                    <file category="include" condition="CM55 GNU ARMC6 Condition" name="Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM55_NTZ/non_secure/" public="false"/>
+                </files>
+            </component>
+            <component Cgroup="RTOS2" Csub="Heap" Cvariant="Heap_1" condition="Heap Core Condition" maxInstances="1">
+                <description>FreeRTOS Heap group.</description>
+                <files>
+                    <file category="source" name="Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_1.c"/>
+                </files>
+            </component>
+            <component Cgroup="RTOS2" Csub="Heap" Cvariant="Heap_2" condition="Heap Core Condition" maxInstances="1">
+                <description>FreeRTOS Heap group.</description>
+                <files>
+                    <file category="source" name="Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_2.c"/>
+                </files>
+            </component>
+            <component Cgroup="RTOS2" Csub="Heap" Cvariant="Heap_3" condition="Heap Core Condition" maxInstances="1">
+                <description>FreeRTOS Heap group.</description>
+                <files>
+                    <file category="source" name="Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_3.c"/>
+                </files>
+            </component>
+            <component Cgroup="RTOS2" Csub="Heap" Cvariant="Heap_4" condition="Heap Core Condition" isDefaultVariant="true" maxInstances="1">
+                <description>FreeRTOS Heap group.</description>
+                <files>
+                    <file category="source" name="Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.c"/>
+                </files>
+            </component>
+            <component Cgroup="RTOS2" Csub="Heap" Cvariant="Heap_5" condition="Heap Core Condition" maxInstances="1">
+                <description>FreeRTOS Heap group.</description>
+                <files>
+                    <file category="source" name="Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_5.c"/>
+                </files>
+            </component>
+        </bundle>
+    </components>
+</package>
+

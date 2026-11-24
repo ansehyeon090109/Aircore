@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
+<font color="blue"><b><u>STM32CubeWB Firmware Package V1.19.0 / 07-February-2024</u></b></font><br>
+<b><u>Main Changes</u></b><br>
+<b>Maintenance Release for BLE, 802.15.4, Thread and Zigbee updates</b>
+<li>Update Examples and Applications to MDK-ARM (Keil) v5.38.</li>
+<ul style="list-style-type: disc;">
+	<li><b>BLE </b>updates</li>
+		<ul> BLE Light stack support 2Mbit TX/RX PHY update.</ul>
+	<li><b>BLE Zigbee </b>updates</li>
+		<ul> Correct an issue in the management of the AES driver when Zigbee is used in concurrency mode with BLE. </ul>
+	<li><b>Thread</b>updates</li>
+		<ul> OT stack update to SHA-1: 8bc25042ba5cde20605eec2a329c0dff575303f4 (07/07/2023). </ul>
+		<ul> OpenThread Command Line Interface (CLI) moved from M0 to M4 in order to optimize memory footprint on the coprocessor. </ul>
+</ul>
+<b><u>Maintenance Release for CMSIS, HAL/LL Drivers and Projects updates</u></b><br>
+<li><b>HAL/LL Drivers </b>updates</li>
+		<ul> Update HAL/LL drivers to include latest corrections
+			<ul>
+                <li> Update of HAL GPIO, CRYP, I2C, SMBUS, QSPI, CORTEX, TIM, LPTIM drivers. </li>
+				<li> Update of LL UTILS drivers.</li>
+            </ul>
+		</ul>
+		<ul>Refer to release notes for further details</ul>
+<li><b>Projects </b>updates</li>
+		<ul>Update of FW projects following changes in latest version of HAL/LL and Middlewares and alignments with CubeMx /STM32WB5MM-DK/Examples/BSP/BSP_Example.
+		</ul>
+</html>

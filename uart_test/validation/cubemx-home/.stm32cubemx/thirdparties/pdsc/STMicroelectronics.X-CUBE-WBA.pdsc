@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<package Dvendor="STMicroelectronics:13" schemaVersion="1.7.56" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+    <vendor>STMicroelectronics</vendor>
+    <name>X-CUBE-WBA</name>
+    <description>STM32WBA NCP support package
+  - This version is compatible with STM32CubeMX V6.19.x (not fully compatible with older releases)
+  - Create sample applications with STM32CubeMX V6.19.x</description>
+    <url>http://sw-center.st.com/packs/x-cube/</url>
+    <license>Package_license.md</license>
+    <releases>
+        <release date="2026-11-11" version="1.2.0">STM32WBA NCP support package
+  - This version is compatible with STM32CubeMX V6.19.x (not fully compatible with older releases)
+  - Create sample applications with STM32CubeMX V6.19.x</release>
+        <release date="2026-06-12" version="1.1.0">STM32WBA NCP support package
+  - This version is compatible with STM32CubeMX V6.18.x (not fully compatible with older releases)
+  - Create sample applications with STM32CubeMX V6.18.x</release>
+    </releases>
+    <keywords>
+        <keyword>CUBE_RULES_COMPLIANT</keyword>
+        <keyword>ARM</keyword>
+        <keyword>Cortex-M</keyword>
+        <keyword>STMicroelectronics</keyword>
+        <keyword>Wireless</keyword>
+        <keyword>Bluetooth Low Energy</keyword>
+        <keyword>IMPLEMENTED_WITH_STM32CUBEMX</keyword>
+        <keyword>IS_CONTEXT_EXCLUSIVE</keyword>
+        <keyword>DNS_BUSIO_X_CONTEXT_SHARING</keyword>
+        <keyword>DOES_NOT_SUPPORT_SECURE</keyword>
+    </keywords>
+    <taxonomy>
+        <description Cclass="BLE_Manager">BLE_Manager</description>
+        <description Cclass="Device">Device</description>
+        <description Cclass="Data Exchange">Data Exchange</description>
+        <description Cclass="Wireless">Wireless</description>
+    </taxonomy>
+    <conditions>
+        <condition id="Cortex-M Device">
+            <description>Cortex-M processor based device: Cortex-M0, Cortex-M0+, Cortex-M3, Cortex-M4, Cortex-M7, Cortex-M33</description>
+            <accept Dcore="Cortex-M0"/>
+            <accept Dcore="Cortex-M0+"/>
+            <accept Dcore="Cortex-M3"/>
+            <accept Dcore="Cortex-M4"/>
+            <accept Dcore="Cortex-M7"/>
+            <accept Dcore="Cortex-M33"/>
+        </condition>
+        <condition id="BLEStack Condition">
+            <description>Cortex-M Device and board setup (STM32WBA)</description>
+            <require condition="Cortex-M Device"/>
+            <require Cbundle="BLE_CP" Cclass="Wireless" Cgroup="BLE_CP" Csub="HCI_TL_INTERFACE" Cversion="1.1.0"/>
+            <require Cbundle="BLE_CP" Cclass="Wireless" Cgroup="BLE_CP" Csub="Utils" Cversion="1.1.0"/>
+        </condition>
+        <condition id="TL API Condition">
+            <description>Request the API BLE Transport Layer</description>
+            <require Cbundle="BLE_CP" Cclass="Wireless" Cgroup="BLE_CP" Csub="HCI_TL_INTERFACE" Cversion="1.1.0"/>
+        </condition>
+        <condition id="PARSON">
+            <require Cclass="Data Exchange" Cgroup="parson"/>
+        </condition>
+        <condition id="NCP Application Condition">
+            <description>Constraint for application connected to NCP Transparent Mode</description>
+            <require Cbundle="BLE_CP" Cclass="Wireless" Cgroup="BLE_CP" Csub="Controller" Cvariant="NCP"/>
+            <require Cbundle="BLE_CP" Cclass="Wireless" Cgroup="BLE_CP" Csub="HCI_TL_INTERFACE"/>
+            <deny Cbundle="STM32_BLE_Manager" Cclass="BLE_Manager" Cgroup="BLE_Manager"/>
+        </condition>
+        <condition id="RCP Application Condition">
+            <description>Contraints fot application examples connected to Radio Coprocessor Transparent Mode</description>
+            <require Cbundle="BLE_CP" Cclass="Wireless" Cgroup="BLE_CP" Csub="Controller" Cvariant="RCP"/>
+            <require Cbundle="BLE_CP" Cclass="Wireless" Cgroup="BLE_CP" Csub="HCI_TL_INTERFACE"/>
+            <deny Cbundle="STM32_BLE_Manager" Cclass="BLE_Manager" Cgroup="BLE_Manager"/>
+        </condition>
+        <condition id="BLE_MANAGER">
+            <description>Middleware required by FOTA application</description>
+            <require Cclass="BLE_Manager" Cgroup="BLE_Manager"/>
+        </condition>
+        <condition id="JSON">
+            <require Cbundle="BLE_CP" Cclass="Wireless" Cgroup="BLE_CP" Csub="Controller" Cvariant="NCP"/>
+            <require Cbundle="BLE_CP" Cclass="Wireless" Cgroup="BLE_CP" Csub="HCI_TL_INTERFACE"/>
+            <require condition="BLE_MANAGER"/>
+            <require condition="PARSON"/>
+        </condition>
+    </conditions>
+    <components>
+        <bundle Cbundle="BLE_CP" Cclass="Wireless" Cversion="1.2.0">
+            <description>BLE stack for STM32WBA coprocessor</description>
+            <doc>https://www.st.com/resource/en/user_manual/um3529-getting-started-with-xcubewba-bluetooth-le-software-expansion-for-stm32cube-stmicroelectronics.pdf</doc>
+            <component Cgroup="BLE_CP" Csub="Controller" Cvariant="NCP" condition="BLEStack Condition" isDefaultVariant="true" maxInstances="1">
+                <description>Host Controller Interface (HCI) for Network Coprocessor Transparent Mode</description>
+                <files>
+                    <file category="header" name="Middlewares/ST/BLE_CP/includes/ble_const.h"/>
+                    <file category="header" name="Middlewares/ST/BLE_CP/includes/ble_core.h"/>
+                    <file category="header" name="Middlewares/ST/BLE_CP/includes/ble_defs.h"/>
+                    <file category="header" name="Middlewares/ST/BLE_CP/includes/ble_events.h"/>
+                    <file category="header" name="Middlewares/ST/BLE_CP/includes/ble_gap_aci.h"/>
+                    <file category="header" name="Middlewares/ST/BLE_CP/includes/ble_gatt_aci.h"/>
+                    <file category="header" name="Middlewares/ST/BLE_CP/includes/ble_gen_aci.h"/>
+                    <file category="header" name="Middlewares/ST/BLE_CP/includes/ble_hal_aci.h"/>
+                    <file category="header" name="Middlewares/ST/BLE_CP/includes/ble_hci_le.h"/>
+                    <file category="header" name="Middlewares/ST/BLE_CP/includes/ble_l2cap_aci.h"/>
+                    <file category="header" name="Middlewares/ST/BLE_CP/includes/ble_legacy.h"/>
+                    <file category="header" name="Middlewares/ST/BLE_CP/includes/ble_std.h"/>
+                    <file category="header" name="Middlewares/ST/BLE_CP/includes/ble_types.h"/>
+                    <file category="header" name="Middlewares/ST/BLE_CP/includes/ble_vs_codes.h"/>
+                    <file category="header" name="Middlewares/ST/BLE_CP/includes/hci.h"/>
+                    <file category="header" name="Middlewares/ST/BLE_CP/includes/hci_const.h"/>
+                    <file category="header" name="Middlewares/ST/BLE_CP/includes/hci_parser.h"/>
+                    <file category="source" name="Middlewares/ST/BLE_CP/hci/controller/ble_gap_aci.c"/>
+                    <file category="source" name="Middlewares/ST/BLE_CP/hci/controller/ble_gatt_aci.c"/>
+                    <file category="source" name="Middlewares/ST/BLE_CP/hci/controller/ble_gen_aci.c"/>
+                    <file category="source" name="Middlewares/ST/BLE_CP/hci/controller/ble_hal_aci.c"/>
+                    <file category="source" name="Middlewares/ST/BLE_CP/hci/controller/ble_l2cap_aci.c"/>
+                    <file category="other" name="Middlewares/ST/BLE_CP/LICENSE.txt" public="false"/>
+                    <file category="other" name="Middlewares/ST/BLE_CP/Release_Notes.html" public="false"/>
+                </files>
+            </component>
+            <component Cgroup="BLE_CP" Csub="Controller" Cvariant="RCP" condition="BLEStack Condition" maxInstances="1">
+                <description>Host Controller Interface (HCI) for Radio Coprocessor Transparent Mode</description>
+                <files>
+                    <file category="header" name="Middlewares/ST/BLE_CP/includes/ble_const.h"/>
+                    <file category="header" name="Middlewares/ST/BLE_CP/includes/ble_core.h"/>
+                    <file category="header" name="Middlewares/ST/BLE_CP/includes/ble_defs.h"/>
+                    <file category="header" name="Middlewares/ST/BLE_CP/includes/ble_events.h"/>
+                    <file category="header" name="Middlewares/ST/BLE_CP/includes/ble_hal_aci.h"/>
+                    <file category="header" name="Middlewares/ST/BLE_CP/includes/ble_hci_le.h"/>
+                    <file category="header" name="Middlewares/ST/BLE_CP/includes/ble_legacy.h"/>
+                    <file category="header" name="Middlewares/ST/BLE_CP/includes/ble_std.h"/>
+                    <file category="header" name="Middlewares/ST/BLE_CP/includes/ble_types.h"/>
+                    <file category="header" name="Middlewares/ST/BLE_CP/includes/ble_vs_codes.h"/>
+                    <file category="header" name="Middlewares/ST/BLE_CP/includes/hci.h"/>
+                    <file category="header" name="Middlewares/ST/BLE_CP/includes/hci_const.h"/>
+                    <file category="header" name="Middlewares/ST/BLE_CP/includes/hci_parser.h"/>
+                    <file category="source" name="Middlewares/ST/BLE_CP/hci/controller/ble_hal_aci.c"/>
+                </files>
+            </component>
+            <component Cgroup="BLE_CP" Csub="HCI_TL_INTERFACE" Cvariant="SPI" maxInstances="1">
+                <description>CI Transport Layer Interface based on User Board definition (use a basic set of already implemented APIs)</description>
+                <RTE_Components_h>#define HCI_TL
+#define HCI_TL_INTERFACE
+#define USE_SPI</RTE_Components_h>
+                <files>
+                    <file category="source" name="Middlewares/ST/BLE_CP/hci/ble_events.c"/>
+                    <file category="source" name="Middlewares/ST/BLE_CP/hci/ble_hci_le.c"/>
+                    <file category="source" name="Middlewares/ST/BLE_CP/hci/hci_parser.c"/>
+                    <file category="source" name="Middlewares/ST/BLE_CP/hci/hci_tl_patterns/Basic/hci_tl.c"/>
+                    <file category="header" name="Middlewares/ST/BLE_CP/hci/hci_tl_patterns/Basic/hci_tl.h"/>
+                    <file category="doc" name="Middlewares/ST/BLE_CP/doc/STM32WBA_BLE_Wireless_Interface.html"/>
+                </files>
+            </component>
+            <component Cgroup="BLE_CP" Csub="HCI_TL_INTERFACE" Cvariant="UART" isDefaultVariant="true" maxInstances="1">
+                <description>CI Transport Layer Interface based on User Board definition (use a basic set of already implemented APIs)</description>
+                <RTE_Components_h>#define HCI_TL
+#define HCI_TL_INTERFACE
+#define USE_UART</RTE_Components_h>
+                <files>
+                    <file category="source" name="Middlewares/ST/BLE_CP/hci/ble_events.c"/>
+                    <file category="source" name="Middlewares/ST/BLE_CP/hci/ble_hci_le.c"/>
+                    <file category="source" name="Middlewares/ST/BLE_CP/hci/hci_parser.c"/>
+                    <file category="source" name="Middlewares/ST/BLE_CP/hci/hci_tl_patterns/Basic/hci_tl.c"/>
+                    <file category="header" name="Middlewares/ST/BLE_CP/hci/hci_tl_patterns/Basic/hci_tl.h"/>
+                    <file category="doc" name="Middlewares/ST/BLE_CP/doc/STM32WBA_BLE_Wireless_Interface.html"/>
+                </files>
+            </component>
+            <component Cgroup="BLE_CP" Csub="Utils" maxInstances="1">
+                <description>Utilities</description>
+                <files>
+                    <file category="source" name="Middlewares/ST/BLE_CP/utils/ble_list.c"/>
+                    <file category="header" name="Middlewares/ST/BLE_CP/utils/ble_list.h"/>
+                    <file category="header" name="Middlewares/ST/BLE_CP/utils/compiler.h"/>
+                </files>
+            </component>
+        </bundle>
+        <bundle Cbundle="parson" Cclass="Data Exchange" Cvendor="Third_Party" Cversion="1.5.3">
+            <description>Parson is a lighweight json library written in C.</description>
+            <doc>Middlewares/Third_Party/parson/Release_Notes.html</doc>
+            <component Cgroup="parson" maxInstances="1">
+                <description>Parson is a lighweight json library written in C.</description>
+                <RTE_Components_h>#define USE_PARSON</RTE_Components_h>
+                <files>
+                    <file category="source" name="Middlewares/Third_Party/parson/parson.c"/>
+                    <file category="header" name="Middlewares/Third_Party/parson/parson.h"/>
+                    <file category="other" name="Middlewares/Third_Party/parson/CMakeLists.txt" public="false"/>
+                    <file category="other" name="Middlewares/Third_Party/parson/LICENSE"/>
+                    <file category="other" name="Middlewares/Third_Party/parson/Makefile"/>
+                    <file category="other" name="Middlewares/Third_Party/parson/meson.build"/>
+                    <file category="other" name="Middlewares/Third_Party/parson/package.json"/>
+                    <file category="other" name="Middlewares/Third_Party/parson/README.md"/>
+                    <file category="other" name="Middlewares/Third_Party/parson/Release_Notes.html" public="false"/>
+                    <file category="other" name="Middlewares/Third_Party/parson/st_readme.txt" public="false"/>
+                    <file category="other" name="Middlewares/Third_Party/parson/tests.c" public="false"/>
+                    <file category="other" name="Middlewares/Third_Party/parson/_htmresc/Add button.svg"/>
+                    <file category="other" name="Middlewares/Third_Party/parson/_htmresc/favicon.png"/>
+                    <file category="other" name="Middlewares/Third_Party/parson/_htmresc/mini-st.css"/>
+                    <file category="other" name="Middlewares/Third_Party/parson/_htmresc/mini-st_2020.css"/>
+                    <file category="other" name="Middlewares/Third_Party/parson/_htmresc/st_logo.png"/>
+                    <file category="other" name="Middlewares/Third_Party/parson/_htmresc/st_logo_2020.png"/>
+                    <file category="other" name="Middlewares/Third_Party/parson/_htmresc/Update.svg"/>
+                    <file category="other" name="Middlewares/Third_Party/parson/tests/test_1_1.txt" public="false"/>
+                    <file category="other" name="Middlewares/Third_Party/parson/tests/test_1_2.txt" public="false"/>
+                    <file category="other" name="Middlewares/Third_Party/parson/tests/test_1_3.txt" public="false"/>
+                    <file category="other" name="Middlewares/Third_Party/parson/tests/test_2.txt" public="false"/>
+                    <file category="other" name="Middlewares/Third_Party/parson/tests/test_2_comments.txt" public="false"/>
+                    <file category="other" name="Middlewares/Third_Party/parson/tests/test_2_pretty.txt" public="false"/>
+                    <file category="other" name="Middlewares/Third_Party/parson/tests/test_5.txt" public="false"/>
+                    <file category="other" name="Middlewares/Third_Party/parson/SW_Security_Level.md"/>
+                </files>
+            </component>
+        </bundle>
+        <bundle Cbundle="STM32_BLE_Manager" Cclass="BLE_Manager" Cversion="2.2.0">
+            <description>STM32_BLE_Manager middleware manager according to the STM32 Bluetooth middleware APIs.</description>
+            <doc>Middlewares/ST/STM32_BLE_Manager/Documentation/STM32_BLE_Manager_Library.chm</doc>
+            <component Cgroup="BLE_Manager" maxInstances="1">
+                <description>Add bluetooth services using vendor specific profiles</description>
+                <files>
+                    <file category="header" name="Middlewares/ST/STM32_BLE_Manager/Inc/ble_manager.h"/>
+                    <file category="header" name="Middlewares/ST/STM32_BLE_Manager/Inc/ble_manager_common.h"/>
+                    <file category="header" name="Middlewares/ST/STM32_BLE_Manager/Inc/ble_manager_control.h"/>
+                    <file category="source" name="Middlewares/ST/STM32_BLE_Manager/Src/ble_manager.c"/>
+                    <file category="other" name="Middlewares/ST/STM32_BLE_Manager/_htmresc/Add button.svg"/>
+                    <file category="other" name="Middlewares/ST/STM32_BLE_Manager/_htmresc/favicon.png"/>
+                    <file category="other" name="Middlewares/ST/STM32_BLE_Manager/_htmresc/mini-st.css"/>
+                    <file category="other" name="Middlewares/ST/STM32_BLE_Manager/_htmresc/st_logo.png"/>
+                    <file category="other" name="Middlewares/ST/STM32_BLE_Manager/_htmresc/Update.svg"/>
+                    <file category="other" name="Middlewares/ST/STM32_BLE_Manager/LICENSE.txt" public="false"/>
+                    <file category="other" name="Middlewares/ST/STM32_BLE_Manager/Release_Notes.html" public="false"/>
+                    <file category="other" name="Middlewares/ST/STM32_BLE_Manager/SW_Security_Level.md"/>
+                </files>
+            </component>
+        </bundle>
+        <bundle Cbundle="STM32WBA Applications" Cclass="Device" Cversion="1.2.0">
+            <description>BLE sample applications for STM32WBA NCP configuration</description>
+            <doc>https://www.st.com/resource/en/user_manual/um3529-getting-started-with-xcubewba-bluetooth-le-software-expansion-for-stm32cube-stmicroelectronics.pdf</doc>
+            <component Cgroup="Application" Cvariant="BeaconHCI" condition="RCP Application Condition" maxInstances="1">
+                <description>Beacon sample application for RCP Transparent Mode</description>
+                <RTE_Components_h>#define BEACON_HCI</RTE_Components_h>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="Beacon" condition="NCP Application Condition" maxInstances="1">
+                <description>Beacon sample application</description>
+                <RTE_Components_h>#define BEACON</RTE_Components_h>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="SampleApp" condition="NCP Application Condition" maxInstances="1">
+                <description>SampleApp sample application</description>
+                <RTE_Components_h>#define SAMPLE_APP</RTE_Components_h>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="SensorDemoBLESensor" condition="NCP Application Condition" maxInstances="1">
+                <description>SensorDemo sample application for the ST BLE Sensor app</description>
+                <RTE_Components_h>#define SENSOR_DEMO_BS</RTE_Components_h>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="VirtualCOMPort" condition="NCP Application Condition" maxInstances="1">
+                <description>Virtual_COM_Port sample application</description>
+                <RTE_Components_h>#define VIRTUAL_COM_PORT</RTE_Components_h>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="BLE_FOTA" condition="JSON" maxInstances="1">
+                <description>BLE FOTA sample application</description>
+                <RTE_Components_h>#define FOTA</RTE_Components_h>
+                <files/>
+            </component>
+        </bundle>
+    </components>
+    <examples>
+        <example doc="README.md" folder="Projects/NUCLEO-U385RG-Q/Applications/UART/Beacon" name="UART/Beacon" public="false" version="1.2.0">
+            <description>This example shows how to implement a Bluetooth LE Beacon device using an
+STM32 Nucleo board connected to an STM32WBA network coprocessor and 
+a Smartphone with Bluetooth LE.</description>
+            <board Dvendor="STMicroelectronics:13" name="NUCLEO-U385RG-Q" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="UART/Beacon" load="Beacon.ioc" name="stm32cubemx"/>
+                <environment folder="EWARM" load="Beacon.ewp" name="iar"/>
+                <environment folder="MDK-ARM" load="Beacon.uvprojx" name="uv"/>
+                <environment folder="STM32CubeIDE" load=".cproject" name="stm32cubeide"/>
+            </project>
+            <attributes/>
+        </example>
+        <example doc="README.md" folder="Projects/NUCLEO-U385RG-Q/Applications/SPI/Beacon" name="SPI/Beacon" public="false" version="1.2.0">
+            <description>This example shows how to implement a Bluetooth LE Beacon device using an
+STM32 Nucleo board connected to an STM32WBA network coprocessor and 
+a Smartphone with Bluetooth LE.</description>
+            <board Dvendor="STMicroelectronics:13" name="NUCLEO-U385RG-Q" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="SPI/Beacon" load="Beacon.ioc" name="stm32cubemx"/>
+                <environment folder="EWARM" load="Beacon.ewp" name="iar"/>
+                <environment folder="MDK-ARM" load="Beacon.uvprojx" name="uv"/>
+                <environment folder="STM32CubeIDE" load=".cproject" name="stm32cubeide"/>
+            </project>
+            <attributes/>
+        </example>
+        <example doc="README.md" folder="Projects/NUCLEO-U385RG-Q/Applications/UART/BeaconHCI" name="UART/BeaconHCI" public="false" version="1.2.0">
+            <description>This example shows how to implement a Beacon device using only HCI commands. The communication
+is done using an STM32 Nucleo board, equipped with a STM32WBA
+expansion board, and a Smartphone with Bluetooth LE.</description>
+            <board Dvendor="STMicroelectronics:13" name="NUCLEO-U385RG-Q" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="UART/BeaconHCI" load="BeaconHCI.ioc" name="stm32cubemx"/>
+                <environment folder="EWARM" load="BeaconHCI.ewp" name="iar"/>
+                <environment folder="MDK-ARM" load="BeaconHCI.uvprojx" name="uv"/>
+                <environment folder="STM32CubeIDE" load=".cproject" name="stm32cubeide"/>
+            </project>
+            <attributes/>
+        </example>
+        <example doc="README.md" folder="Projects/NUCLEO-U385RG-Q/Applications/SPI/BeaconHCI" name="SPI/BeaconHCI" public="false" version="1.2.0">
+            <description>This example shows how to implement a Beacon device using only HCI commands. The communication
+is done using an STM32 Nucleo board, equipped with a STM32WBA
+expansion board, and a Smartphone with Bluetooth LE.</description>
+            <board Dvendor="STMicroelectronics:13" name="NUCLEO-U385RG-Q" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="SPI/BeaconHCI" load="BeaconHCI.ioc" name="stm32cubemx"/>
+                <environment folder="EWARM" load="BeaconHCI.ewp" name="iar"/>
+                <environment folder="MDK-ARM" load="BeaconHCI.uvprojx" name="uv"/>
+                <environment folder="STM32CubeIDE" load=".cproject" name="stm32cubeide"/>
+            </project>
+            <attributes/>
+        </example>
+        <example doc="README.md" folder="Projects/NUCLEO-U385RG-Q/Applications/UART/BLE_FOTA" name="UART/BLE_FOTA" public="false" version="1.2.0">
+            <description>The BLE_FOTA application shows how to use the dual bank flash features
+to allow Firmware-Over-the-Air update of a running program without using
+the BootLoader.</description>
+            <board Dvendor="STMicroelectronics:13" name="NUCLEO-U385RG-Q" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="UART/BLE_FOTA" load="BLE_FOTA.ioc" name="stm32cubemx"/>
+                <environment folder="EWARM" load="BLE_FOTA.ewp" name="iar"/>
+                <environment folder="MDK-ARM" load="BLE_FOTA.uvprojx" name="uv"/>
+                <environment folder="STM32CubeIDE" load=".cproject" name="stm32cubeide"/>
+            </project>
+            <attributes/>
+        </example>
+        <example doc="README.md" folder="Projects/NUCLEO-U385RG-Q/Applications/SPI/BLE_FOTA" name="SPI/BLE_FOTA" public="false" version="1.2.0">
+            <description>The BLE_FOTA application shows how to use the dual bank flash features
+to allow Firmware-Over-the-Air update of a running program without using
+the BootLoader.</description>
+            <board Dvendor="STMicroelectronics:13" name="NUCLEO-U385RG-Q" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="SPI/BLE_FOTA" load="BLE_FOTA.ioc" name="stm32cubemx"/>
+                <environment folder="EWARM" load="BLE_FOTA.ewp" name="iar"/>
+                <environment folder="MDK-ARM" load="BLE_FOTA.uvprojx" name="uv"/>
+                <environment folder="STM32CubeIDE" load=".cproject" name="stm32cubeide"/>
+            </project>
+            <attributes/>
+        </example>
+        <example doc="README.md" folder="Projects/NUCLEO-U385RG-Q/Applications/UART/SampleApp" name="UART/SampleApp" public="false" version="1.2.0">
+            <description>This application shows how to simply use the Bluetooth LE Stack creating a client
+and server connection. It also provides the user with a complete example
+on how to perform an ATT MTU exchange procedure, in order the server and
+the client can agree on the supported max MTU.</description>
+            <board Dvendor="STMicroelectronics:13" name="NUCLEO-U385RG-Q" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="EWARM" load="SampleApp.ewp" name="iar"/>
+                <environment folder="MDK-ARM" load="SampleApp.uvprojx" name="uv"/>
+                <environment folder="UART/SampleApp" load="SampleApp.ioc" name="stm32cubemx"/>
+                <environment folder="STM32CubeIDE" load=".cproject" name="stm32cubeide"/>
+            </project>
+            <attributes/>
+        </example>
+        <example doc="README.md" folder="Projects/NUCLEO-U385RG-Q/Applications/SPI/SampleApp" name="SPI/SampleApp" public="false" version="1.2.0">
+            <description>This application shows how to simply use the Bluetooth LE Stack creating a client
+and server connection. It also provides the user with a complete example
+on how to perform an ATT MTU exchange procedure, in order the server and
+the client can agree on the supported max MTU.</description>
+            <board Dvendor="STMicroelectronics:13" name="NUCLEO-U385RG-Q" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="EWARM" load="SampleApp.ewp" name="iar"/>
+                <environment folder="MDK-ARM" load="SampleApp.uvprojx" name="uv"/>
+                <environment folder="SPI/SampleApp" load="SampleApp.ioc" name="stm32cubemx"/>
+                <environment folder="STM32CubeIDE" load=".cproject" name="stm32cubeide"/>
+            </project>
+            <attributes/>
+        </example>
+        <example doc="README.md" folder="Projects/NUCLEO-U385RG-Q/Applications/UART/SensorDemo_BLESensor-App" name="UART/SensorDemo_BLESensor-App" public="false" version="1.2.0">
+            <description>This application contains an example which shows how to implement
+proprietary Bluetooth LE profiles. The communication is done
+using a STM32 Nucleo board and a Smartphone with Bluetooth LE.</description>
+            <board Dvendor="STMicroelectronics:13" name="NUCLEO-U385RG-Q" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="EWARM" load="SensorDemo_BLESensor-App.ewp" name="iar"/>
+                <environment folder="MDK-ARM" load="SensorDemo_BLESensor-App.uvprojx" name="uv"/>
+                <environment folder="UART/SensorDemo_BLESensor-App" load="SensorDemo_BLESensor-App.ioc" name="stm32cubemx"/>
+                <environment folder="STM32CubeIDE" load=".cproject" name="stm32cubeide"/>
+            </project>
+            <attributes/>
+        </example>
+        <example doc="README.md" folder="Projects/NUCLEO-U385RG-Q/Applications/SPI/SensorDemo_BLESensor-App" name="SPI/SensorDemo_BLESensor-App" public="false" version="1.2.0">
+            <description>This application contains an example which shows how to implement
+proprietary Bluetooth LE profiles. The communication is done
+using a STM32 Nucleo board and a Smartphone with Bluetooth LE.</description>
+            <board Dvendor="STMicroelectronics:13" name="NUCLEO-U385RG-Q" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="EWARM" load="SensorDemo_BLESensor-App.ewp" name="iar"/>
+                <environment folder="MDK-ARM" load="SensorDemo_BLESensor-App.uvprojx" name="uv"/>
+                <environment folder="SPI/SensorDemo_BLESensor-App" load="SensorDemo_BLESensor-App.ioc" name="stm32cubemx"/>
+                <environment folder="STM32CubeIDE" load=".cproject" name="stm32cubeide"/>
+            </project>
+            <attributes/>
+        </example>
+        <example doc="README.md" folder="Projects/NUCLEO-U385RG-Q/Applications/UART/Virtual_COM_Port" name="UART/Virtual_COM_Port" public="false" version="1.2.0">
+            <description>This application is an example to be loaded in order to use the
+STM32CubeWise - Bluetooth LE Explorer with STM32WBA development platforms.</description>
+            <board Dvendor="STMicroelectronics:13" name="NUCLEO-U385RG-Q" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="EWARM" load="Virtual_COM_Port.ewp" name="iar"/>
+                <environment folder="MDK-ARM" load="Virtual_COM_Port.uvprojx" name="uv"/>
+                <environment folder="STM32CubeIDE" load=".cproject" name="stm32cubeide"/>
+                <environment folder="UART/Virtual_COM_Port" load="Virtual_COM_Port.ioc" name="stm32cubemx"/>
+            </project>
+            <attributes/>
+        </example>
+        <example doc="README.md" folder="Projects/NUCLEO-U385RG-Q/Applications/SPI/Virtual_COM_Port" name="SPI/Virtual_COM_Port" public="false" version="1.2.0">
+            <description>This application is an example to be loaded in order to use the
+STM32CubeWise - Bluetooth LE Explorer with STM32WBA development platforms.</description>
+            <board Dvendor="STMicroelectronics:13" name="NUCLEO-U385RG-Q" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="EWARM" load="Virtual_COM_Port.ewp" name="iar"/>
+                <environment folder="MDK-ARM" load="Virtual_COM_Port.uvprojx" name="uv"/>
+                <environment folder="STM32CubeIDE" load=".cproject" name="stm32cubeide"/>
+                <environment folder="SPI/Virtual_COM_Port" load="Virtual_COM_Port.ioc" name="stm32cubemx"/>
+            </project>
+            <attributes/>
+        </example>
+    </examples>
+</package>

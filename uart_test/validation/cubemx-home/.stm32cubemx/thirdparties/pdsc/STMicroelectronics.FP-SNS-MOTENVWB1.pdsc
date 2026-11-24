@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<package schemaVersion="1.7.46" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+    <vendor>STMicroelectronics</vendor>
+    <name>FP-SNS-MOTENVWB1</name>
+    <description>The FP-SNS-MOTENVWB1 is an STM32Cube function pack which lets you connect your IoT node to a smartphone via BLE and use a suitable Android™ or iOS™ like the ST BLE Sensor app to view real-time environmental sensor data, motion sensor data and time-of-flight sensors data.</description>
+    <url>http://sw-center.st.com/packs/x-cube/</url>
+    <license>DM00751078.pdf</license>
+    <releases>
+        <release date="2025-10-23" version="1.5.0">Official release of the FP_SNS-MOTENV1 support package.
+Create sample applications with STM32CubeMX v.6.16.0 or higher</release>
+        <release date="2024-02-21" version="1.4.0">Official release of the FP_SNS-MOTENV1 support package.
+Create sample applications with STM32CubeMX v.6.11.0 or higher</release>
+        <release date="2023-11-27" version="1.3.1">Bugfix release</release>
+        <release date="2023-04-11" version="1.3.0">Initial release</release>
+    </releases>
+    <keywords>
+        <keyword>CUBE_RULES_COMPLIANT</keyword>
+        <keyword>IMPLEMENTED_WITH_STM32CUBEMX</keyword>
+    </keywords>
+    <taxonomy>
+        <description Cclass="Wireless">Wireless</description>
+        <description Cclass="Device">Device</description>
+    </taxonomy>
+    <requirements>
+        <packages>
+            <package name="X-CUBE-MEMS1" vendor="STMicroelectronics" version="10.0.0"/>
+            <package name="X-CUBE-TOF1" vendor="STMicroelectronics" version="3.3.0"/>
+        </packages>
+    </requirements>
+    <conditions>
+        <condition id="MOTION_ID_LIBRARY">
+            <require Cclass="Sensors" Cgroup="STM32_MotionID_Library"/>
+        </condition>
+        <condition id="MOTION_FX_LIBRARY">
+            <require Cclass="Sensors" Cgroup="STM32_MotionFX_Library"/>
+        </condition>
+        <condition id="MOTION_CP_LIBRARY">
+            <require Cclass="Sensors" Cgroup="STM32_MotionCP_Library"/>
+        </condition>
+        <condition id="MOTION_GR_LIBRARY">
+            <require Cclass="Sensors" Cgroup="STM32_MotionGR_Library"/>
+        </condition>
+        <condition id="MOTION_AR_LIBRARY">
+            <require Cclass="Sensors" Cgroup="STM32_MotionAR_Library"/>
+        </condition>
+        <condition id="MOTION_PM_LIBRARY">
+            <require Cclass="Sensors" Cgroup="STM32_MotionPM_Library"/>
+        </condition>
+        <condition id="MOTENVWB1_IKS4A1_APP">
+            <require Cclass="Wireless" Cgroup="BLE"/>
+            <require Cclass="Board Extension" Cgroup="53L3A2"/>
+            <require condition="MOTION_ID_LIBRARY"/>
+            <require condition="MOTION_FX_LIBRARY"/>
+            <require condition="MOTION_CP_LIBRARY"/>
+            <require condition="MOTION_GR_LIBRARY"/>
+            <require condition="MOTION_AR_LIBRARY"/>
+            <require condition="MOTION_PM_LIBRARY"/>
+            <require Cbundle="STM32_WPAN" Cclass="Wireless" Cgroup="BLE"/>
+            <require condition="MCU_CONDITION"/>
+            <require Cclass="Board Extension" Cgroup="IKS4A1"/>
+        </condition>
+        <condition id="MCU_CONDITION">
+            <accept Dname="STM32WB55*"/>
+        </condition>
+        <condition id="BLE_COMPONENT_CONDITION">
+            <require Cbundle="MOTENVWB1_application" Cclass="Device" Cgroup="Application"/>
+        </condition>
+    </conditions>
+    <components>
+        <bundle Cbundle="MOTENVWB1_application" Cclass="Device" Cversion="1.5.0">
+            <description>examples and applications for FP-SNS-MOTENVWB1</description>
+            <doc>Documentation/STMicroelectronics.FP-SNS-MOTENVWB1_GettingStarted.pdf</doc>
+            <component Cgroup="Application" Cvariant="IKS4A1_MOTENV1" condition="MOTENVWB1_IKS4A1_APP" maxInstances="1">
+                <description>Sample application with environmental, motion and time-of-flight sensors data.</description>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="IKS4A1_OTA_MOTENV1" condition="MOTENVWB1_IKS4A1_APP" maxInstances="1">
+                <description>Sample application and supports firmware update (FOTA).</description>
+                <RTE_Components_h>#define MOTENV_OTA  1</RTE_Components_h>
+                <files/>
+            </component>
+        </bundle>
+        <bundle Cbundle="STM32_WPAN" Cclass="Wireless" Cversion="1.23.0">
+            <description>server API</description>
+            <doc>Middlewares/ST/STM32_WPAN/Release_Notes.html</doc>
+            <component Cgroup="BLE" condition="BLE_COMPONENT_CONDITION" maxInstances="1">
+                <description>Server API</description>
+                <files>
+                    <file category="source" name="Middlewares/ST/STM32_WPAN/ble/svc/Src/motenv_stm.c"/>
+                    <file category="source" name="Middlewares/ST/STM32_WPAN/ble/svc/Src/p2p_stm.c"/>
+                    <file category="header" name="Middlewares/ST/STM32_WPAN/ble/svc/Inc/motenv_stm.h"/>
+                    <file category="header" name="Middlewares/ST/STM32_WPAN/ble/svc/Inc/p2p_stm.h"/>
+                    <file category="other" name="Middlewares/ST/STM32_WPAN/_htmresc/Add button.svg"/>
+                    <file category="other" name="Middlewares/ST/STM32_WPAN/_htmresc/CMSIS_Logo_Final.jpg"/>
+                    <file category="other" name="Middlewares/ST/STM32_WPAN/_htmresc/favicon.png"/>
+                    <file category="other" name="Middlewares/ST/STM32_WPAN/_htmresc/logo.bmp"/>
+                    <file category="other" name="Middlewares/ST/STM32_WPAN/_htmresc/mini-st.css"/>
+                    <file category="other" name="Middlewares/ST/STM32_WPAN/_htmresc/mini-st_2020.css"/>
+                    <file category="other" name="Middlewares/ST/STM32_WPAN/_htmresc/stmtouch.bmp"/>
+                    <file category="other" name="Middlewares/ST/STM32_WPAN/_htmresc/st_logo.png"/>
+                    <file category="other" name="Middlewares/ST/STM32_WPAN/_htmresc/st_logo_2020.png"/>
+                    <file category="other" name="Middlewares/ST/STM32_WPAN/_htmresc/Update.svg"/>
+                </files>
+            </component>
+        </bundle>
+    </components>
+</package>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<package schemaVersion="1.7.40" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+    <vendor>Avnet-IOTCONNECT</vendor>
+    <name>X-CUBE-iotc-st67-sdk</name>
+    <description>Avnet IOTCONNECT SDK for ST67 module.</description>
+    <url>https://downloads.iotconnect.io/partners/st/x-cube/st67/</url>
+    <license>LICENSE.txt</license>
+    <releases>
+        <release date="2025-09-04" version="1.0.0">-This pack provides APIs to be used with ST67 firmware for connecting ST67 devices to Avnet's IOTCONNECT platform.</release>
+    </releases>
+    <keywords>
+        <keyword>CUBE_RULES_COMPLIANT</keyword>
+    </keywords>
+    <taxonomy>
+        <description Cclass="IoT Utility">IoT Utility</description>
+    </taxonomy>
+    <components>
+        <component Cclass="IoT Utility" Cgroup="iotc-c-lib" Cversion="3.1.1" maxInstances="1">
+            <description>iotc-c-lib</description>
+            <files>
+                <file category="other" name="Middlewares/Third_Party/iotc-c-lib/CONTRIBUTING.md"/>
+                <file category="header" name="Middlewares/Third_Party/iotc-c-lib/core/include/iotcl.h"/>
+                <file category="header" name="Middlewares/Third_Party/iotc-c-lib/core/include/iotcl_c2d.h"/>
+                <file category="header" name="Middlewares/Third_Party/iotc-c-lib/core/include/iotcl_certs.h"/>
+                <file category="header" name="Middlewares/Third_Party/iotc-c-lib/core/include/iotcl_cfg.h"/>
+                <file category="header" name="Middlewares/Third_Party/iotc-c-lib/core/include/iotcl_example_config.h"/>
+                <file category="header" name="Middlewares/Third_Party/iotc-c-lib/core/include/iotcl_internal.h"/>
+                <file category="header" name="Middlewares/Third_Party/iotc-c-lib/core/include/iotcl_log.h"/>
+                <file category="header" name="Middlewares/Third_Party/iotc-c-lib/core/include/iotcl_telemetry.h"/>
+                <file category="header" name="Middlewares/Third_Party/iotc-c-lib/core/include/iotcl_util.h"/>
+                <file category="source" name="Middlewares/Third_Party/iotc-c-lib/core/src/iotcl.c"/>
+                <file category="source" name="Middlewares/Third_Party/iotc-c-lib/core/src/iotcl_c2d.c"/>
+                <file category="source" name="Middlewares/Third_Party/iotc-c-lib/core/src/iotcl_internal.c"/>
+                <file category="source" name="Middlewares/Third_Party/iotc-c-lib/core/src/iotcl_telemetry.c"/>
+                <file category="source" name="Middlewares/Third_Party/iotc-c-lib/core/src/iotcl_util.c"/>
+                <file category="source" name="Middlewares/Third_Party/iotc-c-lib/lib/cJSON/cJSON.c"/>
+                <file category="header" name="Middlewares/Third_Party/iotc-c-lib/lib/cJSON/cJSON.h"/>
+                <file category="source" name="Middlewares/Third_Party/iotc-c-lib/modules/device-rest-api/iotcl_dra_discovery.c"/>
+                <file category="header" name="Middlewares/Third_Party/iotc-c-lib/modules/device-rest-api/iotcl_dra_discovery.h"/>
+                <file category="source" name="Middlewares/Third_Party/iotc-c-lib/modules/device-rest-api/iotcl_dra_identity.c"/>
+                <file category="header" name="Middlewares/Third_Party/iotc-c-lib/modules/device-rest-api/iotcl_dra_identity.h"/>
+                <file category="source" name="Middlewares/Third_Party/iotc-c-lib/modules/device-rest-api/iotcl_dra_url.c"/>
+                <file category="header" name="Middlewares/Third_Party/iotc-c-lib/modules/device-rest-api/iotcl_dra_url.h"/>
+                <file category="other" name="Middlewares/Third_Party/iotc-c-lib/README.md"/>
+            </files>
+        </component>
+        <component Cclass="IoT Utility" Cgroup="iotc-st67-sdk" Cversion="1.0.0" maxInstances="1">
+            <description>iotc-st67-sdk.</description>
+            <files>
+                <file category="source" name="Middlewares/Third_Party/iotc-st67-sdk/iotconnect.c"/>
+                <file category="header" name="Middlewares/Third_Party/iotc-st67-sdk/iotconnect.h"/>
+                <file category="header" name="Middlewares/Third_Party/iotc-st67-sdk/iotc_config.h"/>
+                <file category="source" name="Middlewares/Third_Party/iotc-st67-sdk/iotc_http_client.c"/>
+                <file category="header" name="Middlewares/Third_Party/iotc-st67-sdk/iotc_http_client.h"/>
+            </files>
+        </component>
+    </components>
+</package>

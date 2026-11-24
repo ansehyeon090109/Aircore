@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<package Dname="STM32*" Dvendor="STMicroelectronics:13" schemaVersion="1.7.2" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+    <vendor>ITTIA_DB</vendor>
+    <name>I-CUBE-ITTIADB</name>
+    <description>ITTIA DB IoT Database for STM32 Devices, with support for time series, relational tables, and stream processing.</description>
+    <url>https://www.ittia.com/download/packs/STM32/</url>
+    <license>Middlewares/Third_Party/ITTIA_DB_IoT/license.txt</license>
+    <supportContact>support@ittia.com</supportContact>
+    <releases>
+        <release date="2024-03-28" version="8.9.0">STM32CubeExpansion_ITTIADB V8.9.0
+
+ITTIA DB IoT Database for STM32 Devices, featuring tables, time series, and stream processing.
+
+This version is compatible with STM32CubeMX V6.10.0</release>
+        <release date="2023-09-20" version="8.8.0">STM32CubeExpansion_ITTIADB V8.8.0
+
+ITTIA DB IoT Time Series Database for STM32 Devices.
+
+This version is compatible with STM32CubeMX V6.8.1</release>
+        <release date="2023-07-07" version="8.6.4">STM32CubeExpansion_ITTIADB V8.6.4
+
+ITTIA DB IoT Time Series Database for STM32 Devices.
+
+This version is compatible with STM32CubeMX V6.8.1</release>
+        <release date="2023-03-01" version="8.6.3">STM32CubeExpansion_ITTIADB V8.6.2
+
+ITTIA DB IoT Time Series Database for STM32 Devices.
+
+This version is compatible with STM32CubeMX V6.6.1</release>
+        <release date="2022-12-21" version="8.6.3-1">STM32CubeExpansion_ITTIADB V8.6.2
+
+ITTIA DB IoT Time Series Database for STM32 Devices.
+
+This version is compatible with STM32CubeMX V6.6.1</release>
+    </releases>
+    <keywords>
+        <keyword>CUBE_RULES_COMPLIANT</keyword>
+        <keyword>IMPLEMENTED_WITH_STM32CUBEMX</keyword>
+        <keyword>STMicroelectronics</keyword>
+        <keyword>Cortex-M</keyword>
+    </keywords>
+    <taxonomy>
+        <description Cclass="Database">Database</description>
+    </taxonomy>
+    <conditions>
+        <condition id="CM7_GCC">
+            <description>Cortex-M7 / GNU compiler</description>
+            <accept Tcompiler="GCC"/>
+            <accept Tcompiler="G++"/>
+            <require Dcore="Cortex-M7"/>
+        </condition>
+        <condition id="CM4_GCC">
+            <description>Cortex-M4 / GNU compiler</description>
+            <accept Tcompiler="GCC"/>
+            <accept Tcompiler="G++"/>
+            <require Dcore="Cortex-M4"/>
+        </condition>
+        <condition id="CM33_GCC">
+            <description>Cortex-M33 / GNU compiler</description>
+            <accept Tcompiler="GCC"/>
+            <accept Tcompiler="G++"/>
+            <require Dcore="Cortex-M33"/>
+        </condition>
+        <condition id="CM7_IAR">
+            <description>Cortex-M7 / IAR compiler</description>
+            <accept Tcompiler="IAR"/>
+            <require Dcore="Cortex-M7"/>
+        </condition>
+        <condition id="CM4_IAR">
+            <description>Cortex-M4 / IAR compiler</description>
+            <accept Tcompiler="IAR"/>
+            <require Dcore="Cortex-M4"/>
+        </condition>
+        <condition id="CM33_IAR">
+            <description>Cortex-M33 / IAR compiler</description>
+            <accept Tcompiler="IAR"/>
+            <require Dcore="Cortex-M33"/>
+        </condition>
+        <condition id="CM7_ARMC">
+            <description>Cortex-M7 / ARM compiler</description>
+            <accept Tcompiler="ARMCC"/>
+            <require Dcore="Cortex-M7"/>
+        </condition>
+        <condition id="CM4_ARMC">
+            <description>Cortex-M4 / ARM compiler</description>
+            <accept Tcompiler="ARMCC"/>
+            <require Dcore="Cortex-M4"/>
+        </condition>
+        <condition id="CM33_ARMC">
+            <description>Cortex-M33 / ARM compiler</description>
+            <accept Tcompiler="ARMCC"/>
+            <require Dcore="Cortex-M33"/>
+        </condition>
+        <condition id="TX and Core">
+            <description>ThreadX condition</description>
+            <require Cclass="RTOS" Cgroup="ThreadX" Csub="Core"/>
+            <require Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="Core"/>
+            <deny Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="FreeRTOS Support"/>
+        </condition>
+        <condition id="FreeRTOS and Core">
+            <description>FreeRTOS condition</description>
+            <require Cbundle="FreeRTOS" Cclass="RTOS" Cgroup="Core"/>
+            <require Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="Core"/>
+            <deny Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="ThreadX Support"/>
+        </condition>
+        <condition id="Any Port">
+            <description>Require selection of some port</description>
+            <accept Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="FreeRTOS Support"/>
+            <accept Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="ThreadX Support"/>
+        </condition>
+    </conditions>
+    <components>
+        <bundle Cbundle="ITTIA_DB_IoT" Cclass="Database" Cversion="8.9.0">
+            <description>ITTIA database library bundle</description>
+            <doc>https://docs.ittia.com/ittia-db-iot/embedded-database-manual/</doc>
+            <component Cgroup="ITTIA_DB_IoT" Csub="Core" condition="Any Port" maxInstances="1">
+                <description>ITTIA DB IoT database library core component</description>
+                <files>
+                    <file category="include" name="Middlewares/Third_Party/ITTIA_DB_IoT/inc/"/>
+                    <file category="source" name="Middlewares/Third_Party/ITTIA_DB_IoT/src/dbs_error_info.c" public="false"/>
+                    <file category="source" name="Middlewares/Third_Party/ITTIA_DB_IoT/src/atomic/atomic.c"/>
+                    <file category="header" name="Middlewares/Third_Party/ITTIA_DB_IoT/src/buddy.h"/>
+                    <file category="source" name="Middlewares/Third_Party/ITTIA_DB_IoT/src/file/example/example_file.c"/>
+                    <file category="source" name="Middlewares/Third_Party/ITTIA_DB_IoT/src/file/fatfs/fatfs_file.c"/>
+                    <file category="source" name="Middlewares/Third_Party/ITTIA_DB_IoT/src/file/ramfs/ramfs_file.c"/>
+                    <file category="source" name="Middlewares/Third_Party/ITTIA_DB_IoT/src/file/stdio/stdio_file.c"/>
+                    <file category="source" name="Middlewares/Third_Party/ITTIA_DB_IoT/src/generic/generic_atomic.c"/>
+                    <file category="source" name="Middlewares/Third_Party/ITTIA_DB_IoT/src/generic/generic_tls.c"/>
+                    <file category="header" name="Middlewares/Third_Party/ITTIA_DB_IoT/src/os/freertos/ittia_freertos.h"/>
+                    <file category="header" name="Middlewares/Third_Party/ITTIA_DB_IoT/src/os/os_file_list.h"/>
+                    <file category="header" name="Middlewares/Third_Party/ITTIA_DB_IoT/src/os/os_file_ops.h"/>
+                    <file category="header" name="Middlewares/Third_Party/ITTIA_DB_IoT/src/os/os_lib.h"/>
+                    <file category="header" name="Middlewares/Third_Party/ITTIA_DB_IoT/src/os/os_mockup.h"/>
+                    <file category="header" name="Middlewares/Third_Party/ITTIA_DB_IoT/src/os/os_utf.h"/>
+                    <file category="header" name="Middlewares/Third_Party/ITTIA_DB_IoT/src/os/posix/posix.h"/>
+                    <file category="header" name="Middlewares/Third_Party/ITTIA_DB_IoT/src/os/threadx/threadx.h"/>
+                    <file category="header" name="Middlewares/Third_Party/ITTIA_DB_IoT/src/os/ucos_ii/ucos_ii.h"/>
+                    <file category="header" name="Middlewares/Third_Party/ITTIA_DB_IoT/src/os/ucos_iii/ucos_iii.h"/>
+                    <file category="header" name="Middlewares/Third_Party/ITTIA_DB_IoT/src/os/vxworks/vxworks.h"/>
+                    <file category="header" name="Middlewares/Third_Party/ITTIA_DB_IoT/src/os/win32/win32.h"/>
+                    <file category="sourceCpp" name="Middlewares/Third_Party/ITTIA_DB_IoT/src/oslib.cpp"/>
+                    <file category="source" name="Middlewares/Third_Party/ITTIA_DB_IoT/src/os_debug.c"/>
+                    <file category="sourceCpp" name="Middlewares/Third_Party/ITTIA_DB_IoT/src/os_dump.cpp"/>
+                    <file category="source" name="Middlewares/Third_Party/ITTIA_DB_IoT/src/os_error.c"/>
+                    <file category="source" name="Middlewares/Third_Party/ITTIA_DB_IoT/src/os_fail.c"/>
+                    <file category="source" name="Middlewares/Third_Party/ITTIA_DB_IoT/src/os_file.c"/>
+                    <file category="source" name="Middlewares/Third_Party/ITTIA_DB_IoT/src/os_locale_info.c"/>
+                    <file category="source" name="Middlewares/Third_Party/ITTIA_DB_IoT/src/os_malloc.c"/>
+                    <file category="source" name="Middlewares/Third_Party/ITTIA_DB_IoT/src/os_nls.c"/>
+                    <file category="source" name="Middlewares/Third_Party/ITTIA_DB_IoT/src/os_other.c"/>
+                    <file category="source" name="Middlewares/Third_Party/ITTIA_DB_IoT/src/os_rand.c"/>
+                    <file category="source" name="Middlewares/Third_Party/ITTIA_DB_IoT/src/os_subst.c"/>
+                    <file category="source" name="Middlewares/Third_Party/ITTIA_DB_IoT/src/os_thread.c"/>
+                    <file category="source" name="Middlewares/Third_Party/ITTIA_DB_IoT/src/os_utf.c"/>
+                    <file category="header" name="Middlewares/Third_Party/ITTIA_DB_IoT/src/os_utils.h"/>
+                    <file category="source" name="Middlewares/Third_Party/ITTIA_DB_IoT/src/generic/generic_cv.c"/>
+                </files>
+            </component>
+            <component Cgroup="ITTIA_DB_IoT" Csub="FreeRTOS Support" condition="FreeRTOS and Core" maxInstances="1">
+                <description>ITTIA DB IoT database library component for FreeRTOS</description>
+                <files>
+                    <file category="library" condition="CM4_GCC" name="Middlewares/Third_Party/ITTIA_DB_IoT/lib/libittia_db_iot_FreeRTOS_CM4_GCC.a" public="false"/>
+                    <file category="library" condition="CM7_GCC" name="Middlewares/Third_Party/ITTIA_DB_IoT/lib/libittia_db_iot_FreeRTOS_CM7_GCC.a" public="false"/>
+                    <file category="library" condition="CM33_GCC" name="Middlewares/Third_Party/ITTIA_DB_IoT/lib/libittia_db_iot_FreeRTOS_CM33_GCC.a" public="false"/>
+                    <file category="library" condition="CM4_IAR" name="Middlewares/Third_Party/ITTIA_DB_IoT/lib/libittia_db_iot_FreeRTOS_CM4_IAR.a" public="false"/>
+                    <file category="library" condition="CM7_IAR" name="Middlewares/Third_Party/ITTIA_DB_IoT/lib/libittia_db_iot_FreeRTOS_CM7_IAR.a" public="false"/>
+                    <file category="library" condition="CM33_IAR" name="Middlewares/Third_Party/ITTIA_DB_IoT/lib/libittia_db_iot_FreeRTOS_CM33_IAR.a" public="false"/>
+                    <file category="library" condition="CM4_ARMC" name="Middlewares/Third_Party/ITTIA_DB_IoT/lib/libittia_db_iot_FreeRTOS_CM4_ARMC.lib" public="false"/>
+                    <file category="library" condition="CM7_ARMC" name="Middlewares/Third_Party/ITTIA_DB_IoT/lib/libittia_db_iot_FreeRTOS_CM7_ARMC.lib" public="false"/>
+                    <file category="library" condition="CM33_ARMC" name="Middlewares/Third_Party/ITTIA_DB_IoT/lib/libittia_db_iot_FreeRTOS_CM33_ARMC.lib" public="false"/>
+                    <file category="source" name="Middlewares/Third_Party/ITTIA_DB_IoT/src/freertos/ittia_freertos_mutex.c"/>
+                    <file category="source" name="Middlewares/Third_Party/ITTIA_DB_IoT/src/freertos/ittia_freertos_sem.c"/>
+                    <file category="source" name="Middlewares/Third_Party/ITTIA_DB_IoT/src/freertos/ittia_freertos_thread.c"/>
+                    <file category="source" name="Middlewares/Third_Party/ITTIA_DB_IoT/src/freertos/ittia_freertos_time.c"/>
+                </files>
+            </component>
+            <component Cgroup="ITTIA_DB_IoT" Csub="ThreadX Support" condition="TX and Core" maxInstances="1">
+                <description>ITTIA DB IoT database library component for ThreadX</description>
+                <files>
+                    <file category="library" condition="CM4_GCC" name="Middlewares/Third_Party/ITTIA_DB_IoT/lib/libittia_db_iot_ThreadX_CM4_GCC.a" public="false"/>
+                    <file category="library" condition="CM7_GCC" name="Middlewares/Third_Party/ITTIA_DB_IoT/lib/libittia_db_iot_ThreadX_CM7_GCC.a" public="false"/>
+                    <file category="library" condition="CM33_GCC" name="Middlewares/Third_Party/ITTIA_DB_IoT/lib/libittia_db_iot_ThreadX_CM33_GCC.a" public="false"/>
+                    <file category="library" condition="CM4_IAR" name="Middlewares/Third_Party/ITTIA_DB_IoT/lib/libittia_db_iot_ThreadX_CM4_IAR.a" public="false"/>
+                    <file category="library" condition="CM7_IAR" name="Middlewares/Third_Party/ITTIA_DB_IoT/lib/libittia_db_iot_ThreadX_CM7_IAR.a" public="false"/>
+                    <file category="library" condition="CM33_IAR" name="Middlewares/Third_Party/ITTIA_DB_IoT/lib/libittia_db_iot_ThreadX_CM33_IAR.a" public="false"/>
+                    <file category="library" condition="CM4_ARMC" name="Middlewares/Third_Party/ITTIA_DB_IoT/lib/libittia_db_iot_ThreadX_CM4_ARMC.lib" public="false"/>
+                    <file category="library" condition="CM7_ARMC" name="Middlewares/Third_Party/ITTIA_DB_IoT/lib/libittia_db_iot_ThreadX_CM7_ARMC.lib" public="false"/>
+                    <file category="library" condition="CM33_ARMC" name="Middlewares/Third_Party/ITTIA_DB_IoT/lib/libittia_db_iot_ThreadX_CM33_ARMC.lib" public="false"/>
+                    <file category="source" name="Middlewares/Third_Party/ITTIA_DB_IoT/src/threadx/filex_dir.c"/>
+                    <file category="source" name="Middlewares/Third_Party/ITTIA_DB_IoT/src/threadx/filex_file.c"/>
+                    <file category="source" name="Middlewares/Third_Party/ITTIA_DB_IoT/src/threadx/threadx.c"/>
+                    <file category="source" name="Middlewares/Third_Party/ITTIA_DB_IoT/src/threadx/threadx_mutex.c"/>
+                    <file category="source" name="Middlewares/Third_Party/ITTIA_DB_IoT/src/threadx/threadx_sem.c"/>
+                    <file category="source" name="Middlewares/Third_Party/ITTIA_DB_IoT/src/threadx/threadx_thread.c"/>
+                    <file category="source" name="Middlewares/Third_Party/ITTIA_DB_IoT/src/threadx/threadx_time.c"/>
+                </files>
+            </component>
+        </bundle>
+    </components>
+    <examples>
+        <example doc="README.md" folder="Projects/B-U585I-IOT02A/Demonstrations/ITTIA_DB_IoT_Fx_NoR" name="ITTIA_DB_IoT_Fx_NoR" public="false" version="1.0.0">
+            <description>Process and store local data with ITTIA DB IoT on Azure RTOS.</description>
+            <board Dvendor="STMicroelectronics:13" name="B-U585I-IOT02A" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="EWARM" load="ITTIA_DB_IoT_Fx_NoR.ewp" name="iar"/>
+                <environment folder="ITTIA_DB_IoT_Fx_NoR" load="ITTIA_DB_IoT_Fx_NoR.ioc" name="stm32cubemx"/>
+                <environment folder="MDK-ARM" load="ITTIA_DB_IoT_Fx_NoR.uvprojx" name="uv"/>
+                <environment folder="STM32CubeIDE" load=".cproject" name="stm32cubeide"/>
+            </project>
+            <attributes>
+                <component Cbundle="ITTIA_DB_IoT" Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="Core" Cvendor="ITTIA" Cversion="8.9.0"/>
+                <component Cbundle="ITTIA_DB_IoT" Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="ThreadX Support" Cvendor="ITTIA_DB" Cversion="8.9.0"/>
+            </attributes>
+        </example>
+        <example doc="README.md" folder="Projects/STM32H747I-DISCO/Demonstrations/ITTIA_Fx_uSD_Time_Series" name="ITTIA_Fx_uSD_Time_Series" public="false" version="1.0.0">
+            <description>Process and store local data with ITTIA DB IoT on Azure RTOS.</description>
+            <board Dvendor="STMicroelectronics:13" name="STM32H747I-DISCO" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="EWARM" load="ITTIA_Fx_uSD_Time_Series.ewp" name="iar"/>
+                <environment folder="ITTIA_Fx_uSD_Time_Series" load="ITTIA_Fx_uSD_Time_Series.ioc" name="stm32cubemx"/>
+                <environment folder="MDK-ARM" load="ITTIA_Fx_uSD_Time_Series.uvprojx" name="uv"/>
+                <environment folder="CM4" load=".cproject" name="stm32cubeide"/>
+                <environment folder="CM7" load=".cproject" name="stm32cubeide"/>
+            </project>
+            <attributes>
+                <component Cbundle="ITTIA_DB_IoT" Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="Core" Cvendor="ITTIA_DB" Cversion="8.9.0"/>
+                <component Cbundle="ITTIA_DB_IoT" Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="ThreadX Support" Cvendor="ITTIA_DB" Cversion="8.9.0"/>
+            </attributes>
+        </example>
+        <example doc="README.md" folder="Projects/STM32H747I-DISCO/Demonstrations/ITTIA_Fx_uSD" name="ITTIA_Fx_uSD" public="false" version="1.0.0">
+            <description>Capture simulated industrial drill sensors with ITTIA DB IoT on Azure RTOS.</description>
+            <board name="STM32H747I-DISCO" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="EWARM" load="ITTIA_Fx_uSD.ewp" name="iar"/>
+                <environment folder="ITTIA_Fx_uSD" load="ITTIA_Fx_uSD.ioc" name="stm32cubemx"/>
+                <environment folder="MDK-ARM" load="ITTIA_Fx_uSD.uvprojx" name="uv"/>
+                <environment folder="CM4" load=".cproject" name="stm32cubeide"/>
+                <environment folder="CM7" load=".cproject" name="stm32cubeide"/>
+            </project>
+            <attributes>
+                <component Cbundle="ITTIA_DB_IoT" Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="Core" Cvendor="ITTIA_DB" Cversion="8.9.0"/>
+                <component Cbundle="ITTIA_DB_IoT" Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="ThreadX Support" Cvendor="ITTIA_DB" Cversion="8.9.0"/>
+            </attributes>
+        </example>
+        <example doc="README.md" folder="Projects/STM32H747I-DISCO/Demonstrations/ITTIA_Fx_uSD_Event_Log_Tables" name="ITTIA_Fx_uSD_Event_Log_Tables" public="false" version="1.0.0">
+            <description>Example for ITTIA DB IoT on Azure RTOS.</description>
+            <board name="STM32H747I-DISCO" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="EWARM" load="ITTIA_Fx_uSD_Event_Log_Tables.ewp" name="iar"/>
+                <environment folder="ITTIA_Fx_uSD_Event_Log_Tables" load="ITTIA_Fx_uSD_Event_Log_Tables.ioc" name="stm32cubemx"/>
+                <environment folder="MDK-ARM" load="ITTIA_Fx_uSD_Event_Log_Tables.uvprojx" name="uv"/>
+                <environment folder="CM4" load=".cproject" name="stm32cubeide"/>
+                <environment folder="CM7" load=".cproject" name="stm32cubeide"/>
+            </project>
+            <attributes>
+                <component Cbundle="ITTIA_DB_IoT" Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="Core" Cvendor="ITTIA_DB" Cversion="8.9.0"/>
+                <component Cbundle="ITTIA_DB_IoT" Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="ThreadX Support" Cvendor="ITTIA_DB" Cversion="8.9.0"/>
+            </attributes>
+        </example>
+        <example doc="README.md" folder="Projects/STM32H747I-DISCO/Demonstrations/ITTIA_Fx_uSD_Settings_Table" name="ITTIA_Fx_uSD_Settings_Table" public="false" version="1.0.0">
+            <description>Example for ITTIA DB IoT on Azure RTOS.</description>
+            <board name="STM32H747I-DISCO" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="EWARM" load="ITTIA_Fx_uSD_Settings_Table.ewp" name="iar"/>
+                <environment folder="ITTIA_Fx_uSD_Settings_Table" load="ITTIA_Fx_uSD_Settings_Table.ioc" name="stm32cubemx"/>
+                <environment folder="MDK-ARM" load="ITTIA_Fx_uSD_Settings_Table.uvprojx" name="uv"/>
+                <environment folder="CM4" load=".cproject" name="stm32cubeide"/>
+                <environment folder="CM7" load=".cproject" name="stm32cubeide"/>
+            </project>
+            <attributes>
+                <component Cbundle="ITTIA_DB_IoT" Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="Core" Cvendor="ITTIA_DB" Cversion="8.9.0"/>
+                <component Cbundle="ITTIA_DB_IoT" Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="ThreadX Support" Cvendor="ITTIA_DB" Cversion="8.9.0"/>
+            </attributes>
+        </example>
+        <example doc="README.md" folder="Projects/B-U585I-IOT02A/Demonstrations/ITTIA_DB_IoT_Industrial_Drills_Fx_NoR" name="ITTIA_DB_IoT_Industrial_Drills_Fx_NoR" public="false" version="1.0.0">
+            <description>Capture simulated industrial drill sensors with ITTIA DB IoT on Azure RTOS.</description>
+            <board name="B-U585I-IOT02A" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="EWARM" load="ITTIA_DB_IoT_Industrial_Drills_Fx_NoR.ewp" name="iar"/>
+                <environment folder="ITTIA_DB_IoT_Industrial_Drills_Fx_NoR" load="ITTIA_DB_IoT_Industrial_Drills_Fx_NoR.ioc" name="stm32cubemx"/>
+                <environment folder="MDK-ARM" load="ITTIA_DB_IoT_Industrial_Drills_Fx_NoR.uvprojx" name="uv"/>
+                <environment folder="STM32CubeIDE" load=".cproject" name="stm32cubeide"/>
+            </project>
+            <attributes>
+                <component Cbundle="ITTIA_DB_IoT" Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="Core" Cvendor="ITTIA_DB" Cversion="8.9.0"/>
+                <component Cbundle="ITTIA_DB_IoT" Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="ThreadX Support" Cvendor="ITTIA_DB" Cversion="8.9.0"/>
+            </attributes>
+        </example>
+        <example doc="README.md" folder="Projects/STM32H747I-DISCO/Demonstrations/ITTIA_DB_IoT_FreeRTOS_FatFs" name="ITTIA_DB_IoT_FreeRTOS_FatFs" public="false" version="1.0.0">
+            <description>Process and store local data with ITTIA DB IoT on FreeRTOS.</description>
+            <board name="STM32H747I-DISCO" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="CM4" load=".cproject" name="stm32cubeide"/>
+                <environment folder="CM7" load=".cproject" name="stm32cubeide"/>
+                <environment folder="EWARM" load="ITTIA_DB_IoT_FreeRTOS_FatFs.ewp" name="iar"/>
+                <environment folder="ITTIA_DB_IoT_FreeRTOS_FatFs" load="ITTIA_DB_IoT_FreeRTOS_FatFs.ioc" name="stm32cubemx"/>
+                <environment folder="MDK-ARM" load="ITTIA_DB_IoT_FreeRTOS_FatFs.uvprojx" name="uv"/>
+            </project>
+            <attributes>
+                <component Cbundle="ITTIA_DB_IoT" Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="Core" Cvendor="ITTIA_DB" Cversion="8.9.0"/>
+                <component Cbundle="ITTIA_DB_IoT" Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="FreeRTOS Support" Cvendor="ITTIA_DB" Cversion="8.9.0"/>
+            </attributes>
+        </example>
+        <example doc="README.md" folder="Projects/STM32H573I-DK/Demonstrations/ITTIA_Fx_uSD_Settings_Table" name="ITTIA_Fx_uSD_Settings_Table" public="false" version="1.0.0">
+            <description>Example for ITTIA DB IoT on Azure RTOS.</description>
+            <board name="STM32H573I-DK" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="EWARM" load="ITTIA_Fx_uSD_Settings_Table.ewp" name="iar"/>
+                <environment folder="ITTIA_Fx_uSD_Settings_Table" load="ITTIA_Fx_uSD_Settings_Table.ioc" name="stm32cubemx"/>
+                <environment folder="MDK-ARM" load="ITTIA_Fx_uSD_Settings_Table.uvprojx" name="uv"/>
+                <environment folder="STM32CubeIDE" load=".cproject" name="stm32cubeide"/>
+            </project>
+            <attributes>
+                <component Cbundle="ITTIA_DB_IoT" Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="ThreadX Support" Cvendor="ITTIA_DB" Cversion="8.9.0"/>
+                <component Cbundle="ITTIA_DB_IoT" Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="Core" Cvendor="ITTIA_DB" Cversion="8.9.0"/>
+            </attributes>
+        </example>
+        <example doc="README.md" folder="Projects/STM32H573I-DK/Demonstrations/ITTIA_Fx_uSD_Event_Log_Tables" name="ITTIA_Fx_uSD_Event_Log_Tables" public="false" version="1.0.0">
+            <description>Example for ITTIA DB IoT on Azure RTOS.</description>
+            <board name="STM32H573I-DK" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="EWARM" load="ITTIA_Fx_uSD_Event_Log_Tables.ewp" name="iar"/>
+                <environment folder="ITTIA_Fx_uSD_Event_Log_Tables" load="ITTIA_Fx_uSD_Event_Log_Tables.ioc" name="stm32cubemx"/>
+                <environment folder="MDK-ARM" load="ITTIA_Fx_uSD_Event_Log_Tables.uvprojx" name="uv"/>
+                <environment folder="STM32CubeIDE" load=".cproject" name="stm32cubeide"/>
+            </project>
+            <attributes>
+                <component Cbundle="ITTIA_DB_IoT" Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="ThreadX Support" Cvendor="ITTIA_DB" Cversion="8.9.0"/>
+                <component Cbundle="ITTIA_DB_IoT" Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="Core" Cvendor="ITTIA_DB" Cversion="8.9.0"/>
+            </attributes>
+        </example>
+        <example doc="README.md" folder="Projects/STM32H573I-DK/Demonstrations/ITTIA_Fx_uSD_Time_Series" name="ITTIA_Fx_uSD_Time_Series" public="false" version="1.0.0">
+            <description>Example for ITTIA DB IoT on Azure RTOS.</description>
+            <board name="STM32H573I-DK" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="EWARM" load="ITTIA_Fx_uSD_Time_Series.ewp" name="iar"/>
+                <environment folder="ITTIA_Fx_uSD_Time_Series" load="ITTIA_Fx_uSD_Time_Series.ioc" name="stm32cubemx"/>
+                <environment folder="MDK-ARM" load="ITTIA_Fx_uSD_Time_Series.uvprojx" name="uv"/>
+                <environment folder="STM32CubeIDE" load=".cproject" name="stm32cubeide"/>
+            </project>
+            <attributes>
+                <component Cbundle="ITTIA_DB_IoT" Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="ThreadX Support" Cvendor="ITTIA_DB" Cversion="8.9.0"/>
+                <component Cbundle="ITTIA_DB_IoT" Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="Core" Cvendor="ITTIA_DB" Cversion="8.9.0"/>
+            </attributes>
+        </example>
+        <example doc="README.md" folder="Projects/STM32H573I-DK/Demonstrations/ITTIA_Tx_Stream" name="ITTIA_Tx_Stream" public="false" version="1.0.0">
+            <description>Example for ITTIA DB IoT on Azure RTOS.</description>
+            <board name="STM32H573I-DK" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="EWARM" load="ITTIA_Tx_Stream.ewp" name="iar"/>
+                <environment folder="ITTIA_Tx_Stream" load="ITTIA_Tx_Stream.ioc" name="stm32cubemx"/>
+                <environment folder="MDK-ARM" load="ITTIA_Tx_Stream.uvprojx" name="uv"/>
+                <environment folder="STM32CubeIDE" load=".cproject" name="stm32cubeide"/>
+            </project>
+            <attributes>
+                <component Cbundle="ITTIA_DB_IoT" Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="ThreadX Support" Cvendor="ITTIA_DB" Cversion="8.9.0"/>
+                <component Cbundle="ITTIA_DB_IoT" Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="Core" Cvendor="ITTIA_DB" Cversion="8.9.0"/>
+            </attributes>
+        </example>
+        <example doc="README.md" folder="Projects/STM32H573I-DK/Demonstrations/ITTIA_Fx_uSD_Tables_Time_Series" name="ITTIA_Fx_uSD_Tables_Time_Series" public="false" version="1.0.0">
+            <description>Example for ITTIA DB IoT on Azure RTOS.</description>
+            <board name="STM32H573I-DK" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="EWARM" load="ITTIA_Fx_uSD_Tables_Time_Series.ewp" name="iar"/>
+                <environment folder="ITTIA_Fx_uSD_Tables_Time_Series" load="ITTIA_Fx_uSD_Tables_Time_Series.ioc" name="stm32cubemx"/>
+                <environment folder="MDK-ARM" load="ITTIA_Fx_uSD_Tables_Time_Series.uvprojx" name="uv"/>
+                <environment folder="STM32CubeIDE" load=".cproject" name="stm32cubeide"/>
+            </project>
+            <attributes>
+                <component Cbundle="ITTIA_DB_IoT" Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="ThreadX Support" Cvendor="ITTIA_DB" Cversion="8.9.0"/>
+                <component Cbundle="ITTIA_DB_IoT" Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="Core" Cvendor="ITTIA_DB" Cversion="8.9.0"/>
+            </attributes>
+        </example>
+        <example doc="README.md" folder="Projects/STM32H573I-DK/Demonstrations/ITTIA_Fx_uSD_Stream_Table" name="ITTIA_Fx_uSD_Stream_Table" public="false" version="1.0.0">
+            <description>Example for ITTIA DB IoT on Azure RTOS.</description>
+            <board name="STM32H573I-DK" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="EWARM" load="ITTIA_Fx_uSD_Stream_Table.ewp" name="iar"/>
+                <environment folder="ITTIA_Fx_uSD_Stream_Table" load="ITTIA_Fx_uSD_Stream_Table.ioc" name="stm32cubemx"/>
+                <environment folder="MDK-ARM" load="ITTIA_Fx_uSD_Stream_Table.uvprojx" name="uv"/>
+                <environment folder="STM32CubeIDE" load=".cproject" name="stm32cubeide"/>
+            </project>
+            <attributes>
+                <component Cbundle="ITTIA_DB_IoT" Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="ThreadX Support" Cvendor="ITTIA_DB" Cversion="8.9.0"/>
+                <component Cbundle="ITTIA_DB_IoT" Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="Core" Cvendor="ITTIA_DB" Cversion="8.9.0"/>
+            </attributes>
+        </example>
+        <example doc="README.md" folder="Projects/STM32H573I-DK/Demonstrations/ITTIA_Fx_uSD_Stream_Time_Series" name="ITTIA_Fx_uSD_Stream_Time_Series" public="false" version="1.0.0">
+            <description>Example for ITTIA DB IoT on Azure RTOS.</description>
+            <board name="STM32H573I-DK" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="EWARM" load="ITTIA_Fx_uSD_Stream_Time_Series.ewp" name="iar"/>
+                <environment folder="ITTIA_Fx_uSD_Stream_Time_Series" load="ITTIA_Fx_uSD_Stream_Time_Series.ioc" name="stm32cubemx"/>
+                <environment folder="MDK-ARM" load="ITTIA_Fx_uSD_Stream_Time_Series.uvprojx" name="uv"/>
+                <environment folder="STM32CubeIDE" load=".cproject" name="stm32cubeide"/>
+            </project>
+            <attributes>
+                <component Cbundle="ITTIA_DB_IoT" Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="ThreadX Support" Cvendor="ITTIA_DB" Cversion="8.9.0"/>
+                <component Cbundle="ITTIA_DB_IoT" Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="Core" Cvendor="ITTIA_DB" Cversion="8.9.0"/>
+            </attributes>
+        </example>
+        <example doc="README.md" folder="Projects/STM32H573I-DK/Demonstrations/ITTIA_Fx_uSD" name="ITTIA_Fx_uSD" public="false" version="1.0.0">
+            <description>Example for ITTIA DB IoT on Azure RTOS.</description>
+            <board name="STM32H573I-DK" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="EWARM" load="ITTIA_Fx_uSD.ewp" name="iar"/>
+                <environment folder="ITTIA_Fx_uSD" load="ITTIA_Fx_uSD.ioc" name="stm32cubemx"/>
+                <environment folder="MDK-ARM" load="ITTIA_Fx_uSD.uvprojx" name="uv"/>
+                <environment folder="STM32CubeIDE" load=".cproject" name="stm32cubeide"/>
+            </project>
+            <attributes>
+                <component Cbundle="ITTIA_DB_IoT" Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="ThreadX Support" Cvendor="ITTIA_DB" Cversion="8.9.0"/>
+                <component Cbundle="ITTIA_DB_IoT" Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="Core" Cvendor="ITTIA_DB" Cversion="8.9.0"/>
+            </attributes>
+        </example>
+        <example doc="README.md" folder="Projects/STM32H747I-DISCO/Demonstrations/ITTIA_Fx_uSD_Access_Control_Tables" name="ITTIA_Fx_uSD_Access_Control_Tables" public="false" version="1.0.0">
+            <description>Example for ITTIA DB IoT on Azure RTOS.</description>
+            <board name="STM32H747I-DISCO" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="EWARM" load="ITTIA_Fx_uSD_Access_Control_Tables.ewp" name="iar"/>
+                <environment folder="ITTIA_Fx_uSD_Access_Control_Tables" load="ITTIA_Fx_uSD_Access_Control_Tables.ioc" name="stm32cubemx"/>
+                <environment folder="MDK-ARM" load="ITTIA_Fx_uSD_Access_Control_Tables.uvprojx" name="uv"/>
+                <environment folder="CM4" load=".cproject" name="stm32cubeide"/>
+                <environment folder="CM7" load=".cproject" name="stm32cubeide"/>
+            </project>
+            <attributes>
+                <component Cbundle="ITTIA_DB_IoT" Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="Core" Cvendor="ITTIA_DB" Cversion="8.9.0"/>
+                <component Cbundle="ITTIA_DB_IoT" Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="ThreadX Support" Cvendor="ITTIA_DB" Cversion="8.9.0"/>
+            </attributes>
+        </example>
+        <example doc="README.md" folder="Projects/STM32H573I-DK/Demonstrations/ITTIA_Fx_uSD_Access_Control_Tables" name="ITTIA_Fx_uSD_Access_Control_Tables" public="false" version="1.0.0">
+            <description>Example for ITTIA DB IoT on Azure RTOS.</description>
+            <board name="STM32H573I-DK" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="EWARM" load="ITTIA_Fx_uSD_Access_Control_Tables.ewp" name="iar"/>
+                <environment folder="ITTIA_Fx_uSD_Access_Control_Tables" load="ITTIA_Fx_uSD_Access_Control_Tables.ioc" name="stm32cubemx"/>
+                <environment folder="MDK-ARM" load="ITTIA_Fx_uSD_Access_Control_Tables.uvprojx" name="uv"/>
+                <environment folder="STM32CubeIDE" load=".cproject" name="stm32cubeide"/>
+            </project>
+            <attributes>
+                <component Cbundle="ITTIA_DB_IoT" Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="ThreadX Support" Cvendor="ITTIA_DB" Cversion="8.9.0"/>
+                <component Cbundle="ITTIA_DB_IoT" Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="Core" Cvendor="ITTIA_DB" Cversion="8.9.0"/>
+            </attributes>
+        </example>
+        <example doc="README.md" folder="Projects/STM32H573I-DK/Demonstrations/ITTIA_Fx_uSD_Sensor_Fusion" name="ITTIA_Fx_uSD_Sensor_Fusion" public="false" version="1.0.0">
+            <description>Example for ITTIA DB IoT on Azure RTOS.</description>
+            <board name="STM32H573I-DK" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="EWARM" load="ITTIA_Fx_uSD_Sensor_Fusion.ewp" name="iar"/>
+                <environment folder="ITTIA_Fx_uSD_Sensor_Fusion" load="ITTIA_Fx_uSD_Sensor_Fusion.ioc" name="stm32cubemx"/>
+                <environment folder="MDK-ARM" load="ITTIA_Fx_uSD_Sensor_Fusion.uvprojx" name="uv"/>
+                <environment folder="STM32CubeIDE" load=".cproject" name="stm32cubeide"/>
+            </project>
+            <attributes>
+                <component Cbundle="ITTIA_DB_IoT" Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="ThreadX Support" Cvendor="ITTIA_DB" Cversion="8.9.0"/>
+                <component Cbundle="ITTIA_DB_IoT" Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="Core" Cvendor="ITTIA_DB" Cversion="8.9.0"/>
+            </attributes>
+        </example>
+        <example doc="README.md" folder="Projects/STM32H747I-DISCO/Demonstrations/ITTIA_Fx_uSD_Sensor_Fusion" name="ITTIA_Fx_uSD_Sensor_Fusion" public="false" version="1.0.0">
+            <description>Example for ITTIA DB IoT on Azure RTOS.</description>
+            <board name="STM32H747I-DISCO" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="EWARM" load="ITTIA_Fx_uSD_Sensor_Fusion.ewp" name="iar"/>
+                <environment folder="ITTIA_Fx_uSD_Sensor_Fusion" load="ITTIA_Fx_uSD_Sensor_Fusion.ioc" name="stm32cubemx"/>
+                <environment folder="MDK-ARM" load="ITTIA_Fx_uSD_Sensor_Fusion.uvprojx" name="uv"/>
+                <environment folder="CM4" load=".cproject" name="stm32cubeide"/>
+                <environment folder="CM7" load=".cproject" name="stm32cubeide"/>
+            </project>
+            <attributes>
+                <component Cbundle="ITTIA_DB_IoT" Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="Core" Cvendor="ITTIA_DB" Cversion="8.9.0"/>
+                <component Cbundle="ITTIA_DB_IoT" Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="ThreadX Support" Cvendor="ITTIA_DB" Cversion="8.9.0"/>
+            </attributes>
+        </example>
+        <example doc="README.md" folder="Projects/B-U585I-IOT02A/Demonstrations/ITTIA_Fx_NoR_Sensor_Fusion" name="ITTIA_Fx_NoR_Sensor_Fusion" public="false" version="1.0.0">
+            <description>Example for ITTIA DB IoT on Azure RTOS.</description>
+            <board name="B-U585I-IOT02A" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="EWARM" load="ITTIA_Fx_NoR_Sensor_Fusion.ewp" name="iar"/>
+                <environment folder="ITTIA_Fx_NoR_Sensor_Fusion" load="ITTIA_Fx_NoR_Sensor_Fusion.ioc" name="stm32cubemx"/>
+                <environment folder="MDK-ARM" load="ITTIA_Fx_NoR_Sensor_Fusion.uvprojx" name="uv"/>
+                <environment folder="STM32CubeIDE" load=".cproject" name="stm32cubeide"/>
+            </project>
+            <attributes>
+                <component Cbundle="ITTIA_DB_IoT" Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="Core" Cvendor="ITTIA" Cversion="8.9.0"/>
+                <component Cbundle="ITTIA_DB_IoT" Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="ThreadX Support" Cvendor="ITTIA_DB" Cversion="8.9.0"/>
+            </attributes>
+        </example>
+        <example doc="README.md" folder="Projects/B-U585I-IOT02A/Demonstrations/ITTIA_Fx_NoR_Access_Control_Tables" name="ITTIA_Fx_NoR_Access_Control_Tables" public="false" version="1.0.0">
+            <description>Example for ITTIA DB IoT on Azure RTOS.</description>
+            <board name="B-U585I-IOT02A" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="EWARM" load="ITTIA_Fx_NoR_Access_Control_Tables.ewp" name="iar"/>
+                <environment folder="ITTIA_Fx_NoR_Access_Control_Tables" load="ITTIA_Fx_NoR_Access_Control_Tables.ioc" name="stm32cubemx"/>
+                <environment folder="MDK-ARM" load="ITTIA_Fx_NoR_Access_Control_Tables.uvprojx" name="uv"/>
+                <environment folder="STM32CubeIDE" load=".cproject" name="stm32cubeide"/>
+            </project>
+            <attributes>
+                <component Cbundle="ITTIA_DB_IoT" Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="Core" Cvendor="ITTIA" Cversion="8.9.0"/>
+                <component Cbundle="ITTIA_DB_IoT" Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="ThreadX Support" Cvendor="ITTIA_DB" Cversion="8.9.0"/>
+            </attributes>
+        </example>
+        <example doc="README.md" folder="Projects/B-U585I-IOT02A/Demonstrations/ITTIA_Fx_NoR_Event_Log_Tables" name="ITTIA_Fx_NoR_Event_Log_Tables" public="false" version="1.0.0">
+            <description>Example for ITTIA DB IoT on Azure RTOS.</description>
+            <board name="B-U585I-IOT02A" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="EWARM" load="ITTIA_Fx_NoR_Event_Log_Tables.ewp" name="iar"/>
+                <environment folder="ITTIA_Fx_NoR_Event_Log_Tables" load="ITTIA_Fx_NoR_Event_Log_Tables.ioc" name="stm32cubemx"/>
+                <environment folder="MDK-ARM" load="ITTIA_Fx_NoR_Event_Log_Tables.uvprojx" name="uv"/>
+                <environment folder="STM32CubeIDE" load=".cproject" name="stm32cubeide"/>
+            </project>
+            <attributes>
+                <component Cbundle="ITTIA_DB_IoT" Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="Core" Cvendor="ITTIA" Cversion="8.9.0"/>
+                <component Cbundle="ITTIA_DB_IoT" Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="ThreadX Support" Cvendor="ITTIA_DB" Cversion="8.9.0"/>
+            </attributes>
+        </example>
+        <example doc="README.md" folder="Projects/B-U585I-IOT02A/Demonstrations/ITTIA_Fx_NoR_Settings_Table" name="ITTIA_Fx_NoR_Settings_Table" public="false" version="1.0.0">
+            <description>Example for ITTIA DB IoT on Azure RTOS.</description>
+            <board name="B-U585I-IOT02A" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="EWARM" load="ITTIA_Fx_NoR_Settings_Table.ewp" name="iar"/>
+                <environment folder="ITTIA_Fx_NoR_Settings_Table" load="ITTIA_Fx_NoR_Settings_Table.ioc" name="stm32cubemx"/>
+                <environment folder="MDK-ARM" load="ITTIA_Fx_NoR_Settings_Table.uvprojx" name="uv"/>
+                <environment folder="STM32CubeIDE" load=".cproject" name="stm32cubeide"/>
+            </project>
+            <attributes>
+                <component Cbundle="ITTIA_DB_IoT" Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="Core" Cvendor="ITTIA" Cversion="8.9.0"/>
+                <component Cbundle="ITTIA_DB_IoT" Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="ThreadX Support" Cvendor="ITTIA_DB" Cversion="8.9.0"/>
+            </attributes>
+        </example>
+        <example doc="README.md" folder="Projects/B-U585I-IOT02A/Demonstrations/ITTIA_Fx_NoR_Time_Series" name="ITTIA_Fx_NoR_Time_Series" public="false" version="1.0.0">
+            <description>Example for ITTIA DB IoT on Azure RTOS.</description>
+            <board name="B-U585I-IOT02A" vendor="STMicroelectronics"/>
+            <project>
+                <environment folder="EWARM" load="ITTIA_Fx_NoR_Time_Series.ewp" name="iar"/>
+                <environment folder="ITTIA_Fx_NoR_Time_Series" load="ITTIA_Fx_NoR_Time_Series.ioc" name="stm32cubemx"/>
+                <environment folder="MDK-ARM" load="ITTIA_Fx_NoR_Time_Series.uvprojx" name="uv"/>
+                <environment folder="STM32CubeIDE" load=".cproject" name="stm32cubeide"/>
+            </project>
+            <attributes>
+                <component Cbundle="ITTIA_DB_IoT" Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="Core" Cvendor="ITTIA" Cversion="8.9.0"/>
+                <component Cbundle="ITTIA_DB_IoT" Cclass="Database" Cgroup="ITTIA_DB_IoT" Csub="ThreadX Support" Cvendor="ITTIA_DB" Cversion="8.9.0"/>
+            </attributes>
+        </example>
+    </examples>
+</package>

@@ -1,0 +1,8 @@
+LIBRARY msvcrt.dll
+EXPORTS
+printf
+puts
+_snprintf
+memcpy
+strcmp
+exit

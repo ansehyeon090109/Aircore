@@ -1,0 +1,524 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<package schemaVersion="1.7.46" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+    <vendor>STMicroelectronics</vendor>
+    <name>FP-SNS-STBOX1</name>
+    <description>The FP-SNS-STBOX1 is STM32Cube function pack for the Pro Mode of wireless multi sensor development kits The purpose of this functional pack is to provide simple applications and examples that show how to build custom applications for STEVAL-MKSBOX1V1, STEVAL-MKBOXPRO and STEVAL-STWINBX1 boards.</description>
+    <url>http://sw-center.st.com/packs/x-cube/</url>
+    <license>en.DM00251784.pdf</license>
+    <releases>
+        <release date="2025-02-19" version="2.1.0">Official release of the FP-SNS-STBOX1 support package.
+Create sample applications with STM32CubeMX v.6.14.0 or higher</release>
+        <release date="2024-03-05" version="2.0.0">Official release of the FP_SNS-FLIGHT1 support package.
+Create sample applications with STM32CubeMX v.6.11.0 or higher</release>
+    </releases>
+    <keywords>
+        <keyword>IMPLEMENTED_WITH_STM32CUBEMX</keyword>
+        <keyword>CUBE_RULES_COMPLIANT</keyword>
+        <keyword>CUBEMX_MIGRATION_CAPABILITY</keyword>
+    </keywords>
+    <taxonomy>
+        <description Cclass="Middlewares">Middlewares</description>
+        <description Cclass="Board Part">Board Part</description>
+        <description Cclass="Device">Device</description>
+        <description Cclass="Board Support">Board Support</description>
+    </taxonomy>
+    <requirements>
+        <packages>
+            <package name="X-CUBE-MEMS1" vendor="STMicroelectronics" version="11.0.0"/>
+            <package name="X-CUBE-BLEMGR" vendor="STMicroelectronics" version="4.1.0"/>
+            <package name="X-CUBE-NFC4" vendor="STMicroelectronics" version="3.0.0"/>
+            <package name="X-CUBE-NFC7" vendor="STMicroelectronics" version="1.0.1"/>
+        </packages>
+    </requirements>
+    <conditions>
+        <condition id="MKBOXPRO_REV_A_B_CONDITION">
+            <accept Dname="STM32U585A*"/>
+            <accept Cbundle="STEVAL-MKBOXPRO" Cclass="Board Support" Cgroup="SensorTileBoxPro"/>
+            <accept Cclass="Bluetooth" Cgroup="Core" Cvariant="BLE_LP"/>
+            <require condition="MKBOXPRO_BOARD_PART_CONDITION"/>
+            <deny Cbundle="STEVAL-STWINBX1" Cclass="Board Support" Cgroup="STWINbox" Csub="BSP"/>
+            <deny Cbundle="STEVAL-STWINBX1_Applications" Cclass="Device" Cgroup="Application"/>
+            <deny Cclass="Bluetooth" Cgroup="Core" Cvariant="BLE_2"/>
+            <deny Cclass="Bluetooth" Cgroup="Core" Cvariant="BLE_MS"/>
+            <deny Cclass="Bluetooth" Cgroup="Core" Cvariant="STM32WB07_06"/>
+            <deny Cclass="Bluetooth" Cgroup="Core" Cvariant="STM32WB05N"/>
+        </condition>
+        <condition id="BOXPRO_REV_A_B_BLEPIANO_CONDITION">
+            <require Cclass="Bluetooth" Cgroup="Core" Cvariant="BLE_LP"/>
+            <require Cclass="BLE_Features" Cgroup="BLE_Manager"/>
+            <require Cclass="BLE_Features" Cgroup="HardwareSensors" Csub="Battery"/>
+            <require Cclass="BLE_Features" Cgroup="HardwareSensors" Csub="Piano"/>
+            <require Cclass="Data Exchange" Cgroup="parson"/>
+            <require Cclass="Board Support" Cgroup="SensorTileBoxPro" Csub="BSP" Cvariant="REV_A_B"/>
+            <deny Cclass="Board Support" Cgroup="SensorTileBoxPro" Csub="BSP" Cvariant="REV_C"/>
+        </condition>
+        <condition id="BOXPRO_REV_A_B_BLEMLC_CONDITION">
+            <require Cbundle="uzlib" Cclass="Middlewares" Cgroup="uzlib"/>
+            <require Cclass="Board Support" Cgroup="SensorTileBoxPro" Csub="BSP" Cvariant="REV_A_B"/>
+            <require Cclass="Bluetooth" Cgroup="Core" Cvariant="BLE_LP"/>
+            <require Cclass="BLE_Features" Cgroup="BLE_Manager"/>
+            <require Cclass="BLE_Features" Cgroup="HardwareSensors" Csub="FiniteStateMachine"/>
+            <require Cclass="BLE_Features" Cgroup="HardwareSensors" Csub="MachineLearningCore"/>
+            <require Cclass="BLE_Features" Cgroup="HardwareSensors" Csub="Inertial"/>
+            <require Cclass="BLE_Features" Cgroup="SoftwareLibraries" Csub="ActivityRecognition"/>
+            <require Cclass="Data Exchange" Cgroup="parson"/>
+            <deny Cclass="Board Support" Cgroup="SensorTileBoxPro" Csub="BSP" Cvariant="REV_C"/>
+        </condition>
+        <condition id="BOXPRO_REV_A_B_BLEDUALPROG_CONDITION">
+            <require Cbundle="lib_nfc" Cclass="Wireless" Cgroup="lib_nfc" Csub="Core"/>
+            <require Cclass="Board Support" Cgroup="SensorTileBoxPro" Csub="BSP" Cvariant="REV_A_B"/>
+            <require Cclass="BLE_Features" Cgroup="BLE_Manager"/>
+            <require Cclass="BLE_Features" Cgroup="HardwareSensors" Csub="Environmental"/>
+            <require Cclass="BLE_Features" Cgroup="HardwareSensors" Csub="Inertial"/>
+            <require Cclass="BLE_Features" Cgroup="SoftwareLibraries" Csub="SensorFusion"/>
+            <require Cclass="Data Exchange" Cgroup="parson"/>
+            <require Cclass="Bluetooth" Cgroup="Core" Cvariant="BLE_LP"/>
+            <deny Cclass="Board Support" Cgroup="SensorTileBoxPro" Csub="BSP" Cvariant="REV_C"/>
+        </condition>
+        <condition id="BOXPRO_REV_A_B_BLESENSORS_PNPL_CONDITION">
+            <require Cclass="Board Support" Cgroup="SensorTileBoxPro" Csub="BSP" Cvariant="REV_A_B"/>
+            <require Cbundle="PnPLCompManager" Cclass="Middlewares" Cgroup="PnPLCompManager"/>
+            <require Cclass="Bluetooth" Cgroup="Core" Cvariant="BLE_LP"/>
+            <require Cclass="BLE_Features" Cgroup="BLE_Manager"/>
+            <require Cclass="BLE_Features" Cgroup="HardwareSensors" Csub="Battery"/>
+            <require Cclass="BLE_Features" Cgroup="HardwareSensors" Csub="Environmental"/>
+            <require Cclass="BLE_Features" Cgroup="HardwareSensors" Csub="Inertial"/>
+            <require Cclass="BLE_Features" Cgroup="PnP" Csub="PnPLike"/>
+            <require Cclass="Data Exchange" Cgroup="parson"/>
+            <deny Cclass="Board Support" Cgroup="SensorTileBoxPro" Csub="BSP" Cvariant="REV_C"/>
+        </condition>
+        <condition id="STC3115_CND">
+            <deny Cbundle="STEVAL-STWINBX1_Applications" Cclass="Device" Cgroup="Application"/>
+        </condition>
+        <condition id="BOXPRO_NFC_FTM_CONDITION">
+            <require Cclass="Board Support" Cgroup="SensorTileBoxPro" Csub="BSP"/>
+            <require Cbundle="ST25FTM" Cclass="Middlewares" Cgroup="ST25FTM"/>
+        </condition>
+        <condition id="PNPL_CONDITION">
+            <require Cclass="Data Exchange" Cgroup="parson"/>
+        </condition>
+        <condition id="STWINBX1_CONDITION">
+            <accept Cbundle="STEVAL-STWINBX1" Cclass="Board Support" Cgroup="STWINbox"/>
+            <accept Dname="STM32U585A*"/>
+            <accept Cclass="Bluetooth" Cgroup="Core" Cvariant="BLE_2"/>
+            <require condition="STWINBX1_BOARD_PART_CONDITION"/>
+            <deny Cbundle="STEVAL-MKBOXPRO" Cclass="Board Support" Cgroup="SensorTileBoxPro" Csub="BSP"/>
+            <deny Cbundle="STEVAL-MKBOXPRO_Applications" Cclass="Device" Cgroup="Application"/>
+            <deny Cclass="Bluetooth" Cgroup="Core" Cvariant="BLE_MS"/>
+            <deny Cclass="Bluetooth" Cgroup="Core" Cvariant="BLE_LP"/>
+            <deny Cclass="Bluetooth" Cgroup="Core" Cvariant="STM32WB07_06"/>
+            <deny Cclass="Bluetooth" Cgroup="Core" Cvariant="STM32WB05N"/>
+        </condition>
+        <condition id="STWINBX1_BOARD_PART_CONDITION">
+            <require Cclass="Board Part" Cgroup="AccGyr" Csub="ISM330DHCX" Cvariant="SPI"/>
+            <require Cclass="Board Part" Cgroup="Acc" Csub="IIS2DLPC" Cvariant="SPI"/>
+            <require Cclass="Board Part" Cgroup="Mag" Csub="IIS2MDC" Cvariant="I2C"/>
+            <require Cclass="Board Part" Cgroup="PressTempQvar" Csub="ILPS22QS" Cvariant="I2C"/>
+            <require Cclass="Board Part" Cgroup="Temp" Csub="STTS22H" Cvariant="I2C"/>
+            <require Cclass="Board Part" Cgroup="NFC4" Csub="ST25DV"/>
+            <require Cclass="Board Part" Cgroup="Acc" Csub="IIS2ICLX" Cvariant="SPI"/>
+            <require Cclass="Board Part" Cgroup="Acc" Csub="IIS3DWB" Cvariant="SPI"/>
+        </condition>
+        <condition id="STWINBX_BLESENSORS_PNPL_CONDITION">
+            <require Cclass="Board Support" Cgroup="STWINbox" Csub="BSP"/>
+            <require Cclass="Bluetooth" Cgroup="Core" Cvariant="BLE_2"/>
+            <require Cbundle="PnPLCompManager" Cclass="Middlewares" Cgroup="PnPLCompManager"/>
+            <require Cclass="BLE_Features" Cgroup="BLE_Manager"/>
+            <require Cclass="BLE_Features" Cgroup="HardwareSensors" Csub="Battery"/>
+            <require Cclass="BLE_Features" Cgroup="HardwareSensors" Csub="Environmental"/>
+            <require Cclass="BLE_Features" Cgroup="HardwareSensors" Csub="Inertial"/>
+            <require Cclass="BLE_Features" Cgroup="PnP" Csub="PnPLike"/>
+            <require Cclass="Data Exchange" Cgroup="parson"/>
+        </condition>
+        <condition id="STWINBX_DEFAULT_FW_CONDITION">
+            <require Cclass="Board Support" Cgroup="STWINbox" Csub="BSP"/>
+            <require Cbundle="lib_nfc" Cclass="Wireless" Cgroup="lib_nfc" Csub="Core"/>
+            <require Cclass="Bluetooth" Cgroup="Core" Cvariant="BLE_2"/>
+            <require Cclass="BLE_Features" Cgroup="BLE_Manager"/>
+            <require Cclass="BLE_Features" Cgroup="HardwareSensors" Csub="Battery"/>
+            <require Cclass="BLE_Features" Cgroup="HardwareSensors" Csub="Environmental"/>
+            <require Cclass="BLE_Features" Cgroup="HardwareSensors" Csub="Inertial"/>
+            <require Cclass="Data Exchange" Cgroup="parson"/>
+        </condition>
+        <condition id="STWIN_NFC_FTM_CONDITION">
+            <require Cclass="Board Support" Cgroup="STWINbox" Csub="BSP"/>
+            <require Cbundle="ST25FTM" Cclass="Middlewares" Cgroup="ST25FTM"/>
+        </condition>
+        <condition id="STWINBX_BLEMLC_CONDITION">
+            <require Cclass="Board Support" Cgroup="STWINbox" Csub="BSP"/>
+            <require Cbundle="uzlib" Cclass="Middlewares" Cgroup="uzlib"/>
+            <require Cclass="Bluetooth" Cgroup="Core" Cvariant="BLE_2"/>
+            <require Cclass="BLE_Features" Cgroup="BLE_Manager"/>
+            <require Cclass="BLE_Features" Cgroup="HardwareSensors" Csub="FiniteStateMachine"/>
+            <require Cclass="BLE_Features" Cgroup="HardwareSensors" Csub="MachineLearningCore"/>
+            <require Cclass="BLE_Features" Cgroup="HardwareSensors" Csub="Inertial"/>
+            <require Cclass="Data Exchange" Cgroup="parson"/>
+        </condition>
+        <condition id="MKBOXPRO_BOARD_PART_CONDITION">
+            <require Cclass="Board Part" Cgroup="AccGyrQvar" Csub="LSM6DSV16X" Cvariant="I2C"/>
+            <require Cclass="Board Part" Cgroup="Acc" Csub="LIS2DU12" Cvariant="I2C"/>
+            <require Cclass="Board Part" Cgroup="Mag" Csub="LIS2MDL" Cvariant="I2C"/>
+            <require Cclass="Board Part" Cgroup="PressTemp" Csub="LPS22DF" Cvariant="I2C"/>
+            <require Cclass="Board Part" Cgroup="Temp" Csub="STTS22H" Cvariant="I2C"/>
+            <require Cclass="Board Part" Cgroup="NFC4" Csub="ST25DV"/>
+            <require Cclass="Board Part" Cgroup="NFC7" Csub="ST25DVXXKC"/>
+            <require Cclass="Board Part" Cgroup="GasGauge" Csub="stc3115"/>
+        </condition>
+        <condition id="MKBOXPRO_REV_C_CONDITION">
+            <accept Dname="STM32U585A*"/>
+            <accept Cbundle="STEVAL-MKBOXPRO" Cclass="Board Support" Cgroup="SensorTileBoxPro"/>
+            <accept Cclass="Bluetooth" Cgroup="Core" Cvariant="STM32WB07_06"/>
+            <require condition="MKBOXPRO_BOARD_PART_CONDITION"/>
+            <deny Cbundle="STEVAL-STWINBX1" Cclass="Board Support" Cgroup="STWINbox" Csub="BSP"/>
+            <deny Cbundle="STEVAL-STWINBX1_Applications" Cclass="Device" Cgroup="Application"/>
+            <deny Cclass="Bluetooth" Cgroup="Core" Cvariant="BLE_2"/>
+            <deny Cclass="Bluetooth" Cgroup="Core" Cvariant="BLE_MS"/>
+            <deny Cclass="Bluetooth" Cgroup="Core" Cvariant="BLE_LP"/>
+            <deny Cclass="Bluetooth" Cgroup="Core" Cvariant="STM32WB05N"/>
+        </condition>
+        <condition id="BOXPRO_REV_C_BLEPIANO_CONDITION">
+            <require Cclass="Bluetooth" Cgroup="Core" Cvariant="STM32WB07_06"/>
+            <require Cclass="BLE_Features" Cgroup="BLE_Manager"/>
+            <require Cclass="BLE_Features" Cgroup="HardwareSensors" Csub="Battery"/>
+            <require Cclass="BLE_Features" Cgroup="HardwareSensors" Csub="Piano"/>
+            <require Cclass="Data Exchange" Cgroup="parson"/>
+            <require Cclass="Board Support" Cgroup="SensorTileBoxPro" Csub="BSP" Cvariant="REV_C"/>
+            <deny Cclass="Board Support" Cgroup="SensorTileBoxPro" Csub="BSP" Cvariant="REV_A_B"/>
+        </condition>
+        <condition id="BOXPRO_REV_C_BLEMLC_CONDITION">
+            <require Cbundle="uzlib" Cclass="Middlewares" Cgroup="uzlib"/>
+            <require Cclass="Board Support" Cgroup="SensorTileBoxPro" Csub="BSP" Cvariant="REV_C"/>
+            <require Cclass="Bluetooth" Cgroup="Core" Cvariant="STM32WB07_06"/>
+            <require Cclass="BLE_Features" Cgroup="BLE_Manager"/>
+            <require Cclass="BLE_Features" Cgroup="HardwareSensors" Csub="FiniteStateMachine"/>
+            <require Cclass="BLE_Features" Cgroup="HardwareSensors" Csub="MachineLearningCore"/>
+            <require Cclass="BLE_Features" Cgroup="HardwareSensors" Csub="Inertial"/>
+            <require Cclass="BLE_Features" Cgroup="SoftwareLibraries" Csub="ActivityRecognition"/>
+            <require Cclass="Data Exchange" Cgroup="parson"/>
+            <deny Cclass="Board Support" Cgroup="SensorTileBoxPro" Csub="BSP" Cvariant="REV_A_B"/>
+        </condition>
+        <condition id="BOXPRO_REV_C_BLEDUALPROG_CONDITION">
+            <require Cbundle="lib_nfc" Cclass="Wireless" Cgroup="lib_nfc" Csub="Core"/>
+            <require Cclass="Board Support" Cgroup="SensorTileBoxPro" Csub="BSP" Cvariant="REV_C"/>
+            <require Cclass="BLE_Features" Cgroup="BLE_Manager"/>
+            <require Cclass="BLE_Features" Cgroup="HardwareSensors" Csub="Environmental"/>
+            <require Cclass="BLE_Features" Cgroup="HardwareSensors" Csub="Inertial"/>
+            <require Cclass="BLE_Features" Cgroup="SoftwareLibraries" Csub="SensorFusion"/>
+            <require Cclass="Data Exchange" Cgroup="parson"/>
+            <require Cclass="Bluetooth" Cgroup="Core" Cvariant="STM32WB07_06"/>
+            <deny Cclass="Board Support" Cgroup="SensorTileBoxPro" Csub="BSP" Cvariant="REV_A_B"/>
+        </condition>
+        <condition id="BOXPRO_REV_C_BLESENSORS_PNPL_CONDITION">
+            <require Cclass="Board Support" Cgroup="SensorTileBoxPro" Csub="BSP" Cvariant="REV_C"/>
+            <require Cbundle="PnPLCompManager" Cclass="Middlewares" Cgroup="PnPLCompManager"/>
+            <require Cclass="Bluetooth" Cgroup="Core" Cvariant="STM32WB07_06"/>
+            <require Cclass="BLE_Features" Cgroup="BLE_Manager"/>
+            <require Cclass="BLE_Features" Cgroup="HardwareSensors" Csub="Battery"/>
+            <require Cclass="BLE_Features" Cgroup="HardwareSensors" Csub="Environmental"/>
+            <require Cclass="BLE_Features" Cgroup="HardwareSensors" Csub="Inertial"/>
+            <require Cclass="BLE_Features" Cgroup="PnP" Csub="PnPLike"/>
+            <require Cclass="Data Exchange" Cgroup="parson"/>
+            <deny Cclass="Board Support" Cgroup="SensorTileBoxPro" Csub="BSP" Cvariant="REV_A_B"/>
+        </condition>
+    </conditions>
+    <components>
+        <bundle Cbundle="uzlib" Cclass="Middlewares" Cvendor="UZILIB" Cversion="2.9.4">
+            <description>uzlib library</description>
+            <doc>Middlewares/Third_Party/uzlib/README.md</doc>
+            <component Cgroup="uzlib" maxInstances="1">
+                <description>lsm6dsox library for activity recognition feature</description>
+                <files>
+                    <file category="source" name="Middlewares/Third_Party/uzlib/src/adler32.c"/>
+                    <file category="source" name="Middlewares/Third_Party/uzlib/src/crc32.c"/>
+                    <file category="header" name="Middlewares/Third_Party/uzlib/src/defl_static.h"/>
+                    <file category="other" name="Middlewares/Third_Party/uzlib/src/nasm/crc32.nas"/>
+                    <file category="other" name="Middlewares/Third_Party/uzlib/src/nasm/nasmlcm.inc"/>
+                    <file category="other" name="Middlewares/Third_Party/uzlib/src/nasm/tinfzlib.nas"/>
+                    <file category="header" name="Middlewares/Third_Party/uzlib/src/tinf.h"/>
+                    <file category="source" name="Middlewares/Third_Party/uzlib/src/tinfgzip.c"/>
+                    <file category="source" name="Middlewares/Third_Party/uzlib/src/tinflate.c"/>
+                    <file category="header" name="Middlewares/Third_Party/uzlib/src/tinf_compat.h"/>
+                    <file category="header" name="Middlewares/Third_Party/uzlib/src/uzlib.h"/>
+                    <file category="header" name="Middlewares/Third_Party/uzlib/src/uzlib_conf.h"/>
+                </files>
+            </component>
+        </bundle>
+        <bundle Cbundle="STEVAL-MKBOXPRO" Cclass="Board Support" Cversion="1.5.0">
+            <description>SensorTile.box STEVAL-MKBOXPRO Board Drivers</description>
+            <doc>Drivers/BSP/SensorTileBoxPro/LICENSE.txt</doc>
+            <component Cgroup="SensorTileBoxPro" Csub="BSP" Cvariant="REV_A_B" condition="MKBOXPRO_REV_A_B_CONDITION" maxInstances="1">
+                <description>STEVAL-MKBOXPRO Board Drivers</description>
+                <RTE_Components_h>#define USE_MKBOXPRO_A_B</RTE_Components_h>
+                <files>
+                    <file category="source" name="Drivers/BSP/SensorTileBoxPro/SensorTileBoxPro_audio.c"/>
+                    <file category="header" name="Drivers/BSP/SensorTileBoxPro/SensorTileBoxPro_audio.h"/>
+                    <file category="source" name="Drivers/BSP/SensorTileBoxPro/SensorTileBoxPro_env_sensors.c"/>
+                    <file category="header" name="Drivers/BSP/SensorTileBoxPro/SensorTileBoxPro_env_sensors.h"/>
+                    <file category="source" name="Drivers/BSP/SensorTileBoxPro/SensorTileBoxPro_env_sensors_ex.c"/>
+                    <file category="header" name="Drivers/BSP/SensorTileBoxPro/SensorTileBoxPro_env_sensors_ex.h"/>
+                    <file category="source" name="Drivers/BSP/SensorTileBoxPro/SensorTileBoxPro_gg.c"/>
+                    <file category="header" name="Drivers/BSP/SensorTileBoxPro/SensorTileBoxPro_gg.h"/>
+                    <file category="source" name="Drivers/BSP/SensorTileBoxPro/SensorTileBoxPro_motion_sensors.c"/>
+                    <file category="header" name="Drivers/BSP/SensorTileBoxPro/SensorTileBoxPro_motion_sensors.h"/>
+                    <file category="source" name="Drivers/BSP/SensorTileBoxPro/SensorTileBoxPro_motion_sensors_ex.c"/>
+                    <file category="header" name="Drivers/BSP/SensorTileBoxPro/SensorTileBoxPro_motion_sensors_ex.h"/>
+                    <file category="source" name="Drivers/BSP/SensorTileBoxPro/SensorTileBoxPro_nfctag.c"/>
+                    <file category="header" name="Drivers/BSP/SensorTileBoxPro/SensorTileBoxPro_nfctag.h"/>
+                    <file category="source" name="Drivers/BSP/SensorTileBoxPro/SensorTileBoxPro_nfctag_ex.c"/>
+                    <file category="header" name="Drivers/BSP/SensorTileBoxPro/SensorTileBoxPro_nfctag_ex.h"/>
+                    <file category="source" name="Drivers/BSP/SensorTileBoxPro/SensorTileBoxPro_sd.c"/>
+                    <file category="header" name="Drivers/BSP/SensorTileBoxPro/SensorTileBoxPro_sd.h"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/audio.h"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/camera.h"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/dpredriver.h"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/env_sensor.h"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/epd.h"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/hybrid_sensor.h"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/idd.h"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/io.h"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/lcd.h"/>
+                    <file category="doc" name="Drivers/BSP/Components/Common/LICENSE.txt"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/light_sensor.h"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/motion_sensor.h"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/pwrmon.h"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/ranging_sensor.h"/>
+                    <file category="doc" name="Drivers/BSP/Components/Common/Release_Notes.html"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/ts.h"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/usbtypecswitch.h"/>
+                    <file category="other" name="Drivers/BSP/Components/Common/_htmresc/Add button.svg"/>
+                    <file category="other" name="Drivers/BSP/Components/Common/_htmresc/favicon.png"/>
+                    <file category="other" name="Drivers/BSP/Components/Common/_htmresc/mini-st.css"/>
+                    <file category="other" name="Drivers/BSP/Components/Common/_htmresc/st_logo.png"/>
+                    <file category="other" name="Drivers/BSP/Components/Common/_htmresc/Update.svg"/>
+                    <file category="other" name="Drivers/BSP/SensorTileBoxPro/_htmresc/Add button.svg"/>
+                    <file category="other" name="Drivers/BSP/SensorTileBoxPro/_htmresc/favicon.png"/>
+                    <file category="other" name="Drivers/BSP/SensorTileBoxPro/_htmresc/mini-st.css"/>
+                    <file category="other" name="Drivers/BSP/SensorTileBoxPro/_htmresc/st_logo.png"/>
+                    <file category="other" name="Drivers/BSP/SensorTileBoxPro/_htmresc/Update.svg"/>
+                    <file category="doc" name="Drivers/BSP/SensorTileBoxPro/LICENSE.txt"/>
+                    <file category="doc" name="Drivers/BSP/SensorTileBoxPro/Release_Notes.html"/>
+                </files>
+            </component>
+            <component Cgroup="SensorTileBoxPro" Csub="BSP" Cvariant="REV_C" condition="MKBOXPRO_REV_C_CONDITION" maxInstances="1">
+                <description>STEVAL-MKBOXPRO Board Drivers</description>
+                <RTE_Components_h>#define USE_MKBOXPRO_C</RTE_Components_h>
+                <files>
+                    <file category="doc" name="Drivers/BSP/SensorTileBoxPro/LICENSE.txt"/>
+                    <file category="doc" name="Drivers/BSP/SensorTileBoxPro/Release_Notes.html"/>
+                    <file category="source" name="Drivers/BSP/SensorTileBoxPro/SensorTileBoxPro_audio.c"/>
+                    <file category="header" name="Drivers/BSP/SensorTileBoxPro/SensorTileBoxPro_audio.h"/>
+                    <file category="source" name="Drivers/BSP/SensorTileBoxPro/SensorTileBoxPro_env_sensors.c"/>
+                    <file category="header" name="Drivers/BSP/SensorTileBoxPro/SensorTileBoxPro_env_sensors.h"/>
+                    <file category="source" name="Drivers/BSP/SensorTileBoxPro/SensorTileBoxPro_env_sensors_ex.c"/>
+                    <file category="header" name="Drivers/BSP/SensorTileBoxPro/SensorTileBoxPro_env_sensors_ex.h"/>
+                    <file category="source" name="Drivers/BSP/SensorTileBoxPro/SensorTileBoxPro_gg.c"/>
+                    <file category="header" name="Drivers/BSP/SensorTileBoxPro/SensorTileBoxPro_gg.h"/>
+                    <file category="source" name="Drivers/BSP/SensorTileBoxPro/SensorTileBoxPro_motion_sensors.c"/>
+                    <file category="header" name="Drivers/BSP/SensorTileBoxPro/SensorTileBoxPro_motion_sensors.h"/>
+                    <file category="source" name="Drivers/BSP/SensorTileBoxPro/SensorTileBoxPro_motion_sensors_ex.c"/>
+                    <file category="header" name="Drivers/BSP/SensorTileBoxPro/SensorTileBoxPro_motion_sensors_ex.h"/>
+                    <file category="source" name="Drivers/BSP/SensorTileBoxPro/SensorTileBoxPro_nfctag.c"/>
+                    <file category="header" name="Drivers/BSP/SensorTileBoxPro/SensorTileBoxPro_nfctag.h"/>
+                    <file category="source" name="Drivers/BSP/SensorTileBoxPro/SensorTileBoxPro_nfctag_ex.c"/>
+                    <file category="header" name="Drivers/BSP/SensorTileBoxPro/SensorTileBoxPro_nfctag_ex.h"/>
+                    <file category="source" name="Drivers/BSP/SensorTileBoxPro/SensorTileBoxPro_sd.c"/>
+                    <file category="header" name="Drivers/BSP/SensorTileBoxPro/SensorTileBoxPro_sd.h"/>
+                    <file category="other" name="Drivers/BSP/SensorTileBoxPro/_htmresc/Add button.svg"/>
+                    <file category="other" name="Drivers/BSP/SensorTileBoxPro/_htmresc/favicon.png"/>
+                    <file category="other" name="Drivers/BSP/SensorTileBoxPro/_htmresc/mini-st.css"/>
+                    <file category="other" name="Drivers/BSP/SensorTileBoxPro/_htmresc/st_logo.png"/>
+                    <file category="other" name="Drivers/BSP/SensorTileBoxPro/_htmresc/Update.svg"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/audio.h"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/camera.h"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/dpredriver.h"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/env_sensor.h"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/epd.h"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/hybrid_sensor.h"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/idd.h"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/io.h"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/lcd.h"/>
+                    <file category="doc" name="Drivers/BSP/Components/Common/LICENSE.txt"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/light_sensor.h"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/motion_sensor.h"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/pwrmon.h"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/ranging_sensor.h"/>
+                    <file category="doc" name="Drivers/BSP/Components/Common/Release_Notes.html"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/ts.h"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/usbtypecswitch.h"/>
+                    <file category="other" name="Drivers/BSP/Components/Common/_htmresc/Add button.svg"/>
+                    <file category="other" name="Drivers/BSP/Components/Common/_htmresc/favicon.png"/>
+                    <file category="other" name="Drivers/BSP/Components/Common/_htmresc/mini-st.css"/>
+                    <file category="other" name="Drivers/BSP/Components/Common/_htmresc/st_logo.png"/>
+                    <file category="other" name="Drivers/BSP/Components/Common/_htmresc/Update.svg"/>
+                </files>
+            </component>
+        </bundle>
+        <bundle Cbundle="STEVAL-MKBOXPRO_Applications" Cclass="Device" Cversion="2.1.0">
+            <description>Example applications for FP-SNS-STBOX1</description>
+            <doc>Documentation/STMicroelectronics.FP-SNS-STBOX1_GettingStarted.pdf</doc>
+            <component Cgroup="Application" Cvariant="Rev_A_B_BLEPiano" condition="BOXPRO_REV_A_B_BLEPIANO_CONDITION" isDefaultVariant="true" maxInstances="1">
+                <description>The application explains how using bluetooth it is possible to play Music Notes on .box-Pro The application provided also firwmare over the air update allowing also to change the Firwmare running on the board</description>
+                <RTE_Components_h>#define BLEPIANO_MKBOXPRO</RTE_Components_h>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="Rev_A_B_BLEMLC" condition="BOXPRO_REV_A_B_BLEMLC_CONDITION" maxInstances="1">
+                <description>The Example application provides one example on how to program the Machine Learning core and the Finite State Machine. The application provided also firwmare over the air update allowing also to change the Firwmare running on the board</description>
+                <RTE_Components_h>#define BLEMLC_MKBOXPRO</RTE_Components_h>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="Rev_A_B_BLEDualProgram" condition="BOXPRO_REV_A_B_BLEDUALPROG_CONDITION" maxInstances="1">
+                <description>The Example application provides one example on how to perform a firmware over the air update using Bluetooth, uses also the NFC for providing a direct connection with the board</description>
+                <RTE_Components_h>#define BLEDUALPROGRAM_MKBOXPRO</RTE_Components_h>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="Rev_A_B_BLESensorsPnPL" condition="BOXPRO_REV_A_B_BLESENSORS_PNPL_CONDITION" maxInstances="1">
+                <description>The Example application provides one example on how send the board sensors values to the ST BLE sensor application using Bluetooth customizing the Demos using PnP-L message.</description>
+                <RTE_Components_h>#define BLESENSORS_PNPL_MKBOXPRO</RTE_Components_h>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="NFC_FTM" condition="BOXPRO_NFC_FTM_CONDITION" maxInstances="1">
+                <description>The Example application provides one example on how to use the Fast Memory Transfer protocol for making a firmware update using the NFC and using the STMicroelectronics “ST25 NFC Tap” available for Android and iOS</description>
+                <RTE_Components_h>#define NFC_FTM_MKBOXPRO</RTE_Components_h>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="Rev_C_BLEPiano" condition="BOXPRO_REV_C_BLEPIANO_CONDITION" isDefaultVariant="true" maxInstances="1">
+                <description>The application explains how using bluetooth it is possible to play Music Notes on .box-Pro The application provided also firwmare over the air update allowing also to change the Firwmare running on the board</description>
+                <RTE_Components_h>#define BLEPIANO_MKBOXPRO</RTE_Components_h>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="Rev_C_BLEMLC" condition="BOXPRO_REV_C_BLEMLC_CONDITION" maxInstances="1">
+                <description>The Example application provides one example on how to program the Machine Learning core and the Finite State Machine. The application provided also firwmare over the air update allowing also to change the Firwmare running on the board</description>
+                <RTE_Components_h>#define BLEMLC_MKBOXPRO</RTE_Components_h>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="Rev_C_BLEDualProgram" condition="BOXPRO_REV_C_BLEDUALPROG_CONDITION" maxInstances="1">
+                <description>The Example application provides one example on how to perform a firmware over the air update using Bluetooth, uses also the NFC for providing a direct connection with the board</description>
+                <RTE_Components_h>#define BLEDUALPROGRAM_MKBOXPRO</RTE_Components_h>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="Rev_C_BLESensorsPnPL" condition="BOXPRO_REV_C_BLESENSORS_PNPL_CONDITION" maxInstances="1">
+                <description>The Example application provides one example on how send the board sensors values to the ST BLE sensor application using Bluetooth customizing the Demos using PnP-L message.</description>
+                <RTE_Components_h>#define BLESENSORS_PNPL_MKBOXPRO</RTE_Components_h>
+                <files/>
+            </component>
+        </bundle>
+        <bundle Cbundle="PnPLCompManager" Cclass="Middlewares" Cversion="2.1.1">
+            <description>PnPLCompManager middleware</description>
+            <doc>Middlewares/ST/PnPLCompManager/LICENSE.txt</doc>
+            <component Cgroup="PnPLCompManager" condition="PNPL_CONDITION" maxInstances="1">
+                <description>The PnPLCompManager implements the interface used to handle PnP-like commands and properties generated through a Digital Twins Definition Language (DTDL).</description>
+                <files>
+                    <file category="header" name="Middlewares/ST/PnPLCompManager/Inc/IPnPLComponent.h"/>
+                    <file category="header" name="Middlewares/ST/PnPLCompManager/Inc/IPnPLComponent_vtbl.h"/>
+                    <file category="header" name="Middlewares/ST/PnPLCompManager/Inc/PnPLCompManager.h"/>
+                    <file category="header" name="Middlewares/ST/PnPLCompManager/Inc/PnPLDef.h"/>
+                    <file category="source" name="Middlewares/ST/PnPLCompManager/Src/IPnPLComponent.c"/>
+                    <file category="source" name="Middlewares/ST/PnPLCompManager/Src/PnPLCompManager.c"/>
+                </files>
+            </component>
+        </bundle>
+        <bundle Cbundle="ST25FTM" Cclass="Middlewares" Cversion="1.1.0">
+            <description>ST25FTM Library</description>
+            <doc>Middlewares/ST/ST25FTM/LICENSE.txt</doc>
+            <component Cgroup="ST25FTM" maxInstances="1">
+                <description>The ST25 fast transfer mode (ST25FTM) library is an embedded software library enabling fast data transfer between an NFC reader and a dynamic tag. The ST25FTM library is an embedded implementation of the ST25FTM protocol that can be used on both an NFC reader and the MCU controlling the dynamic tag.</description>
+                <files>
+                    <file category="header" name="Middlewares/ST/ST25FTM/Inc/st25ftm_common.h"/>
+                    <file category="header" name="Middlewares/ST/ST25FTM/Inc/st25ftm_protocol.h"/>
+                    <file category="source" name="Middlewares/ST/ST25FTM/Src/st25ftm_common.c"/>
+                    <file category="source" name="Middlewares/ST/ST25FTM/Src/st25ftm_protocol.c"/>
+                    <file category="source" name="Middlewares/ST/ST25FTM/Src/st25ftm_rx.c"/>
+                    <file category="source" name="Middlewares/ST/ST25FTM/Src/st25ftm_tx.c"/>
+                </files>
+            </component>
+        </bundle>
+        <bundle Cbundle="stc3115" Cclass="Board Part" Cversion="1.1.0">
+            <description>This directory contains the STC3115 component drivers.</description>
+            <doc>Drivers/BSP/Components/stc3115/LICENSE.txt</doc>
+            <component Cgroup="GasGauge" Csub="stc3115" condition="STC3115_CND" maxInstances="1">
+                <description>This directory contains the STC3115 component drivers.</description>
+                <files>
+                    <file category="header" name="Drivers/BSP/Components/stc3115/component.h"/>
+                    <file category="header" name="Drivers/BSP/Components/stc3115/GasGauge.h"/>
+                    <file category="source" name="Drivers/BSP/Components/stc3115/STC3115_Driver.c"/>
+                    <file category="header" name="Drivers/BSP/Components/stc3115/STC3115_Driver.h"/>
+                </files>
+            </component>
+        </bundle>
+        <bundle Cbundle="STEVAL-STWINBX1" Cclass="Board Support" Cversion="1.1.0">
+            <description>STEVAL-STWINBX1 Board Drivers</description>
+            <doc>Drivers/BSP/STWIN.box/LICENSE.txt</doc>
+            <component Cgroup="STWINbox" Csub="BSP" condition="STWINBX1_CONDITION" maxInstances="1">
+                <description>STEVAL-STWINBX1 Board Drivers</description>
+                <RTE_Components_h>#define USE_STWINBX1</RTE_Components_h>
+                <files>
+                    <file category="source" name="Drivers/BSP/STWIN.box/STWIN.box_audio.c"/>
+                    <file category="header" name="Drivers/BSP/STWIN.box/STWIN.box_audio.h"/>
+                    <file category="source" name="Drivers/BSP/STWIN.box/STWIN.box_bc.c"/>
+                    <file category="header" name="Drivers/BSP/STWIN.box/STWIN.box_bc.h"/>
+                    <file category="source" name="Drivers/BSP/STWIN.box/STWIN.box_debug_pins.c"/>
+                    <file category="header" name="Drivers/BSP/STWIN.box/STWIN.box_debug_pins.h"/>
+                    <file category="source" name="Drivers/BSP/STWIN.box/STWIN.box_env_sensors.c"/>
+                    <file category="header" name="Drivers/BSP/STWIN.box/STWIN.box_env_sensors.h"/>
+                    <file category="source" name="Drivers/BSP/STWIN.box/STWIN.box_env_sensors_ex.c"/>
+                    <file category="header" name="Drivers/BSP/STWIN.box/STWIN.box_env_sensors_ex.h"/>
+                    <file category="header" name="Drivers/BSP/STWIN.box/STWIN.box_errno.h"/>
+                    <file category="source" name="Drivers/BSP/STWIN.box/STWIN.box_motion_sensors.c"/>
+                    <file category="header" name="Drivers/BSP/STWIN.box/STWIN.box_motion_sensors.h"/>
+                    <file category="source" name="Drivers/BSP/STWIN.box/STWIN.box_motion_sensors_ex.c"/>
+                    <file category="header" name="Drivers/BSP/STWIN.box/STWIN.box_motion_sensors_ex.h"/>
+                    <file category="source" name="Drivers/BSP/STWIN.box/STWIN.box_nfctag.c"/>
+                    <file category="header" name="Drivers/BSP/STWIN.box/STWIN.box_nfctag.h"/>
+                    <file category="source" name="Drivers/BSP/STWIN.box/STWIN.box_sd.c"/>
+                    <file category="header" name="Drivers/BSP/STWIN.box/STWIN.box_sd.h"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/audio.h"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/camera.h"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/dpredriver.h"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/env_sensor.h"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/epd.h"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/hybrid_sensor.h"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/idd.h"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/io.h"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/lcd.h"/>
+                    <file category="doc" name="Drivers/BSP/Components/Common/LICENSE.txt"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/light_sensor.h"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/motion_sensor.h"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/pwrmon.h"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/ranging_sensor.h"/>
+                    <file category="doc" name="Drivers/BSP/Components/Common/Release_Notes.html"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/ts.h"/>
+                    <file category="header" name="Drivers/BSP/Components/Common/usbtypecswitch.h"/>
+                    <file category="other" name="Drivers/BSP/Components/Common/_htmresc/Add button.svg"/>
+                    <file category="other" name="Drivers/BSP/Components/Common/_htmresc/favicon.png"/>
+                    <file category="other" name="Drivers/BSP/Components/Common/_htmresc/mini-st.css"/>
+                    <file category="other" name="Drivers/BSP/Components/Common/_htmresc/st_logo.png"/>
+                    <file category="other" name="Drivers/BSP/Components/Common/_htmresc/Update.svg"/>
+                </files>
+            </component>
+        </bundle>
+        <bundle Cbundle="STEVAL-STWINBX1_Applications" Cclass="Device" Cversion="2.0.0">
+            <description>Example applications for STEVAL-STWINBX1 board</description>
+            <doc>Documentation/STMicroelectronics.FP-SNS-STBOX1_GettingStarted.pdf</doc>
+            <component Cgroup="Application" Cvariant="BLESensorsPnPL" condition="STWINBX_BLESENSORS_PNPL_CONDITION" maxInstances="1">
+                <description>The Example application provides one example on how send the board sensors values to the ST BLE sensor application using Bluetooth customizing the Demos using PnP-L message.</description>
+                <RTE_Components_h>#define STWINBOX_BLESENSORS_PNPL</RTE_Components_h>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="BLEDefaultFw" condition="STWINBX_DEFAULT_FW_CONDITION" maxInstances="1">
+                <description>The Example application provides one example on how to perform a firmware over the air update using Bluetooth.</description>
+                <RTE_Components_h>#define STWINBOX_DEFAULT_FW</RTE_Components_h>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="NFC_FTM" condition="STWIN_NFC_FTM_CONDITION" maxInstances="1">
+                <description>The Example application provides one example on how to use the Fast Memory Transfer protocol for making a firmware update using the NFC and using the STMicroelectronics “ST25 NFC Tap” available for Android and iOS</description>
+                <RTE_Components_h>#define NFC_FTM_STWINBOX</RTE_Components_h>
+                <files/>
+            </component>
+            <component Cgroup="Application" Cvariant="BLEMLC" condition="STWINBX_BLEMLC_CONDITION" maxInstances="1">
+                <description>The Example application provides one example on how to program the Machine Learning core and the Finite State Machine provided by the ISM330DHCX The application provided also firwmare over the air update allowing also to change the Firwmare running on the board</description>
+                <RTE_Components_h>#define BLEMLC_STWINBOX</RTE_Components_h>
+                <files/>
+            </component>
+        </bundle>
+    </components>
+</package>

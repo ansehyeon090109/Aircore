@@ -1,0 +1,48 @@
+<!DOCTYPE html >
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml">
+<font color="blue"><b><u>STM32CubeWBA Firmware Package V1.7.0 / 04-June-2025</u></b></font><br>
+<b><u>Main Changes</u></b><br>
+<b>Official Release of STM32CubeWBA Firmware package supporting STM32WBA50xx, STM32WBA52xx, STM32WBA54xx, STM32WBA5Mxx, STM32WBA55xx, STM32WBA62xx, STM32WBA63xx, STM32WBA64xx and STM32WBA65xx devices</b><br>
+<ul style="list-style-type: disc;">
+    <li>FreeRTOS upgrade to 10.6.2 and ThreadX upgrade to 6.4.0</li>
+    <li>EWARM IDE update to version 9.60.3</li>
+    <li><b>Security</b></li>
+        <ul>
+            <li>Upgraded Mbedtls v3.6.2 LTS to Mbedtls v3.6.3 LTS</li>
+            <li>Upgraded mcuboot v1.7.2.31 to mcuboot v1.7.2.34</li>
+            <li>ROT applications have been migrated to IAR 9.60.3</li>
+            <li>Use batch scripts on Windows with CubeIDE (bash scripts only used for Linux & MAC-OS)</li>
+        </ul>
+    <li><b>Connectivity</b></li>
+        <ul>
+            <li>ZigBee Direct enhancements</li>
+            <li>Thread 1.4 support (OT commit "c583554263c8c88922ca45ef4c7486b9292a4f93" - Feb 14 2025)</li>
+            <li>Low Power performance improvements (wake up time from standby automatically profiled, optimized RNG initialization)</li>
+            <li>BLE Audio: Support of the Enhanced ATT feature</li>
+        </ul>
+    <li><b>Drivers</b></li>
+        <ul>
+            <li>CMSIS Device Drivers supporting TM32WBA50xx, STM32WBA52xx, STM32WBA54xx, STM32WBA55xx, STM32WBA5Mxx, STM32WBA62xx, STM32WBA63xx, STM32WBA64xx and STM32WBA65xx devices</li>
+            <li>HAL/LL Drivers available for all peripherals</li>
+            <li>HAL: ADC, COMP, CORTEX, CRC, CRYP, DMA, EXTI, FLASH, GPIO, GTZC, HASH, HSEM, HCD, I2C, ICACHE, IRDA, IWDG, LPTIM, PKA, PWR, PCD, RAMCFG, RCC, RNG, RTC, SAI, SMARTCARD, SMBUS, SPI, TIM, TSC, UART, USB, USART, WWDG</li>
+            <li>LL : ADC, COMP, CRC, DMA, EXTI, GPIO, I2C, ICACHE, LPTIM, LPUART, PKA, PWR, RCC, RNG, RTC, SPI, TIM, USART, UTILS</li>
+            <li>Update HAL/LL drivers to include latest corrections and to support of STM32WBA6xx devices</li>
+            <li>BSP Drivers : Update STM32WBAxx_Nucleo, STM32WBA65I-DK1 and STM32WBA55G-DK1 BSP drivers to include latest corrections.</li>
+            <li>Add B-WBA5M-WPAN BSP drivers</li>
+        </ul>
+
+    <li><b>Projects</b></li>
+        <ul>
+            <li><b>B-WBA5M-WPAN</b></li>
+            <ul><li> Update Applications demonstrating BLE, Thread and Zigbee capabilities</li></ul>
+            <li><b>NUCLEO-WBA55CG</b></li>
+            <ul><li>Update Applications demonstrating BLE, Thread and Zigbee capabilities</li></ul>
+            <li><b>STM32WBA55G-DK1</b></li>
+            <ul><li>Update Applications demonstrating BLE, Thread and Zigbee capabilities</li></ul>
+            <li><b>NUCLEO-WBA65RI</b></li>
+            <ul><li>Update Applications demonstrating BLE, Thread and Zigbee capabilities</li></ul>
+            <li><b>STM32WBA65I-DK1</b></li>
+            <ul><li>Update Applications demonstrating BLE and Zigbee capabilities</li></ul>           
+        </ul>
+</ul>
+</html>

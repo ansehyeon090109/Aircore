@@ -1,0 +1,44 @@
+﻿    /* USART3 interrupt DeInit */
+    HAL_NVIC_DisableIRQ(USART3_IRQn);
+    /* USER CODE BEGIN USART3_MspDeInit 1 */
+
+    /* USER CODE END USART3_MspDeInit 1 */
+  }
+
+}
+
+/* USER CODE BEGIN 1 */
+void HAL_TIM_PWM_MspInit(TIM_HandleTypeDef *htim)
+{
+  if (htim->Instance == TIM3)
+  {
+    __HAL_RCC_TIM3_CLK_ENABLE();
+  }
+}
+
+void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim)
+{
+  if (htim->Instance == TIM3)
+  {
+    GPIO_InitTypeDef pins = {0};
+    __HAL_RCC_GPIOB_CLK_ENABLE();
+    pins.Pin = GPIO_PIN_4 | GPIO_PIN_5;
+    pins.Mode = GPIO_MODE_AF_PP;
+    pins.Pull = GPIO_NOPULL;
+    pins.Speed = GPIO_SPEED_FREQ_LOW;
+    pins.Alternate = GPIO_AF2_TIM3;
+    HAL_GPIO_Init(GPIOB, &pins);
+  }
+}
+
+void HAL_TIM_PWM_MspDeInit(TIM_HandleTypeDef *htim)
+{
+  if (htim->Instance == TIM3)
+  {
+    __HAL_RCC_TIM3_CLK_DISABLE();
+    HAL_GPIO_DeInit(GPIOB, GPIO_PIN_4 | GPIO_PIN_5);
+  }
+}
+
+
+/* USER CODE END 1 */

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<IP xmlns="http://mcd.rou.st.com/modules.php?name=mcu" DBVersion="V4.0" Name="X-CUBE-qispace-sdk-base" RootFolder="C:\Users\user\STM32CubeIDE\workspace_1.19.0\uart_test\validation\cubemx-home\.stm32cubemx\thirdparties\pdsc/quantropi/X-CUBE-qispace-sdk-base/2.1.0/" Version="2.1.0" xmlns:ns0="http://www.w3.org/2001/XMLSchema-instance" ns0:schemaLocation="http://mcd.rou.st.com/modules.php?name=mcu ../../../../../../../doc/V4/Development/Specifications/db/thirdPartyDb.xsd">
+    <RefConfig Name="SDKJjmcuIilib">
+        <Component Name="SDK:mcuIilib:$SDKJjmcuIilib"/>
+    </RefConfig>
+    <RefConfig Name="SDKJjsamp">
+        <Component Name="SDK:samp:$SDKJjsamp"/>
+    </RefConfig>
+    <RefConfig Name="SDKJjmpuIilib">
+        <Component Name="SDK:mpuIilib:$SDKJjmpuIilib"/>
+    </RefConfig>
+    <RefConfig Name="SDKJjinc">
+        <Component Name="SDK:inc:$SDKJjinc"/>
+    </RefConfig>
+    <RefComponent Cclass="SDK" Cgroup="mcuIilib" Cversion="2Gg1Gg0">
+        <File Category="library" Condition="CM4_GCC;(SIiTcompilerIiGCC&amp;SIiDcoreIiCortexAaM4)" Name="Middlewares/Third_Party/mcu_lib/libmasq_ds_mldsa-armgcc-cortexm4.a"/>
+        <File Category="library" Condition="CM7_GCC;(SIiTcompilerIiGCC&amp;SIiDcoreIiCortexAaM7)" Name="Middlewares/Third_Party/mcu_lib/libmasq_ds_mldsa-armgcc-cortexm7.a"/>
+        <File Category="library" Condition="CM33_GCC;(SIiTcompilerIiGCC&amp;SIiDcoreIiCortexAaM33)" Name="Middlewares/Third_Party/mcu_lib/libmasq_ds_mldsa-armgcc-cortexm33.a"/>
+        <File Category="library" Condition="CM4_GCC;(SIiTcompilerIiGCC&amp;SIiDcoreIiCortexAaM4)" Name="Middlewares/Third_Party/mcu_lib/libmasq_kem_mlkem-armgcc-cortexm4.a"/>
+        <File Category="library" Condition="CM7_GCC;(SIiTcompilerIiGCC&amp;SIiDcoreIiCortexAaM7)" Name="Middlewares/Third_Party/mcu_lib/libmasq_kem_mlkem-armgcc-cortexm7.a"/>
+        <File Category="library" Condition="CM33_GCC;(SIiTcompilerIiGCC&amp;SIiDcoreIiCortexAaM33)" Name="Middlewares/Third_Party/mcu_lib/libmasq_kem_mlkem-armgcc-cortexm33.a"/>
+    </RefComponent>
+    <RefComponent Cclass="SDK" Cgroup="samp" Cversion="2Gg1Gg0">
+        <File Category="source" Condition="" Name="Middlewares/Third_Party/samp/ds_samp.c"/>
+        <File Category="source" Condition="" Name="Middlewares/Third_Party/samp/kem_samp.c"/>
+    </RefComponent>
+    <RefComponent Cclass="SDK" Cgroup="mpuIilib" Cversion="2Gg1Gg0">
+        <File Category="library" Condition="" Name="Middlewares/Third_Party/mpu_lib/libmasq_ds_mldsa-ostgcc-cortexa7.a"/>
+        <File Category="library" Condition="" Name="Middlewares/Third_Party/mpu_lib/libmasq_kem_mlkem-ostgcc-cortexa7.a"/>
+    </RefComponent>
+    <RefComponent Cclass="SDK" Cgroup="inc" Cversion="2Gg1Gg0">
+        <File Category="header" Condition="" Name="Middlewares/Third_Party/inc/masq_ds_error.h"/>
+        <File Category="header" Condition="" Name="Middlewares/Third_Party/inc/masq_ds.h"/>
+        <File Category="header" Condition="" Name="Middlewares/Third_Party/inc/masq_ds_mldsa.h"/>
+        <File Category="header" Condition="" Name="Middlewares/Third_Party/inc/masq_kem_error.h"/>
+        <File Category="header" Condition="" Name="Middlewares/Third_Party/inc/masq_kem.h"/>
+        <File Category="header" Condition="" Name="Middlewares/Third_Party/inc/masq_kem_mlkem.h"/>
+    </RefComponent>
+</IP>
